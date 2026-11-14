@@ -1,5 +1,14 @@
--- KyHub v5 (autoexec + android fix)
+-- KyHub v6 (autoexec + android fix + fix portal home salah)
 -- RightShift = sembunyikan menu, E = auto harvest
+--
+-- Perubahan v6:
+--  * Balik home sekarang mencari portal yang namanya mengandung kata kunci "home"
+--    di dalam model Hub (bukan TouchPart pertama yang kebetulan ketemu).
+--    Kalau portal home tidak ketemu, script TIDAK menyentuh portal lain (tidak salah portal lagi).
+--  * Kata kunci portal bisa diganti di tab Overflow Chest (kolom "Nama portal home").
+--  * Race condition Auto Slime vs Auto Collect diperbaiki: Auto Slime tidak bisa
+--    menyentuh portal HUB island saat Auto Collect sedang jalan ke home.
+--  * DEBUG chest sekarang menampilkan semua portal di model Hub dan portal mana yang dipilih.
 
 -- tunggu game siap (penting untuk autoexec)
 if not game:IsLoaded() then game.Loaded:Wait() end
@@ -100,8 +109,9 @@ local ChestCFG = {
     OpenWait = 3,
     CollectWait = 0.8,
     BetweenChest = 0.3,
-    HomeModel = "Hub",      -- model yang punya TouchPart untuk balik ke home
+    HomeModel = "Hub",      -- model lobby yang berisi portal untuk balik ke home
     HomeTouchName = "TouchPart",
+    HomeKeyword = "home",   -- portal yang dipilih = yang nama part / model induknya mengandung kata ini (pisah koma kalau lebih dari satu)
     HomeWait = 8,
     AfterHomeDelay = 2,
 }
@@ -495,9 +505,14 @@ Tg.chest = Toggle(pChest, "chest.on", "Auto Collect", false, function(v) Chest.S
 Input(pChest, "chest.interval", "Interval (menit.detik, 0.30 = 30 dtk)", ChestCFG.IntervalMin, function(n) ChestCFG.IntervalMin = n end, 0.05)
 Toggle(pChest, "chest.onlyfull", "Hanya chest FULL", ChestCFG.OnlyFull, function(v) ChestCFG.OnlyFull = v end)
 Toggle(pChest, "chest.teleport", "Teleport ke chest", ChestCFG.Teleport, function(v) ChestCFG.Teleport = v end)
+TextInput(pChest, "chest.homekw", "Nama portal home", ChestCFG.HomeKeyword, function(t)
+    local v = trim(t)
+    if v ~= "" then ChestCFG.HomeKeyword = v end
+end, 130, "home")
 Button(pChest, "DEBUG (lihat console)", function() Chest.Debug() end, Color3.fromRGB(120, 90, 40))
 Section(pChest, "Status")
 Chest.info = Info(pChest, "Siap.", 50)
+Info(pChest, "Balik home memilih portal di model Hub yang namanya (atau nama model induknya) mengandung kata di kolom \"Nama portal home\". Kalau salah portal / tidak ketemu, klik DEBUG dan lihat console (F9): semua portal di Hub ditampilkan lengkap dengan path-nya.", 32)
 
 Section(pHarvest, "Auto Harvest (tekan E)")
 Tg.harvest = Toggle(pHarvest, "harvest.on", "Auto Harvest", false, function(v) Harvest.Set(v) end)
@@ -687,6 +702,8 @@ do
 
     -- return true kalau berhasil, atau false + alasan (+ true kalau layak dicoba lagi)
     local function runHubTeleport()
+        -- Auto Collect lagi jalan: jangan sentuh portal apa pun (ini yang bikin salah portal waktu balik home)
+        if Link.pause then return false, "Dijeda, Auto Collect lagi jalan...", true end
         if not getHRP() then return false, "Karakter tidak ditemukan.", true end
         if not getIsland() then return false, "Island tidak ditemukan:\n" .. CFG.ISLAND_NAME end
         local touch = getTouch()
@@ -696,13 +713,16 @@ do
         setInfo("Menyentuh TouchPart HUB...")
         touchPart(touch)
         task.wait(1.5)
+        if Link.pause then return false, "Dijeda, Auto Collect lagi jalan...", true end
 
         setInfo(("Teleport... menunggu %ds"):format(CFG.AfterDelay))
         task.wait(CFG.AfterDelay)
+        if Link.pause then return false, "Dijeda, Auto Collect lagi jalan...", true end
 
         -- tunggu slime muncul
         local target
         for _ = 1, math.max(1, math.floor(CFG.FindTimeout / 0.5)) do
+            if Link.pause then return false, "Dijeda, Auto Collect lagi jalan...", true end
             local hrp = getHRP()
             if hrp then target = pickTarget(hrp) end
             if target then break end
@@ -891,8 +911,14 @@ do
                     teleported = true
                     setInfo("Sudah di Hub, jalan ke slime...")
                 elseif CFG.UseHub and not teleported then
+                    -- handshake dengan Auto Collect: tandai sibuk dulu, baru cek pause
                     Link.hubBusy = true
-                    local ok, why, retry = runHubTeleport()
+                    local ok, why, retry
+                    if Link.pause then
+                        ok, why, retry = false, "Dijeda, Auto Collect lagi jalan...", true
+                    else
+                        ok, why, retry = runHubTeleport()
+                    end
                     Link.hubBusy = false
                     if ok then
                         teleported = true
@@ -1211,15 +1237,82 @@ do
         return not inside
     end
 
-    -- balik ke home lewat TouchPart di model Hub
+    -- nama part dan semua model induknya (sampai model Hub), huruf kecil
+    local function pathNames(part, root)
+        local names = {}
+        local cur = part
+        while cur and cur ~= root do
+            names[#names + 1] = cur.Name:lower()
+            cur = cur.Parent
+        end
+        return names
+    end
+
+    local function homeKeywords()
+        local kws = {}
+        for w in tostring(CFG.HomeKeyword or ""):gmatch("[^,]+") do
+            w = trim(w):lower()
+            if w ~= "" then kws[#kws + 1] = w end
+        end
+        return kws
+    end
+
+    -- semua kandidat portal di model Hub: part bernama TouchPart atau part yang punya TouchInterest
+    local function listPortals()
+        local m = workspace:FindFirstChild(CFG.HomeModel)
+        local list = {}
+        if not m then return list, m end
+        local touchName = CFG.HomeTouchName:lower()
+        local kws = homeKeywords()
+        for _, d in ipairs(m:GetDescendants()) do
+            if d:IsA("BasePart") and (d.Name:lower() == touchName or d:FindFirstChildOfClass("TouchTransmitter")) then
+                local names = pathNames(d, m)
+                local hit = false
+                for _, n in ipairs(names) do
+                    for _, kw in ipairs(kws) do
+                        if n:find(kw, 1, true) then hit = true end
+                    end
+                end
+                list[#list + 1] = {part = d, depth = #names, hit = hit}
+            end
+        end
+        return list, m
+    end
+
+    -- cari portal HOME saja. Kalau tidak yakin, jangan sentuh apa pun (lebih baik gagal daripada salah portal)
+    local function findHomePortal()
+        local list, m = listPortals()
+        if not m then return nil, ("Model %s tidak ditemukan."):format(CFG.HomeModel) end
+        local matched = {}
+        for _, c in ipairs(list) do
+            if c.hit then matched[#matched + 1] = c end
+        end
+        if #matched > 0 then
+            table.sort(matched, function(a, b) return a.depth < b.depth end)
+            return matched[1].part
+        end
+        if #list == 1 then return list[1].part end
+        if #list == 0 then
+            return nil, ("Tidak ada portal di model %s."):format(CFG.HomeModel)
+        end
+        return nil, ("Portal '%s' tidak ketemu di %s (ada %d portal). Klik DEBUG."):format(CFG.HomeKeyword, CFG.HomeModel, #list)
+    end
+
+    -- balik ke home lewat portal home di model Hub. return true, atau false + alasan
     local function goHome()
         if atHome() then return true end
-        local m = workspace:FindFirstChild(CFG.HomeModel)
-        local part = m and m:FindFirstChild(CFG.HomeTouchName, true)
-        if not part or not firetouchinterest then return false end
-        for _ = 1, 3 do
+        if not firetouchinterest then return false, "Executor tidak support firetouchinterest." end
+        local part, why = findHomePortal()
+        if not part then return false, why end
+
+        for attempt = 1, 3 do
             local hrp = LP.Character and LP.Character:FindFirstChild("HumanoidRootPart")
-            if hrp then
+            if hrp and part.Parent then
+                -- percobaan 1: sentuh dari jauh. Percobaan 2-3: pindah tepat ke portal home itu (di HP firetouchinterest jarak jauh sering diabaikan)
+                if attempt >= 2 then
+                    pcall(function() hrp.CFrame = part.CFrame end)
+                    task.wait(0.2)
+                end
                 pcall(function()
                     firetouchinterest(hrp, part, 0)
                     task.wait(0.15)
@@ -1232,7 +1325,7 @@ do
                 if atHome() then task.wait(CFG.AfterHomeDelay); return true end
             end
         end
-        return false
+        return false, ("Portal home tidak merespons: %s"):format(part:GetFullName())
     end
 
     -- 0.30 = 30 detik, 1.30 = 90 detik, 2 = 120 detik
@@ -1262,13 +1355,15 @@ do
         end
 
         if slimeOn then
+            -- pause dulu, baru tunggu Slime selesai urusan portal HUB (slime juga cek pause sebelum menyentuh portal)
             Link.pause = true; paused = true
             local w = 0
-            while Link.hubBusy and w < 12 do task.wait(0.25); w += 0.25 end
-            task.wait(0.3)
+            while Link.hubBusy and w < 15 do task.wait(0.25); w += 0.25 end
+            task.wait(0.5)
             setInfo("Auto Slime dijeda, balik ke home...")
-            if not goHome() then
-                return finish(("Gagal balik ke home (cek %s > %s)."):format(CFG.HomeModel, CFG.HomeTouchName))
+            local okHome, whyHome = goHome()
+            if not okHome then
+                return finish("Gagal balik ke home: " .. tostring(whyHome or "?"))
             end
             prompts, _, _, total = getPrompts()
         end
@@ -1347,11 +1442,20 @@ do
         print("Island:", island and island:GetFullName() or "TIDAK ADA")
         print("Total chest:", total, "| FULL:", fullCount)
         print("getconnections:", getconnections ~= nil, "| firesignal:", firesignal ~= nil,
-            "| fireproximityprompt:", fireproximityprompt ~= nil)
+            "| fireproximityprompt:", fireproximityprompt ~= nil, "| firetouchinterest:", firetouchinterest ~= nil)
+
         local hm = workspace:FindFirstChild(CFG.HomeModel)
-        local ht = hm and hm:FindFirstChild(CFG.HomeTouchName, true)
-        print("Home model:", hm and hm:GetFullName() or "TIDAK ADA", "| TouchPart:", ht and ht:GetFullName() or "TIDAK ADA",
-            "| atHome:", tostring(atHome()))
+        print("Model Hub:", hm and hm:GetFullName() or "TIDAK ADA", "| atHome:", tostring(atHome()))
+        print("Kata kunci portal home:", CFG.HomeKeyword)
+        local list = listPortals()
+        local chosen, why = findHomePortal()
+        print(("-- Portal di model %s: %d"):format(CFG.HomeModel, #list))
+        for i, c in ipairs(list) do
+            print(("  %d. %s | cocok kata kunci: %s%s"):format(
+                i, c.part:GetFullName(), tostring(c.hit), (c.part == chosen) and "  <== DIPILIH" or ""))
+        end
+        if not chosen then print("  Tidak ada yang dipilih:", why) end
+
         local n = 0
         if blocks then
             for _, c in ipairs(blocks:GetChildren()) do
@@ -1377,7 +1481,7 @@ do
         else
             print("(GUI chest lagi tertutup, buka satu chest manual lalu klik DEBUG lagi buat lihat tombol close)")
         end
-        setInfo(("Total: %d | FULL: %d. Lihat console."):format(total, fullCount))
+        setInfo(("Total: %d | FULL: %d | Portal Hub: %d. Lihat console."):format(total, fullCount, #list))
     end
 end
 
