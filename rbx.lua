@@ -1,4 +1,4 @@
--- KyHub v4 (autoexec fix)
+-- KyHub v5 (autoexec + android fix)
 -- RightShift = sembunyikan menu, E = auto harvest
 
 -- tunggu game siap (penting untuk autoexec)
@@ -13,7 +13,8 @@ do
     task.wait(2)
 end
 
-if getgenv().KyHub_Cleanup then pcall(getgenv().KyHub_Cleanup) end
+local env = (getgenv and getgenv()) or _G
+if env.KyHub_Cleanup then pcall(env.KyHub_Cleanup) end
 
 local Players = game:GetService("Players")
 local UIS = game:GetService("UserInputService")
@@ -82,6 +83,7 @@ local SlimeCFG = {
     SkipFor = 30,
     AttackRange = 7,
     SwingDelay = 0.4,
+    SwingAnim = true,
     EquipEvery = 15,
     SwingArgs = {},
     LobbyName = "Hub",
@@ -131,8 +133,14 @@ if old then old:Destroy() end
 
 local Gui = new("ScreenGui", {Name = "KyHubGui", ResetOnSpawn = false, ZIndexBehavior = Enum.ZIndexBehavior.Sibling}, guiParent)
 
+-- ukuran menu menyesuaikan layar (HP / Android)
+local vpInit = (workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize) or Vector2.new(1280, 720)
+local winW = math.clamp(vpInit.X - 24, 380, 560)
+local winH = math.clamp(vpInit.Y - 24, 240, 360)
+
 local Win = corner(new("Frame", {
-    Size = UDim2.new(0, 560, 0, 360), Position = UDim2.new(0.5, -280, 0.5, -180),
+    AnchorPoint = Vector2.new(0.5, 0.5),
+    Size = UDim2.new(0, winW, 0, winH), Position = UDim2.new(0.5, 0, 0.5, 0),
     BackgroundColor3 = T.bg, BorderSizePixel = 0,
 }, Gui), 12)
 stroke(Win)
@@ -169,6 +177,7 @@ local PageTitle = new("TextLabel", {
     Font = Enum.Font.GothamBold, TextSize = 15, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left, Text = "",
 }, TopBar)
 local CloseBtn = corner(new("TextButton", {
+    Name = "KyHubClose",
     Size = UDim2.new(0, 26, 0, 26), Position = UDim2.new(1, -36, 0, 8), BackgroundColor3 = T.danger,
     Text = "X", Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = Color3.new(1, 1, 1),
 }, TopBar), 8)
@@ -472,10 +481,12 @@ Section(pSlime, "Auto Slime")
 Tg.slime = Toggle(pSlime, "slime.on", "Auto Slime", false, function(v) Slime.Set(v) end)
 Toggle(pSlime, "slime.usehub", "Touch portal HUB", SlimeCFG.UseHub, function(v) SlimeCFG.UseHub = v end)
 Toggle(pSlime, "slime.autohub", "Auto Hub (ulangi portal)", SlimeCFG.AutoHub, function(v) SlimeCFG.AutoHub = v end)
+Toggle(pSlime, "slime.swinganim", "Animasi swing", SlimeCFG.SwingAnim, function(v) SlimeCFG.SwingAnim = v end)
 Section(pSlime, "Pengaturan")
 Input(pSlime, "slime.walkspeed", "WalkSpeed", SlimeCFG.WalkSpeed, function(n) SlimeCFG.WalkSpeed = n end, 1)
 Input(pSlime, "slime.stuck", "Stuck (detik) lalu skip", SlimeCFG.StuckTime, function(n) SlimeCFG.StuckTime = n end, 0.5)
 Input(pSlime, "slime.range", "Jarak pukul (studs)", SlimeCFG.AttackRange, function(n) SlimeCFG.AttackRange = n end, 1)
+Input(pSlime, "slime.swingdelay", "Delay pukul (detik)", SlimeCFG.SwingDelay, function(n) SlimeCFG.SwingDelay = n end, 0.1)
 Section(pSlime, "Status")
 Slime.info = Info(pSlime, "Siap.", 50)
 
@@ -561,7 +572,50 @@ do
     local active, runId = false, 0
     local teleported = false
     local kills, lastEquip = 0, 0
-    local function setInfo(t) if Slime.info then Slime.info.Text = t end end
+    local origSpeed = nil
+    local lastInfo = ""
+    local function setInfo(t)
+        if t == lastInfo then return end
+        lastInfo = t
+        if Slime.info then Slime.info.Text = t end
+    end
+
+    -- animasi swing (sama dengan AnimationConfig slot Weapon)
+    local SWING_IDS = {"rbxassetid://86861921756773", "rbxassetid://89881700832616"}
+    local swingTracks, swingAnimator, swingIndex = {}, nil, 0
+
+    local function playSwingAnim()
+        local c = LP.Character
+        local hum = c and c:FindFirstChildOfClass("Humanoid")
+        local animator = hum and hum:FindFirstChildOfClass("Animator")
+        if not animator then return end
+
+        -- muat ulang kalau animator berubah (respawn)
+        if swingAnimator ~= animator then
+            swingAnimator = animator
+            swingTracks = {}
+            for i, id in ipairs(SWING_IDS) do
+                local a = Instance.new("Animation")
+                a.AnimationId = id
+                local t = animator:LoadAnimation(a)
+                t.Priority = Enum.AnimationPriority.Action
+                swingTracks[i] = t
+            end
+        end
+
+        swingIndex = swingIndex % #swingTracks + 1
+        for i, t in ipairs(swingTracks) do
+            if i ~= swingIndex and t.IsPlaying then t:Stop(0.08) end
+        end
+        swingTracks[swingIndex]:Play(0.08)
+    end
+
+    local walkPath = {wps = nil, i = 1, goal = nil, at = 0, tried = 0}
+    local lastMove, lastMoveGoal = 0, nil
+    local function resetWalk()
+        walkPath.wps, walkPath.goal = nil, nil
+        lastMoveGoal = nil
+    end
 
     -- kalau mati / respawn, portal HUB diulang
     local function hookDeath(char)
@@ -575,6 +629,8 @@ do
     local deathConn = LP.CharacterAdded:Connect(function(char)
         teleported = false
         lastEquip = 0
+        origSpeed = nil
+        resetWalk()
         task.spawn(hookDeath, char)
     end)
     onCleanup(function() deathConn:Disconnect() end)
@@ -655,9 +711,16 @@ do
         return true
     end
 
+    -- folder Guardians di-cache, pencarian rekursif ke seluruh island itu berat di HP
+    local gCache, gTry = nil, 0
     local function getGuardians()
+        if gCache and gCache.Parent then return gCache end
+        gCache = nil
+        if os.clock() - gTry < 2 then return nil end
+        gTry = os.clock()
         local island = getIsland()
-        return (island and island:FindFirstChild("Guardians", true)) or workspace:FindFirstChild("Guardians", true)
+        gCache = (island and island:FindFirstChild("Guardians", true)) or workspace:FindFirstChild("Guardians", true)
+        return gCache
     end
 
     local function slimeRank(model)
@@ -714,53 +777,59 @@ do
         if r then pcall(function() r:FireServer("Weapon") end) end
         lastEquip = os.clock()
     end
-local slashTrack, slashAnimator
-local SWING_IDS = {"rbxassetid://86861921756773", "rbxassetid://89881700832616"}
-local swingTracks, swingAnimator, swingIndex = {}, nil, 0
 
-local function playSwingAnim()
-    local c = LP.Character
-    local hum = c and c:FindFirstChildOfClass("Humanoid")
-    local animator = hum and hum:FindFirstChildOfClass("Animator")
-    if not animator then return end
-
-    -- muat ulang kalau animator berubah (respawn)
-    if swingAnimator ~= animator then
-        swingAnimator = animator
-        swingTracks = {}
-        for i, id in ipairs(SWING_IDS) do
-            local a = Instance.new("Animation")
-            a.AnimationId = id
-            local t = animator:LoadAnimation(a)
-            t.Priority = Enum.AnimationPriority.Action
-            swingTracks[i] = t
-        end
+    local function swing()
+        local r = getRemote("RequestSwing")
+        if not r then setInfo("Remote RequestSwing tidak ditemukan!"); return end
+        if CFG.SwingAnim then pcall(playSwingAnim) end
+        pcall(function() r:FireServer(table.unpack(CFG.SwingArgs)) end)
     end
-
-    swingIndex = swingIndex % #swingTracks + 1
-    for i, t in ipairs(swingTracks) do
-        if i ~= swingIndex and t.IsPlaying then t:Stop(0.08) end
-    end
-    swingTracks[swingIndex]:Play(0.08)
-end
-   local function swing()
-    local r = getRemote("RequestSwing")
-    if not r then setInfo("Remote RequestSwing tidak ditemukan!"); return end
-    pcall(playSwingAnim)
-    pcall(function() r:FireServer(table.unpack(CFG.SwingArgs)) end)
-end
 
     local function applySpeed(hum)
+        if origSpeed == nil then origSpeed = hum.WalkSpeed end
         if hum.WalkSpeed ~= CFG.WalkSpeed then hum.WalkSpeed = CFG.WalkSpeed end
     end
 
-    -- path dihitung ulang kalau tujuan geser jauh atau tiap 2 detik
-    local walkPath = {wps = nil, i = 1, goal = nil, at = 0}
+    local function setRotate(hum, v)
+        if hum.AutoRotate ~= v then hum.AutoRotate = v end
+    end
+
+    -- jalur lurus bebas halangan? kalau ya jalan langsung, kalau tidak pakai pathfinding
+    local rayParams = RaycastParams.new()
+    rayParams.FilterType = Enum.RaycastFilterType.Exclude
+    pcall(function() rayParams.RespectCanCollide = true end)
+
+    local function pathClear(hrp, goal)
+        local g = getGuardians()
+        rayParams.FilterDescendantsInstances = g and {LP.Character, g} or {LP.Character}
+        local origin = hrp.Position
+        local dir = goal - origin
+        if dir.Magnitude < 0.5 then return true end
+        return workspace:Raycast(origin, dir, rayParams) == nil
+    end
+
+    -- MoveTo tidak dikirim ulang kalau tujuannya hampir sama (mengurangi kedut)
+    local function moveTo(hum, pos)
+        local now = os.clock()
+        if lastMoveGoal and (pos - lastMoveGoal).Magnitude < 1.5 and now - lastMove < 0.5 then return end
+        lastMove, lastMoveGoal = now, pos
+        hum:MoveTo(pos)
+    end
+
     local function stepTowards(hum, hrp, pos)
         local now = os.clock()
-        if not walkPath.wps or not walkPath.goal
-            or (pos - walkPath.goal).Magnitude > 6 or now - walkPath.at > 2 then
-            local path = PathfindingService:CreatePath({AgentRadius = 2, AgentHeight = 5, AgentCanJump = true})
+        if pathClear(hrp, pos) then
+            walkPath.wps = nil
+            moveTo(hum, pos)
+            return
+        end
+
+        -- path dihitung ulang hanya kalau tujuan geser jauh atau sudah tua, maksimal 1x per 0.8 detik
+        local need = not walkPath.wps or not walkPath.goal
+            or (pos - walkPath.goal).Magnitude > 10 or now - walkPath.at > 3
+        if need and now - walkPath.tried > 0.8 then
+            walkPath.tried = now
+            local path = PathfindingService:CreatePath({AgentRadius = 3, AgentHeight = 5, AgentCanJump = true})
             local ok = pcall(function() path:ComputeAsync(hrp.Position, pos) end)
             walkPath.goal, walkPath.at = pos, now
             if ok and path.Status == Enum.PathStatus.Success then
@@ -769,6 +838,7 @@ end
                 walkPath.wps = nil
             end
         end
+
         if walkPath.wps then
             local wp = walkPath.wps[walkPath.i]
             while wp and Vector3.new(wp.Position.X - hrp.Position.X, 0, wp.Position.Z - hrp.Position.Z).Magnitude < 3 do
@@ -777,21 +847,33 @@ end
             end
             if wp then
                 if wp.Action == Enum.PathWaypointAction.Jump then hum.Jump = true end
-                hum:MoveTo(wp.Position)
+                moveTo(hum, wp.Position)
                 return
             end
         end
-        hum:MoveTo(pos)
+        moveTo(hum, pos)
     end
 
-    -- menghadap target cuma kalau arahnya sudah melenceng
+    -- menghadap target cuma kalau arahnya sudah melenceng jauh
     local function faceTarget(hrp, pos)
         local flat = Vector3.new(pos.X - hrp.Position.X, 0, pos.Z - hrp.Position.Z)
         if flat.Magnitude < 0.1 then return end
         local look = Vector3.new(hrp.CFrame.LookVector.X, 0, hrp.CFrame.LookVector.Z)
-        if look.Magnitude < 0.01 or look.Unit:Dot(flat.Unit) < 0.94 then
+        if look.Magnitude < 0.01 or look.Unit:Dot(flat.Unit) < 0.9 then
             hrp.CFrame = CFrame.lookAt(hrp.Position, hrp.Position + flat)
         end
+    end
+
+    local function restoreChar()
+        local c = LP.Character
+        local hum = c and c:FindFirstChildOfClass("Humanoid")
+        local hrp = c and c:FindFirstChild("HumanoidRootPart")
+        if hum then
+            hum.AutoRotate = true
+            if origSpeed then hum.WalkSpeed = origSpeed end
+            if hrp then pcall(function() hum:MoveTo(hrp.Position) end) end
+        end
+        origSpeed = nil
     end
 
     local function farmLoop(id)
@@ -831,6 +913,7 @@ end
                     hum, hrp = getChar()
                     if hum then
                         applySpeed(hum)
+                        setRotate(hum, true)
                         if os.clock() - lastEquip > CFG.EquipEvery then equipWeapon() end
 
                         local target, g = pickTarget(hrp)
@@ -840,16 +923,20 @@ end
                             if gp and (gp - hrp.Position).Magnitude > CFG.AttackRange * 2 then
                                 setInfo(("Mendekat ke area slime (%.0f studs)\nKill: %d"):format((gp - hrp.Position).Magnitude, kills))
                                 stepTowards(hum, hrp, gp)
-                                task.wait(0.1)
+                                task.wait(0.15)
                             else
                                 setInfo((type(g) == "string" and g) or ("Menunggu slime. Kill: " .. kills))
                                 task.wait(1)
                             end
                         else
+                            resetWalk()
                             local rank = slimeRank(target)
                             local tag = CFG.Priority[rank]:upper()
-                            local attacking, wasAttacking, lastCheck = false, false, 0
+                            local attacking, wasAttacking, jumped, lastCheck = false, false, false, 0
                             local stuckPos, stuckT = hrp.Position, os.clock()
+                            -- berhenti sedikit sebelum slime supaya tidak menabrak
+                            local stopDist = math.max(2.5, CFG.AttackRange - 1.5)
+
                             while active and runId == id and isAlive(target) and not Link.pause do
                                 local h, r = getChar()
                                 if not h then break end
@@ -875,30 +962,48 @@ end
 
                                 if not attacking then
                                     wasAttacking = false
+                                    setRotate(h, true)
                                     local now = os.clock()
-                                    if (r.Position - stuckPos).Magnitude > 2 then
-                                        stuckPos, stuckT = r.Position, now
-                                    elseif now - stuckT > CFG.StuckTime then
-                                        skipped[target] = now + CFG.SkipFor
-                                        walkPath.wps = nil
-                                        setInfo(("Stuck menuju %s, cari target lain"):format(tag))
-                                        break
+                                    if (r.Position - stuckPos).Magnitude > 1.5 then
+                                        stuckPos, stuckT, jumped = r.Position, now, false
+                                    else
+                                        local idle = now - stuckT
+                                        if idle > CFG.StuckTime * 0.5 and not jumped then
+                                            jumped = true
+                                            h.Jump = true
+                                        end
+                                        if idle > CFG.StuckTime then
+                                            skipped[target] = now + CFG.SkipFor
+                                            resetWalk()
+                                            setInfo(("Stuck menuju %s, cari target lain"):format(tag))
+                                            break
+                                        end
                                     end
+
+                                    -- tujuan = titik di depan slime, bukan tengah slime
+                                    local away = Vector3.new(r.Position.X - tp.X, 0, r.Position.Z - tp.Z)
+                                    local goal = tp
+                                    if away.Magnitude > 0.1 then goal = tp + away.Unit * stopDist end
+
                                     setInfo(("Menuju %s (%.0f studs)\nKill: %d"):format(tag, dist, kills))
-                                    stepTowards(h, r, tp)
-                                    task.wait(0.1)
+                                    stepTowards(h, r, goal)
+                                    task.wait(0.12)
                                 else
-                                    stuckPos, stuckT = r.Position, os.clock()
+                                    stuckPos, stuckT, jumped = r.Position, os.clock(), false
                                     setInfo(("Memukul %s\nKill: %d"):format(tag, kills))
                                     if not wasAttacking then
-                                        h:MoveTo(r.Position)
                                         wasAttacking = true
+                                        lastMoveGoal = nil
+                                        pcall(function() h:MoveTo(r.Position) end)   -- berhenti di tempat
                                     end
+                                    setRotate(h, false)
                                     faceTarget(r, tp)
                                     swing()
                                     task.wait(CFG.SwingDelay)
                                 end
                             end
+                            local hh = getChar()
+                            if hh then setRotate(hh, true) end
                             if not isAlive(target) then kills += 1 end
                         end
                     end
@@ -918,11 +1023,15 @@ end
         if v then
             if Tg.harvest then Tg.harvest.Set(false) end
             runId += 1
+            resetWalk()
             equipWeapon()
             task.spawn(farmLoop, runId)
+        else
+            runId += 1
+            restoreChar()
         end
     end
-    onCleanup(function() active = false end)
+    onCleanup(function() active = false; pcall(restoreChar) end)
 end
 
 -- overflow chest
@@ -930,7 +1039,12 @@ do
     local CFG = ChestCFG
     local active, busy, runId = false, false, 0
     local lastMsg = "Siap."
-    local function setInfo(t) if Chest.info then Chest.info.Text = t end end
+    local lastInfo = ""
+    local function setInfo(t)
+        if t == lastInfo then return end
+        lastInfo = t
+        if Chest.info then Chest.info.Text = t end
+    end
 
     local function readStatus(chest)
         local sign = chest:FindFirstChild("MachineStatusSign")
@@ -993,9 +1107,11 @@ do
         return b
     end
 
+    -- GUI KyHub sendiri dilewati (ada tulisan "Auto Collect" yang tadinya ikut kebaca)
     local function findCollect()
         for _, o in ipairs(LP.PlayerGui:GetDescendants()) do
-            if (o:IsA("TextLabel") or o:IsA("TextButton")) and o.Text:upper():find("COLLECT") and visible(o) then
+            if (o:IsA("TextLabel") or o:IsA("TextButton")) and not o:IsDescendantOf(Gui)
+                and o.Text:upper():find("COLLECT") and visible(o) then
                 return toButton(o) or o
             end
         end
@@ -1055,7 +1171,7 @@ do
     end
 
     local function closeChestGui(panel)
-        if not panel then return end
+        if not panel or panel == Gui or panel:IsDescendantOf(Gui) then return end
         for _, d in ipairs(panel:GetDescendants()) do
             if d:IsA("GuiButton") and visible(d) and isCloseBtn(d) then clickGui(d) end
         end
@@ -1172,7 +1288,7 @@ do
                 while t < CFG.OpenWait do
                     btn = findCollect()
                     if btn then break end
-                    task.wait(0.05); t += 0.05
+                    task.wait(0.1); t += 0.1
                 end
                 if btn then
                     local panel = getPanel(btn)
@@ -1203,7 +1319,15 @@ do
             local id = runId
             task.spawn(function()
                 while active and runId == id do
-                    runOnce()
+                    -- kalau runOnce error, status busy/pause harus dibersihkan supaya tidak macet selamanya
+                    local ok, err = pcall(runOnce)
+                    if not ok then
+                        busy = false
+                        Link.pause = false
+                        if Slime.ResetHub then Slime.ResetHub() end
+                        lastMsg = "Error: " .. tostring(err)
+                        setInfo(lastMsg)
+                    end
                     local remain = intervalSec(CFG.IntervalMin)
                     while active and runId == id and remain > 0 do
                         setInfo(("%s\nCek berikutnya: %02d:%02d"):format(lastMsg, remain // 60, remain % 60))
@@ -1243,9 +1367,11 @@ do
         if btn then
             local panel = getPanel(btn)
             print("-- Tombol di panel chest:", panel and panel:GetFullName())
-            for _, d in ipairs(panel:GetDescendants()) do
-                if d:IsA("GuiButton") then
-                    print("  ", d:GetFullName(), "| closeBtn:", tostring(isCloseBtn(d)))
+            if panel then
+                for _, d in ipairs(panel:GetDescendants()) do
+                    if d:IsA("GuiButton") then
+                        print("  ", d:GetFullName(), "| closeBtn:", tostring(isCloseBtn(d)))
+                    end
                 end
             end
         else
@@ -1259,11 +1385,17 @@ end
 do
     local C = HarvestCFG
     local autoFarm = false
-    local blacklist = {}
-    local firedCount = {}
+    local blacklist = setmetatable({}, {__mode = "k"})
+    local firedCount = setmetatable({}, {__mode = "k"})
     local target = nil
     local fireAcc, lastMove, lastScan, lastPos, lastPosTime = 0, 0, 0, nil, 0
-    local function setInfo(t) if Harvest.info then Harvest.info.Text = t end end
+    local origSpeed = nil
+    local lastInfo = ""
+    local function setInfo(t)
+        if t == lastInfo then return end
+        lastInfo = t
+        if Harvest.info then Harvest.info.Text = t end
+    end
 
     local function refs()
         local c = LP.Character
@@ -1278,13 +1410,38 @@ do
         return remoteCache
     end
 
+    -- daftar semak disimpan, bukan scan seluruh workspace berulang-ulang (berat di HP)
+    local bushes, bushConns, scanned = {}, {}, false
+    local function addBush(o)
+        if o.Name == "BerryBush" then bushes[o] = true end
+    end
+    local function startTracking()
+        if scanned then return end
+        scanned = true
+        bushConns[1] = workspace.DescendantAdded:Connect(addBush)
+        bushConns[2] = workspace.DescendantRemoving:Connect(function(o) bushes[o] = nil end)
+        local n = 0
+        for _, o in ipairs(workspace:GetDescendants()) do
+            if not scanned then return end
+            addBush(o)
+            n += 1
+            if n % 3000 == 0 then task.wait() end
+        end
+    end
+    local function stopTracking()
+        scanned = false
+        for _, c in ipairs(bushConns) do pcall(function() c:Disconnect() end) end
+        bushConns = {}
+        bushes = {}
+    end
+
     local function findNearest(rootPart)
         local now = tick()
         local best, bestDist = nil, math.huge
         local fallback, fallbackExp = nil, math.huge
-        for _, obj in ipairs(workspace:GetDescendants()) do
-            if obj.Name == "BerryBush" then
-                local hb = obj:FindFirstChild("HB")
+        for bush in pairs(bushes) do
+            if bush.Parent then
+                local hb = bush:FindFirstChild("HB")
                 if hb and hb:IsA("BasePart") then
                     local exp = blacklist[hb]
                     if exp and exp > now then
@@ -1294,6 +1451,8 @@ do
                         if d < bestDist then bestDist, best = d, hb end
                     end
                 end
+            else
+                bushes[bush] = nil
             end
         end
         return best or fallback
@@ -1306,11 +1465,17 @@ do
         fireAcc = 0
         if v then
             if Tg.slime then Tg.slime.Set(false) end
+            task.spawn(startTracking)
             setInfo("Berjalan...")
         else
             setInfo("Idle")
             local h, r = refs()
-            if h and r then pcall(function() h:MoveTo(r.Position) end) end
+            if h then
+                if origSpeed then h.WalkSpeed = origSpeed end
+                if r then pcall(function() h:MoveTo(r.Position) end) end
+            end
+            origSpeed = nil
+            stopTracking()
         end
     end
 
@@ -1318,13 +1483,14 @@ do
         if not autoFarm then return end
         local humanoid, rootPart = refs()
         if not (humanoid and rootPart) then return end
-        humanoid.WalkSpeed = C.WalkSpeed
+        if origSpeed == nil then origSpeed = humanoid.WalkSpeed end
+        if humanoid.WalkSpeed ~= C.WalkSpeed then humanoid.WalkSpeed = C.WalkSpeed end
 
         local now = tick()
 
         if (not target) or (not target:IsDescendantOf(workspace)) then
             target = nil
-            if now - lastScan >= 0.15 then
+            if now - lastScan >= 0.3 then
                 lastScan = now
                 target = findNearest(rootPart)
                 lastPos = nil
@@ -1340,7 +1506,7 @@ do
             or UIS:IsKeyDown(Enum.KeyCode.S) or UIS:IsKeyDown(Enum.KeyCode.D)
 
         -- terus jalan ke semak, tidak berhenti waktu harvest
-        if not manual and now - lastMove >= 0.1 then
+        if not manual and now - lastMove >= 0.2 then
             lastMove = now
             pcall(function() humanoid:MoveTo(target.Position) end)
         end
@@ -1389,6 +1555,7 @@ do
         autoFarm = false
         conn:Disconnect()
         keyConn:Disconnect()
+        stopTracking()
     end)
 end
 
@@ -1454,6 +1621,7 @@ do
     local lastSent, hbNext, quietUntil = 0, 0, 0
     local queue = {}
     local guiCache = {t = -100, v = {}}
+    local rsCache = {t = -100, list = {}}
     local startTime = os.time()
     local pendingRejoin = nil
 
@@ -1536,6 +1704,19 @@ do
         for _, d in ipairs(root:GetDescendants()) do visit(d, inv) end
     end
 
+    -- pencarian rekursif di ReplicatedStorage berat, hasilnya disimpan 30 detik
+    local function rsRoots()
+        if os.clock() - rsCache.t > 30 then
+            rsCache.t = os.clock()
+            rsCache.list = {}
+            for _, nm in ipairs({LP.Name, tostring(LP.UserId)}) do
+                local ok, o = pcall(function() return RS:FindFirstChild(nm, true) end)
+                if ok and o then rsCache.list[#rsCache.list + 1] = o end
+            end
+        end
+        return rsCache.list
+    end
+
     local function readInventory()
         local inv = {}
         pcall(function()
@@ -1548,9 +1729,8 @@ do
                     if c:IsA("Tool") then visit(c, inv) end
                 end
             end
-            for _, nm in ipairs({LP.Name, tostring(LP.UserId)}) do
-                local ok, o = pcall(function() return RS:FindFirstChild(nm, true) end)
-                if ok and o then scanRoot(o, inv) end
+            for _, o in ipairs(rsRoots()) do
+                if o.Parent then scanRoot(o, inv) end
             end
         end)
         return inv
@@ -1611,7 +1791,7 @@ do
         if #kws == 0 then return 0 end
         local c, found = sumMatch(inv, kws)
         if found then return c end
-        if os.clock() - guiCache.t > 6 then guiCache.t = os.clock(); guiCache.v = readGui() end
+        if os.clock() - guiCache.t > 10 then guiCache.t = os.clock(); guiCache.v = readGui() end
         return (sumMatch(guiCache.v, kws))
     end
 
@@ -1764,16 +1944,21 @@ do
     end
 
     task.spawn(function()
-        local since = 0
+        local since, itemTimer = 0, 0
         while alive do
             task.wait(2)
             since += 2
+            itemTimer += 2
             if not DC.fired and since >= 20 then
                 since = 0
                 writeSession("online")
             end
             if master and not DC.fired then
-                pcall(tickItems)
+                -- scan inventory tiap 4 detik saja (lebih ringan di HP)
+                if itemTimer >= 4 then
+                    itemTimer = 0
+                    pcall(tickItems)
+                end
                 pcall(tickOnline)
             end
         end
@@ -2150,12 +2335,12 @@ do
 end
 
 -- penutup
-CloseBtn.Activated:Connect(function() getgenv().KyHub_Cleanup() end)
-
-getgenv().KyHub_Cleanup = function()
+env.KyHub_Cleanup = function()
     for _, f in ipairs(cleanups) do pcall(f) end
     pcall(function() Gui:Destroy() end)
 end
+
+CloseBtn.Activated:Connect(function() env.KyHub_Cleanup() end)
 
 selectTab("Auto Slime")
 for _, f in ipairs(Deferred) do pcall(f) end
