@@ -1,14 +1,20 @@
--- KyHub v6 (autoexec + android fix + fix portal home salah)
--- RightShift = sembunyikan menu, E = auto harvest
+-- KyHub v7 (autoexec + android fix + deteksi island otomatis)
+-- RightShift = sembunyikan menu
 --
--- Perubahan v6:
---  * Balik home sekarang mencari portal yang namanya mengandung kata kunci "home"
---    di dalam model Hub (bukan TouchPart pertama yang kebetulan ketemu).
---    Kalau portal home tidak ketemu, script TIDAK menyentuh portal lain (tidak salah portal lagi).
---  * Kata kunci portal bisa diganti di tab Overflow Chest (kolom "Nama portal home").
---  * Race condition Auto Slime vs Auto Collect diperbaiki: Auto Slime tidak bisa
---    menyentuh portal HUB island saat Auto Collect sedang jalan ke home.
---  * DEBUG chest sekarang menampilkan semua portal di model Hub dan portal mana yang dipilih.
+-- Perubahan v7:
+--  * Tidak lagi memakai "Island_" .. UserId .. ":1". Island dideteksi otomatis
+--    (island milik sendiri nomor berapa pun, atau island co-op milik orang lain).
+--    Urutan penilaian: posisi karakter ada di island > island yang menyebut kita
+--    (attribute / value) > nama island mengandung UserId kita > yang paling dekat.
+--    Bisa dipaksa manual lewat Settings > "Nama island".
+--  * Auto Load diperbaiki:
+--      - urutan load toggle sekarang tetap (dulu acak karena pairs), jadi Slime/Harvest
+--        tidak saling matikan secara acak
+--      - script yang jalan dobel (autoexec + loader rejoin) tidak lagi bikin instance
+--        lama ikut meload config dan menyalakan fitur "hantu"
+--      - kalau file belum siap / gagal baca saat autoexec, dicoba ulang beberapa kali
+--      - menunggu island terdeteksi dulu sebelum load
+--  * Hotkey E untuk Auto Harvest dihapus (nyalakan lewat toggle saja).
 
 -- tunggu game siap (penting untuk autoexec)
 if not game:IsLoaded() then game.Loaded:Wait() end
@@ -39,6 +45,7 @@ local GuiService = game:GetService("GuiService")
 local CoreGui = game:GetService("CoreGui")
 local LP = Players.LocalPlayer
 
+local Alive = true   -- jadi false kalau instance ini sudah di-cleanup (misal script dijalankan ulang)
 local cleanups = {}
 local function onCleanup(f) cleanups[#cleanups + 1] = f end
 
@@ -83,7 +90,6 @@ end
 
 -- pengaturan bawaan
 local SlimeCFG = {
-    ISLAND_NAME = "Island_" .. LP.UserId .. ":1",
     Priority = {"pink", "orange", "blue", "green"},
     UseHub = true,
     AutoHub = true,
@@ -102,7 +108,6 @@ local SlimeCFG = {
 }
 
 local ChestCFG = {
-    ISLAND_NAME = "Island_" .. LP.UserId .. ":1",
     Teleport = true,
     OnlyFull = true,
     IntervalMin = 1,        -- menit.detik, 0.30 = 30 detik, 1.30 = 1 menit 30 detik
@@ -127,6 +132,93 @@ local HarvestCFG = {
 }
 
 local Rejoin = {On = false, Delay = 5, Loader = ""}
+
+-- deteksi island otomatis
+local Island = {override = "", cache = nil, at = -100}
+do
+    local function sameMe(v)
+        if v == LP then return true end
+        local tv = type(v)
+        if tv ~= "string" and tv ~= "number" then return false end
+        local s = tostring(v)
+        return s == tostring(LP.UserId) or s == LP.Name
+    end
+
+    -- island menyebut kita lewat Attribute atau Value (Owner, Members, dst)
+    local function refersToMe(isl)
+        local ok, attrs = pcall(function() return isl:GetAttributes() end)
+        if ok then
+            for _, v in pairs(attrs) do
+                if sameMe(v) then return true end
+            end
+        end
+        for _, c in ipairs(isl:GetChildren()) do
+            if c:IsA("ValueBase") then
+                local ok2, v = pcall(function() return c.Value end)
+                if ok2 and sameMe(v) then return true end
+            end
+        end
+        return false
+    end
+
+    local function nameHasMe(isl)
+        return isl.Name:find(tostring(LP.UserId), 1, true) ~= nil
+    end
+
+    -- karakter sedang berada di dalam area island?
+    local function containsChar(isl, hrp)
+        if not (hrp and isl:IsA("Model")) then return false end
+        local ok, inside = pcall(function()
+            local cf, size = isl:GetBoundingBox()
+            local rel = cf:PointToObjectSpace(hrp.Position)
+            local h = size / 2 + Vector3.new(60, 80, 60)
+            return math.abs(rel.X) <= h.X and math.abs(rel.Y) <= h.Y and math.abs(rel.Z) <= h.Z
+        end)
+        return ok and inside
+    end
+
+    local function distTo(isl, hrp)
+        if not hrp then return math.huge end
+        local ok, d = pcall(function() return (isl:GetPivot().Position - hrp.Position).Magnitude end)
+        return ok and d or math.huge
+    end
+
+    function Island.get()
+        if Island.override ~= "" then
+            local o = workspace:FindFirstChild(Island.override)
+            if o then return o end
+        end
+        local now = os.clock()
+        if Island.cache and Island.cache.Parent and now - Island.at < 3 then return Island.cache end
+        Island.at = now
+
+        local hrp = LP.Character and LP.Character:FindFirstChild("HumanoidRootPart")
+        local best, bestScore, bestDist = nil, -1, math.huge
+        for _, c in ipairs(workspace:GetChildren()) do
+            if c.Name:find("^Island_") then
+                local score = 0
+                if c:FindFirstChild("HUB") or c:FindFirstChild("Blocks") then score += 1 end
+                if nameHasMe(c) then score += 50 end
+                if refersToMe(c) then score += 100 end
+                if containsChar(c, hrp) then score += 200 end
+                local d = distTo(c, hrp)
+                if score > bestScore or (score == bestScore and d < bestDist) then
+                    best, bestScore, bestDist = c, score, d
+                end
+            end
+        end
+        Island.cache = best
+        return best
+    end
+
+    function Island.list()
+        local out = {}
+        for _, c in ipairs(workspace:GetChildren()) do
+            if c.Name:find("^Island_") then out[#out + 1] = c end
+        end
+        return out
+    end
+end
 
 local Slime, Chest, Harvest, Sys, Webhook = {}, {}, {}, {}, {}
 local Link = {pause = false, hubBusy = false}   -- slime berhenti sementara kalau chest lagi jalan
@@ -514,7 +606,7 @@ Section(pChest, "Status")
 Chest.info = Info(pChest, "Siap.", 50)
 Info(pChest, "Balik home memilih portal di model Hub yang namanya (atau nama model induknya) mengandung kata di kolom \"Nama portal home\". Kalau salah portal / tidak ketemu, klik DEBUG dan lihat console (F9): semua portal di Hub ditampilkan lengkap dengan path-nya.", 32)
 
-Section(pHarvest, "Auto Harvest (tekan E)")
+Section(pHarvest, "Auto Harvest")
 Tg.harvest = Toggle(pHarvest, "harvest.on", "Auto Harvest", false, function(v) Harvest.Set(v) end)
 Input(pHarvest, "harvest.speed", "WalkSpeed", HarvestCFG.WalkSpeed, function(n) HarvestCFG.WalkSpeed = n end, 1)
 Input(pHarvest, "harvest.radius", "Radius harvest", HarvestCFG.Radius, function(n) HarvestCFG.Radius = n end, 1)
@@ -558,6 +650,18 @@ Info(pWeb, "Pesan rejoin cuma terkirim kalau script jalan lagi setelah rejoin (a
 Section(pSet, "Performa & keamanan")
 Toggle(pSet, "set.antilag", "Anti Lag", false, function(v) Sys.AntiLag(v) end)
 Toggle(pSet, "set.antiafk", "Anti AFK", true, function(v) Sys.AntiAFK(v) end)
+
+Section(pSet, "Island")
+TextInput(pSet, "island.name", "Nama island (kosong = otomatis)", "", function(t)
+    Island.override = trim(t)
+    Island.cache, Island.at = nil, -100
+end, 150, "otomatis")
+Button(pSet, "Cek island terdeteksi", function()
+    Island.cache, Island.at = nil, -100
+    local i = Island.get()
+    notify(i and ("Island: " .. i.Name) or "Island tidak ditemukan.")
+end)
+Info(pSet, "Island dideteksi otomatis (milik sendiri nomor berapa pun, atau island co-op). Isi \"Nama island\" hanya kalau deteksi otomatis salah, misal Island_123456:2.", 32)
 
 Section(pSet, "Auto Rejoin")
 Toggle(pSet, "rejoin.on", "Auto Rejoin", false, function(v) Rejoin.On = v end)
@@ -668,7 +772,7 @@ do
     end
 
     local function getIsland()
-        return workspace:FindFirstChild(CFG.ISLAND_NAME)
+        return Island.get()
     end
 
     local function getTouch()
@@ -705,7 +809,7 @@ do
         -- Auto Collect lagi jalan: jangan sentuh portal apa pun (ini yang bikin salah portal waktu balik home)
         if Link.pause then return false, "Dijeda, Auto Collect lagi jalan...", true end
         if not getHRP() then return false, "Karakter tidak ditemukan.", true end
-        if not getIsland() then return false, "Island tidak ditemukan:\n" .. CFG.ISLAND_NAME end
+        if not getIsland() then return false, "Island tidak ditemukan (belum ada Island_... di workspace).", true end
         local touch = getTouch()
         if not touch then return false, "TouchPart tidak ditemukan di HUB." end
         if not firetouchinterest then return false, "Executor tidak support firetouchinterest." end
@@ -1098,12 +1202,7 @@ do
     end
 
     local function getPrompts()
-        local island = workspace:FindFirstChild(CFG.ISLAND_NAME)
-        if not island then
-            for _, c in ipairs(workspace:GetChildren()) do
-                if c.Name:find("^Island_" .. LP.UserId) then island = c break end
-            end
-        end
+        local island = Island.get()
         local blocks = island and island:FindFirstChild("Blocks")
         local all, full = {}, {}
         if blocks then
@@ -1365,6 +1464,7 @@ do
             if not okHome then
                 return finish("Gagal balik ke home: " .. tostring(whyHome or "?"))
             end
+            Island.cache, Island.at = nil, -100   -- baru balik home, deteksi island ulang
             prompts, _, _, total = getPrompts()
         end
 
@@ -1437,9 +1537,14 @@ do
     onCleanup(function() active = false; Link.pause = false end)
 
     function Chest.Debug()
+        Island.cache, Island.at = nil, -100
         local _, island, blocks, total, fullCount = getPrompts()
         print("=== DEBUG CHEST ===")
-        print("Island:", island and island:GetFullName() or "TIDAK ADA")
+        print("Island terpilih:", island and island:GetFullName() or "TIDAK ADA",
+            "| override:", Island.override ~= "" and Island.override or "(otomatis)")
+        for i, c in ipairs(Island.list()) do
+            print(("  island %d. %s%s"):format(i, c:GetFullName(), (c == island) and "  <== DIPILIH" or ""))
+        end
         print("Total chest:", total, "| FULL:", fullCount)
         print("getconnections:", getconnections ~= nil, "| firesignal:", firesignal ~= nil,
             "| fireproximityprompt:", fireproximityprompt ~= nil, "| firetouchinterest:", firetouchinterest ~= nil)
@@ -1481,11 +1586,12 @@ do
         else
             print("(GUI chest lagi tertutup, buka satu chest manual lalu klik DEBUG lagi buat lihat tombol close)")
         end
-        setInfo(("Total: %d | FULL: %d | Portal Hub: %d. Lihat console."):format(total, fullCount, #list))
+        setInfo(("Island: %s | Total: %d | FULL: %d | Portal Hub: %d. Lihat console."):format(
+            island and island.Name or "-", total, fullCount, #list))
     end
 end
 
--- auto harvest
+-- auto harvest (tanpa hotkey, nyalakan lewat toggle)
 do
     local C = HarvestCFG
     local autoFarm = false
@@ -1650,15 +1756,9 @@ do
         end
     end)
 
-    local keyConn = UIS.InputBegan:Connect(function(input, gp)
-        if gp then return end
-        if input.KeyCode == Enum.KeyCode.E and Tg.harvest then Tg.harvest.Set(not Tg.harvest.Get()) end
-    end)
-
     onCleanup(function()
         autoFarm = false
         conn:Disconnect()
-        keyConn:Disconnect()
         stopTracking()
     end)
 end
@@ -2287,6 +2387,7 @@ do
     local function fsOK()
         return (writefile and readfile and isfile and makefolder and isfolder) and true or false
     end
+    Sys.FsReady = fsOK
 
     local function clean(n)
         n = tostring(n or "")
@@ -2331,7 +2432,9 @@ do
     end
 
     local function readAuto()
-        if not fsOK() or not isfile(AUTO_FILE) then return nil end
+        if not fsOK() then return nil end
+        local okE, exists = pcall(isfile, AUTO_FILE)
+        if not (okE and exists) then return nil end
         local ok, v = pcall(readfile, AUTO_FILE)
         if not ok then return nil end
         v = clean(v)
@@ -2372,19 +2475,41 @@ do
         notify("Config disimpan: " .. name)
     end
 
+    -- urutan load tetap: fitur utama paling akhir, supaya nilai pengaturannya sudah terpasang
+    local LAST = {["harvest.on"] = 1, ["chest.on"] = 2, ["slime.on"] = 3}
+    local function sortedKeys()
+        local keys = {}
+        for k in pairs(Controls) do keys[#keys + 1] = k end
+        table.sort(keys, function(a, b)
+            local la, lb = LAST[a] or 0, LAST[b] or 0
+            if la ~= lb then return la < lb end
+            return a < b
+        end)
+        return keys
+    end
+
     function Sys.Load(nameArg, silent)
-        if not fsOK() then notify("Executor tidak support file (writefile/readfile)."); return false end
+        local function say(m) if not silent then notify(m) end end
+        if not Alive then return false end
+        if not fsOK() then say("Executor tidak support file (writefile/readfile)."); return false end
         local name = clean(nameArg)
         if name == "" then name = CfgUI.list.selected or clean(CfgUI.name.Get()) end
-        if name == "" then notify("Pilih config yang mau di-load dulu."); return false end
-        if not isfile(pathOf(name)) then notify("Config tidak ditemukan: " .. name); return false end
-        local ok, data = pcall(function() return HttpService:JSONDecode(readfile(pathOf(name))) end)
-        if not ok or type(data) ~= "table" then notify("Config rusak / tidak bisa dibaca."); return false end
+        if name == "" then say("Pilih config yang mau di-load dulu."); return false end
+        local okE, exists = pcall(isfile, pathOf(name))
+        if not (okE and exists) then say("Config tidak ditemukan: " .. name); return false end
+        local okR, raw = pcall(readfile, pathOf(name))
+        if not okR or type(raw) ~= "string" or raw == "" then say("Config tidak bisa dibaca."); return false end
+        local ok, data = pcall(function() return HttpService:JSONDecode(raw) end)
+        if not ok or type(data) ~= "table" then say("Config rusak / tidak bisa dibaca."); return false end
+
+        local keys = sortedKeys()
         -- angka dan teks dulu, baru toggle, supaya fitur nyala dengan nilai yang benar
-        for k, c in pairs(Controls) do
+        for _, k in ipairs(keys) do
+            local c = Controls[k]
             if c.kind ~= "toggle" and data[k] ~= nil then pcall(c.set, data[k]) end
         end
-        for k, c in pairs(Controls) do
+        for _, k in ipairs(keys) do
+            local c = Controls[k]
             if c.kind == "toggle" and data[k] ~= nil then pcall(c.set, data[k]) end
         end
         CfgUI.list.selected = name
@@ -2440,6 +2565,7 @@ end
 
 -- penutup
 env.KyHub_Cleanup = function()
+    Alive = false
     for _, f in ipairs(cleanups) do pcall(f) end
     pcall(function() Gui:Destroy() end)
 end
@@ -2452,17 +2578,33 @@ for _, f in ipairs(Deferred) do pcall(f) end
 Sys.Refresh()
 
 task.spawn(function()
-    -- tunggu island dan Remotes muncul (maks 30 detik)
+    -- tunggu island (terdeteksi otomatis) dan Remotes muncul, maks 30 detik
     local t0 = os.clock()
-    while os.clock() - t0 < 30 do
-        if workspace:FindFirstChild(SlimeCFG.ISLAND_NAME) and RS:FindFirstChild("Remotes") then break end
+    while Alive and os.clock() - t0 < 30 do
+        if Island.get() and RS:FindFirstChild("Remotes") then break end
         task.wait(0.5)
     end
+    if not Alive then return end
     task.wait(2)
 
-    local autoName = Sys.GetAuto()
-    if autoName and Sys.Load(autoName, true) then
-        notify("Auto Load: " .. autoName)
+    -- auto load: dicoba ulang kalau file system belum siap atau baca gagal (sering terjadi di autoexec)
+    local loadedName
+    for attempt = 1, 6 do
+        if not Alive then return end
+        if Sys.FsReady() then
+            local autoName = Sys.GetAuto()
+            if not autoName then break end   -- memang tidak ada auto load
+            if Sys.Load(autoName, true) then
+                loadedName = autoName
+                break
+            end
+        end
+        task.wait(1.5)
+    end
+    if not Alive then return end
+
+    if loadedName then
+        notify("Auto Load: " .. loadedName)
     else
         notify("KyHub siap.")
     end
