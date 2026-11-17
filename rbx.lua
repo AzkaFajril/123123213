@@ -1,20 +1,12 @@
--- KyHub v7 (autoexec + android fix + deteksi island otomatis)
+-- KyHub v10 + tab Home (tema "Candy Night": sidebar search + tile ikon, kartu grup, profil)
 -- RightShift = sembunyikan menu
 --
--- Perubahan v7:
---  * Tidak lagi memakai "Island_" .. UserId .. ":1". Island dideteksi otomatis
---    (island milik sendiri nomor berapa pun, atau island co-op milik orang lain).
---    Urutan penilaian: posisi karakter ada di island > island yang menyebut kita
---    (attribute / value) > nama island mengandung UserId kita > yang paling dekat.
---    Bisa dipaksa manual lewat Settings > "Nama island".
---  * Auto Load diperbaiki:
---      - urutan load toggle sekarang tetap (dulu acak karena pairs), jadi Slime/Harvest
---        tidak saling matikan secara acak
---      - script yang jalan dobel (autoexec + loader rejoin) tidak lagi bikin instance
---        lama ikut meload config dan menyalakan fitur "hantu"
---      - kalau file belum siap / gagal baca saat autoexec, dicoba ulang beberapa kali
---      - menunggu island terdeteksi dulu sebelum load
---  * Hotkey E untuk Auto Harvest dihapus (nyalakan lewat toggle saja).
+-- Perubahan v10:
+--  * Auto Collect sekarang jalan sendiri, tidak perlu Auto Slime menyala. Kalau lagi di Hub,
+--    otomatis balik ke home lewat portal dulu sebelum collect.
+--  * Auto Slime punya dropdown "Slime yang di-hit" (centang warna yang mau dipukul).
+--    Pilihan ikut tersimpan di config.
+--  * Selain itu sama seperti v9.
 
 -- tunggu game siap (penting untuk autoexec)
 if not game:IsLoaded() then game.Loaded:Wait() end
@@ -59,19 +51,25 @@ local function fmtDur(s)
     return ("%ds"):format(s)
 end
 
+-- tema "Candy Night": indigo gelap + pink / peach / cyan
 local T = {
-    bg = Color3.fromRGB(20, 20, 26),
-    side = Color3.fromRGB(27, 27, 35),
-    card = Color3.fromRGB(35, 35, 46),
-    stroke = Color3.fromRGB(54, 54, 70),
-    text = Color3.fromRGB(236, 236, 246),
-    sub = Color3.fromRGB(150, 150, 172),
-    accent = Color3.fromRGB(108, 120, 255),
-    on = Color3.fromRGB(64, 200, 120),
-    off = Color3.fromRGB(70, 70, 86),
-    danger = Color3.fromRGB(205, 62, 72),
-    good = Color3.fromRGB(165, 225, 180),
+    bg1 = Color3.fromRGB(40, 22, 78),       -- gradasi jendela: indigo-ungu
+    bg2 = Color3.fromRGB(12, 18, 46),       -- ke navy
+    side = Color3.fromRGB(255, 255, 255),
+    card = Color3.fromRGB(255, 255, 255),
+    field = Color3.fromRGB(0, 0, 0),
+    stroke = Color3.fromRGB(255, 255, 255),
+    text = Color3.fromRGB(248, 244, 252),
+    sub = Color3.fromRGB(178, 170, 206),
+    accent = Color3.fromRGB(255, 94, 168),   -- pink
+    accent2 = Color3.fromRGB(255, 159, 104), -- peach
+    accent3 = Color3.fromRGB(88, 200, 255),  -- cyan
+    on = Color3.fromRGB(60, 220, 190),       -- mint
+    off = Color3.fromRGB(110, 104, 136),
+    danger = Color3.fromRGB(255, 84, 98),
+    good = Color3.fromRGB(184, 232, 255),
 }
+local CARD_T = 0.93   -- transparansi kartu (kaca)
 
 local function new(class, props, parent)
     local o = Instance.new(class)
@@ -83,14 +81,30 @@ local function corner(o, r)
     new("UICorner", {CornerRadius = UDim.new(0, r or 8)}, o)
     return o
 end
-local function stroke(o, c)
-    new("UIStroke", {Color = c or T.stroke, Thickness = 1, ApplyStrokeMode = Enum.ApplyStrokeMode.Border}, o)
+local function stroke(o, c, tr)
+    new("UIStroke", {
+        Color = c or T.stroke, Transparency = tr or 0.92, Thickness = 1,
+        ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    }, o)
     return o
+end
+local function gradient(o, c1, c2, rot)
+    return new("UIGradient", {Color = ColorSequence.new(c1, c2), Rotation = rot or 0}, o)
+end
+-- efek hover halus untuk tombol
+local function hover(b, base)
+    b.MouseEnter:Connect(function()
+        TweenService:Create(b, TweenInfo.new(0.12), {BackgroundTransparency = math.max(0, base - 0.1)}):Play()
+    end)
+    b.MouseLeave:Connect(function()
+        TweenService:Create(b, TweenInfo.new(0.12), {BackgroundTransparency = base}):Play()
+    end)
 end
 
 -- pengaturan bawaan
 local SlimeCFG = {
     Priority = {"pink", "orange", "blue", "green"},
+    Enabled = {pink = true, orange = true, blue = true, green = true},   -- warna yang boleh di-hit (dropdown)
     UseHub = true,
     AutoHub = true,
     WalkSpeed = 22,
@@ -227,6 +241,11 @@ local WH, CfgUI = {}, {}
 local Tg = {}
 local Controls = {}
 local Deferred = {}
+-- statistik sesi (dipakai tab Home)
+local Stats = {
+    start = os.time(), farmSec = 0, swings = 0, kills = 0, hitSlimes = 0, color = {},
+    seen = setmetatable({}, {__mode = "k"}),
+}
 
 -- window
 local guiParent = (gethui and gethui()) or CoreGui
@@ -237,72 +256,204 @@ local Gui = new("ScreenGui", {Name = "KyHubGui", ResetOnSpawn = false, ZIndexBeh
 
 -- ukuran menu menyesuaikan layar (HP / Android)
 local vpInit = (workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize) or Vector2.new(1280, 720)
-local winW = math.clamp(vpInit.X - 24, 380, 560)
-local winH = math.clamp(vpInit.Y - 24, 240, 360)
+local winW = math.clamp(vpInit.X - 24, 400, 640)
+local winH = math.clamp(vpInit.Y - 24, 260, 400)
+local sideW = winW < 500 and 138 or 168
 
-local Win = corner(new("Frame", {
+-- Win = pembungkus transparan (isi: bayangan + badan jendela)
+local Win = new("Frame", {
     AnchorPoint = Vector2.new(0.5, 0.5),
     Size = UDim2.new(0, winW, 0, winH), Position = UDim2.new(0.5, 0, 0.5, 0),
-    BackgroundColor3 = T.bg, BorderSizePixel = 0,
-}, Gui), 12)
-stroke(Win)
+    BackgroundTransparency = 1, BorderSizePixel = 0,
+}, Gui)
 
+new("ImageLabel", {
+    Name = "Shadow", BackgroundTransparency = 1, Image = "rbxassetid://6014261993",
+    ImageColor3 = Color3.new(0, 0, 0), ImageTransparency = 0.4, ScaleType = Enum.ScaleType.Slice,
+    SliceCenter = Rect.new(49, 49, 450, 450), Position = UDim2.new(0, -24, 0, -18),
+    Size = UDim2.new(1, 48, 1, 48), ZIndex = 0,
+}, Win)
+
+local Body = corner(new("Frame", {
+    Size = UDim2.new(1, 0, 1, 0), BackgroundColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 0.03,
+    BorderSizePixel = 0, ZIndex = 1,
+}, Win), 16)
+new("UIGradient", {
+    Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, T.bg1),
+        ColorSequenceKeypoint.new(0.55, Color3.fromRGB(30, 20, 66)),
+        ColorSequenceKeypoint.new(1, T.bg2),
+    }),
+    Rotation = 130,
+}, Body)
+stroke(Body, T.stroke, 0.82)
+
+-- notifikasi banner
 local Toast = corner(new("TextLabel", {
-    Size = UDim2.new(0, 320, 0, 30), Position = UDim2.new(0.5, -160, 1, -80),
-    BackgroundColor3 = T.accent, TextColor3 = Color3.new(1, 1, 1), Font = Enum.Font.GothamMedium,
-    TextSize = 12, Text = "", Visible = false, ZIndex = 50,
-}, Gui), 8)
+    AnchorPoint = Vector2.new(0.5, 0), Size = UDim2.new(0, 300, 0, 34), Position = UDim2.new(0.5, 0, 0, 14),
+    BackgroundColor3 = Color3.fromRGB(28, 20, 54), BackgroundTransparency = 0.05, TextColor3 = T.text,
+    Font = Enum.Font.GothamMedium, TextSize = 12, Text = "", Visible = false, ZIndex = 50,
+    TextTruncate = Enum.TextTruncate.AtEnd,
+}, Gui), 17)
+stroke(Toast, T.accent, 0.5)
 local toastId = 0
 local function notify(t)
     toastId += 1
     local id = toastId
     Toast.Text = t
+    Toast.Position = UDim2.new(0.5, 0, 0, -20)
     Toast.Visible = true
+    TweenService:Create(Toast, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        Position = UDim2.new(0.5, 0, 0, 14),
+    }):Play()
     task.delay(2.5, function() if toastId == id then Toast.Visible = false end end)
 end
 
-local Side = corner(new("Frame", {Size = UDim2.new(0, 150, 1, 0), BackgroundColor3 = T.side, BorderSizePixel = 0}, Win), 12)
-new("Frame", {Size = UDim2.new(0, 12, 1, 0), Position = UDim2.new(1, -12, 0, 0), BackgroundColor3 = T.side, BorderSizePixel = 0}, Side)
-local Brand = new("TextLabel", {
-    Size = UDim2.new(1, -20, 0, 46), Position = UDim2.new(0, 16, 0, 0), BackgroundTransparency = 1,
-    Font = Enum.Font.GothamBold, TextSize = 19, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left,
-    RichText = true, Text = 'Ky<font color="rgb(108,120,255)">Hub</font>',
+-- sidebar kaca
+local Side = corner(new("Frame", {
+    Position = UDim2.new(0, 8, 0, 8), Size = UDim2.new(0, sideW, 1, -16),
+    BackgroundColor3 = T.side, BackgroundTransparency = 0.92, BorderSizePixel = 0,
+}, Body), 14)
+stroke(Side, T.stroke, 0.88)
+
+-- traffic lights
+local Dots = new("Frame", {Size = UDim2.new(1, 0, 0, 30), BackgroundTransparency = 1}, Side)
+local dotSyms = {}
+local function dot(x, color, sym, name)
+    local b = corner(new("TextButton", {
+        Name = name, Size = UDim2.new(0, 16, 0, 16), Position = UDim2.new(0, x, 0.5, -8),
+        BackgroundColor3 = color, Text = "", AutoButtonColor = false,
+    }, Dots), 8)
+    local s = new("TextLabel", {
+        Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Font = Enum.Font.GothamBold, TextSize = 11,
+        TextColor3 = Color3.fromRGB(70, 20, 20), Text = sym, Visible = false,
+    }, b)
+    dotSyms[#dotSyms + 1] = s
+    b.MouseEnter:Connect(function() for _, l in ipairs(dotSyms) do l.Visible = true end end)
+    b.MouseLeave:Connect(function() for _, l in ipairs(dotSyms) do l.Visible = false end end)
+    return b
+end
+local CloseBtn = dot(12, Color3.fromRGB(255, 95, 87), "x", "KyHubClose")
+local MinBtn = dot(36, Color3.fromRGB(254, 188, 46), "-", "KyHubMin")
+local ZoomBtn = dot(60, Color3.fromRGB(40, 200, 64), "+", "KyHubZoom")
+
+-- brand: logo tile + nama
+local Brand = new("Frame", {Position = UDim2.new(0, 0, 0, 30), Size = UDim2.new(1, 0, 0, 40), BackgroundTransparency = 1}, Side)
+local Logo = corner(new("Frame", {
+    Position = UDim2.new(0, 12, 0, 5), Size = UDim2.new(0, 30, 0, 30), BackgroundColor3 = Color3.new(1, 1, 1), BorderSizePixel = 0,
+}, Brand), 9)
+gradient(Logo, T.accent, T.accent2, 45)
+new("TextLabel", {
+    Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Font = Enum.Font.GothamBlack, TextSize = 16,
+    TextColor3 = Color3.new(1, 1, 1), Text = "K",
+}, Logo)
+new("TextLabel", {
+    Position = UDim2.new(0, 50, 0, 4), Size = UDim2.new(1, -56, 0, 18), BackgroundTransparency = 1,
+    Font = Enum.Font.GothamBold, TextSize = 14, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left, Text = "KyHub",
+}, Brand)
+new("TextLabel", {
+    Position = UDim2.new(0, 50, 0, 21), Size = UDim2.new(1, -56, 0, 14), BackgroundTransparency = 1,
+    Font = Enum.Font.Gotham, TextSize = 10, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left,
+    Text = "farm toolkit · v10",
+}, Brand)
+
+-- kotak search
+local SearchBox = corner(new("TextBox", {
+    Position = UDim2.new(0, 10, 0, 76), Size = UDim2.new(1, -20, 0, 28), BackgroundColor3 = T.field,
+    BackgroundTransparency = 0.55, Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text,
+    PlaceholderText = "🔍  Search", PlaceholderColor3 = T.sub, Text = "", ClearTextOnFocus = false,
+    TextXAlignment = Enum.TextXAlignment.Left,
+}, Side), 9)
+new("UIPadding", {PaddingLeft = UDim.new(0, 10), PaddingRight = UDim.new(0, 8)}, SearchBox)
+stroke(SearchBox)
+
+-- daftar tab (bisa di-scroll di layar kecil)
+local TabList = new("ScrollingFrame", {
+    Size = UDim2.new(1, 0, 1, -170), Position = UDim2.new(0, 0, 0, 110), BackgroundTransparency = 1, BorderSizePixel = 0,
+    ScrollBarThickness = 2, ScrollBarImageColor3 = T.accent, CanvasSize = UDim2.new(),
+    AutomaticCanvasSize = Enum.AutomaticSize.Y,
 }, Side)
-local TabList = new("Frame", {Size = UDim2.new(1, 0, 1, -58), Position = UDim2.new(0, 0, 0, 52), BackgroundTransparency = 1}, Side)
-new("UIListLayout", {Padding = UDim.new(0, 4), SortOrder = Enum.SortOrder.LayoutOrder}, TabList)
+new("UIListLayout", {Padding = UDim.new(0, 3), SortOrder = Enum.SortOrder.LayoutOrder}, TabList)
 new("UIPadding", {PaddingLeft = UDim.new(0, 8), PaddingRight = UDim.new(0, 8)}, TabList)
 
-local Content = new("Frame", {Size = UDim2.new(1, -150, 1, 0), Position = UDim2.new(0, 150, 0, 0), BackgroundTransparency = 1}, Win)
-local TopBar = new("Frame", {Size = UDim2.new(1, 0, 0, 42), BackgroundTransparency = 1}, Content)
+-- profil di bawah sidebar
+local Profile = new("Frame", {
+    AnchorPoint = Vector2.new(0, 1), Position = UDim2.new(0, 0, 1, 0), Size = UDim2.new(1, 0, 0, 54), BackgroundTransparency = 1,
+}, Side)
+new("Frame", {
+    Position = UDim2.new(0, 12, 0, 0), Size = UDim2.new(1, -24, 0, 1), BackgroundColor3 = T.stroke,
+    BackgroundTransparency = 0.88, BorderSizePixel = 0,
+}, Profile)
+local Avatar = corner(new("ImageLabel", {
+    Position = UDim2.new(0, 12, 0.5, -15), Size = UDim2.new(0, 30, 0, 30), BackgroundColor3 = T.accent,
+    BackgroundTransparency = 0.5, BorderSizePixel = 0, Image = "",
+}, Profile), 15)
+new("TextLabel", {
+    Position = UDim2.new(0, 50, 0.5, -16), Size = UDim2.new(1, -56, 0, 16), BackgroundTransparency = 1,
+    Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left,
+    TextTruncate = Enum.TextTruncate.AtEnd, Text = LP.DisplayName,
+}, Profile)
+new("TextLabel", {
+    Position = UDim2.new(0, 50, 0.5, 0), Size = UDim2.new(1, -56, 0, 14), BackgroundTransparency = 1,
+    Font = Enum.Font.Gotham, TextSize = 10, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left,
+    TextTruncate = Enum.TextTruncate.AtEnd, Text = "@" .. LP.Name,
+}, Profile)
+task.spawn(function()
+    local ok, img = pcall(function()
+        return Players:GetUserThumbnailAsync(LP.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+    end)
+    if ok and img and Avatar.Parent then Avatar.Image = img end
+end)
+
+-- konten
+local Content = new("Frame", {
+    Size = UDim2.new(1, -(sideW + 16), 1, 0), Position = UDim2.new(0, sideW + 16, 0, 0), BackgroundTransparency = 1,
+}, Body)
+local TopBar = new("Frame", {Size = UDim2.new(1, 0, 0, 58), BackgroundTransparency = 1}, Content)
 local PageTitle = new("TextLabel", {
-    Size = UDim2.new(1, -90, 1, 0), Position = UDim2.new(0, 14, 0, 0), BackgroundTransparency = 1,
-    Font = Enum.Font.GothamBold, TextSize = 15, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left, Text = "",
+    Size = UDim2.new(1, -20, 0, 26), Position = UDim2.new(0, 10, 0, 8), BackgroundTransparency = 1,
+    Font = Enum.Font.GothamBold, TextSize = 21, TextColor3 = Color3.new(1, 1, 1),
+    TextXAlignment = Enum.TextXAlignment.Left, Text = "",
 }, TopBar)
-local CloseBtn = corner(new("TextButton", {
-    Name = "KyHubClose",
-    Size = UDim2.new(0, 26, 0, 26), Position = UDim2.new(1, -36, 0, 8), BackgroundColor3 = T.danger,
-    Text = "X", Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = Color3.new(1, 1, 1),
-}, TopBar), 8)
-local MinBtn = corner(new("TextButton", {
-    Size = UDim2.new(0, 26, 0, 26), Position = UDim2.new(1, -68, 0, 8), BackgroundColor3 = T.card,
-    Text = "-", Font = Enum.Font.GothamBold, TextSize = 14, TextColor3 = T.text,
-}, TopBar), 8)
+gradient(PageTitle, Color3.fromRGB(255, 255, 255), Color3.fromRGB(255, 190, 220), 0)
+local PageSub = new("TextLabel", {
+    Size = UDim2.new(1, -20, 0, 14), Position = UDim2.new(0, 10, 0, 35), BackgroundTransparency = 1,
+    Font = Enum.Font.Gotham, TextSize = 11, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left, Text = "",
+}, TopBar)
 
 local PageHolder = new("Frame", {
-    Position = UDim2.new(0, 12, 0, 46), Size = UDim2.new(1, -24, 1, -58), BackgroundTransparency = 1, ClipsDescendants = true,
+    Position = UDim2.new(0, 6, 0, 58), Size = UDim2.new(1, -18, 1, -66), BackgroundTransparency = 1, ClipsDescendants = true,
 }, Content)
 
--- tombol bulat kecil waktu menu disembunyikan
-local Float = corner(new("TextButton", {
-    Size = UDim2.new(0, 42, 0, 42), Position = UDim2.new(0, 14, 0.5, -21), BackgroundColor3 = T.accent,
-    Text = "Ky", Font = Enum.Font.GothamBold, TextSize = 14, TextColor3 = Color3.new(1, 1, 1), Visible = false,
-}, Gui), 21)
+-- tombol kecil waktu menu disembunyikan
+local FloatBox = corner(new("Frame", {
+    Size = UDim2.new(0, 46, 0, 46), Position = UDim2.new(0, 14, 0.5, -23), BackgroundColor3 = Color3.new(1, 1, 1),
+    BorderSizePixel = 0, Visible = false,
+}, Gui), 14)
+gradient(FloatBox, T.accent, T.accent2, 45)
+stroke(FloatBox, T.stroke, 0.7)
+local Float = new("TextButton", {
+    Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Text = "Ky", Font = Enum.Font.GothamBlack,
+    TextSize = 16, TextColor3 = Color3.new(1, 1, 1), AutoButtonColor = false,
+}, FloatBox)
+
 local function setWinVisible(v)
     Win.Visible = v
-    Float.Visible = not v
+    FloatBox.Visible = not v
 end
 Float.Activated:Connect(function() setWinVisible(true) end)
 MinBtn.Activated:Connect(function() setWinVisible(false) end)
+
+-- tombol hijau: zoom jendela besar / normal
+local zoomed = false
+ZoomBtn.Activated:Connect(function()
+    zoomed = not zoomed
+    local vp = (workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize) or Vector2.new(1280, 720)
+    local target = zoomed
+        and UDim2.new(0, math.clamp(vp.X - 24, 400, 840), 0, math.clamp(vp.Y - 24, 260, 560))
+        or UDim2.new(0, winW, 0, winH)
+    TweenService:Create(Win, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = target}):Play()
+end)
 
 local function makeDrag(handle, target)
     local dragging, startPos, startInput
@@ -326,6 +477,7 @@ local function makeDrag(handle, target)
 end
 makeDrag(TopBar, Win)
 makeDrag(Brand, Win)
+makeDrag(Dots, Win)
 
 local hotkeyConn = UIS.InputBegan:Connect(function(input, gp)
     if gp then return end
@@ -333,84 +485,139 @@ local hotkeyConn = UIS.InputBegan:Connect(function(input, gp)
 end)
 onCleanup(function() hotkeyConn:Disconnect() end)
 
--- tab dan komponen
-local Pages, TabBtns = {}, {}
+-- tab, halaman, dan komponen
+local Pages, TabBtns, TabOrder, PageData = {}, {}, {}, {}
+local currentTab = nil
 local orderCounter = 0
 local function nextOrder() orderCounter += 1; return orderCounter end
 
 local function newPage(name)
     local p = new("ScrollingFrame", {
         Name = name, Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, BorderSizePixel = 0,
-        ScrollBarThickness = 3, ScrollBarImageColor3 = T.accent, CanvasSize = UDim2.new(),
-        AutomaticCanvasSize = Enum.AutomaticSize.Y, Visible = false,
+        ScrollBarThickness = 3, ScrollBarImageColor3 = T.accent, ScrollBarImageTransparency = 0.3,
+        CanvasSize = UDim2.new(), AutomaticCanvasSize = Enum.AutomaticSize.Y, Visible = false,
     }, PageHolder)
-    new("UIListLayout", {Padding = UDim.new(0, 8), SortOrder = Enum.SortOrder.LayoutOrder}, p)
+    new("UIListLayout", {Padding = UDim.new(0, 4), SortOrder = Enum.SortOrder.LayoutOrder}, p)
     new("UIPadding", {PaddingRight = UDim.new(0, 8), PaddingBottom = UDim.new(0, 8)}, p)
     Pages[name] = p
+    PageData[p] = {name = name, groups = {}, cur = nil}
     return p
 end
 
 local function selectTab(name)
+    currentTab = name
     for n, p in pairs(Pages) do p.Visible = (n == name) end
     for n, b in pairs(TabBtns) do
         local on = (n == name)
-        TweenService:Create(b.btn, TweenInfo.new(0.15), {
-            BackgroundTransparency = on and 0 or 1, TextColor3 = on and T.text or T.sub,
-        }):Play()
-        b.bar.Visible = on
+        TweenService:Create(b.btn, TweenInfo.new(0.15), {TextColor3 = on and Color3.new(1, 1, 1) or T.sub}):Play()
+        TweenService:Create(b.pill, TweenInfo.new(0.15), {BackgroundTransparency = on and 0.8 or 1}):Play()
+        TweenService:Create(b.ps, TweenInfo.new(0.15), {Transparency = on and 0.45 or 1}):Play()
     end
     PageTitle.Text = name
+    PageSub.Text = (TabBtns[name] and TabBtns[name].sub) or ""
 end
 
-local function addTab(name)
-    local btn = corner(new("TextButton", {
-        Size = UDim2.new(1, 0, 0, 34), BackgroundColor3 = T.card, BackgroundTransparency = 1, AutoButtonColor = false,
-        Font = Enum.Font.GothamMedium, TextSize = 13, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left,
-        Text = name, LayoutOrder = nextOrder(),
-    }, TabList), 8)
-    new("UIPadding", {PaddingLeft = UDim.new(0, 16)}, btn)
-    local bar = corner(new("Frame", {
-        Size = UDim2.new(0, 3, 0, 18), Position = UDim2.new(0, -12, 0.5, -9), BackgroundColor3 = T.accent,
-        BorderSizePixel = 0, Visible = false,
-    }, btn), 2)
-    TabBtns[name] = {btn = btn, bar = bar}
+local function addTab(name, icon, sub, c1, c2)
+    local holder = new("Frame", {Size = UDim2.new(1, 0, 0, 32), BackgroundTransparency = 1, LayoutOrder = nextOrder()}, TabList)
+    local pill = corner(new("Frame", {
+        Size = UDim2.new(1, 0, 1, 0), BackgroundColor3 = T.accent, BackgroundTransparency = 1, BorderSizePixel = 0, ZIndex = 1,
+    }, holder), 9)
+    local ps = new("UIStroke", {Color = T.accent, Transparency = 1, Thickness = 1}, pill)
+    local tile = corner(new("Frame", {
+        Position = UDim2.new(0, 6, 0.5, -11), Size = UDim2.new(0, 22, 0, 22), BackgroundColor3 = Color3.new(1, 1, 1),
+        BorderSizePixel = 0, ZIndex = 2,
+    }, holder), 7)
+    gradient(tile, c1 or T.accent, c2 or T.accent2, 45)
+    new("TextLabel", {
+        Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Font = Enum.Font.GothamBold, TextSize = 12,
+        TextColor3 = Color3.new(1, 1, 1), Text = icon or "•", ZIndex = 3,
+    }, tile)
+    local btn = new("TextButton", {
+        Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, AutoButtonColor = false,
+        Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left,
+        Text = name, ZIndex = 4, TextTruncate = Enum.TextTruncate.AtEnd,
+    }, holder)
+    new("UIPadding", {PaddingLeft = UDim.new(0, 36), PaddingRight = UDim.new(0, 4)}, btn)
+    local page = newPage(name)
+    TabBtns[name] = {btn = btn, pill = pill, ps = ps, holder = holder, page = page, sub = sub}
+    TabOrder[#TabOrder + 1] = name
     btn.Activated:Connect(function() selectTab(name) end)
-    return newPage(name)
+    return page
 end
 
-local function row(page, h)
-    local f = corner(new("Frame", {
-        Size = UDim2.new(1, 0, 0, h or 40), BackgroundColor3 = T.card, BorderSizePixel = 0, LayoutOrder = nextOrder(),
-    }, page), 8)
-    stroke(f)
+-- Section = judul kecil + kartu grup; semua baris di bawahnya masuk ke kartu itu
+local function Section(page, text)
+    local pd = PageData[page]
+    local label = new("TextLabel", {
+        Size = UDim2.new(1, 0, 0, 24), BackgroundTransparency = 1, Font = Enum.Font.GothamBold, TextSize = 12,
+        TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left, Text = text, LayoutOrder = nextOrder(),
+    }, page)
+    new("UIPadding", {PaddingLeft = UDim.new(0, 6), PaddingTop = UDim.new(0, 8)}, label)
+    local frame = corner(new("Frame", {
+        Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundColor3 = T.card,
+        BackgroundTransparency = CARD_T, BorderSizePixel = 0, LayoutOrder = nextOrder(),
+    }, page), 12)
+    stroke(frame)
+    new("UIListLayout", {SortOrder = Enum.SortOrder.LayoutOrder}, frame)
+    local g = {label = label, frame = frame, rows = {}}
+    pd.groups[#pd.groups + 1] = g
+    pd.cur = g
+end
+
+-- satu baris di dalam kartu grup (dengan garis pemisah di atasnya)
+local function slot(page, h, search, auto)
+    local g = PageData[page].cur
+    local f = new("Frame", {
+        Size = UDim2.new(1, 0, 0, h), BackgroundTransparency = 1, BorderSizePixel = 0, LayoutOrder = #g.rows + 1,
+    }, g.frame)
+    if auto then f.AutomaticSize = Enum.AutomaticSize.Y end
+    local div = new("Frame", {
+        Size = UDim2.new(1, -28, 0, 1), Position = UDim2.new(0, 14, 0, 0), BackgroundColor3 = T.stroke,
+        BackgroundTransparency = 0.9, BorderSizePixel = 0, Visible = #g.rows > 0,
+    }, f)
+    g.rows[#g.rows + 1] = {frame = f, div = div, text = tostring(search or ""):lower()}
     return f
 end
 
-local function Section(page, text)
-    new("TextLabel", {
-        Size = UDim2.new(1, 0, 0, 18), BackgroundTransparency = 1, Font = Enum.Font.GothamBold, TextSize = 11,
-        TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left, Text = text:upper(), LayoutOrder = nextOrder(),
-    }, page)
+-- teks "Judul|Deskripsi" dipecah jadi judul dan deskripsi kecil
+local function splitText(text)
+    local t, d = tostring(text):match("^(.-)|(.*)$")
+    if t then return t, d end
+    return tostring(text), nil
 end
-
-local function rowLabel(parent, text, width)
-    return new("TextLabel", {
-        BackgroundTransparency = 1, Position = UDim2.new(0, 12, 0, 0), Size = UDim2.new(1, width, 1, 0),
-        Font = Enum.Font.Gotham, TextSize = 13, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left, Text = text,
+local function rowH(text)
+    local _, d = splitText(text)
+    return d and 52 or 44
+end
+local function labelBlock(f, text, reserve)
+    local t, d = splitText(text)
+    local lt = new("TextLabel", {
+        BackgroundTransparency = 1, Position = UDim2.new(0, 14, 0, d and 8 or 0), Size = UDim2.new(1, reserve, 0, d and 18 or 44),
+        Font = Enum.Font.GothamMedium, TextSize = 13, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left, Text = t,
         TextTruncate = Enum.TextTruncate.AtEnd,
-    }, parent)
+    }, f)
+    if d then
+        new("TextLabel", {
+            BackgroundTransparency = 1, Position = UDim2.new(0, 14, 0, 26), Size = UDim2.new(1, reserve, 0, 16),
+            Font = Enum.Font.Gotham, TextSize = 11, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left, Text = d,
+            TextTruncate = Enum.TextTruncate.AtEnd,
+        }, f)
+    end
+    return lt
 end
 
+-- toggle gaya iOS
 local function Toggle(page, key, text, default, cb)
-    local f = row(page, 40)
-    rowLabel(f, text, -70)
+    local f = slot(page, rowH(text), text)
+    labelBlock(f, text, -76)
     local sw = corner(new("TextButton", {
-        Text = "", AutoButtonColor = false, Size = UDim2.new(0, 40, 0, 22), Position = UDim2.new(1, -52, 0.5, -11),
+        Text = "", AutoButtonColor = false, Size = UDim2.new(0, 46, 0, 26), Position = UDim2.new(1, -58, 0.5, -13),
         BackgroundColor3 = T.off,
-    }, f), 11)
+    }, f), 13)
     local knob = corner(new("Frame", {
-        Size = UDim2.new(0, 16, 0, 16), Position = UDim2.new(0, 3, 0.5, -8), BackgroundColor3 = Color3.new(1, 1, 1), BorderSizePixel = 0,
-    }, sw), 8)
+        Size = UDim2.new(0, 22, 0, 22), Position = UDim2.new(0, 2, 0.5, -11), BackgroundColor3 = Color3.new(1, 1, 1), BorderSizePixel = 0,
+    }, sw), 11)
+    stroke(knob, Color3.new(0, 0, 0), 0.85)
     local state = false
     local obj = {}
     function obj.Get() return state end
@@ -418,8 +625,8 @@ local function Toggle(page, key, text, default, cb)
         v = v and true or false
         if v == state then return end
         state = v
-        TweenService:Create(sw, TweenInfo.new(0.15), {BackgroundColor3 = v and T.on or T.off}):Play()
-        TweenService:Create(knob, TweenInfo.new(0.15), {Position = v and UDim2.new(0, 21, 0.5, -8) or UDim2.new(0, 3, 0.5, -8)}):Play()
+        TweenService:Create(sw, TweenInfo.new(0.18), {BackgroundColor3 = v and T.on or T.off}):Play()
+        TweenService:Create(knob, TweenInfo.new(0.18, Enum.EasingStyle.Quad), {Position = v and UDim2.new(0, 22, 0.5, -11) or UDim2.new(0, 2, 0.5, -11)}):Play()
         if cb and not silent then cb(v) end
     end
     sw.Activated:Connect(function() obj.Set(not state) end)
@@ -431,12 +638,13 @@ local function Toggle(page, key, text, default, cb)
 end
 
 local function Input(page, key, text, default, cb, min)
-    local f = row(page, 40)
-    rowLabel(f, text, -110)
+    local f = slot(page, rowH(text), text)
+    labelBlock(f, text, -118)
     local box = corner(new("TextBox", {
-        Size = UDim2.new(0, 86, 0, 26), Position = UDim2.new(1, -98, 0.5, -13), BackgroundColor3 = T.bg,
-        Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = T.text, Text = tostring(default), ClearTextOnFocus = false,
-    }, f), 6)
+        Size = UDim2.new(0, 86, 0, 28), Position = UDim2.new(1, -98, 0.5, -14), BackgroundColor3 = T.field,
+        BackgroundTransparency = 0.5, Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = T.text,
+        Text = tostring(default), ClearTextOnFocus = false,
+    }, f), 8)
     stroke(box)
     local value = default
     local function apply(n)
@@ -456,15 +664,15 @@ end
 
 local function TextInput(page, key, text, default, cb, width, placeholder)
     local w = width or 150
-    local f = row(page, 40)
-    rowLabel(f, text, -(w + 24))
+    local f = slot(page, rowH(text), text)
+    labelBlock(f, text, -(w + 28))
     local box = corner(new("TextBox", {
-        Size = UDim2.new(0, w, 0, 26), Position = UDim2.new(1, -(w + 12), 0.5, -13), BackgroundColor3 = T.bg,
-        Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text, PlaceholderText = placeholder or "",
-        PlaceholderColor3 = T.sub, Text = default or "", ClearTextOnFocus = false,
+        Size = UDim2.new(0, w, 0, 28), Position = UDim2.new(1, -(w + 12), 0.5, -14), BackgroundColor3 = T.field,
+        BackgroundTransparency = 0.5, Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text,
+        PlaceholderText = placeholder or "", PlaceholderColor3 = T.sub, Text = default or "", ClearTextOnFocus = false,
         TextTruncate = Enum.TextTruncate.AtEnd, TextXAlignment = Enum.TextXAlignment.Left,
-    }, f), 6)
-    new("UIPadding", {PaddingLeft = UDim.new(0, 6), PaddingRight = UDim.new(0, 6)}, box)
+    }, f), 8)
+    new("UIPadding", {PaddingLeft = UDim.new(0, 8), PaddingRight = UDim.new(0, 8)}, box)
     stroke(box)
     local obj = {}
     function obj.Get() return box.Text end
@@ -480,41 +688,50 @@ local function TextInput(page, key, text, default, cb, width, placeholder)
 end
 
 local function Button(page, text, cb, color)
+    local f = slot(page, 48, text)
+    local base = color and 0.1 or 0.88
     local b = corner(new("TextButton", {
-        Size = UDim2.new(1, 0, 0, 36), BackgroundColor3 = color or T.card, Font = Enum.Font.GothamMedium, TextSize = 13,
-        TextColor3 = T.text, Text = text, LayoutOrder = nextOrder(),
-    }, page), 8)
+        Position = UDim2.new(0, 12, 0.5, -16), Size = UDim2.new(1, -24, 0, 32), BackgroundColor3 = color or T.card,
+        BackgroundTransparency = base, AutoButtonColor = false, Font = Enum.Font.GothamMedium, TextSize = 13,
+        TextColor3 = T.text, Text = text,
+    }, f), 9)
     stroke(b)
+    hover(b, base)
     b.Activated:Connect(cb)
     return b
 end
 
 -- beberapa tombol sebaris: {{teks, fungsi, warna}, ...}
 local function ButtonRow(page, items)
-    local f = new("Frame", {Size = UDim2.new(1, 0, 0, 36), BackgroundTransparency = 1, LayoutOrder = nextOrder()}, page)
+    local names = {}
+    for _, it in ipairs(items) do names[#names + 1] = it[1] end
+    local f = slot(page, 48, table.concat(names, " "))
+    local holder = new("Frame", {
+        Position = UDim2.new(0, 12, 0.5, -16), Size = UDim2.new(1, -24, 0, 32), BackgroundTransparency = 1,
+    }, f)
     new("UIListLayout", {
         FillDirection = Enum.FillDirection.Horizontal, Padding = UDim.new(0, 6), SortOrder = Enum.SortOrder.LayoutOrder,
-    }, f)
+    }, holder)
     local n = #items
     for i, it in ipairs(items) do
+        local base = it[3] and 0.1 or 0.88
         local b = corner(new("TextButton", {
             Size = UDim2.new(1 / n, -math.floor(6 * (n - 1) / n), 1, 0), BackgroundColor3 = it[3] or T.card,
+            BackgroundTransparency = base, AutoButtonColor = false,
             Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text, Text = it[1], LayoutOrder = i,
-        }, f), 8)
+            TextTruncate = Enum.TextTruncate.AtEnd,
+        }, holder), 9)
         stroke(b)
+        hover(b, base)
         b.Activated:Connect(it[2])
     end
 end
 
--- kotak teks, tingginya ngikut isi
+-- baris teks, tingginya ngikut isi (dipakai untuk status dan catatan)
 local function Info(page, text, minH)
-    local f = corner(new("Frame", {
-        Size = UDim2.new(1, 0, 0, minH or 32), AutomaticSize = Enum.AutomaticSize.Y,
-        BackgroundColor3 = T.card, BorderSizePixel = 0, LayoutOrder = nextOrder(),
-    }, page), 8)
-    stroke(f)
+    local f = slot(page, minH or 32, text, true)
     new("UIPadding", {
-        PaddingTop = UDim.new(0, 8), PaddingBottom = UDim.new(0, 8), PaddingLeft = UDim.new(0, 12), PaddingRight = UDim.new(0, 12),
+        PaddingTop = UDim.new(0, 10), PaddingBottom = UDim.new(0, 10), PaddingLeft = UDim.new(0, 14), PaddingRight = UDim.new(0, 14),
     }, f)
     return new("TextLabel", {
         Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1,
@@ -525,9 +742,9 @@ end
 
 -- daftar config yang bisa dipilih
 local function ConfigPicker(page, height)
-    local f = row(page, height)
+    local f = slot(page, height, "config")
     local sc = new("ScrollingFrame", {
-        Size = UDim2.new(1, -12, 1, -12), Position = UDim2.new(0, 6, 0, 6), BackgroundTransparency = 1, BorderSizePixel = 0,
+        Size = UDim2.new(1, -20, 1, -12), Position = UDim2.new(0, 10, 0, 6), BackgroundTransparency = 1, BorderSizePixel = 0,
         ScrollBarThickness = 3, ScrollBarImageColor3 = T.accent, CanvasSize = UDim2.new(),
         AutomaticCanvasSize = Enum.AutomaticSize.Y,
     }, f)
@@ -540,7 +757,7 @@ local function ConfigPicker(page, height)
         end
         if #obj.names == 0 then
             new("TextLabel", {
-                Size = UDim2.new(1, 0, 0, 26), BackgroundTransparency = 1, Font = Enum.Font.Gotham, TextSize = 12,
+                Size = UDim2.new(1, 0, 0, 28), BackgroundTransparency = 1, Font = Enum.Font.Gotham, TextSize = 12,
                 TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left, Text = "  belum ada config tersimpan",
             }, sc)
             return
@@ -548,10 +765,11 @@ local function ConfigPicker(page, height)
         for i, n in ipairs(obj.names) do
             local picked = (n == obj.selected)
             local b = corner(new("TextButton", {
-                Size = UDim2.new(1, 0, 0, 26), BackgroundColor3 = picked and T.accent or T.bg, AutoButtonColor = false,
+                Size = UDim2.new(1, 0, 0, 28), BackgroundColor3 = picked and T.accent or Color3.new(1, 1, 1),
+                BackgroundTransparency = picked and 0.35 or 0.94, AutoButtonColor = false,
                 Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left,
-                Text = "  " .. n .. ((n == obj.auto) and "    [auto load]" or ""), LayoutOrder = i,
-            }, sc), 6)
+                Text = "  " .. n .. ((n == obj.auto) and "    ⚡ auto load" or ""), LayoutOrder = i,
+            }, sc), 7)
             b.Activated:Connect(function() obj.Select(n) end)
         end
     end
@@ -572,75 +790,259 @@ local function ConfigPicker(page, height)
     return obj
 end
 
+-- pencarian: filter baris di semua halaman, tab tanpa hasil disembunyikan
+local function applySearch(q)
+    q = trim(q):lower()
+    local firstVisible
+    for _, name in ipairs(TabOrder) do
+        local b = TabBtns[name]
+        local pd = PageData[b.page]
+        local nameHit = q ~= "" and name:lower():find(q, 1, true) ~= nil
+        local total = 0
+        for _, g in ipairs(pd.groups) do
+            local shown = 0
+            for _, r in ipairs(g.rows) do
+                local hit = (q == "") or nameHit or (r.text ~= "" and r.text:find(q, 1, true) ~= nil)
+                r.frame.Visible = hit
+                if hit then
+                    r.div.Visible = shown > 0
+                    shown += 1
+                end
+            end
+            g.frame.Visible = shown > 0
+            g.label.Visible = shown > 0
+            total += shown
+        end
+        local vis = (q == "") or nameHit or total > 0
+        b.holder.Visible = vis
+        if vis and not firstVisible then firstVisible = name end
+    end
+    if firstVisible and currentTab and not TabBtns[currentTab].holder.Visible then
+        selectTab(firstVisible)
+    end
+end
+SearchBox:GetPropertyChangedSignal("Text"):Connect(function() applySearch(SearchBox.Text) end)
+
+-- baris statistik: judul + deskripsi di kiri, angka di kanan
+local function StatRow(page, text, initial)
+    local f = slot(page, rowH(text), text)
+    labelBlock(f, text, -170)
+    return new("TextLabel", {
+        BackgroundTransparency = 1, Position = UDim2.new(1, -164, 0, 0), Size = UDim2.new(0, 150, 1, 0),
+        Font = Enum.Font.GothamBold, TextSize = 14, TextColor3 = T.accent2, TextXAlignment = Enum.TextXAlignment.Right,
+        Text = initial or "-", TextTruncate = Enum.TextTruncate.AtEnd,
+    }, f)
+end
+
+-- dropdown multi-pilih: klik tombol untuk buka daftar, centang yang mau dipakai
+local function MultiSelect(page, key, text, options, selected, cb)
+    local h = rowH(text)
+    local f = slot(page, h, text, true)
+    local inner = new("Frame", {Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1}, f)
+    new("UIListLayout", {SortOrder = Enum.SortOrder.LayoutOrder}, inner)
+    local head = new("Frame", {Size = UDim2.new(1, 0, 0, h), BackgroundTransparency = 1, LayoutOrder = 1}, inner)
+    labelBlock(head, text, -150)
+    local btn = corner(new("TextButton", {
+        Size = UDim2.new(0, 124, 0, 28), Position = UDim2.new(1, -136, 0.5, -14), BackgroundColor3 = T.field,
+        BackgroundTransparency = 0.5, AutoButtonColor = false, Font = Enum.Font.GothamBold, TextSize = 12,
+        TextColor3 = T.text, Text = "", TextTruncate = Enum.TextTruncate.AtEnd,
+    }, head), 8)
+    stroke(btn)
+    local list = new("Frame", {
+        Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1,
+        LayoutOrder = 2, Visible = false,
+    }, inner)
+    new("UIListLayout", {Padding = UDim.new(0, 3), SortOrder = Enum.SortOrder.LayoutOrder}, list)
+    new("UIPadding", {PaddingLeft = UDim.new(0, 12), PaddingRight = UDim.new(0, 12), PaddingBottom = UDim.new(0, 10)}, list)
+
+    local sel, rows = {}, {}
+    for _, o in ipairs(options) do sel[o] = selected[o] and true or false end
+
+    local function label(o) return o:sub(1, 1):upper() .. o:sub(2) end
+    local function refresh()
+        local names, n = {}, 0
+        for _, o in ipairs(options) do
+            if sel[o] then names[#names + 1] = label(o); n += 1 end
+            local r = rows[o]
+            if r then
+                r.box.BackgroundColor3 = sel[o] and T.on or Color3.new(1, 1, 1)
+                r.box.BackgroundTransparency = sel[o] and 0 or 0.85
+                r.tick.Visible = sel[o]
+            end
+        end
+        btn.Text = (n == 0 and "Belum dipilih" or (n == #options and "Semua" or table.concat(names, ", "))) .. "  ▾"
+    end
+
+    for i, o in ipairs(options) do
+        local row = corner(new("TextButton", {
+            Size = UDim2.new(1, 0, 0, 30), BackgroundColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 0.94,
+            AutoButtonColor = false, Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text,
+            TextXAlignment = Enum.TextXAlignment.Left, Text = label(o) .. " Slime", LayoutOrder = i,
+        }, list), 7)
+        new("UIPadding", {PaddingLeft = UDim.new(0, 40)}, row)
+        local box = corner(new("Frame", {
+            Position = UDim2.new(0, -30, 0.5, -9), Size = UDim2.new(0, 18, 0, 18), BorderSizePixel = 0,
+        }, row), 5)
+        local tick = new("TextLabel", {
+            Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Font = Enum.Font.GothamBold, TextSize = 12,
+            TextColor3 = Color3.new(1, 1, 1), Text = "✓",
+        }, box)
+        rows[o] = {box = box, tick = tick}
+        row.Activated:Connect(function()
+            sel[o] = not sel[o]
+            refresh()
+            if cb then cb(sel) end
+        end)
+    end
+    btn.Activated:Connect(function() list.Visible = not list.Visible end)
+    refresh()
+    if cb then cb(sel) end
+
+    if key then
+        Controls[key] = {
+            kind = "text",
+            get = function()
+                local t = {}
+                for _, o in ipairs(options) do if sel[o] then t[#t + 1] = o end end
+                return table.concat(t, ",")
+            end,
+            set = function(v)
+                local on = {}
+                for w in tostring(v or ""):gmatch("[^,]+") do on[trim(w):lower()] = true end
+                for _, o in ipairs(options) do sel[o] = on[o] or false end
+                refresh()
+                if cb then cb(sel) end
+            end,
+        }
+    end
+end
+
 -- halaman
-local pSlime = addTab("Auto Slime")
-local pChest = addTab("Overflow Chest")
-local pHarvest = addTab("Auto Harvest")
-local pWeb = addTab("Webhook")
-local pSet = addTab("Settings")
+local pHome = addTab("Home", "🏠", "Ringkasan dan statistik sesi", Color3.fromRGB(255, 205, 80), Color3.fromRGB(255, 110, 150))
+local pSlime = addTab("Auto Slime", "💫", "Farm slime otomatis", Color3.fromRGB(255, 94, 168), Color3.fromRGB(170, 90, 255))
+local pChest = addTab("Overflow Chest", "📦", "Collect chest yang sudah penuh", Color3.fromRGB(255, 170, 60), Color3.fromRGB(255, 110, 90))
+local pHarvest = addTab("Auto Harvest", "🌱", "Panen berry bush otomatis", Color3.fromRGB(60, 220, 140), Color3.fromRGB(40, 170, 200))
+local pWeb = addTab("Webhook", "🔔", "Notifikasi ke Discord", Color3.fromRGB(88, 200, 255), Color3.fromRGB(90, 120, 255))
+local pSet = addTab("Settings", "⚙", "Performa, island, rejoin, config", Color3.fromRGB(150, 150, 184), Color3.fromRGB(96, 96, 140))
+
+local H = {c = {}}
+Section(pHome, "Selamat datang")
+Info(pHome, "Halo, " .. LP.DisplayName .. "! KyHub v10 siap dipakai. Nyalakan fitur lewat tab di kiri. Statistik di bawah dihitung sejak script ini dijalankan.", 32)
+Section(pHome, "Statistik sesi")
+H.up = StatRow(pHome, "Lama script berjalan|Jam:menit:detik sejak KyHub jalan", "00:00:00")
+H.farm = StatRow(pHome, "Auto Slime aktif|Total waktu farm slime menyala", "00:00:00")
+H.hit = StatRow(pHome, "Slime di-hit|Jumlah slime berbeda yang dipukul", "0")
+H.swing = StatRow(pHome, "Total pukulan|Jumlah swing yang dikirim", "0")
+H.kill = StatRow(pHome, "Slime terbunuh|Total kill sejak script jalan", "0")
+H.rate = StatRow(pHome, "Rata-rata kill per jam|Dihitung dari waktu Auto Slime aktif", "-")
+Section(pHome, "Kill per warna")
+for _, nm in ipairs(SlimeCFG.Priority) do
+    H.c[nm] = StatRow(pHome, nm:sub(1, 1):upper() .. nm:sub(2) .. " Slime", "0")
+end
+Section(pHome, "Status")
+H.feat = Info(pHome, "Fitur aktif: tidak ada", 32)
+Button(pHome, "Reset statistik", function()
+    Stats.start = os.time()
+    Stats.farmSec, Stats.swings, Stats.kills, Stats.hitSlimes = 0, 0, 0, 0
+    Stats.color = {}
+    table.clear(Stats.seen)
+    notify("Statistik di-reset.")
+end, Color3.fromRGB(255, 84, 98))
+
+local function fmtClock(sec)
+    sec = math.max(0, math.floor(sec))
+    return ("%02d:%02d:%02d"):format(sec // 3600, (sec % 3600) // 60, sec % 60)
+end
+task.spawn(function()
+    local lastTick = os.clock()
+    while Alive do
+        task.wait(1)
+        local now = os.clock()
+        local dt = now - lastTick
+        lastTick = now
+        if Slime.IsActive and Slime.IsActive() then Stats.farmSec += dt end
+        pcall(function()
+            H.up.Text = fmtClock(os.time() - Stats.start)
+            H.farm.Text = fmtClock(Stats.farmSec)
+            H.hit.Text = tostring(Stats.hitSlimes)
+            H.swing.Text = tostring(Stats.swings)
+            H.kill.Text = tostring(Stats.kills)
+            H.rate.Text = (Stats.farmSec >= 60) and ("%.1f"):format(Stats.kills / (Stats.farmSec / 3600)) or "-"
+            for nm, lbl in pairs(H.c) do lbl.Text = tostring(Stats.color[nm] or 0) end
+            local on = {}
+            if Tg.slime and Tg.slime.Get() then on[#on + 1] = "Auto Slime" end
+            if Tg.chest and Tg.chest.Get() then on[#on + 1] = "Auto Collect" end
+            if Tg.harvest and Tg.harvest.Get() then on[#on + 1] = "Auto Harvest" end
+            local isl = Island.get()
+            H.feat.Text = ("Fitur aktif: %s\nIsland: %s"):format(#on > 0 and table.concat(on, ", ") or "tidak ada", isl and isl.Name or "belum terdeteksi")
+        end)
+    end
+end)
 
 Section(pSlime, "Auto Slime")
-Tg.slime = Toggle(pSlime, "slime.on", "Auto Slime", false, function(v) Slime.Set(v) end)
-Toggle(pSlime, "slime.usehub", "Touch portal HUB", SlimeCFG.UseHub, function(v) SlimeCFG.UseHub = v end)
-Toggle(pSlime, "slime.autohub", "Auto Hub (ulangi portal)", SlimeCFG.AutoHub, function(v) SlimeCFG.AutoHub = v end)
-Toggle(pSlime, "slime.swinganim", "Animasi swing", SlimeCFG.SwingAnim, function(v) SlimeCFG.SwingAnim = v end)
+Tg.slime = Toggle(pSlime, "slime.on", "Auto Slime|Pukul slime sesuai prioritas warna", false, function(v) Slime.Set(v) end)
+MultiSelect(pSlime, "slime.targets", "Slime yang di-hit|Pilih warna slime yang mau dipukul",
+    SlimeCFG.Priority, SlimeCFG.Enabled, function(sel) SlimeCFG.Enabled = sel end)
+Toggle(pSlime, "slime.usehub", "Touch portal HUB|Sentuh portal HUB sebelum mulai farm", SlimeCFG.UseHub, function(v) SlimeCFG.UseHub = v end)
+Toggle(pSlime, "slime.autohub", "Auto Hub|Ulangi portal kalau teleport gagal", SlimeCFG.AutoHub, function(v) SlimeCFG.AutoHub = v end)
+Toggle(pSlime, "slime.swinganim", "Animasi swing|Mainkan animasi saat memukul", SlimeCFG.SwingAnim, function(v) SlimeCFG.SwingAnim = v end)
 Section(pSlime, "Pengaturan")
-Input(pSlime, "slime.walkspeed", "WalkSpeed", SlimeCFG.WalkSpeed, function(n) SlimeCFG.WalkSpeed = n end, 1)
-Input(pSlime, "slime.stuck", "Stuck (detik) lalu skip", SlimeCFG.StuckTime, function(n) SlimeCFG.StuckTime = n end, 0.5)
-Input(pSlime, "slime.range", "Jarak pukul (studs)", SlimeCFG.AttackRange, function(n) SlimeCFG.AttackRange = n end, 1)
-Input(pSlime, "slime.swingdelay", "Delay pukul (detik)", SlimeCFG.SwingDelay, function(n) SlimeCFG.SwingDelay = n end, 0.1)
+Input(pSlime, "slime.walkspeed", "WalkSpeed|Kecepatan jalan saat farm", SlimeCFG.WalkSpeed, function(n) SlimeCFG.WalkSpeed = n end, 1)
+Input(pSlime, "slime.stuck", "Stuck (detik)|Lewat dari ini target di-skip", SlimeCFG.StuckTime, function(n) SlimeCFG.StuckTime = n end, 0.5)
+Input(pSlime, "slime.range", "Jarak pukul|Dalam studs", SlimeCFG.AttackRange, function(n) SlimeCFG.AttackRange = n end, 1)
+Input(pSlime, "slime.swingdelay", "Delay pukul|Jeda antar pukulan (detik)", SlimeCFG.SwingDelay, function(n) SlimeCFG.SwingDelay = n end, 0.1)
 Section(pSlime, "Status")
 Slime.info = Info(pSlime, "Siap.", 50)
 
 Section(pChest, "Overflow Chest")
 Tg.chest = Toggle(pChest, "chest.on", "Auto Collect", false, function(v) Chest.Set(v) end)
-Input(pChest, "chest.interval", "Interval (menit.detik, 0.30 = 30 dtk)", ChestCFG.IntervalMin, function(n) ChestCFG.IntervalMin = n end, 0.05)
+Input(pChest, "chest.interval", "Interval|Menit.detik, 0.30 = 30 detik", ChestCFG.IntervalMin, function(n) ChestCFG.IntervalMin = n end, 0.05)
 Toggle(pChest, "chest.onlyfull", "Hanya chest FULL", ChestCFG.OnlyFull, function(v) ChestCFG.OnlyFull = v end)
-Toggle(pChest, "chest.teleport", "Teleport ke chest", ChestCFG.Teleport, function(v) ChestCFG.Teleport = v end)
+Toggle(pChest, "chest.teleport", "Teleport", ChestCFG.Teleport, function(v) ChestCFG.Teleport = v end)
 TextInput(pChest, "chest.homekw", "Nama portal home", ChestCFG.HomeKeyword, function(t)
     local v = trim(t)
     if v ~= "" then ChestCFG.HomeKeyword = v end
-end, 130, "home")
-Button(pChest, "DEBUG (lihat console)", function() Chest.Debug() end, Color3.fromRGB(120, 90, 40))
+end, 110, "home")
+Button(pChest, "DEBUG (lihat console)", function() Chest.Debug() end, Color3.fromRGB(255, 160, 60))
 Section(pChest, "Status")
 Chest.info = Info(pChest, "Siap.", 50)
 Info(pChest, "Balik home memilih portal di model Hub yang namanya (atau nama model induknya) mengandung kata di kolom \"Nama portal home\". Kalau salah portal / tidak ketemu, klik DEBUG dan lihat console (F9): semua portal di Hub ditampilkan lengkap dengan path-nya.", 32)
 
 Section(pHarvest, "Auto Harvest")
-Tg.harvest = Toggle(pHarvest, "harvest.on", "Auto Harvest", false, function(v) Harvest.Set(v) end)
-Input(pHarvest, "harvest.speed", "WalkSpeed", HarvestCFG.WalkSpeed, function(n) HarvestCFG.WalkSpeed = n end, 1)
-Input(pHarvest, "harvest.radius", "Radius harvest", HarvestCFG.Radius, function(n) HarvestCFG.Radius = n end, 1)
-Input(pHarvest, "harvest.persec", "Harvest per detik", HarvestCFG.PerSecond, function(n) HarvestCFG.PerSecond = n end, 1)
-Toggle(pHarvest, "harvest.tpfallback", "Teleport jika stuck", HarvestCFG.TeleportFallback, function(v) HarvestCFG.TeleportFallback = v end)
+Tg.harvest = Toggle(pHarvest, "harvest.on", "Auto Harvest|Jalan dan panen BerryBush terdekat", false, function(v) Harvest.Set(v) end)
+Input(pHarvest, "harvest.speed", "WalkSpeed|Kecepatan jalan", HarvestCFG.WalkSpeed, function(n) HarvestCFG.WalkSpeed = n end, 1)
+Input(pHarvest, "harvest.radius", "Radius harvest|Jarak mulai panen", HarvestCFG.Radius, function(n) HarvestCFG.Radius = n end, 1)
+Input(pHarvest, "harvest.persec", "Harvest per detik|Jumlah request per detik", HarvestCFG.PerSecond, function(n) HarvestCFG.PerSecond = n end, 1)
+Toggle(pHarvest, "harvest.tpfallback", "Teleport jika stuck|Lompat dekat semak kalau macet", HarvestCFG.TeleportFallback, function(v) HarvestCFG.TeleportFallback = v end)
 Section(pHarvest, "Status")
 Harvest.info = Info(pHarvest, "Idle", 32)
 
 Section(pWeb, "Discord Webhook")
-WH.url = TextInput(pWeb, "wh.url", "Webhook URL", "", nil, 220, "https://discord.com/api/webhooks/...")
-WH.master = Toggle(pWeb, "wh.on", "Webhook aktif", false, function(v) Webhook.Set(v) end)
-Input(pWeb, "wh.cooldown", "Jeda notif item (detik)", 5, nil, 1)
+WH.url = TextInput(pWeb, "wh.url", "Webhook URL|Link webhook channel Discord", "", nil, 150, "https://discord.com/api/webhooks/...")
+WH.master = Toggle(pWeb, "wh.on", "Webhook aktif|Nyalakan semua notifikasi", false, function(v) Webhook.Set(v) end)
+Input(pWeb, "wh.cooldown", "Jeda notif item|Detik, supaya tidak spam", 5, nil, 1)
 
 Section(pWeb, "Status Online")
-WH.hb = Toggle(pWeb, "wh.hb.on", "Kirim 'masih online' berkala", true)
-Input(pWeb, "wh.hb.every", "Tiap (menit)", 10, nil, 1)
-WH.dc = Toggle(pWeb, "wh.dc.on", "Notif saat disconnect / kick", true)
-WH.rejoin = Toggle(pWeb, "wh.rejoin.on", "Notif saat rejoin", true)
+WH.hb = Toggle(pWeb, "wh.hb.on", "Kirim 'masih online'|Pesan berkala tanda script hidup", true)
+Input(pWeb, "wh.hb.every", "Tiap (menit)|Jarak antar pesan online", 10, nil, 1)
+WH.dc = Toggle(pWeb, "wh.dc.on", "Notif disconnect / kick|Kirim alasan terputus", true)
+WH.rejoin = Toggle(pWeb, "wh.rejoin.on", "Notif rejoin|Kirim saat kembali online", true)
 
 Section(pWeb, "Pink Gear")
 WH.pink = {
     on = Toggle(pWeb, "wh.pink.on", "Kirim saat dapat Pink Gear", true),
-    kw = TextInput(pWeb, "wh.pink.kw", "Nama item", "PinkGear", nil, 150),
+    kw = TextInput(pWeb, "wh.pink.kw", "Nama item", "PinkGear", nil, 130),
 }
 Section(pWeb, "Batu")
 WH.stone = {
     on = Toggle(pWeb, "wh.stone.on", "Kirim saat dapat Batu", false),
-    kw = TextInput(pWeb, "wh.stone.kw", "Nama item", "Stone", nil, 150),
+    kw = TextInput(pWeb, "wh.stone.kw", "Nama item", "Stone", nil, 130),
 }
 
 Section(pWeb, "Alat")
 ButtonRow(pWeb, {
-    {"Kirim Test", function() Webhook.Test() end, Color3.fromRGB(52, 62, 110)},
-    {"Scan Inventory (console)", function() Webhook.Debug() end, Color3.fromRGB(120, 90, 40)},
+    {"Kirim Test", function() Webhook.Test() end, Color3.fromRGB(72, 160, 255)},
+    {"Scan Inventory (console)", function() Webhook.Debug() end, Color3.fromRGB(255, 160, 60)},
 })
 Section(pWeb, "Status")
 WH.info = Info(pWeb, "Siap.", 32)
@@ -648,14 +1050,14 @@ Info(pWeb, "Nama item dicocokkan persis, huruf besar/kecil dan spasi diabaikan (
 Info(pWeb, "Pesan rejoin cuma terkirim kalau script jalan lagi setelah rejoin (autoexec atau loader di Settings) dan config dengan webhook aktif di-auto load. Kalau PC atau game mati total tidak ada pesan yang bisa dikirim, tandanya pesan 'masih online' berhenti masuk.", 32)
 
 Section(pSet, "Performa & keamanan")
-Toggle(pSet, "set.antilag", "Anti Lag", false, function(v) Sys.AntiLag(v) end)
-Toggle(pSet, "set.antiafk", "Anti AFK", true, function(v) Sys.AntiAFK(v) end)
+Toggle(pSet, "set.antilag", "Anti Lag|Matikan efek berat supaya ringan", false, function(v) Sys.AntiLag(v) end)
+Toggle(pSet, "set.antiafk", "Anti AFK|Cegah kick karena idle", true, function(v) Sys.AntiAFK(v) end)
 
 Section(pSet, "Island")
-TextInput(pSet, "island.name", "Nama island (kosong = otomatis)", "", function(t)
+TextInput(pSet, "island.name", "Nama island|Kosong = otomatis", "", function(t)
     Island.override = trim(t)
     Island.cache, Island.at = nil, -100
-end, 150, "otomatis")
+end, 130, "otomatis")
 Button(pSet, "Cek island terdeteksi", function()
     Island.cache, Island.at = nil, -100
     local i = Island.get()
@@ -664,24 +1066,24 @@ end)
 Info(pSet, "Island dideteksi otomatis (milik sendiri nomor berapa pun, atau island co-op). Isi \"Nama island\" hanya kalau deteksi otomatis salah, misal Island_123456:2.", 32)
 
 Section(pSet, "Auto Rejoin")
-Toggle(pSet, "rejoin.on", "Auto Rejoin", false, function(v) Rejoin.On = v end)
-Input(pSet, "rejoin.delay", "Delay rejoin (detik)", 5, function(n) Rejoin.Delay = n end, 3)
-TextInput(pSet, "rejoin.loader", "Loader (URL / file)", "", function(t) Rejoin.Loader = trim(t) end, 190, "kosongkan kalau pakai autoexec")
+Toggle(pSet, "rejoin.on", "Auto Rejoin|Masuk lagi otomatis kalau terputus", false, function(v) Rejoin.On = v end)
+Input(pSet, "rejoin.delay", "Delay rejoin|Detik sebelum rejoin", 5, function(n) Rejoin.Delay = n end, 3)
+TextInput(pSet, "rejoin.loader", "Loader|URL atau nama file", "", function(t) Rejoin.Loader = trim(t) end, 150, "kosong kalau autoexec")
 Info(pSet, "Loader dipakai untuk menjalankan KyHub lagi setelah rejoin: isi link raw script, atau nama file di folder workspace executor. Kalau KyHub sudah ada di autoexec, kosongkan. Rejoin masuk ke server baru, bukan server yang sama.", 32)
 
 Section(pSet, "Config")
-CfgUI.name = TextInput(pSet, nil, "Nama config", "", nil, 170, "contoh: farming-slime")
+CfgUI.name = TextInput(pSet, nil, "Nama config", "", nil, 150, "contoh: farming-slime")
 CfgUI.list = ConfigPicker(pSet, 120)
 CfgUI.status = Info(pSet, "Auto Load: OFF", 28)
 ButtonRow(pSet, {
-    {"Save", function() Sys.Save() end, Color3.fromRGB(48, 90, 70)},
-    {"Load", function() Sys.Load() end, Color3.fromRGB(52, 62, 110)},
-    {"Delete", function() Sys.Delete() end, Color3.fromRGB(110, 48, 54)},
+    {"Save", function() Sys.Save() end, Color3.fromRGB(60, 210, 180)},
+    {"Load", function() Sys.Load() end, Color3.fromRGB(72, 160, 255)},
+    {"Delete", function() Sys.Delete() end, Color3.fromRGB(255, 84, 98)},
 })
 ButtonRow(pSet, {
-    {"Jadikan Auto Load", function() Sys.SetAuto() end, Color3.fromRGB(70, 60, 120)},
-    {"Matikan Auto Load", function() Sys.ClearAuto() end, Color3.fromRGB(60, 60, 76)},
-    {"Refresh", function() Sys.Refresh() end, Color3.fromRGB(60, 60, 76)},
+    {"Jadikan Auto Load", function() Sys.SetAuto() end, Color3.fromRGB(170, 110, 255)},
+    {"Matikan Auto Load", function() Sys.ClearAuto() end},
+    {"Refresh", function() Sys.Refresh() end},
 })
 Info(pSet, "Klik nama config di daftar untuk memilih. Save pakai nama yang diketik (kalau kosong, pakai yang dipilih). Delete harus diklik 2x. Config ikut menyimpan Webhook URL, jangan dibagikan.", 32)
 
@@ -847,10 +1249,11 @@ do
         return gCache
     end
 
+    -- hanya warna yang dicentang di dropdown yang dianggap target
     local function slimeRank(model)
         local n = model.Name:lower()
         for i, key in ipairs(CFG.Priority) do
-            if n:find(key, 1, true) then return i end
+            if CFG.Enabled[key] and n:find(key, 1, true) then return i end
         end
     end
 
@@ -878,6 +1281,12 @@ do
 
     -- prioritas warna dulu, baru yang paling dekat
     function pickTarget(hrp)
+        local any = false
+        for _, k in ipairs(CFG.Priority) do
+            if CFG.Enabled[k] then any = true end
+        end
+        if not any then return nil, "Pilih slime di dropdown dulu" end
+
         local g = getGuardians()
         if not g then return nil, "Folder Guardians tidak ditemukan" end
         local best, bestRank, bestDist
@@ -907,6 +1316,7 @@ do
         if not r then setInfo("Remote RequestSwing tidak ditemukan!"); return end
         if CFG.SwingAnim then pcall(playSwingAnim) end
         pcall(function() r:FireServer(table.unpack(CFG.SwingArgs)) end)
+        Stats.swings += 1
     end
 
     local function applySpeed(hum)
@@ -1078,6 +1488,8 @@ do
                                 -- ada slime yang prioritasnya lebih tinggi? cek 1x per detik
                                 if os.clock() - lastCheck > 1 then
                                     lastCheck = os.clock()
+                                    -- warna target baru saja dimatikan di dropdown: cari target lain
+                                    if not slimeRank(target) then break end
                                     local better = pickTarget(r)
                                     if better and better ~= target and slimeRank(better) < rank then break end
                                 end
@@ -1121,6 +1533,10 @@ do
                                 else
                                     stuckPos, stuckT, jumped = r.Position, os.clock(), false
                                     setInfo(("Memukul %s\nKill: %d"):format(tag, kills))
+                                    if not Stats.seen[target] then
+                                        Stats.seen[target] = true
+                                        Stats.hitSlimes += 1
+                                    end
                                     if not wasAttacking then
                                         wasAttacking = true
                                         lastMoveGoal = nil
@@ -1134,7 +1550,12 @@ do
                             end
                             local hh = getChar()
                             if hh then setRotate(hh, true) end
-                            if not isAlive(target) then kills += 1 end
+                            if not isAlive(target) then
+                                kills += 1
+                                Stats.kills += 1
+                                local ck = CFG.Priority[rank]
+                                Stats.color[ck] = (Stats.color[ck] or 0) + 1
+                            end
                         end
                     end
                 end
@@ -1453,13 +1874,17 @@ do
             return finish(("Belum ada chest FULL (0/%d)."):format(total))
         end
 
+        -- jeda Auto Slime hanya kalau memang nyala (tunggu dia selesai urusan portal HUB dulu)
         if slimeOn then
-            -- pause dulu, baru tunggu Slime selesai urusan portal HUB (slime juga cek pause sebelum menyentuh portal)
             Link.pause = true; paused = true
             local w = 0
             while Link.hubBusy and w < 15 do task.wait(0.25); w += 0.25 end
             task.wait(0.5)
-            setInfo("Auto Slime dijeda, balik ke home...")
+        end
+
+        -- balik home kalau sedang di Hub, tidak peduli Auto Slime nyala atau tidak
+        if not atHome() then
+            setInfo(slimeOn and "Auto Slime dijeda, balik ke home..." or "Balik ke home...")
             local okHome, whyHome = goHome()
             if not okHome then
                 return finish("Gagal balik ke home: " .. tostring(whyHome or "?"))
@@ -2572,7 +2997,7 @@ end
 
 CloseBtn.Activated:Connect(function() env.KyHub_Cleanup() end)
 
-selectTab("Auto Slime")
+selectTab("Home")
 for _, f in ipairs(Deferred) do pcall(f) end
 
 Sys.Refresh()
