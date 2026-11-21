@@ -1,1 +1,6693 @@
-if not game:IsLoaded()then game.Loaded:Wait()end do local _a=game:GetService(string.char(80,108,97,121,101,114,115))while not _a.LocalPlayer do task.wait()end _a.LocalPlayer:WaitForChild(string.char(80,108,97,121,101,114,71,117,105),30)if not _a.LocalPlayer.Character then pcall(function()_a.LocalPlayer.CharacterAdded:Wait()end)end task.wait(2)end local _b=_G pcall(function()if type(getgenv)==string.char(102,117,110,99,116,105,111,110)then local _c=getgenv()if type(_c)==string.char(116,97,98,108,101)then _b=_c end end end)if type(_b.KyHub_Cleanup)==string.char(102,117,110,99,116,105,111,110)then pcall(_b.KyHub_Cleanup)end local function _d(_e)local _f,_g=pcall(function()return game:GetService(_e)end)if _f then return _g end return nil end local _h=_d(string.char(80,108,97,121,101,114,115))if not _h then error(string.char(75,121,72,117,98,58,32,108,97,121,97,110,97,110,32,80,108,97,121,101,114,115,32,116,105,100,97,107,32,116,101,114,115,101,100,105,97,46))end local _i=_d(string.char(85,115,101,114,73,110,112,117,116,83,101,114,118,105,99,101))local _j=_d(string.char(84,119,101,101,110,83,101,114,118,105,99,101))local _k=_d(string.char(82,117,110,83,101,114,118,105,99,101))local _l=_d(string.char(72,116,116,112,83,101,114,118,105,99,101))local _m=_d(string.char(82,101,112,108,105,99,97,116,101,100,83,116,111,114,97,103,101))local _n=_d(string.char(76,105,103,104,116,105,110,103))local _o=_d(string.char(80,97,116,104,102,105,110,100,105,110,103,83,101,114,118,105,99,101))local _p=_d(string.char(86,105,114,116,117,97,108,85,115,101,114))local _q=_d(string.char(84,101,108,101,112,111,114,116,83,101,114,118,105,99,101))local _r=_d(string.char(71,117,105,83,101,114,118,105,99,101))local _s=_d(string.char(67,111,114,101,71,117,105))local _t=_h.LocalPlayer local function _u(_v)local _w,_x=pcall(function()return _b[_v]or _G[_v]end)if _w and type(_x)==string.char(102,117,110,99,116,105,111,110)then return _x end return nil end local function _y(_z,_A)local _B,_C=pcall(function()return _b[_z]or _G[_z]end)if _B and type(_C)==string.char(116,97,98,108,101)and type(_C[_A])==string.char(102,117,110,99,116,105,111,110)then return _C[_A]end return nil end local _D=_u(string.char(103,101,116,104,117,105))local _E=_u(string.char(102,105,114,101,116,111,117,99,104,105,110,116,101,114,101,115,116))local _F=_y(string.char(115,121,110),string.char(114,101,113,117,101,115,116))or _y(string.char(104,116,116,112),string.char(114,101,113,117,101,115,116))or _u(string.char(104,116,116,112,95,114,101,113,117,101,115,116))or _u(string.char(114,101,113,117,101,115,116))or _y(string.char(102,108,117,120,117,115),string.char(114,101,113,117,101,115,116))local function _H(_I)local _J,_K=pcall(function()return game:HttpGet(_I)end)if _J and type(_K)==string.char(115,116,114,105,110,103)then return _K end if _F then local _L,_M=pcall(_F,{Url=_I,Method=string.char(71,69,84)})if _L and type(_M)==string.char(116,97,98,108,101)and _M.Body then return _M.Body end end return nil end local function _N(_O)local _P=_y(string.char(115,121,110),string.char(112,114,111,116,101,99,116,95,103,117,105))if _P then pcall(_P,_O)end local _Q=false if _D then local _R,_S=pcall(_D)if _R and _S then _Q=pcall(function()_O.Parent=_S end)end end if not _Q and _s then _Q=pcall(function()_O.Parent=_s end)end if not _Q then local _T=_t and _t:FindFirstChildOfClass(string.char(80,108,97,121,101,114,71,117,105))if not _T and _t then local _U,_V=pcall(function()return _t:WaitForChild(string.char(80,108,97,121,101,114,71,117,105),10)end)if _U then _T=_V end end if _T then pcall(function()_O.Parent=_T end)end end return _O.Parent~=nil end local function _W(_X)local _Y={}if _s then _Y[#_Y+1]=_s end local _Z=_t and _t:FindFirstChildOfClass(string.char(80,108,97,121,101,114,71,117,105))if _Z then _Y[#_Y+1]=_Z end if _D then local _ba,_bb=pcall(_D)if _ba and _bb then _Y[#_Y+1]=_bb end end for _bc,_bd in ipairs(_Y)do local _be,_bf=pcall(function()return _bd:FindFirstChild(_X)end)if _be and _bf then pcall(function()_bf:Destroy()end)end end end local function _bg(_bh)local _bi=_t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if not(_bi and _bh)then return false end if _E then local _bj=pcall(function()_E(_bi,_bh,0)task.wait(0.15)_E(_t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))or _bi,_bh,1)end)if _bj then return true end end return pcall(function()_bi.CFrame=_bh.CFrame task.wait(0.3)end)end local _bk=true local _bl={}local function _bm(_bn)_bl[#_bl+1]=_bn end local function _bo(_bp)return(tostring(_bp or""):gsub(string.char(94,37,115,43),""):gsub(string.char(37,115,43,36),""))end local function _bq(_br)_br=math.max(0,math.floor(tonumber(_br)or 0))local _bs,_bt=_br//3600,(_br%3600)//60 if _bs>0 then return(string.char(37,100,104,32,37,100,109)):format(_bs,_bt)end if _bt>0 then return(string.char(37,100,109,32,37,100,115)):format(_bt,_br%60)end return(string.char(37,100,115)):format(_br)end local _bu={bg1=Color3.fromRGB(40,22,78),bg2=Color3.fromRGB(12,18,46),side=Color3.fromRGB(255,255,255),card=Color3.fromRGB(255,255,255),field=Color3.fromRGB(0,0,0),stroke=Color3.fromRGB(255,255,255),text=Color3.fromRGB(248,244,252),sub=Color3.fromRGB(178,170,206),accent=Color3.fromRGB(255,94,168),accent2=Color3.fromRGB(255,159,104),accent3=Color3.fromRGB(88,200,255),on=Color3.fromRGB(60,220,190),off=Color3.fromRGB(110,104,136),danger=Color3.fromRGB(255,84,98),good=Color3.fromRGB(184,232,255),}local _bv=0.93 local function _bw(_bx,_by,_bz)local _bA=Instance.new(_bx)for _bB,_bC in pairs(_by or{})do _bA[_bB]=_bC end if _bz then _bA.Parent=_bz end return _bA end local function _bD(_bE,_bF)_bw(string.char(85,73,67,111,114,110,101,114),{CornerRadius=UDim.new(0,_bF or 8)},_bE)return _bE end local function _bG(_bH,_bI,_bJ)_bw(string.char(85,73,83,116,114,111,107,101),{Color=_bI or _bu.stroke,Transparency=_bJ or 0.92,Thickness=1,ApplyStrokeMode=Enum.ApplyStrokeMode.Border,},_bH)return _bH end local function _bK(_bL,_bM,_bN,_bO)return _bw(string.char(85,73,71,114,97,100,105,101,110,116),{Color=ColorSequence.new(_bM,_bN),Rotation=_bO or 0},_bL)end local function _bP(_bQ,_bR)_bQ.MouseEnter:Connect(function()_j:Create(_bQ,TweenInfo.new(0.12),{BackgroundTransparency=math.max(0,_bR-0.1)}):Play()end)_bQ.MouseLeave:Connect(function()_j:Create(_bQ,TweenInfo.new(0.12),{BackgroundTransparency=_bR}):Play()end)end local _bS={API=string.char(104,116,116,112,115,58,47,47,115,101,114,118,101,114,98,111,107,104,117,98,45,107,112,98,112,46,118,101,114,99,101,108,46,97,112,112),VerifyPath=string.char(47,97,112,105,47,107,101,121,115,47,118,101,114,105,102,121),ApiSecret=string.char(114,97,104,97,115,105,97,95,98,111,107,104,117,98,95,115,117,112,101,114,95,97,109,97,110,95,50,48,50,54),GetKeyLink=string.char(104,116,116,112,115,58,47,47,100,105,115,99,111,114,100,46,103,103,47,98,70,75,82,114,114,85,52,119),Discord=string.char(104,116,116,112,115,58,47,47,100,105,115,99,111,114,100,46,103,103,47,98,70,75,82,114,114,85,52,119),Folder=string.char(75,121,72,117,98),File=string.char(75,121,72,117,98,47,107,101,121,46,100,97,116),}do local _bT=(writefile and readfile and isfile)and true or false local function _bU()local _bV,_bW=pcall(function()return game:GetService(string.char(82,98,120,65,110,97,108,121,116,105,99,115,83,101,114,118,105,99,101)):GetClientId()end)if _bV and _bW and _bW~=""then return _bW end return tostring(_t.UserId)end local function _bX(_bY)if not _bT then return end pcall(function()if makefolder and isfolder and not isfolder(_bS.Folder)then makefolder(_bS.Folder)end writefile(_bS.File,_bY)end)end local function _bZ()if not _bT then return nil end local _ca,_cb=pcall(isfile,_bS.File)if not(_ca and _cb)then return nil end local _cc,_cd=pcall(readfile,_bS.File)if not _cc or type(_cd)~=string.char(115,116,114,105,110,103)then return nil end _cd=_bo(_cd)return _cd~=""and _cd or nil end local function _ce()if not _bT then return end pcall(function()writefile(_bS.File,"")end)end local function _cf(_cg)if not _F then return string.char(101,114,114,111,114),string.char(69,120,101,99,117,116,111,114,32,100,111,101,115,32,110,111,116,32,115,117,112,112,111,114,116,32,114,101,113,117,101,115,116,47,104,116,116,112,95,114,101,113,117,101,115,116,46)end local _ch,_ci=pcall(_F,{Url=_bS.API.._bS.VerifyPath,Method=string.char(80,79,83,84),Headers={[string.char(67,111,110,116,101,110,116,45,84,121,112,101)]=string.char(97,112,112,108,105,99,97,116,105,111,110,47,106,115,111,110),[string.char(120,45,97,112,105,45,107,101,121)]=_bS.ApiSecret},Body=_l:JSONEncode({keyString=_cg,hwid=_bU()}),})if not _ch or type(_ci)~=string.char(116,97,98,108,101)then return string.char(101,114,114,111,114),string.char(67,111,117,108,100,32,110,111,116,32,114,101,97,99,104,32,116,104,101,32,115,101,114,118,101,114,46)end local _cj=tonumber(_ci.StatusCode)or 0 local _ck,_cl=pcall(function()return _l:JSONDecode(_ci.Body or"")end)if not _ck or type(_cl)~=string.char(116,97,98,108,101)then if _cj>=500 or _cj==0 then return string.char(101,114,114,111,114),string.char(83,101,114,118,101,114,32,101,114,114,111,114,32,40).._cj..string.char(41,46)end return string.char(105,110,118,97,108,105,100),string.char(73,110,118,97,108,105,100,32,107,101,121,46)end local _cm=_cl.error or _cl.message if _cl.valid==true then return string.char(111,107),string.char(75,101,121,32,105,115,32,118,97,108,105,100,46)end if _cj==401 or _cj==429 or _cj>=500 then return string.char(101,114,114,111,114),_cm or(string.char(83,101,114,118,101,114,32,114,101,106,101,99,116,101,100,32,116,104,101,32,114,101,113,117,101,115,116,32,40).._cj..string.char(41,46))end return string.char(105,110,118,97,108,105,100),_cm or string.char(73,110,118,97,108,105,100,32,107,101,121,46)end local _cn=_bZ()local _co=_cn if _cn then local _cp=_cf(_cn)if _cp==string.char(111,107)then _bS.Passed=true elseif _cp==string.char(105,110,118,97,108,105,100)then _ce()_co=nil end end if not _bS.Passed then _W(string.char(75,121,72,117,98,75,101,121,71,117,105))local _cq=_bw(string.char(83,99,114,101,101,110,71,117,105),{Name=string.char(75,121,72,117,98,75,101,121,71,117,105),ResetOnSpawn=false,ZIndexBehavior=Enum.ZIndexBehavior.Sibling,DisplayOrder=100})_N(_cq)local _cr,_cs=340,262 local _ct=_bw(string.char(70,114,97,109,101),{AnchorPoint=Vector2.new(0.5,0.5),Size=UDim2.new(0,_cr,0,_cs),Position=UDim2.new(0.5,0,0.5,0),BackgroundTransparency=1,BorderSizePixel=0,},_cq)_bw(string.char(73,109,97,103,101,76,97,98,101,108),{BackgroundTransparency=1,Image=string.char(114,98,120,97,115,115,101,116,105,100,58,47,47,54,48,49,52,50,54,49,57,57,51),ImageColor3=Color3.new(0,0,0),ImageTransparency=0.4,ScaleType=Enum.ScaleType.Slice,SliceCenter=Rect.new(49,49,450,450),Position=UDim2.new(0,-24,0,-18),Size=UDim2.new(1,48,1,48),ZIndex=0,},_ct)local _cu=_bD(_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,1,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=0.03,BorderSizePixel=0,ZIndex=1,},_ct),16)_bw(string.char(85,73,71,114,97,100,105,101,110,116),{Color=ColorSequence.new({ColorSequenceKeypoint.new(0,_bu.bg1),ColorSequenceKeypoint.new(0.55,Color3.fromRGB(30,20,66)),ColorSequenceKeypoint.new(1,_bu.bg2),}),Rotation=130,},_cu)_bG(_cu,_bu.stroke,0.82)local _cv=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Position=UDim2.new(0,14,0,14),Size=UDim2.new(0,16,0,16),BackgroundColor3=Color3.fromRGB(255,95,87),Text="",AutoButtonColor=false,ZIndex=2,},_cu),8)local _cw=_bD(_bw(string.char(70,114,97,109,101),{AnchorPoint=Vector2.new(0.5,0),Position=UDim2.new(0.5,0,0,22),Size=UDim2.new(0,40,0,40),BackgroundColor3=Color3.new(1,1,1),BorderSizePixel=0,ZIndex=2,},_cu),12)_bK(_cw,_bu.accent,_bu.accent2,45)_bw(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,Font=Enum.Font.GothamBlack,TextSize=22,TextColor3=Color3.new(1,1,1),Text=string.char(75),ZIndex=3,},_cw)_bw(string.char(84,101,120,116,76,97,98,101,108),{Position=UDim2.new(0,0,0,68),Size=UDim2.new(1,0,0,20),BackgroundTransparency=1,Font=Enum.Font.GothamBold,TextSize=16,TextColor3=_bu.text,Text=string.char(75,121,72,117,98),ZIndex=2,},_cu)_bw(string.char(84,101,120,116,76,97,98,101,108),{Position=UDim2.new(0,0,0,88),Size=UDim2.new(1,0,0,14),BackgroundTransparency=1,Font=Enum.Font.Gotham,TextSize=11,TextColor3=_bu.sub,Text=string.char(69,110,116,101,114,32,121,111,117,114,32,107,101,121,32,116,111,32,99,111,110,116,105,110,117,101),ZIndex=2,},_cu)local _cx=_bD(_bw(string.char(84,101,120,116,66,111,120),{Position=UDim2.new(0,20,0,114),Size=UDim2.new(1,-40,0,34),BackgroundColor3=_bu.field,BackgroundTransparency=0.55,Font=Enum.Font.GothamMedium,TextSize=12,TextColor3=_bu.text,PlaceholderText=string.char(240,159,148,145,32,32,80,97,115,116,101,32,121,111,117,114,32,107,101,121,32,104,101,114,101),PlaceholderColor3=_bu.sub,Text=_co or"",ClearTextOnFocus=false,TextXAlignment=Enum.TextXAlignment.Left,ZIndex=2,},_cu),10)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingLeft=UDim.new(0,12),PaddingRight=UDim.new(0,10)},_cx)_bG(_cx)local _cy=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Position=UDim2.new(0,20,0,156),Size=UDim2.new(1,-40,0,34),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=0,Font=Enum.Font.GothamBold,TextSize=13,TextColor3=Color3.new(1,1,1),Text=string.char(86,101,114,105,102,121,32,75,101,121),AutoButtonColor=false,ZIndex=2,},_cu),10)_bK(_cy,_bu.accent,_bu.accent2,0)local function _cz(_cA,_cB,_cC)local _cD=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Position=UDim2.new(0,_cB,0,198),Size=UDim2.new(0.5,-24,0,30),BackgroundColor3=_bu.card,BackgroundTransparency=_bv,Font=Enum.Font.GothamMedium,TextSize=12,TextColor3=_bu.text,Text=_cA,AutoButtonColor=false,ZIndex=2,},_cu),9)_bG(_cD,_bu.stroke,0.8)_bP(_cD,_bv)return _cD end local _cE=_cz(string.char(240,159,148,151,32,32,71,101,116,32,75,101,121),20)local _cF=_cz(string.char(240,159,146,172,32,32,68,105,115,99,111,114,100),0)_cF.Position=UDim2.new(0.5,4,0,198)local _cG=_bw(string.char(84,101,120,116,76,97,98,101,108),{Position=UDim2.new(0,20,0,234),Size=UDim2.new(1,-40,0,16),BackgroundTransparency=1,Font=Enum.Font.GothamMedium,TextSize=11,TextColor3=_bu.sub,Text="",ZIndex=2,TextTruncate=Enum.TextTruncate.AtEnd,},_cu)local _cH,_cI=nil,false local function _cJ(_cK,_cL)_cG.Text=_cK or"";_cG.TextColor3=_cL or _bu.sub end local function _cM(_cN,_cO,_cP)local _cQ=_cO.Text if setclipboard or toclipboard then pcall(setclipboard or toclipboard,_cN)_cO.Text=string.char(226,156,147,32,32,67,111,112,105,101,100,33)_cJ(_cP..string.char(32,99,111,112,105,101,100,32,116,111,32,99,108,105,112,98,111,97,114,100,46),_bu.on)else _cJ(_cN,_bu.accent3)end task.delay(1.5,function()if _cO.Parent then _cO.Text=_cQ end end)end _cE.Activated:Connect(function()_cM(_bS.GetKeyLink,_cE,string.char(75,101,121,32,108,105,110,107))end)_cF.Activated:Connect(function()_cM(_bS.Discord,_cF,string.char(68,105,115,99,111,114,100,32,108,105,110,107))end)local function _cR()if _cI then return end local _cS=_bo(_cx.Text)if _cS==""then _cJ(string.char(75,101,121,32,99,97,110,110,111,116,32,98,101,32,101,109,112,116,121,46),_bu.danger);return end _cI=true _cy.Text=string.char(67,104,101,99,107,105,110,103,46,46,46)_cJ(string.char(67,111,110,116,97,99,116,105,110,103,32,115,101,114,118,101,114,46,46,46),_bu.sub)local _cT,_cU=_cf(_cS)if _cT==string.char(111,107)then _bX(_cS)_cJ(string.char(226,156,147,32)..tostring(_cU),_bu.on)_cy.Text=string.char(83,117,99,99,101,115,115,33)task.wait(0.6)_cH=string.char(111,107)else _cJ(tostring(_cU),_bu.danger)_cy.Text=string.char(86,101,114,105,102,121,32,75,101,121)_cI=false end end _cy.Activated:Connect(_cR)_cx.FocusLost:Connect(function(_cV)if _cV then _cR()end end)_cv.Activated:Connect(function()_cH=string.char(99,108,111,115,101,100)end)_ct.Position=UDim2.new(0.5,0,0.5,20)_j:Create(_ct,TweenInfo.new(0.25,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.new(0.5,0,0.5,0),}):Play()if _co then _cJ((string.char(83,97,118,101,100,32,107,101,121,32,102,111,117,110,100,44,32,98,117,116,32,116,104,101,32,115,101,114,118,101,114,32,100,105,100,32,110,111,116,32,114,101,115,112,111,110,100,46,32,84,114,121,32,86,101,114,105,102,121,32,97,103,97,105)..string.char(110,46)),_bu.sub)end while _cH==nil and _cq.Parent do task.wait(0.1)end local _cW=_cH pcall(function()_cq:Destroy()end)if _cW~=string.char(111,107)then return end end end local _cX={Priority={string.char(112,105,110,107),string.char(111,114,97,110,103,101),string.char(98,108,117,101),string.char(103,114,101,101,110)},Enabled={pink=true,orange=true,blue=true,green=true},UseHub=true,AutoHub=true,WalkSpeed=22,StuckTime=2,SkipFor=30,AttackRange=7,SwingDelay=0.4,SwingAnim=true,FixCamera=true,EquipEvery=15,SwingArgs={},LobbyName=string.char(72,117,98),LobbyPad=10,AfterDelay=3,FindTimeout=5,HubVerifyWait=6,HubAttempts=3,IslandStuckWait=10,Weapon=string.char(87,111,111,100,83,119,111,114,100),ShootRange=20,ShootType=1,ShotFx=true,}local _cY={Types={string.char(83,107,101,108,101,116,111,110),string.char(83,107,101,108,101,116,111,110,65,114,99,104,101,114),string.char(83,107,101,108,101,116,111,110,75,110,105,103,104,116)},Priority={string.char(83,107,101,108,101,116,111,110),string.char(83,107,101,108,101,116,111,110,65,114,99,104,101,114),string.char(83,107,101,108,101,116,111,110,75,110,105,103,104,116)},Enabled={Skeleton=true,SkeletonArcher=true,SkeletonKnight=true},UseRoute=true,HubName=string.char(72,117,98),PortalName=string.char(72,85,66),RuinsName=string.char(82,85,73,78,83),TouchName=string.char(84,111,117,99,104,80,97,114,116),HubPad=10,HubWait=6,HubAttempts=3,RuinsDelay=4,WaitTimeout=10,FindTimeout=15,NearRange=300,EquipEvery=15,ScanEvery=3,}local _cZ={UseRoute=true,Folder=string.char(82,117,105,110,115,66,111,115,115),Height=25,Offset=3,Realtime=false,StreamEvery=3,}local _da={Teleport=true,OnlyFull=true,IntervalMin=1,OpenWait=3,CollectWait=0.8,BetweenChest=0.3,HomeModel=string.char(72,117,98),HomeTouchName=string.char(84,111,117,99,104,80,97,114,116),HomeKeyword=string.char(104,111,109,101),HomeWait=8,AfterHomeDelay=2,}local _db={AfterHarvest=true,Slot=63,YOff=1,CropGoneWait=2,RetryGap=0.8,Retries=7,PlantNear=true,NearRadius=20,GrowSkip=30,UnripeSkip=25,StuckSkip=8,}local _dc={WalkSpeed=30,Radius=20,PerSecond=10,FireLimitPerBush=1,BlacklistTime=15,TeleportFallback=true,StuckTime=1,OnlyRipe=true,SkipNeedsWater=true,Replant=true,Seed=string.char(87,104,101,97,116,83,101,101,100,115),Slot=63,Block=string.char(70,97,114,109,83,111,105,108),YOff=1,GoneWait=2,Origin=Vector3.new(2121,201,2121),Crops={string.char(98,101,114,114,121),string.char(119,104,101,97,116),string.char(111,110,105,111,110),string.char(116,111,109,97,116,111),string.char(99,97,114,114,111,116)},Crop=string.char(119,104,101,97,116),SeedMap={berry=string.char(66,101,114,114,121,83,101,101,100,115),wheat=string.char(87,104,101,97,116,83,101,101,100,115),onion=string.char(79,110,105,111,110,83,101,101,100,115),tomato=string.char(84,111,109,97,116,111,83,101,101,100,115),carrot=string.char(67,97,114,114,111,116,83,101,101,100,115)},Seeds={string.char(87,104,101,97,116,83,101,101,100,115),string.char(66,101,114,114,121,83,101,101,100,115),string.char(79,110,105,111,110,83,101,101,100,115),string.char(84,111,109,97,116,111,83,101,101,100,115),string.char(67,97,114,114,111,116,83,101,101,100,115)},Enabled={berry=false,wheat=true,onion=false,tomato=false,carrot=false},}local _dd={}local _de={TreeKind=string.char(119,111,111,100),HitTime=15,MineMaxTime=0,SwingDelay=0.4,StandDist=4,WalkSpeed=30,PathRadius=2.5,PathHeight=5,WaypointSpacing=6,RockNear=10,SwingAnim=true,MineList={string.char(115,116,111,110,101),string.char(105,114,111,110,111,114,101),string.char(99,111,97,108),string.char(115,97,110,100),string.char(99,108,97,121)},MineEnabled={stone=true,ironore=true,coal=true,sand=true,clay=true},MinePriority=string.char(105,114,111,110,111,114,101),MineRoot="",Hover=true,HoverHeight=15,UseHub=true,ReturnToHub=true,ReturnPortalName=string.char(72,117,98),HubName=string.char(72,117,98),IslandPortalName=string.char(72,85,66),HubPad=10,HubWait=6,RuinsName=string.char(82,85,73,78,83),TouchPartName=string.char(84,111,117,99,104,80,97,114,116),ResourceName=string.char(82,101,115,111,117,114,99,101,70,105,101,108,100),TeleportOffset=Vector3.new(0,4,0),RuinsLoadDelay=4,WaitTimeout=10,}local _df={On=false,Delay=5,Loader=""}local _dg={on=false,ids={},set={}}local _dh={override="",cache=nil,at=-100}do local function _di(_dj)if _dj==_t then return true end local _dk=type(_dj)if _dk~=string.char(115,116,114,105,110,103)and _dk~=string.char(110,117,109,98,101,114)then return false end local _dl=tostring(_dj)return _dl==tostring(_t.UserId)or _dl==_t.Name end local function _dm(_dn)local _do,_dp=pcall(function()return _dn:GetAttributes()end)if _do then for _dq,_dr in pairs(_dp)do if _di(_dr)then return true end end end for _ds,_dt in ipairs(_dn:GetChildren())do if _dt:IsA(string.char(86,97,108,117,101,66,97,115,101))then local _du,_dv=pcall(function()return _dt.Value end)if _du and _di(_dv)then return true end end end return false end local function _dw(_dx)return _dx.Name:find(tostring(_t.UserId),1,true)~=nil end local function _dy(_dz,_dA)if not(_dA and _dz:IsA(string.char(77,111,100,101,108)))then return false end local _dF,_dG=pcall(function()local _dB,_dC=_dz:GetBoundingBox()local _dD=_dB:PointToObjectSpace(_dA.Position)local _dE=_dC/2+Vector3.new(60,80,60)return math.abs(_dD.X)<=_dE.X and math.abs(_dD.Y)<=_dE.Y and math.abs(_dD.Z)<=_dE.Z end)return _dF and _dG end local function _dH(_dI,_dJ)if not _dJ then return math.huge end local _dK,_dL=pcall(function()return(_dI:GetPivot().Position-_dJ.Position).Magnitude end)return _dK and _dL or math.huge end function _dh.get()if _dh.override~=""then local _dM=workspace:FindFirstChild(_dh.override)if _dM then return _dM end end local _dN=os.clock()if _dh.cache and _dh.cache.Parent and _dN-_dh.at<3 then return _dh.cache end _dh.at=_dN local _dO=_t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))local _dP,_dQ,_dR=nil,-1,math.huge for _dS,_dT in ipairs(workspace:GetChildren())do if _dT.Name:find(string.char(94,73,115,108,97,110,100,95))then local _dU=0 if _dT:FindFirstChild(string.char(72,85,66))or _dT:FindFirstChild(string.char(66,108,111,99,107,115))then _dU+=1 end if _dw(_dT)then _dU+=50 end if _dm(_dT)then _dU+=100 end if _dy(_dT,_dO)then _dU+=200 end local _dV=_dH(_dT,_dO)if _dU>_dQ or(_dU==_dQ and _dV<_dR)then _dP,_dQ,_dR=_dT,_dU,_dV end end end _dh.cache=_dP return _dP end function _dh.contains(_dW)local _dX=_dh.get()return _dX~=nil and _dy(_dX,_dW)end function _dh.list()local _dY={}for _dZ,_ea in ipairs(workspace:GetChildren())do if _ea.Name:find(string.char(94,73,115,108,97,110,100,95))then _dY[#_dY+1]=_ea end end return _dY end end local _eb,_ec,_ed,_ee={},{},{},{}local _ef,_eg,_eh,_ei={},{},{},{}local _ej={pause=false,hubBusy=false}local _ek={handlers={},fired=false,hopping=false}local _el,_em={},{}local _en={}local _eo={}local _ep={}local _eq={start=os.time(),farmSec=0,swings=0,kills=0,hitSlimes=0,color={},seen=setmetatable({},{__mode=string.char(107)}),}function _ee.Exclusive(_er)for _es,_et in ipairs({string.char(115,108,105,109,101),string.char(98,111,115,115),string.char(115,107,101,108),string.char(104,97,114,118,101,115,116),string.char(116,114,101,101),string.char(109,105,110,101),string.char(112,108,97,110,116)})do if _et~=_er and _en[_et]then _en[_et].Set(false)end end end _W(string.char(75,121,72,117,98,71,117,105))local _eu=_bw(string.char(83,99,114,101,101,110,71,117,105),{Name=string.char(75,121,72,117,98,71,117,105),ResetOnSpawn=false,ZIndexBehavior=Enum.ZIndexBehavior.Sibling})_N(_eu)local _ev=(workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize)or Vector2.new(1280,720)local _ew=math.clamp(_ev.X-24,400,640)local _ex=math.clamp(_ev.Y-24,260,400)local _ey=_ew<500 and 138 or 168 local _ez=_bw(string.char(70,114,97,109,101),{AnchorPoint=Vector2.new(0.5,0.5),Size=UDim2.new(0,_ew,0,_ex),Position=UDim2.new(0.5,0,0.5,0),BackgroundTransparency=1,BorderSizePixel=0,},_eu)_bw(string.char(73,109,97,103,101,76,97,98,101,108),{Name=string.char(83,104,97,100,111,119),BackgroundTransparency=1,Image=string.char(114,98,120,97,115,115,101,116,105,100,58,47,47,54,48,49,52,50,54,49,57,57,51),ImageColor3=Color3.new(0,0,0),ImageTransparency=0.4,ScaleType=Enum.ScaleType.Slice,SliceCenter=Rect.new(49,49,450,450),Position=UDim2.new(0,-24,0,-18),Size=UDim2.new(1,48,1,48),ZIndex=0,},_ez)local _eA=_bD(_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,1,0),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=0.03,BorderSizePixel=0,ZIndex=1,},_ez),16)_bw(string.char(85,73,71,114,97,100,105,101,110,116),{Color=ColorSequence.new({ColorSequenceKeypoint.new(0,_bu.bg1),ColorSequenceKeypoint.new(0.55,Color3.fromRGB(30,20,66)),ColorSequenceKeypoint.new(1,_bu.bg2),}),Rotation=130,},_eA)_bG(_eA,_bu.stroke,0.82)local _eB=_bD(_bw(string.char(84,101,120,116,76,97,98,101,108),{AnchorPoint=Vector2.new(0.5,0),Size=UDim2.new(0,300,0,34),Position=UDim2.new(0.5,0,0,14),BackgroundColor3=Color3.fromRGB(28,20,54),BackgroundTransparency=0.05,TextColor3=_bu.text,Font=Enum.Font.GothamMedium,TextSize=12,Text="",Visible=false,ZIndex=50,TextTruncate=Enum.TextTruncate.AtEnd,},_eu),17)_bG(_eB,_bu.accent,0.5)local _eC=0 local function _eD(_eE)_eC+=1 local _eF=_eC _eB.Text=_eE _eB.Position=UDim2.new(0.5,0,0,-20)_eB.Visible=true _j:Create(_eB,TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Position=UDim2.new(0.5,0,0,14),}):Play()task.delay(2.5,function()if _eC==_eF then _eB.Visible=false end end)end local _eG=_bD(_bw(string.char(70,114,97,109,101),{Position=UDim2.new(0,8,0,8),Size=UDim2.new(0,_ey,1,-16),BackgroundColor3=_bu.side,BackgroundTransparency=0.92,BorderSizePixel=0,},_eA),14)_bG(_eG,_bu.stroke,0.88)local _eH=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,30),BackgroundTransparency=1},_eG)local _eI={}local function _eJ(_eK,_eL,_eM,_eN)local _eO=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Name=_eN,Size=UDim2.new(0,16,0,16),Position=UDim2.new(0,_eK,0.5,-8),BackgroundColor3=_eL,Text="",AutoButtonColor=false,},_eH),8)local _eP=_bw(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,Font=Enum.Font.GothamBold,TextSize=11,TextColor3=Color3.fromRGB(70,20,20),Text=_eM,Visible=false,},_eO)_eI[#_eI+1]=_eP _eO.MouseEnter:Connect(function()for _eQ,_eR in ipairs(_eI)do _eR.Visible=true end end)_eO.MouseLeave:Connect(function()for _eS,_eT in ipairs(_eI)do _eT.Visible=false end end)return _eO end local _eU=_eJ(12,Color3.fromRGB(255,95,87),string.char(120),string.char(75,121,72,117,98,67,108,111,115,101))local _eV=_eJ(36,Color3.fromRGB(254,188,46),string.char(45),string.char(75,121,72,117,98,77,105,110))local _eW=_eJ(60,Color3.fromRGB(40,200,64),string.char(43),string.char(75,121,72,117,98,90,111,111,109))local _eX=_bw(string.char(70,114,97,109,101),{Position=UDim2.new(0,0,0,30),Size=UDim2.new(1,0,0,40),BackgroundTransparency=1},_eG)local _eY=_bD(_bw(string.char(70,114,97,109,101),{Position=UDim2.new(0,12,0,5),Size=UDim2.new(0,30,0,30),BackgroundColor3=Color3.new(1,1,1),BorderSizePixel=0,},_eX),9)_bK(_eY,_bu.accent,_bu.accent2,45)_bw(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,Font=Enum.Font.GothamBlack,TextSize=16,TextColor3=Color3.new(1,1,1),Text=string.char(75),},_eY)_bw(string.char(84,101,120,116,76,97,98,101,108),{Position=UDim2.new(0,50,0,4),Size=UDim2.new(1,-56,0,18),BackgroundTransparency=1,Font=Enum.Font.GothamBold,TextSize=14,TextColor3=_bu.text,TextXAlignment=Enum.TextXAlignment.Left,Text=string.char(75,121,72,117,98),},_eX)_bw(string.char(84,101,120,116,76,97,98,101,108),{Position=UDim2.new(0,50,0,21),Size=UDim2.new(1,-56,0,14),BackgroundTransparency=1,Font=Enum.Font.Gotham,TextSize=10,TextColor3=_bu.sub,TextXAlignment=Enum.TextXAlignment.Left,Text=string.char(102,97,114,109,32,116,111,111,108,107,105,116,32,194,183,32,118,49,55,46,50),},_eX)local _eZ=_bD(_bw(string.char(84,101,120,116,66,111,120),{Position=UDim2.new(0,10,0,76),Size=UDim2.new(1,-20,0,28),BackgroundColor3=_bu.field,BackgroundTransparency=0.55,Font=Enum.Font.GothamMedium,TextSize=12,TextColor3=_bu.text,PlaceholderText=string.char(240,159,148,141,32,32,83,101,97,114,99,104),PlaceholderColor3=_bu.sub,Text="",ClearTextOnFocus=false,TextXAlignment=Enum.TextXAlignment.Left,},_eG),9)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingLeft=UDim.new(0,10),PaddingRight=UDim.new(0,8)},_eZ)_bG(_eZ)local _fa=_bw(string.char(83,99,114,111,108,108,105,110,103,70,114,97,109,101),{Size=UDim2.new(1,0,1,-170),Position=UDim2.new(0,0,0,110),BackgroundTransparency=1,BorderSizePixel=0,ScrollBarThickness=2,ScrollBarImageColor3=_bu.accent,CanvasSize=UDim2.new(),AutomaticCanvasSize=Enum.AutomaticSize.Y,},_eG)_bw(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{Padding=UDim.new(0,3),SortOrder=Enum.SortOrder.LayoutOrder},_fa)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8)},_fa)local _fb=_bw(string.char(70,114,97,109,101),{AnchorPoint=Vector2.new(0,1),Position=UDim2.new(0,0,1,0),Size=UDim2.new(1,0,0,54),BackgroundTransparency=1,},_eG)_bw(string.char(70,114,97,109,101),{Position=UDim2.new(0,12,0,0),Size=UDim2.new(1,-24,0,1),BackgroundColor3=_bu.stroke,BackgroundTransparency=0.88,BorderSizePixel=0,},_fb)local _fc=_bD(_bw(string.char(73,109,97,103,101,76,97,98,101,108),{Position=UDim2.new(0,12,0.5,-15),Size=UDim2.new(0,30,0,30),BackgroundColor3=_bu.accent,BackgroundTransparency=0.5,BorderSizePixel=0,Image="",},_fb),15)_bw(string.char(84,101,120,116,76,97,98,101,108),{Position=UDim2.new(0,50,0.5,-16),Size=UDim2.new(1,-56,0,16),BackgroundTransparency=1,Font=Enum.Font.GothamBold,TextSize=12,TextColor3=_bu.text,TextXAlignment=Enum.TextXAlignment.Left,TextTruncate=Enum.TextTruncate.AtEnd,Text=_t.DisplayName,},_fb)_bw(string.char(84,101,120,116,76,97,98,101,108),{Position=UDim2.new(0,50,0.5,0),Size=UDim2.new(1,-56,0,14),BackgroundTransparency=1,Font=Enum.Font.Gotham,TextSize=10,TextColor3=_bu.sub,TextXAlignment=Enum.TextXAlignment.Left,TextTruncate=Enum.TextTruncate.AtEnd,Text=string.char(64).._t.Name,},_fb)task.spawn(function()local _fd,_fe=pcall(function()return _h:GetUserThumbnailAsync(_t.UserId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size100x100)end)if _fd and _fe and _fc.Parent then _fc.Image=_fe end end)local _ff=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,-(_ey+16),1,0),Position=UDim2.new(0,_ey+16,0,0),BackgroundTransparency=1,},_eA)local _fg=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,58),BackgroundTransparency=1},_ff)local _fh=_bw(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,-20,0,26),Position=UDim2.new(0,10,0,8),BackgroundTransparency=1,Font=Enum.Font.GothamBold,TextSize=21,TextColor3=Color3.new(1,1,1),TextXAlignment=Enum.TextXAlignment.Left,Text="",},_fg)_bK(_fh,Color3.fromRGB(255,255,255),Color3.fromRGB(255,190,220),0)local _fi=_bw(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,-20,0,14),Position=UDim2.new(0,10,0,35),BackgroundTransparency=1,Font=Enum.Font.Gotham,TextSize=11,TextColor3=_bu.sub,TextXAlignment=Enum.TextXAlignment.Left,Text="",},_fg)local _fj=_bw(string.char(70,114,97,109,101),{Position=UDim2.new(0,6,0,58),Size=UDim2.new(1,-18,1,-66),BackgroundTransparency=1,ClipsDescendants=true,},_ff)local _fk=_bD(_bw(string.char(70,114,97,109,101),{Size=UDim2.new(0,46,0,46),Position=UDim2.new(0,14,0.5,-23),BackgroundColor3=Color3.new(1,1,1),BorderSizePixel=0,Visible=false,},_eu),14)_bK(_fk,_bu.accent,_bu.accent2,45)_bG(_fk,_bu.stroke,0.7)local _fl=_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,Text=string.char(75,121),Font=Enum.Font.GothamBlack,TextSize=16,TextColor3=Color3.new(1,1,1),AutoButtonColor=false,},_fk)local function _fm(_fn)_ez.Visible=_fn _fk.Visible=not _fn end _fl.Activated:Connect(function()_fm(true)end)_eV.Activated:Connect(function()_fm(false)end)local _fo=false _eW.Activated:Connect(function()_fo=not _fo local _fp=(workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize)or Vector2.new(1280,720)local _fq=_fo and UDim2.new(0,math.clamp(_fp.X-24,400,840),0,math.clamp(_fp.Y-24,260,560))or UDim2.new(0,_ew,0,_ex)_j:Create(_ez,TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Size=_fq}):Play()end)local function _fr(_fs,_ft)local _fu,_fv,_fw _fs.InputBegan:Connect(function(_fx)if _fx.UserInputType==Enum.UserInputType.MouseButton1 or _fx.UserInputType==Enum.UserInputType.Touch then _fu,_fw,_fv=true,_fx.Position,_ft.Position end end)local _fA=_i.InputChanged:Connect(function(_fy)if _fu and(_fy.UserInputType==Enum.UserInputType.MouseMovement or _fy.UserInputType==Enum.UserInputType.Touch)then local _fz=_fy.Position-_fw _ft.Position=UDim2.new(_fv.X.Scale,_fv.X.Offset+_fz.X,_fv.Y.Scale,_fv.Y.Offset+_fz.Y)end end)local _fC=_i.InputEnded:Connect(function(_fB)if _fB.UserInputType==Enum.UserInputType.MouseButton1 or _fB.UserInputType==Enum.UserInputType.Touch then _fu=false end end)_bm(function()_fA:Disconnect();_fC:Disconnect()end)end _fr(_fg,_ez)_fr(_eX,_ez)_fr(_eH,_ez)local _fF=_i.InputBegan:Connect(function(_fD,_fE)if _fE then return end if _fD.KeyCode==Enum.KeyCode.RightShift then _fm(not _ez.Visible)end end)_bm(function()_fF:Disconnect()end)local _fG,_fH,_fI,_fJ={},{},{},{}local _fK=nil local _fL=0 local function _fM()_fL+=1;return _fL end local function _fN(_fO)local _fP=_bw(string.char(83,99,114,111,108,108,105,110,103,70,114,97,109,101),{Name=_fO,Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,BorderSizePixel=0,ScrollBarThickness=3,ScrollBarImageColor3=_bu.accent,ScrollBarImageTransparency=0.3,CanvasSize=UDim2.new(),AutomaticCanvasSize=Enum.AutomaticSize.Y,Visible=false,},_fj)_bw(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{Padding=UDim.new(0,4),SortOrder=Enum.SortOrder.LayoutOrder},_fP)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingRight=UDim.new(0,8),PaddingBottom=UDim.new(0,8)},_fP)_fG[_fO]=_fP _fJ[_fP]={name=_fO,groups={},cur=nil}return _fP end local function _fQ(_fR)_fK=_fR for _fS,_fT in pairs(_fG)do _fT.Visible=(_fS==_fR)end for _fU,_fV in pairs(_fH)do local _fW=(_fU==_fR)_j:Create(_fV.btn,TweenInfo.new(0.15),{TextColor3=_fW and Color3.new(1,1,1)or _bu.sub}):Play()_j:Create(_fV.pill,TweenInfo.new(0.15),{BackgroundTransparency=_fW and 0.8 or 1}):Play()_j:Create(_fV.ps,TweenInfo.new(0.15),{Transparency=_fW and 0.45 or 1}):Play()end _fh.Text=_fR _fi.Text=(_fH[_fR]and _fH[_fR].sub)or""end local function _fX(_fY,_fZ,_ga,_gb,_gc)local _gd=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,32),BackgroundTransparency=1,LayoutOrder=_fM()},_fa)local _ge=_bD(_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,1,0),BackgroundColor3=_bu.accent,BackgroundTransparency=1,BorderSizePixel=0,ZIndex=1,},_gd),9)local _gf=_bw(string.char(85,73,83,116,114,111,107,101),{Color=_bu.accent,Transparency=1,Thickness=1},_ge)local _gg=_bD(_bw(string.char(70,114,97,109,101),{Position=UDim2.new(0,6,0.5,-11),Size=UDim2.new(0,22,0,22),BackgroundColor3=Color3.new(1,1,1),BorderSizePixel=0,ZIndex=2,},_gd),7)_bK(_gg,_gb or _bu.accent,_gc or _bu.accent2,45)_bw(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,Font=Enum.Font.GothamBold,TextSize=12,TextColor3=Color3.new(1,1,1),Text=_fZ or string.char(226,128,162),ZIndex=3,},_gg)local _gh=_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,AutoButtonColor=false,Font=Enum.Font.GothamMedium,TextSize=12,TextColor3=_bu.sub,TextXAlignment=Enum.TextXAlignment.Left,Text=_fY,ZIndex=4,TextTruncate=Enum.TextTruncate.AtEnd,},_gd)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingLeft=UDim.new(0,36),PaddingRight=UDim.new(0,4)},_gh)local _gi=_fN(_fY)_fH[_fY]={btn=_gh,pill=_ge,ps=_gf,holder=_gd,page=_gi,sub=_ga}_fI[#_fI+1]=_fY _gh.Activated:Connect(function()_fQ(_fY)end)return _gi end local function _gj(_gk,_gl)local _gm=_fJ[_gk]local _gn=_bw(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,0,24),BackgroundTransparency=1,Font=Enum.Font.GothamBold,TextSize=12,TextColor3=_bu.sub,TextXAlignment=Enum.TextXAlignment.Left,Text=_gl,LayoutOrder=_fM(),},_gk)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingLeft=UDim.new(0,6),PaddingTop=UDim.new(0,8)},_gn)local _go=_bD(_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,BackgroundColor3=_bu.card,BackgroundTransparency=_bv,BorderSizePixel=0,LayoutOrder=_fM(),},_gk),12)_bG(_go)_bw(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{SortOrder=Enum.SortOrder.LayoutOrder},_go)local _gp={label=_gn,frame=_go,rows={}}_gm.groups[#_gm.groups+1]=_gp _gm.cur=_gp end local function _gq(_gr,_gs,_gt,_gu)local _gv=_fJ[_gr].cur local _gw=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,_gs),BackgroundTransparency=1,BorderSizePixel=0,LayoutOrder=#_gv.rows+1,},_gv.frame)if _gu then _gw.AutomaticSize=Enum.AutomaticSize.Y end local _gx=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,-28,0,1),Position=UDim2.new(0,14,0,0),BackgroundColor3=_bu.stroke,BackgroundTransparency=0.9,BorderSizePixel=0,Visible=#_gv.rows>0,},_gw)_gv.rows[#_gv.rows+1]={frame=_gw,div=_gx,text=tostring(_gt or""):lower()}return _gw end local function _gy(_gz)local _gA,_gB=tostring(_gz):match(string.char(94,40,46,45,41,124,40,46,42,41,36))if _gA then return _gA,_gB end return tostring(_gz),nil end local function _gC(_gD)local _gE,_gF=_gy(_gD)return _gF and 52 or 44 end local function _gG(_gH,_gI,_gJ)local _gK,_gL=_gy(_gI)local _gM=_bw(string.char(84,101,120,116,76,97,98,101,108),{BackgroundTransparency=1,Position=UDim2.new(0,14,0,_gL and 8 or 0),Size=UDim2.new(1,_gJ,0,_gL and 18 or 44),Font=Enum.Font.GothamMedium,TextSize=13,TextColor3=_bu.text,TextXAlignment=Enum.TextXAlignment.Left,Text=_gK,TextTruncate=Enum.TextTruncate.AtEnd,},_gH)if _gL then _bw(string.char(84,101,120,116,76,97,98,101,108),{BackgroundTransparency=1,Position=UDim2.new(0,14,0,26),Size=UDim2.new(1,_gJ,0,16),Font=Enum.Font.Gotham,TextSize=11,TextColor3=_bu.sub,TextXAlignment=Enum.TextXAlignment.Left,Text=_gL,TextTruncate=Enum.TextTruncate.AtEnd,},_gH)end return _gM end local function _gN(_gO,_gP,_gQ,_gR,_gS)local _gT=_gq(_gO,_gC(_gQ),_gQ)_gG(_gT,_gQ,-76)local _gU=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Text="",AutoButtonColor=false,Size=UDim2.new(0,46,0,26),Position=UDim2.new(1,-58,0.5,-13),BackgroundColor3=_bu.off,},_gT),13)local _gV=_bD(_bw(string.char(70,114,97,109,101),{Size=UDim2.new(0,22,0,22),Position=UDim2.new(0,2,0.5,-11),BackgroundColor3=Color3.new(1,1,1),BorderSizePixel=0,},_gU),11)_bG(_gV,Color3.new(0,0,0),0.85)local _gW=false local _gX={}function _gX.Get()return _gW end function _gX.Set(_gY,_gZ)_gY=_gY and true or false if _gY==_gW then return end _gW=_gY _j:Create(_gU,TweenInfo.new(0.18),{BackgroundColor3=_gY and _bu.on or _bu.off}):Play()_j:Create(_gV,TweenInfo.new(0.18,Enum.EasingStyle.Quad),{Position=_gY and UDim2.new(0,22,0.5,-11)or UDim2.new(0,2,0.5,-11)}):Play()if _gS and not _gZ then _gS(_gY)end end _gU.Activated:Connect(function()_gX.Set(not _gW)end)if _gP then _eo[_gP]={kind=string.char(116,111,103,103,108,101),get=function()return _gW end,set=function(_ha)_gX.Set(_ha)end}end if _gR then _ep[#_ep+1]=function()_gX.Set(true)end end return _gX end local function _hb(_hc,_hd,_he,_hf,_hg,_hh)local _hi=_gq(_hc,_gC(_he),_he)_gG(_hi,_he,-118)local _hj=_bD(_bw(string.char(84,101,120,116,66,111,120),{Size=UDim2.new(0,86,0,28),Position=UDim2.new(1,-98,0.5,-14),BackgroundColor3=_bu.field,BackgroundTransparency=0.5,Font=Enum.Font.GothamBold,TextSize=12,TextColor3=_bu.text,Text=tostring(_hf),ClearTextOnFocus=false,},_hi),8)_bG(_hj)local _hk=_hf local function _hl(_hm)_hk=_hm _hj.Text=tostring(_hm)if _hg then _hg(_hm)end end _hj.FocusLost:Connect(function()local _hn=tonumber(_hj.Text)if _hn and _hn>=(_hh or 0)then _hl(_hn)else _hj.Text=tostring(_hk)end end)if _hd then _eo[_hd]={kind=string.char(105,110,112,117,116),get=function()return _hk end,set=function(_ho)local _hp=tonumber(_ho);if _hp then _hl(_hp)end end}end local _hq={}function _hq.Get()return _hk end function _hq.Set(_hr,_hs)_hk=_hr _hj.Text=tostring(_hr)if _hg and not _hs then _hg(_hr)end end return _hq end local function _ht(_hu,_hv,_hw,_hx,_hy,_hz,_hA)local _hB=_hz or 150 local _hC=_gq(_hu,_gC(_hw),_hw)_gG(_hC,_hw,-(_hB+28))local _hD=_bD(_bw(string.char(84,101,120,116,66,111,120),{Size=UDim2.new(0,_hB,0,28),Position=UDim2.new(1,-(_hB+12),0.5,-14),BackgroundColor3=_bu.field,BackgroundTransparency=0.5,Font=Enum.Font.GothamMedium,TextSize=12,TextColor3=_bu.text,PlaceholderText=_hA or"",PlaceholderColor3=_bu.sub,Text=_hx or"",ClearTextOnFocus=false,TextTruncate=Enum.TextTruncate.AtEnd,TextXAlignment=Enum.TextXAlignment.Left,},_hC),8)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8)},_hD)_bG(_hD)local _hE={}function _hE.Get()return _hD.Text end function _hE.Set(_hF,_hG)_hD.Text=tostring(_hF or"")if _hy and not _hG then _hy(_hD.Text)end end _hD.FocusLost:Connect(function()if _hy then _hy(_hD.Text)end end)if _hv then _eo[_hv]={kind=string.char(116,101,120,116),get=function()return _hD.Text end,set=function(_hH)_hE.Set(_hH)end}end return _hE end local function _hI(_hJ,_hK,_hL,_hM)local _hN=_gq(_hJ,48,_hK)local _hO=_hM and 0.1 or 0.88 local _hP=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Position=UDim2.new(0,12,0.5,-16),Size=UDim2.new(1,-24,0,32),BackgroundColor3=_hM or _bu.card,BackgroundTransparency=_hO,AutoButtonColor=false,Font=Enum.Font.GothamMedium,TextSize=13,TextColor3=_bu.text,Text=_hK,},_hN),9)_bG(_hP)_bP(_hP,_hO)_hP.Activated:Connect(_hL)return _hP end local function _hQ(_hR,_hS)local _hT={}for _hU,_hV in ipairs(_hS)do _hT[#_hT+1]=_hV[1]end local _hW=_gq(_hR,48,table.concat(_hT,string.char(32)))local _hX=_bw(string.char(70,114,97,109,101),{Position=UDim2.new(0,12,0.5,-16),Size=UDim2.new(1,-24,0,32),BackgroundTransparency=1,},_hW)_bw(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{FillDirection=Enum.FillDirection.Horizontal,Padding=UDim.new(0,6),SortOrder=Enum.SortOrder.LayoutOrder,},_hX)local _hY=#_hS for _hZ,_ia in ipairs(_hS)do local _ib=_ia[3]and 0.1 or 0.88 local _ic=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(1/_hY,-math.floor(6*(_hY-1)/_hY),1,0),BackgroundColor3=_ia[3]or _bu.card,BackgroundTransparency=_ib,AutoButtonColor=false,Font=Enum.Font.GothamMedium,TextSize=12,TextColor3=_bu.text,Text=_ia[1],LayoutOrder=_hZ,TextTruncate=Enum.TextTruncate.AtEnd,},_hX),9)_bG(_ic)_bP(_ic,_ib)_ic.Activated:Connect(_ia[2])end end local function _id(_ie,_if,_ig)local _ih=_gq(_ie,_ig or 32,_if,true)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingTop=UDim.new(0,10),PaddingBottom=UDim.new(0,10),PaddingLeft=UDim.new(0,14),PaddingRight=UDim.new(0,14),},_ih)return _bw(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,BackgroundTransparency=1,Font=Enum.Font.Gotham,TextSize=12,TextWrapped=true,TextColor3=_bu.good,Text=_if,TextXAlignment=Enum.TextXAlignment.Left,TextYAlignment=Enum.TextYAlignment.Top,},_ih)end local function _ii(_ij,_ik)local _il=_gq(_ij,_ik,string.char(99,111,110,102,105,103))local _im=_bw(string.char(83,99,114,111,108,108,105,110,103,70,114,97,109,101),{Size=UDim2.new(1,-20,1,-12),Position=UDim2.new(0,10,0,6),BackgroundTransparency=1,BorderSizePixel=0,ScrollBarThickness=3,ScrollBarImageColor3=_bu.accent,CanvasSize=UDim2.new(),AutomaticCanvasSize=Enum.AutomaticSize.Y,},_il)_bw(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{Padding=UDim.new(0,4),SortOrder=Enum.SortOrder.LayoutOrder},_im)local _in={selected=nil,names={},auto=nil}function _in.Render()for _io,_ip in ipairs(_im:GetChildren())do if _ip:IsA(string.char(84,101,120,116,66,117,116,116,111,110))or _ip:IsA(string.char(84,101,120,116,76,97,98,101,108))then _ip:Destroy()end end if#_in.names==0 then _bw(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,0,28),BackgroundTransparency=1,Font=Enum.Font.Gotham,TextSize=12,TextColor3=_bu.sub,TextXAlignment=Enum.TextXAlignment.Left,Text=string.char(32,32,110,111,32,115,97,118,101,100,32,99,111,110,102,105,103,115,32,121,101,116),},_im)return end for _iq,_ir in ipairs(_in.names)do local _is=(_ir==_in.selected)local _it=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(1,0,0,28),BackgroundColor3=_is and _bu.accent or Color3.new(1,1,1),BackgroundTransparency=_is and 0.35 or 0.94,AutoButtonColor=false,Font=Enum.Font.GothamMedium,TextSize=12,TextColor3=_bu.text,TextXAlignment=Enum.TextXAlignment.Left,Text=string.char(32,32).._ir..((_ir==_in.auto)and string.char(32,32,32,32,226,154,161,32,97,117,116,111,32,108,111,97,100)or""),LayoutOrder=_iq,},_im),7)_it.Activated:Connect(function()_in.Select(_ir)end)end end function _in.Select(_iu)_in.selected=_iu if _em.name and _iu then _em.name.Set(_iu,true)end _in.Render()end function _in.SetData(_iv,_iw)_in.names,_in.auto=_iv,_iw local _ix=false for _iy,_iz in ipairs(_iv)do if _iz==_in.selected then _ix=true end end if not _ix then _in.selected=nil end _in.Render()end return _in end local function _iA(_iB)_iB=_bo(_iB):lower()local _iC for _iD,_iE in ipairs(_fI)do local _iF=_fH[_iE]local _iG=_fJ[_iF.page]local _iH=_iB~=""and _iE:lower():find(_iB,1,true)~=nil local _iI=0 for _iJ,_iK in ipairs(_iG.groups)do local _iL=0 for _iM,_iN in ipairs(_iK.rows)do local _iO=(_iB=="")or _iH or(_iN.text~=""and _iN.text:find(_iB,1,true)~=nil)_iN.frame.Visible=_iO if _iO then _iN.div.Visible=_iL>0 _iL+=1 end end _iK.frame.Visible=_iL>0 _iK.label.Visible=_iL>0 _iI+=_iL end local _iP=(_iB=="")or _iH or _iI>0 _iF.holder.Visible=_iP if _iP and not _iC then _iC=_iE end end if _iC and _fK and not _fH[_fK].holder.Visible then _fQ(_iC)end end _eZ:GetPropertyChangedSignal(string.char(84,101,120,116)):Connect(function()_iA(_eZ.Text)end)local function _iQ(_iR,_iS,_iT)local _iU=_gq(_iR,_gC(_iS),_iS)_gG(_iU,_iS,-170)return _bw(string.char(84,101,120,116,76,97,98,101,108),{BackgroundTransparency=1,Position=UDim2.new(1,-164,0,0),Size=UDim2.new(0,150,1,0),Font=Enum.Font.GothamBold,TextSize=14,TextColor3=_bu.accent2,TextXAlignment=Enum.TextXAlignment.Right,Text=_iT or string.char(45),TextTruncate=Enum.TextTruncate.AtEnd,},_iU)end local _iV={ironore=string.char(73,114,111,110,79,114,101),WoodSword=string.char(87,111,111,100,32,83,119,111,114,100),IronSword=string.char(73,114,111,110,32,83,119,111,114,100),GoldboneSword=string.char(71,111,108,100,98,111,110,101,32,83,119,111,114,100),SoulScepter=string.char(83,111,117,108,32,83,99,101,112,116,101,114),SkeletonArcher=string.char(65,114,99,104,101,114),SkeletonKnight=string.char(75,110,105,103,104,116),}local function _iW(_iX)return _iV[_iX]or(_iX:sub(1,1):upper().._iX:sub(2))end local function _iY(_iZ,_ja,_jb,_jc,_jd,_je,_jf)local _jg=_gC(_jb)local _jh=_gq(_iZ,_jg,_jb,true)local _ji=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,BackgroundTransparency=1},_jh)_bw(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{SortOrder=Enum.SortOrder.LayoutOrder},_ji)local _jj=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,_jg),BackgroundTransparency=1,LayoutOrder=1},_ji)_gG(_jj,_jb,-150)local _jk=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(0,124,0,28),Position=UDim2.new(1,-136,0.5,-14),BackgroundColor3=_bu.field,BackgroundTransparency=0.5,AutoButtonColor=false,Font=Enum.Font.GothamBold,TextSize=12,TextColor3=_bu.text,Text="",TextTruncate=Enum.TextTruncate.AtEnd,},_jj),8)_bG(_jk)local _jl=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,BackgroundTransparency=1,LayoutOrder=2,Visible=false,},_ji)_bw(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{Padding=UDim.new(0,3),SortOrder=Enum.SortOrder.LayoutOrder},_jl)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingLeft=UDim.new(0,12),PaddingRight=UDim.new(0,12),PaddingBottom=UDim.new(0,10)},_jl)local _jm,_jn={},{}for _jo,_jp in ipairs(_jc)do _jm[_jp]=_jd[_jp]and true or false end local function _jq(_jr)return _iW(_jr)end local function _js()local _jt,_ju={},0 for _jv,_jw in ipairs(_jc)do if _jm[_jw]then _jt[#_jt+1]=_jq(_jw);_ju+=1 end local _jx=_jn[_jw]if _jx then _jx.box.BackgroundColor3=_jm[_jw]and _bu.on or Color3.new(1,1,1)_jx.box.BackgroundTransparency=_jm[_jw]and 0 or 0.85 _jx.tick.Visible=_jm[_jw]end end _jk.Text=(_ju==0 and string.char(78,111,110,101,32,115,101,108,101,99,116,101,100)or(_ju==#_jc and string.char(65,108,108)or table.concat(_jt,string.char(44,32))))..string.char(32,32,226,150,190)end for _jy,_jz in ipairs(_jc)do local _jA=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(1,0,0,30),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=0.94,AutoButtonColor=false,Font=Enum.Font.GothamMedium,TextSize=12,TextColor3=_bu.text,TextXAlignment=Enum.TextXAlignment.Left,Text=_jq(_jz)..(_jf or string.char(32,83,108,105,109,101)),LayoutOrder=_jy,},_jl),7)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingLeft=UDim.new(0,40)},_jA)local _jB=_bD(_bw(string.char(70,114,97,109,101),{Position=UDim2.new(0,-30,0.5,-9),Size=UDim2.new(0,18,0,18),BorderSizePixel=0,},_jA),5)local _jC=_bw(string.char(84,101,120,116,76,97,98,101,108),{Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,Font=Enum.Font.GothamBold,TextSize=12,TextColor3=Color3.new(1,1,1),Text=string.char(226,156,147),},_jB)_jn[_jz]={box=_jB,tick=_jC}_jA.Activated:Connect(function()_jm[_jz]=not _jm[_jz]_js()if _je then _je(_jm)end end)end _jk.Activated:Connect(function()_jl.Visible=not _jl.Visible end)_js()if _je then _je(_jm)end if _ja then _eo[_ja]={kind=string.char(116,101,120,116),get=function()local _jD={}for _jE,_jF in ipairs(_jc)do if _jm[_jF]then _jD[#_jD+1]=_jF end end return table.concat(_jD,string.char(44))end,set=function(_jG)local _jH={}for _jI in tostring(_jG or""):gmatch(string.char(91,94,44,93,43))do _jH[_bo(_jI):lower()]=true end for _jJ,_jK in ipairs(_jc)do _jm[_jK]=_jH[_jK:lower()]or false end _js()if _je then _je(_jm)end end,}end end local function _jL(_jM,_jN,_jO,_jP,_jQ,_jR)local _jS=_gC(_jO)local _jT=_gq(_jM,_jS,_jO,true)local _jU=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,BackgroundTransparency=1},_jT)_bw(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{SortOrder=Enum.SortOrder.LayoutOrder},_jU)local _jV=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,_jS),BackgroundTransparency=1,LayoutOrder=1},_jU)_gG(_jV,_jO,-150)local _jW=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(0,124,0,28),Position=UDim2.new(1,-136,0.5,-14),BackgroundColor3=_bu.field,BackgroundTransparency=0.5,AutoButtonColor=false,Font=Enum.Font.GothamBold,TextSize=12,TextColor3=_bu.text,Text="",TextTruncate=Enum.TextTruncate.AtEnd,},_jV),8)_bG(_jW)local _jX=_bw(string.char(70,114,97,109,101),{Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,BackgroundTransparency=1,LayoutOrder=2,Visible=false,},_jU)_bw(string.char(85,73,76,105,115,116,76,97,121,111,117,116),{Padding=UDim.new(0,3),SortOrder=Enum.SortOrder.LayoutOrder},_jX)_bw(string.char(85,73,80,97,100,100,105,110,103),{PaddingLeft=UDim.new(0,12),PaddingRight=UDim.new(0,12),PaddingBottom=UDim.new(0,10)},_jX)local _jY,_jZ=_jQ,{}local function _ka(_kb)return _iW(_kb)end local function _kc()_jW.Text=_ka(_jY)..string.char(32,32,226,150,190)for _kd,_ke in pairs(_jZ)do _ke.BackgroundColor3=(_kd==_jY)and _bu.accent or Color3.new(1,1,1)_ke.BackgroundTransparency=(_kd==_jY)and 0.35 or 0.94 end end local function _kf(_kg)_jY=_kg _kc()if _jR then _jR(_jY)end end for _kh,_ki in ipairs(_jP)do _jZ[_ki]=_bD(_bw(string.char(84,101,120,116,66,117,116,116,111,110),{Size=UDim2.new(1,0,0,30),BackgroundColor3=Color3.new(1,1,1),BackgroundTransparency=0.94,AutoButtonColor=false,Font=Enum.Font.GothamMedium,TextSize=12,TextColor3=_bu.text,TextXAlignment=Enum.TextXAlignment.Left,Text=string.char(32,32).._ka(_ki),LayoutOrder=_kh,},_jX),7)_jZ[_ki].Activated:Connect(function()_kf(_ki)_jX.Visible=false end)end _jW.Activated:Connect(function()_jX.Visible=not _jX.Visible end)_kf(_jQ)if _jN then _eo[_jN]={kind=string.char(116,101,120,116),get=function()return _jY end,set=function(_kj)_kj=_bo(_kj):lower()for _kk,_kl in ipairs(_jP)do if _kl:lower()==_kj then _kf(_kl)return end end end,}end return{Get=function()return _jY end,Set=function(_km)_kf(_km)end}end local _kn=_fX(string.char(72,111,109,101),string.char(240,159,143,160),string.char(79,118,101,114,118,105,101,119,32,97,110,100,32,115,101,115,115,105,111,110,32,115,116,97,116,115),Color3.fromRGB(255,205,80),Color3.fromRGB(255,110,150))local _ko=_fX(string.char(65,117,116,111,32,67,111,109,98,97,116),string.char(226,154,148),string.char(65,117,116,111,32,115,108,105,109,101,44,32,98,111,115,115,32,97,110,100,32,115,107,101,108,101,116,111,110),Color3.fromRGB(255,94,168),Color3.fromRGB(170,90,255))local _kp=_fX(string.char(79,118,101,114,102,108,111,119,32,67,104,101,115,116),string.char(240,159,147,166),string.char(67,111,108,108,101,99,116,32,99,104,101,115,116,115,32,116,104,97,116,32,97,114,101,32,102,117,108,108),Color3.fromRGB(255,170,60),Color3.fromRGB(255,110,90))local _kq=_fX(string.char(65,117,116,111,32,72,97,114,118,101,115,116),string.char(240,159,140,177),string.char(65,117,116,111,109,97,116,105,99,32,99,114,111,112,32,104,97,114,118,101,115,116,105,110,103),Color3.fromRGB(60,220,140),Color3.fromRGB(40,170,200))local _kr=_fX(string.char(65,117,116,111,32,70,97,114,109),string.char(226,155,143),string.char(65,117,116,111,32,99,104,111,112,32,116,114,101,101,115,32,97,110,100,32,109,105,110,101,32,111,114,101,115),Color3.fromRGB(130,210,90),Color3.fromRGB(40,150,110))local _ks=_fX(string.char(87,101,98,104,111,111,107),string.char(240,159,148,148),string.char(68,105,115,99,111,114,100,32,110,111,116,105,102,105,99,97,116,105,111,110,115),Color3.fromRGB(88,200,255),Color3.fromRGB(90,120,255))local _kt=_fX(string.char(83,101,116,116,105,110,103,115),string.char(226,154,153),string.char(80,101,114,102,111,114,109,97,110,99,101,44,32,105,115,108,97,110,100,44,32,114,101,106,111,105,110,44,32,99,111,110,102,105,103),Color3.fromRGB(150,150,184),Color3.fromRGB(96,96,140))local _ku={c={}}_gj(_kn,string.char(87,101,108,99,111,109,101))_id(_kn,string.char(72,101,108,108,111,44,32).._t.DisplayName..(string.char(33,32,75,121,72,117,98,32,118,49,55,46,50,32,105,115,32,114,101,97,100,121,46,32,69,110,97,98,108,101,32,102,101,97,116,117,114,101,115,32,102,114,111,109,32,116,104,101,32,116,97,98,115,32,111,110,32,116,104,101,32,108,101,102)..string.char(116,46,32,83,116,97,116,115,32,98,101,108,111,119,32,97,114,101,32,99,111,117,110,116,101,100,32,115,105,110,99,101,32,116,104,105,115,32,115,99,114,105,112,116,32,115,116,97,114,116,101,100,46)),32)_gj(_kn,string.char(83,101,115,115,105,111,110,32,115,116,97,116,115))_ku.up=_iQ(_kn,string.char(83,99,114,105,112,116,32,117,112,116,105,109,101,124,72,111,117,114,115,58,109,105,110,117,116,101,115,58,115,101,99,111,110,100,115,32,115,105,110,99,101,32,75,121,72,117,98,32,115,116,97,114,116,101,100),string.char(48,48,58,48,48,58,48,48))_ku.farm=_iQ(_kn,(string.char(65,117,116,111,32,67,111,109,98,97,116,32,97,99,116,105,118,101,124,84,111,116,97,108,32,116,105,109,101,32,115,108,105,109,101,32,47,32,98,111,115,115,32,47,32,115,107,101,108,101,116,111,110,32,102,97,114,109,105,110,103,32,104,97)..string.char(115,32,98,101,101,110,32,111,110)),string.char(48,48,58,48,48,58,48,48))_ku.hit=_iQ(_kn,string.char(83,108,105,109,101,115,32,104,105,116,124,78,117,109,98,101,114,32,111,102,32,100,105,102,102,101,114,101,110,116,32,115,108,105,109,101,115,32,104,105,116),string.char(48))_ku.swing=_iQ(_kn,string.char(84,111,116,97,108,32,115,119,105,110,103,115,124,78,117,109,98,101,114,32,111,102,32,115,119,105,110,103,115,32,47,32,115,104,111,116,115,32,115,101,110,116),string.char(48))_ku.kill=_iQ(_kn,string.char(77,111,98,115,32,107,105,108,108,101,100,124,84,111,116,97,108,32,107,105,108,108,115,32,115,105,110,99,101,32,116,104,101,32,115,99,114,105,112,116,32,115,116,97,114,116,101,100),string.char(48))_ku.rate=_iQ(_kn,string.char(65,118,101,114,97,103,101,32,107,105,108,108,115,32,112,101,114,32,104,111,117,114,124,66,97,115,101,100,32,111,110,32,65,117,116,111,32,67,111,109,98,97,116,32,97,99,116,105,118,101,32,116,105,109,101),string.char(45))_gj(_kn,string.char(75,105,108,108,115,32,112,101,114,32,99,111,108,111,114))for _kv,_kw in ipairs(_cX.Priority)do _ku.c[_kw]=_iQ(_kn,_kw:sub(1,1):upper().._kw:sub(2)..string.char(32,83,108,105,109,101),string.char(48))end _gj(_kn,string.char(83,116,97,116,117,115))_ku.feat=_id(_kn,string.char(65,99,116,105,118,101,32,102,101,97,116,117,114,101,115,58,32,110,111,110,101),32)_hI(_kn,string.char(82,101,115,101,116,32,115,116,97,116,115),function()_eq.start=os.time()_eq.farmSec,_eq.swings,_eq.kills,_eq.hitSlimes=0,0,0,0 _eq.color={}table.clear(_eq.seen)_eD(string.char(83,116,97,116,115,32,104,97,118,101,32,98,101,101,110,32,114,101,115,101,116,46))end,Color3.fromRGB(255,84,98))local function _kx(_ky)_ky=math.max(0,math.floor(_ky))return(string.char(37,48,50,100,58,37,48,50,100,58,37,48,50,100)):format(_ky//3600,(_ky%3600)//60,_ky%60)end task.spawn(function()local _kz=os.clock()while _bk do task.wait(1)local _kA=os.clock()local _kB=_kA-_kz _kz=_kA if _ee.IsActive and _ee.IsActive()then _eq.farmSec+=_kB end pcall(function()_ku.up.Text=_kx(os.time()-_eq.start)_ku.farm.Text=_kx(_eq.farmSec)_ku.hit.Text=tostring(_eq.hitSlimes)_ku.swing.Text=tostring(_eq.swings)_ku.kill.Text=tostring(_eq.kills)_ku.rate.Text=(_eq.farmSec>=60)and(string.char(37,46,49,102)):format(_eq.kills/(_eq.farmSec/3600))or string.char(45)for _kC,_kD in pairs(_ku.c)do _kD.Text=tostring(_eq.color[_kC]or 0)end local _kE={}if _en.slime and _en.slime.Get()then _kE[#_kE+1]=string.char(65,117,116,111,32,83,108,105,109,101)end if _en.boss and _en.boss.Get()then _kE[#_kE+1]=string.char(65,117,116,111,32,66,111,115,115)end if _en.skel and _en.skel.Get()then _kE[#_kE+1]=string.char(65,117,116,111,32,83,107,101,108,101,116,111,110)end if _en.chest and _en.chest.Get()then _kE[#_kE+1]=string.char(65,117,116,111,32,67,111,108,108,101,99,116)end if _en.harvest and _en.harvest.Get()then _kE[#_kE+1]=string.char(65,117,116,111,32,72,97,114,118,101,115,116)end if _en.tree and _en.tree.Get()then _kE[#_kE+1]=string.char(65,117,116,111,32,84,114,101,101)end if _en.mine and _en.mine.Get()then _kE[#_kE+1]=string.char(65,117,116,111,32,77,105,110,101)end local _kF=_dh.get()_ku.feat.Text=(string.char(65,99,116,105,118,101,32,102,101,97,116,117,114,101,115,58,32,37,115,10,73,115,108,97,110,100,58,32,37,115)):format(#_kE>0 and table.concat(_kE,string.char(44,32))or string.char(110,111,110,101),_kF and _kF.Name or string.char(110,111,116,32,100,101,116,101,99,116,101,100,32,121,101,116))end)end end)local _kG={string.char(112,105,110,107),string.char(111,114,97,110,103,101),string.char(98,108,117,101),string.char(103,114,101,101,110)}local _kH={string.char(87,111,111,100,83,119,111,114,100),string.char(73,114,111,110,83,119,111,114,100),string.char(71,111,108,100,98,111,110,101,83,119,111,114,100),string.char(83,111,117,108,83,99,101,112,116,101,114)}_gj(_ko,string.char(65,117,116,111,32,83,108,105,109,101))_en.slime=_gN(_ko,string.char(115,108,105,109,101,46,111,110),string.char(65,117,116,111,32,83,108,105,109,101,124,72,105,116,32,115,108,105,109,101,115,32,98,121,32,99,111,108,111,114,32,112,114,105,111,114,105,116,121),false,function(_kI)_eb.Set(_kI)end)_jL(_ko,string.char(99,111,109,98,97,116,46,119,101,97,112,111,110),string.char(87,101,97,112,111,110,124,83,119,111,114,100,32,61,32,115,119,105,110,103,44,32,83,99,101,112,116,101,114,32,61,32,115,104,111,111,116,32,43,32,97,117,116,111,32,97,105,109),_kH,_cX.Weapon,function(_kJ)_cX.Weapon=_kJ if _ee.Equip then pcall(_ee.Equip)end end)_iY(_ko,string.char(115,108,105,109,101,46,116,97,114,103,101,116,115),string.char(83,108,105,109,101,115,32,116,111,32,104,105,116,124,67,104,111,111,115,101,32,119,104,105,99,104,32,115,108,105,109,101,32,99,111,108,111,114,115,32,116,111,32,97,116,116,97,99,107),_kG,_cX.Enabled,function(_kK)_cX.Enabled=_kK end)_jL(_ko,string.char(115,108,105,109,101,46,112,114,105,111,114,105,116,121),string.char(80,114,105,111,114,105,116,121,124,72,105,116,32,102,105,114,115,116,44,32,116,104,101,32,114,101,115,116,32,102,111,108,108,111,119),_kG,_cX.Priority[1],function(_kL)local _kM={_kL}for _kN,_kO in ipairs(_kG)do if _kO~=_kL then _kM[#_kM+1]=_kO end end for _kP,_kQ in ipairs(_kM)do _cX.Priority[_kP]=_kQ end end)_gN(_ko,string.char(115,108,105,109,101,46,117,115,101,104,117,98),string.char(84,111,117,99,104,32,72,85,66,32,112,111,114,116,97,108,124,84,111,117,99,104,32,116,104,101,32,72,85,66,32,112,111,114,116,97,108,32,98,101,102,111,114,101,32,102,97,114,109,105,110,103),_cX.UseHub,function(_kR)_cX.UseHub=_kR end)_gN(_ko,string.char(115,108,105,109,101,46,97,117,116,111,104,117,98),string.char(65,117,116,111,32,72,117,98,124,82,101,116,114,121,32,116,104,101,32,112,111,114,116,97,108,32,105,102,32,116,104,101,32,116,101,108,101,112,111,114,116,32,102,97,105,108,115),_cX.AutoHub,function(_kS)_cX.AutoHub=_kS end)_gN(_ko,string.char(115,108,105,109,101,46,115,119,105,110,103,97,110,105,109),string.char(83,119,105,110,103,32,97,110,105,109,97,116,105,111,110,124,80,108,97,121,32,116,104,101,32,115,119,105,110,103,32,97,110,105,109,97,116,105,111,110,32,119,104,101,110,32,104,105,116,116,105,110,103),_cX.SwingAnim,function(_kT)_cX.SwingAnim=_kT end)_gN(_ko,string.char(115,108,105,109,101,46,115,104,111,116,102,120),string.char(83,104,111,116,32,101,102,102,101,99,116,124,66,108,117,101,32,111,114,98,32,119,104,101,110,32,102,105,114,105,110,103,32,116,104,101,32,83,111,117,108,32,83,99,101,112,116,101,114),_cX.ShotFx,function(_kU)_cX.ShotFx=_kU end)_gN(_ko,string.char(115,108,105,109,101,46,102,105,120,99,97,109),(string.char(70,105,120,32,99,97,109,101,114,97,124,70,111,114,99,101,32,116,104,101,32,99,97,109,101,114,97,32,116,111,32,102,111,108,108,111,119,32,116,104,101,32,99,104,97,114,97,99,116,101,114,32,119,104,105,108,101,32,102,97,114,109,105,110)..string.char(103,32,40,109,111,98,105,108,101,41)),_cX.FixCamera,function(_kV)_cX.FixCamera=_kV end)_gj(_ko,string.char(65,117,116,111,32,66,111,115,115))_ed.info=_id(_ko,string.char(77,101,110,103,101,99,101,107,32,98,111,115,115,46,46,46),32)_gN(_ko,string.char(98,111,115,115,46,114,101,97,108,116,105,109,101),(string.char(82,101,97,108,116,105,109,101,32,66,111,115,115,32,83,116,97,116,117,115,124,79,78,32,61,32,72,117,98,32,38,32,82,117,105,110,115,32,115,116,97,121,32,108,111,97,100,101,100,44,32,98,111,115,115,32,105,115,32,116,114,97,99,107)..string.char(101,100)),_cZ.Realtime,function(_kW)_cZ.Realtime=_kW end)_en.boss=_gN(_ko,string.char(98,111,115,115,46,111,110),string.char(65,117,116,111,32,66,111,115,115,124,73,115,108,97,110,100,32,62,32,72,85,66,32,62,32,82,85,73,78,83,44,32,116,104,101,110,32,102,108,121,32,38,32,97,116,116,97,99,107,32,116,104,101,32,98,111,115,115),false,function(_kX)_ed.Set(_kX)end)_gN(_ko,string.char(98,111,115,115,46,114,111,117,116,101),string.char(82,111,117,116,101,32,72,85,66,32,62,32,82,85,73,78,83,124,73,115,108,97,110,100,32,62,32,72,85,66,32,62,32,82,85,73,78,83,32,98,101,102,111,114,101,32,103,111,105,110,103,32,116,111,32,116,104,101,32,98,111,115,115),_cZ.UseRoute,function(_kY)_cZ.UseRoute=_kY end)_hb(_ko,string.char(98,111,115,115,46,104,101,105,103,104,116),string.char(66,111,115,115,32,102,108,121,32,104,101,105,103,104,116,124,86,101,114,116,105,99,97,108,32,100,105,115,116,97,110,99,101,32,97,98,111,118,101,32,116,104,101,32,98,111,115,115,32,40,115,116,117,100,115,41),_cZ.Height,function(_kZ)_cZ.Height=_kZ end,0)_hb(_ko,string.char(98,111,115,115,46,111,102,102,115,101,116),string.char(66,111,115,115,32,111,102,102,115,101,116,124,72,111,114,105,122,111,110,116,97,108,32,111,102,102,115,101,116,32,102,114,111,109,32,116,104,101,32,98,111,115,115,32,40,115,116,117,100,115,41),_cZ.Offset,function(_la)_cZ.Offset=_la end,0)_gj(_ko,string.char(65,117,116,111,32,83,107,101,108,101,116,111,110))_en.skel=_gN(_ko,string.char(115,107,101,108,46,111,110),string.char(65,117,116,111,32,83,107,101,108,101,116,111,110,124,73,115,108,97,110,100,32,62,32,72,85,66,32,62,32,82,85,73,78,83,44,32,116,104,101,110,32,104,105,116,32,115,107,101,108,101,116,111,110,115),false,function(_lb)_ec.Set(_lb)end)_iY(_ko,string.char(115,107,101,108,46,116,97,114,103,101,116,115),string.char(83,107,101,108,101,116,111,110,32,116,111,32,104,105,116,124,67,104,111,111,115,101,32,119,104,105,99,104,32,115,107,101,108,101,116,111,110,32,116,121,112,101,115,32,116,111,32,97,116,116,97,99,107),_cY.Types,_cY.Enabled,function(_lc)_cY.Enabled=_lc end,"")_jL(_ko,string.char(115,107,101,108,46,112,114,105,111,114,105,116,121),string.char(83,107,101,108,101,116,111,110,32,112,114,105,111,114,105,116,121,124,72,105,116,32,102,105,114,115,116,44,32,116,104,101,32,114,101,115,116,32,102,111,108,108,111,119),_cY.Types,_cY.Priority[1],function(_ld)local _le={_ld}for _lf,_lg in ipairs(_cY.Types)do if _lg~=_ld then _le[#_le+1]=_lg end end for _lh,_li in ipairs(_le)do _cY.Priority[_lh]=_li end end)_gN(_ko,string.char(115,107,101,108,46,114,111,117,116,101),string.char(82,111,117,116,101,32,72,85,66,32,62,32,82,85,73,78,83,124,73,115,108,97,110,100,32,62,32,72,85,66,32,62,32,82,85,73,78,83,32,98,101,102,111,114,101,32,102,97,114,109,105,110,103),_cY.UseRoute,function(_lj)_cY.UseRoute=_lj end)_gN(_ko,string.char(115,107,101,108,46,102,108,121),(string.char(70,108,121,32,119,104,105,108,101,32,104,105,116,124,79,78,32,61,32,109,101,108,97,121,97,110,103,32,100,105,32,97,116,97,115,32,115,107,101,108,101,116,111,110,32,115,97,97,116,32,104,105,116,44,32,79,70,70,32,61,32,104,105,116)..string.char(32,100,97,114,105,32,116,97,110,97,104)),false,function(_lk)_cY.FlyWhileHit=_lk end)_gj(_ko,string.char(83,107,101,108,101,116,111,110,32,115,116,97,116,117,115))_ec.info=_id(_ko,string.char(82,101,97,100,121,46),32)_id(_ko,(string.char(65,117,116,111,32,83,108,105,109,101,44,32,65,117,116,111,32,66,111,115,115,44,32,65,117,116,111,32,83,107,101,108,101,116,111,110,44,32,65,117,116,111,32,72,97,114,118,101,115,116,44,32,65,117,116,111,32,84,114,101,101,32,97,110)..string.char(100,32,65,117,116,111,32,77,105,110,101,32,116,117,114,110,32,101,97,99,104,32,111,116,104,101,114,32,111,102,102,58,32,111,110,108,121,32,111,110,101,32,99,97,110,32,114,117,110,32,97,116,32,97,32,116,105,109,101,46,32,87,101,97)..string.char(112,111,110,44,32,87,97,108,107,83,112,101,101,100,44,32,72,105,116,32,114,97,110,103,101,44,32,83,104,111,111,116,32,114,97,110,103,101,32,97,110,100,32,83,119,105,110,103,32,100,101,108,97,121,32,97,114,101,32,115,104,97,114,101)..string.char(100,32,98,121,32,115,108,105,109,101,44,32,98,111,115,115,32,97,110,100,32,115,107,101,108,101,116,111,110,46)),32)_gj(_kp,string.char(79,118,101,114,102,108,111,119,32,67,104,101,115,116))_en.chest=_gN(_kp,string.char(99,104,101,115,116,46,111,110),string.char(65,117,116,111,32,67,111,108,108,101,99,116),false,function(_ll)_ef.Set(_ll)end)_hb(_kp,string.char(99,104,101,115,116,46,105,110,116,101,114,118,97,108),string.char(73,110,116,101,114,118,97,108,124,77,105,110,117,116,101,115,46,115,101,99,111,110,100,115,44,32,48,46,51,48,32,61,32,51,48,32,115,101,99,111,110,100,115),_da.IntervalMin,function(_lm)_da.IntervalMin=_lm end,0.05)_gN(_kp,string.char(99,104,101,115,116,46,111,110,108,121,102,117,108,108),string.char(79,110,108,121,32,70,85,76,76,32,99,104,101,115,116,115),_da.OnlyFull,function(_ln)_da.OnlyFull=_ln end)_gN(_kp,string.char(99,104,101,115,116,46,116,101,108,101,112,111,114,116),string.char(84,101,108,101,112,111,114,116),_da.Teleport,function(_lo)_da.Teleport=_lo end)_gj(_kp,string.char(83,116,97,116,117,115))_ef.info=_id(_kp,string.char(82,101,97,100,121,46),50)_id(_kp,(string.char(71,111,105,110,103,32,104,111,109,101,32,112,105,99,107,115,32,97,32,112,111,114,116,97,108,32,105,110,115,105,100,101,32,116,104,101,32,72,117,98,32,109,111,100,101,108,32,119,104,111,115,101,32,110,97,109,101,32,40,111,114,32,112,97)..string.char(114,101,110,116,32,109,111,100,101,108,32,110,97,109,101,41,32,99,111,110,116,97,105,110,115,32,116,104,101,32,119,111,114,100,32,105,110,32,116,104,101,32,34,72,111,109,101,32,112,111,114,116,97,108,32,110,97,109,101,34,32,102,105,101)..string.char(108,100,46,32,73,102,32,105,116,32,112,105,99,107,115,32,116,104,101,32,119,114,111,110,103,32,112,111,114,116,97,108,32,111,114,32,102,105,110,100,115,32,110,111,110,101,44,32,99,108,105,99,107,32,68,69,66,85,71,32,97,110,100,32)..string.char(99,104,101,99,107,32,116,104,101,32,99,111,110,115,111,108,101,32,40,70,57,41,58,32,101,118,101,114,121,32,112,111,114,116,97,108,32,105,110,32,116,104,101,32,72,117,98,32,105,115,32,108,105,115,116,101,100,32,119,105,116,104,32,105)..string.char(116,115,32,102,117,108,108,32,112,97,116,104,46)),32)_gj(_kq,string.char(65,117,116,111,32,72,97,114,118,101,115,116))_en.harvest=_gN(_kq,string.char(104,97,114,118,101,115,116,46,111,110),string.char(65,117,116,111,32,72,97,114,118,101,115,116,124,87,97,108,107,32,97,114,111,117,110,100,32,97,110,100,32,104,97,114,118,101,115,116,32,99,114,111,112,115,32,97,117,116,111,109,97,116,105,99,97,108,108,121),false,function(_lp)_eg.Set(_lp)end)local _lq _jL(_kq,string.char(104,97,114,118,101,115,116,46,99,114,111,112),string.char(67,114,111,112,124,67,114,111,112,32,116,111,32,104,97,114,118,101,115,116,32,40,114,101,112,108,97,110,116,32,115,101,101,100,32,102,111,108,108,111,119,115,41),_dc.Crops,_dc.Crop,function(_lr)_dc.Crop=_lr for _ls,_lt in ipairs(_dc.Crops)do _dc.Enabled[_lt]=(_lt==_lr)end local _lu=_dc.SeedMap[_lr]if _lu then _dc.Seed=_lu if _lq then _lq.Set(_lu)end end end)_gN(_kq,string.char(104,97,114,118,101,115,116,46,116,112,102,97,108,108,98,97,99,107),string.char(84,101,108,101,112,111,114,116,32,105,102,32,115,116,117,99,107,124,74,117,109,112,32,110,101,120,116,32,116,111,32,116,104,101,32,99,114,111,112,32,119,104,101,110,32,98,108,111,99,107,101,100),_dc.TeleportFallback,function(_lv)_dc.TeleportFallback=_lv end)_gN(_kq,string.char(104,97,114,118,101,115,116,46,111,110,108,121,114,105,112,101),string.char(79,110,108,121,32,114,105,112,101,32,99,114,111,112,115,124,83,116,97,121,32,105,100,108,101,32,117,110,116,105,108,32,97,32,99,114,111,112,32,105,115,32,114,105,112,101),_dc.OnlyRipe,function(_lw)_dc.OnlyRipe=_lw end)_gN(_kq,string.char(104,97,114,118,101,115,116,46,115,107,105,112,119,97,116,101,114),(string.char(83,107,105,112,32,99,114,111,112,115,32,116,104,97,116,32,110,101,101,100,32,119,97,116,101,114,124,67,114,111,112,115,32,119,105,116,104,32,116,104,101,32,240,159,146,167,32,105,99,111,110,32,97,114,101,32,110,111,116,32,104,97,114,118)..string.char(101,115,116,101,100)),_dc.SkipNeedsWater,function(_lx)_dc.SkipNeedsWater=_lx end)_hI(_kq,string.char(68,69,66,85,71,32,99,114,111,112,115,32,40,115,101,101,32,99,111,110,115,111,108,101,41),function()_eg.Debug()end,Color3.fromRGB(255,160,60))_gj(_kq,string.char(80,108,97,110,116,32,97,102,116,101,114,32,104,97,114,118,101,115,116))_eg.PCFG=_db _gN(_kq,string.char(112,108,97,110,116,46,110,101,97,114),string.char(80,108,97,110,116,32,110,101,97,114,98,121,32,112,108,111,116,115,124,65,108,115,111,32,112,108,97,110,116,32,101,109,112,116,121,32,112,108,111,116,115,32,97,114,111,117,110,100,32,116,104,101,32,99,104,97,114,97,99,116,101,114),_db.PlantNear,function(_ly)_eg.PCFG.PlantNear=_ly end)_lq=_jL(_kq,string.char(104,97,114,118,101,115,116,46,115,101,101,100),string.char(83,101,101,100,124,83,101,101,100,32,116,111,32,112,108,97,110,116,32,40,102,111,108,108,111,119,115,32,116,104,101,32,115,101,108,101,99,116,101,100,32,99,114,111,112,41),_dc.Seeds,_dc.SeedMap[_dc.Crop]or _dc.Seed,function(_lz)_dc.Seed=_lz end)_hb(_kq,string.char(112,108,97,110,116,46,115,108,111,116),string.char(66,97,99,107,117,112,32,115,108,111,116,124,83,101,101,100,32,115,108,111,116,32,116,114,105,101,100,32,102,105,114,115,116,32,119,104,101,110,32,99,97,108,105,98,114,97,116,105,110,103),_db.Slot,function(_lA)_eg.PCFG.Slot=_lA end,0)_hQ(_kq,{{string.char(82,101,115,101,116,32,99,97,108,105,98,114,97,116,105,111,110),function()if _eg.PlantReset then _eg.PlantReset()end end,Color3.fromRGB(72,160,255)},{string.char(68,69,66,85,71,32,112,108,97,110,116),function()if _eg.PlantDebug then _eg.PlantDebug()end end,Color3.fromRGB(255,160,60)},})_gj(_kq,string.char(80,108,97,110,116,32,115,116,97,116,117,115))_eg.pinfo=_id(_kq,string.char(73,100,108,101),32)_gj(_kq,string.char(83,116,97,116,117,115))_eg.info=_id(_kq,string.char(73,100,108,101),32)_id(_kq,(string.char(80,105,99,107,32,111,110,101,32,99,114,111,112,32,105,110,32,116,104,101,32,100,114,111,112,100,111,119,110,32,97,110,100,32,116,104,101,32,114,101,112,108,97,110,116,32,115,101,101,100,32,102,111,108,108,111,119,115,32,97,117,116,111,109)..string.char(97,116,105,99,97,108,108,121,32,40,101,46,103,46,32,87,104,101,97,116,32,61,32,87,104,101,97,116,83,101,101,100,115,41,46,32,84,104,101,110,32,116,117,114,110,32,111,110,32,65,117,116,111,32,72,97,114,118,101,115,116,58,32,116)..string.char(104,101,32,99,104,97,114,97,99,116,101,114,32,119,97,108,107,115,32,116,111,32,116,104,101,32,99,114,111,112,44,32,104,97,114,118,101,115,116,115,32,105,116,44,32,97,110,100,32,112,108,97,110,116,115,32,97,32,115,101,101,100,32,97)..string.char(103,97,105,110,32,111,110,32,116,104,101,32,115,97,109,101,32,112,108,111,116,32,105,102,32,82,101,112,108,97,110,116,32,105,115,32,111,110,46)),32)_gj(_kr,string.char(65,117,116,111,32,84,114,101,101))_en.tree=_gN(_kr,string.char(116,114,101,101,46,111,110),string.char(65,117,116,111,32,84,114,101,101,124,87,97,108,107,32,116,111,32,116,114,101,101,115,44,32,104,111,108,100,32,116,104,101,32,65,120,101,32,97,110,100,32,99,104,111,112),false,function(_lB)_dd.SetTree(_lB)end)_jL(_kr,string.char(116,114,101,101,46,107,105,110,100),string.char(84,114,101,101,32,116,121,112,101,124,87,111,111,100,44,32,111,114,32,80,105,110,101,32,40,73,115,108,97,110,100,32,62,32,72,117,98,32,62,32,82,85,73,78,83,41),{string.char(119,111,111,100),string.char(112,105,110,101)},_de.TreeKind,function(_lC)if _dd.OnTreeKind then _dd.OnTreeKind(_lC)else _de.TreeKind=_lC end end)_hI(_kr,string.char(68,69,66,85,71,32,116,114,101,101,115,32,40,115,101,101,32,99,111,110,115,111,108,101,41),function()_dd.DebugTree()end,Color3.fromRGB(255,160,60))_gj(_kr,string.char(65,117,116,111,32,77,105,110,101))_en.mine=_gN(_kr,string.char(109,105,110,101,46,111,110),string.char(65,117,116,111,32,77,105,110,101,124,72,111,108,100,32,116,104,101,32,80,105,99,107,97,120,101,44,32,102,105,110,100,32,111,114,101,32,97,110,100,32,109,105,110,101),false,function(_lD)_dd.SetMine(_lD)end)_iY(_kr,string.char(109,105,110,101,46,116,97,114,103,101,116,115),string.char(77,97,116,101,114,105,97,108,115,32,116,111,32,109,105,110,101,124,80,105,99,107,32,111,110,101,32,111,114,32,97,108,108,32,111,102,32,116,104,101,109),_de.MineList,_de.MineEnabled,function(_lE)_de.MineEnabled=_lE end,"")_jL(_kr,string.char(109,105,110,101,46,112,114,105,111,114,105,116,121),string.char(80,114,105,111,114,105,116,121,124,83,101,97,114,99,104,101,100,32,102,105,114,115,116,44,32,116,104,101,32,114,101,115,116,32,102,111,108,108,111,119),_de.MineList,_de.MinePriority,function(_lF)_de.MinePriority=_lF end)_gj(_kr,string.char(83,101,116,116,105,110,103,115))_gj(_kr,string.char(83,116,97,116,117,115))_dd.info=_id(_kr,string.char(82,101,97,100,121,46),50)_id(_kr,(string.char(84,104,101,32,116,111,111,108,32,105,115,32,101,113,117,105,112,112,101,100,32,97,117,116,111,109,97,116,105,99,97,108,108,121,32,40,65,120,101,32,47,32,80,105,99,107,97,120,101,41,46,32,80,105,110,101,32,114,111,117,116,101,58,32)..string.char(73,115,108,97,110,100,32,62,32,72,85,66,32,112,111,114,116,97,108,32,62,32,72,117,98,32,62,32,82,85,73,78,83,32,62,32,84,111,117,99,104,80,97,114,116,44,32,114,101,112,101,97,116,101,100,32,97,102,116,101,114,32,97,32)..string.char(114,101,115,112,97,119,110,46,32,73,102,32,116,114,101,101,115,32,111,114,32,111,114,101,32,97,114,101,32,110,111,116,32,102,111,117,110,100,44,32,99,108,105,99,107,32,97,32,68,69,66,85,71,32,98,117,116,116,111,110,32,97,110,100)..string.char(32,99,104,101,99,107,32,116,104,101,32,99,111,110,115,111,108,101,32,40,70,57,41,46)),32)_gj(_ks,string.char(68,105,115,99,111,114,100,32,87,101,98,104,111,111,107))_el.url=_ht(_ks,string.char(119,104,46,117,114,108),string.char(87,101,98,104,111,111,107,32,85,82,76,124,68,105,115,99,111,114,100,32,99,104,97,110,110,101,108,32,119,101,98,104,111,111,107,32,108,105,110,107),"",nil,150,string.char(104,116,116,112,115,58,47,47,100,105,115,99,111,114,100,46,99,111,109,47,97,112,105,47,119,101,98,104,111,111,107,115,47,46,46,46))_el.master=_gN(_ks,string.char(119,104,46,111,110),string.char(87,101,98,104,111,111,107,32,101,110,97,98,108,101,100,124,84,117,114,110,32,111,110,32,97,108,108,32,110,111,116,105,102,105,99,97,116,105,111,110,115),false,function(_lG)_ei.Set(_lG)end)_hb(_ks,string.char(119,104,46,99,111,111,108,100,111,119,110),string.char(73,116,101,109,32,110,111,116,105,99,101,32,99,111,111,108,100,111,119,110,124,83,101,99,111,110,100,115,44,32,116,111,32,97,118,111,105,100,32,115,112,97,109),5,nil,1)_gj(_ks,string.char(79,110,108,105,110,101,32,115,116,97,116,117,115))_el.hb=_gN(_ks,string.char(119,104,46,104,98,46,111,110),string.char(83,101,110,100,32,39,115,116,105,108,108,32,111,110,108,105,110,101,39,124,80,101,114,105,111,100,105,99,32,109,101,115,115,97,103,101,32,115,104,111,119,105,110,103,32,116,104,101,32,115,99,114,105,112,116,32,105,115,32,97,108,105,118,101),true)_hb(_ks,string.char(119,104,46,104,98,46,101,118,101,114,121),string.char(69,118,101,114,121,32,40,109,105,110,117,116,101,115,41,124,71,97,112,32,98,101,116,119,101,101,110,32,111,110,108,105,110,101,32,109,101,115,115,97,103,101,115),10,nil,1)_el.dc=_gN(_ks,string.char(119,104,46,100,99,46,111,110),string.char(68,105,115,99,111,110,110,101,99,116,32,47,32,107,105,99,107,32,110,111,116,105,99,101,124,83,101,110,100,32,116,104,101,32,114,101,97,115,111,110,32,102,111,114,32,116,104,101,32,100,105,115,99,111,110,110,101,99,116),true)_el.rejoin=_gN(_ks,string.char(119,104,46,114,101,106,111,105,110,46,111,110),string.char(82,101,106,111,105,110,32,110,111,116,105,99,101,124,83,101,110,100,32,119,104,101,110,32,98,97,99,107,32,111,110,108,105,110,101),true)_gj(_ks,string.char(80,105,110,107,32,71,101,97,114))_el.pink={on=_gN(_ks,string.char(119,104,46,112,105,110,107,46,111,110),string.char(83,101,110,100,32,119,104,101,110,32,80,105,110,107,32,71,101,97,114,32,100,114,111,112,115),true),kw=_ht(_ks,string.char(119,104,46,112,105,110,107,46,107,119),string.char(73,116,101,109,32,110,97,109,101),string.char(80,105,110,107,71,101,97,114),nil,130),}_gj(_ks,string.char(83,116,111,110,101))_el.stone={on=_gN(_ks,string.char(119,104,46,115,116,111,110,101,46,111,110),string.char(83,101,110,100,32,119,104,101,110,32,83,116,111,110,101,32,100,114,111,112,115),false),kw=_ht(_ks,string.char(119,104,46,115,116,111,110,101,46,107,119),string.char(73,116,101,109,32,110,97,109,101),string.char(83,116,111,110,101),nil,130),}_gj(_ks,string.char(84,111,111,108,115))_hQ(_ks,{{string.char(83,101,110,100,32,84,101,115,116),function()_ei.Test()end,Color3.fromRGB(72,160,255)},{string.char(83,99,97,110,32,73,110,118,101,110,116,111,114,121,32,40,99,111,110,115,111,108,101,41),function()_ei.Debug()end,Color3.fromRGB(255,160,60)},})_gj(_ks,string.char(83,116,97,116,117,115))_el.info=_id(_ks,string.char(82,101,97,100,121,46),32)_id(_ks,(string.char(73,116,101,109,32,110,97,109,101,115,32,97,114,101,32,109,97,116,99,104,101,100,32,101,120,97,99,116,108,121,44,32,105,103,110,111,114,105,110,103,32,99,97,115,101,32,97,110,100,32,115,112,97,99,101,115,32,40,34,80,105,110,107,32)..string.char(71,101,97,114,34,32,61,32,80,105,110,107,71,101,97,114,41,46,32,85,115,101,32,42,32,102,111,114,32,34,99,111,110,116,97,105,110,115,34,44,32,101,46,103,46,32,42,112,105,110,107,42,46,32,83,101,112,97,114,97,116,101,32,115)..string.char(101,118,101,114,97,108,32,110,97,109,101,115,32,119,105,116,104,32,99,111,109,109,97,115,46,32,73,102,32,97,110,32,105,116,101,109,32,105,115,32,110,111,116,32,100,101,116,101,99,116,101,100,44,32,99,108,105,99,107,32,83,99,97,110)..string.char(32,73,110,118,101,110,116,111,114,121,32,97,110,100,32,99,104,101,99,107,32,116,104,101,32,99,111,110,115,111,108,101,32,40,70,57,41,46)),32)_id(_ks,(string.char(84,104,101,32,114,101,106,111,105,110,32,109,101,115,115,97,103,101,32,105,115,32,111,110,108,121,32,115,101,110,116,32,105,102,32,116,104,101,32,115,99,114,105,112,116,32,114,117,110,115,32,97,103,97,105,110,32,97,102,116,101,114,32,114)..string.char(101,106,111,105,110,105,110,103,32,40,97,117,116,111,101,120,101,99,32,111,114,32,116,104,101,32,76,111,97,100,101,114,32,105,110,32,83,101,116,116,105,110,103,115,41,32,97,110,100,32,97,32,99,111,110,102,105,103,32,119,105,116,104,32)..string.char(116,104,101,32,119,101,98,104,111,111,107,32,101,110,97,98,108,101,100,32,105,115,32,97,117,116,111,45,108,111,97,100,101,100,46,32,73,102,32,121,111,117,114,32,80,67,32,111,114,32,116,104,101,32,103,97,109,101,32,115,104,117,116,115)..string.char(32,100,111,119,110,32,99,111,109,112,108,101,116,101,108,121,32,110,111,116,104,105,110,103,32,99,97,110,32,98,101,32,115,101,110,116,59,32,116,104,101,32,39,115,116,105,108,108,32,111,110,108,105,110,101,39,32,109,101,115,115,97,103,101)..string.char(115,32,115,105,109,112,108,121,32,115,116,111,112,32,97,114,114,105,118,105,110,103,46)),32)_gj(_kt,string.char(80,101,114,102,111,114,109,97,110,99,101,32,38,32,115,97,102,101,116,121))_gN(_kt,string.char(115,101,116,46,97,110,116,105,108,97,103),string.char(65,110,116,105,32,76,97,103,124,68,105,115,97,98,108,101,32,104,101,97,118,121,32,101,102,102,101,99,116,115,32,116,111,32,114,117,110,32,108,105,103,104,116,101,114),false,function(_lH)_eh.AntiLag(_lH)end)_gN(_kt,string.char(115,101,116,46,97,110,116,105,97,102,107),string.char(65,110,116,105,32,65,70,75,124,80,114,101,118,101,110,116,32,105,100,108,101,32,107,105,99,107,115),true,function(_lI)_eh.AntiAFK(_lI)end)_gj(_kt,string.char(73,115,108,97,110,100))_ht(_kt,string.char(105,115,108,97,110,100,46,110,97,109,101),string.char(73,115,108,97,110,100,32,110,97,109,101,124,69,109,112,116,121,32,61,32,97,117,116,111,109,97,116,105,99),"",function(_lJ)_dh.override=_bo(_lJ)_dh.cache,_dh.at=nil,-100 end,130,string.char(97,117,116,111,109,97,116,105,99))_hI(_kt,string.char(67,104,101,99,107,32,100,101,116,101,99,116,101,100,32,105,115,108,97,110,100),function()_dh.cache,_dh.at=nil,-100 local _lK=_dh.get()_eD(_lK and(string.char(73,115,108,97,110,100,58,32).._lK.Name)or string.char(73,115,108,97,110,100,32,110,111,116,32,102,111,117,110,100,46))end)_id(_kt,(string.char(84,104,101,32,105,115,108,97,110,100,32,105,115,32,100,101,116,101,99,116,101,100,32,97,117,116,111,109,97,116,105,99,97,108,108,121,32,40,121,111,117,114,32,111,119,110,44,32,119,104,97,116,101,118,101,114,32,105,116,115,32,110,117,109)..string.char(98,101,114,44,32,111,114,32,97,32,99,111,45,111,112,32,105,115,108,97,110,100,41,46,32,70,105,108,108,32,105,110,32,34,73,115,108,97,110,100,32,110,97,109,101,34,32,111,110,108,121,32,105,102,32,97,117,116,111,109,97,116,105,99)..string.char(32,100,101,116,101,99,116,105,111,110,32,105,115,32,119,114,111,110,103,44,32,101,46,103,46,32,73,115,108,97,110,100,95,49,50,51,52,53,54,58,50,46)),32)_gj(_kt,string.char(65,117,116,111,32,82,101,106,111,105,110))_gN(_kt,string.char(114,101,106,111,105,110,46,111,110),string.char(65,117,116,111,32,82,101,106,111,105,110,124,82,101,106,111,105,110,32,97,117,116,111,109,97,116,105,99,97,108,108,121,32,105,102,32,100,105,115,99,111,110,110,101,99,116,101,100),false,function(_lL)_df.On=_lL end)_hb(_kt,string.char(114,101,106,111,105,110,46,100,101,108,97,121),string.char(82,101,106,111,105,110,32,100,101,108,97,121,124,83,101,99,111,110,100,115,32,98,101,102,111,114,101,32,114,101,106,111,105,110,105,110,103),5,function(_lM)_df.Delay=_lM end,3)_ht(_kt,string.char(114,101,106,111,105,110,46,108,111,97,100,101,114),string.char(76,111,97,100,101,114,124,85,82,76,32,111,114,32,102,105,108,101,32,110,97,109,101),"",function(_lN)_df.Loader=_bo(_lN)end,150,string.char(108,101,97,118,101,32,101,109,112,116,121,32,105,102,32,97,117,116,111,101,120,101,99))_id(_kt,(string.char(84,104,101,32,76,111,97,100,101,114,32,114,117,110,115,32,75,121,72,117,98,32,97,103,97,105,110,32,97,102,116,101,114,32,114,101,106,111,105,110,105,110,103,58,32,101,110,116,101,114,32,116,104,101,32,114,97,119,32,115,99,114,105,112)..string.char(116,32,108,105,110,107,44,32,111,114,32,97,32,102,105,108,101,32,110,97,109,101,32,105,110,32,116,104,101,32,101,120,101,99,117,116,111,114,39,115,32,119,111,114,107,115,112,97,99,101,32,102,111,108,100,101,114,46,32,73,102,32,75,121)..string.char(72,117,98,32,105,115,32,97,108,114,101,97,100,121,32,105,110,32,97,117,116,111,101,120,101,99,44,32,108,101,97,118,101,32,105,116,32,101,109,112,116,121,46,32,82,101,106,111,105,110,32,103,111,101,115,32,116,111,32,97,32,110,101,119)..string.char(32,115,101,114,118,101,114,44,32,110,111,116,32,116,104,101,32,115,97,109,101,32,111,110,101,46)),32)_gj(_kt,string.char(65,110,116,105,32,83,97,109,101,32,83,101,114,118,101,114))_gN(_kt,string.char(98,108,107,46,111,110),(string.char(65,118,111,105,100,32,115,112,101,99,105,102,105,99,32,73,68,115,124,83,119,105,116,99,104,32,115,101,114,118,101,114,32,105,102,32,97,110,32,73,68,32,98,101,108,111,119,32,105,115,32,105,110,32,116,104,105,115,32,115,101,114,118,101)..string.char(114)),false,function(_lO)_dg.Set(_lO)end)_ht(_kt,string.char(98,108,107,46,105,100,115),string.char(66,108,111,99,107,101,100,32,117,115,101,114,32,73,68,115,124,83,101,112,97,114,97,116,101,32,119,105,116,104,32,99,111,109,109,97,115),"",function(_lP)_dg.SetIds(_lP)end,150,string.char(52,53,55,54,53,48,54,50,51,56,44,32,49,57,53,48,57,55,52,54,48,52))_dg.info=_id(_kt,string.char(68,105,115,97,98,108,101,100,46),32)_id(_kt,(string.char(69,110,116,101,114,32,116,104,101,32,117,115,101,114,32,73,68,115,32,111,102,32,101,118,101,114,121,32,97,99,99,111,117,110,116,32,116,104,97,116,32,109,117,115,116,32,110,111,116,32,115,104,97,114,101,32,97,32,115,101,114,118,101,114)..string.char(44,32,115,101,112,97,114,97,116,101,100,32,98,121,32,99,111,109,109,97,115,32,40,116,104,105,115,32,97,99,99,111,117,110,116,39,115,32,111,119,110,32,73,68,32,109,97,121,32,98,101,32,105,110,99,108,117,100,101,100,44,32,105,116)..string.char(32,105,115,32,105,103,110,111,114,101,100,32,97,117,116,111,109,97,116,105,99,97,108,108,121,41,46,32,73,102,32,116,104,105,115,32,97,99,99,111,117,110,116,32,106,117,115,116,32,106,111,105,110,101,100,32,97,110,100,32,111,110,101,32)..string.char(111,102,32,116,104,111,115,101,32,73,68,115,32,105,115,32,97,108,114,101,97,100,121,32,105,110,32,116,104,101,32,115,101,114,118,101,114,44,32,75,121,72,117,98,32,115,119,105,116,99,104,101,115,32,116,111,32,97,110,111,116,104,101,114)..string.char(32,115,101,114,118,101,114,32,114,105,103,104,116,32,97,119,97,121,46,32,73,102,32,116,104,97,116,32,73,68,32,106,111,105,110,115,32,108,97,116,101,114,44,32,105,116,32,105,115,32,116,104,101,32,111,110,101,32,116,104,97,116,32,115)..string.char(119,105,116,99,104,101,115,32,40,116,104,97,116,32,97,99,99,111,117,110,116,32,109,117,115,116,32,97,108,115,111,32,114,117,110,32,75,121,72,117,98,32,119,105,116,104,32,116,104,105,115,32,102,101,97,116,117,114,101,32,111,110,41,59)..string.char(32,105,102,32,105,116,32,105,115,32,115,116,105,108,108,32,104,101,114,101,32,97,102,116,101,114,32,50,53,32,115,101,99,111,110,100,115,44,32,116,104,105,115,32,97,99,99,111,117,110,116,32,115,119,105,116,99,104,101,115,46,32,70,105)..string.char(108,108,32,105,110,32,116,104,101,32,76,111,97,100,101,114,32,117,110,100,101,114,32,65,117,116,111,32,82,101,106,111,105,110,32,40,111,114,32,117,115,101,32,97,117,116,111,101,120,101,99,41,32,115,111,32,75,121,72,117,98,32,114,117)..string.char(110,115,32,97,103,97,105,110,32,111,110,32,116,104,101,32,110,101,119,32,115,101,114,118,101,114,46)),32)_gj(_kt,string.char(67,111,110,102,105,103))_em.name=_ht(_kt,nil,string.char(67,111,110,102,105,103,32,110,97,109,101),"",nil,150,string.char(101,46,103,46,32,115,108,105,109,101,45,102,97,114,109,105,110,103))_em.list=_ii(_kt,120)_em.status=_id(_kt,string.char(65,117,116,111,32,76,111,97,100,58,32,79,70,70),28)_hQ(_kt,{{string.char(83,97,118,101),function()_eh.Save()end,Color3.fromRGB(60,210,180)},{string.char(76,111,97,100),function()_eh.Load()end,Color3.fromRGB(72,160,255)},{string.char(68,101,108,101,116,101),function()_eh.Delete()end,Color3.fromRGB(255,84,98)},})_hQ(_kt,{{string.char(83,101,116,32,97,115,32,65,117,116,111,32,76,111,97,100),function()_eh.SetAuto()end,Color3.fromRGB(170,110,255)},{string.char(68,105,115,97,98,108,101,32,65,117,116,111,32,76,111,97,100),function()_eh.ClearAuto()end},{string.char(82,101,102,114,101,115,104),function()_eh.Refresh()end},})_id(_kt,(string.char(67,108,105,99,107,32,97,32,99,111,110,102,105,103,32,110,97,109,101,32,105,110,32,116,104,101,32,108,105,115,116,32,116,111,32,115,101,108,101,99,116,32,105,116,46,32,83,97,118,101,32,117,115,101,115,32,116,104,101,32,116,121,112,101)..string.char(100,32,110,97,109,101,32,40,111,114,32,116,104,101,32,115,101,108,101,99,116,101,100,32,111,110,101,32,105,102,32,101,109,112,116,121,41,46,32,68,101,108,101,116,101,32,109,117,115,116,32,98,101,32,99,108,105,99,107,101,100,32,116,119)..string.char(105,99,101,46,32,67,111,110,102,105,103,115,32,97,108,115,111,32,115,116,111,114,101,32,116,104,101,32,87,101,98,104,111,111,107,32,85,82,76,44,32,115,111,32,100,111,32,110,111,116,32,115,104,97,114,101,32,116,104,101,109,46)),32)do local _lQ=_cX _ee.lastSet=nil _ee.lastEquip=0 local function _lR(_lS)local _lT=_m:FindFirstChild(string.char(82,101,109,111,116,101,115))return _lT and _lT:FindFirstChild(_lS)end local _lU={string.char(114,98,120,97,115,115,101,116,105,100,58,47,47,56,54,56,54,49,57,50,49,55,53,54,55,55,51),string.char(114,98,120,97,115,115,101,116,105,100,58,47,47,56,57,56,56,49,55,48,48,56,51,50,54,49,54)}local _lV,_lW,_lX={},nil,0 local function _lY()local _lZ=_t.Character local _ma=_lZ and _lZ:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _mb=_ma and _ma:FindFirstChildOfClass(string.char(65,110,105,109,97,116,111,114))if not _mb then return end if _lW~=_mb then _lW=_mb _lV={}for _mc,_md in ipairs(_lU)do local _me=Instance.new(string.char(65,110,105,109,97,116,105,111,110))_me.AnimationId=_md local _mf=_mb:LoadAnimation(_me)_mf.Priority=Enum.AnimationPriority.Action _lV[_mc]=_mf end end _lX=_lX%#_lV+1 for _mg,_mh in ipairs(_lV)do if _mg~=_lX and _mh.IsPlaying then _mh:Stop(0.08)end end _lV[_lX]:Play(0.08)end local _mi,_mj,_mk=nil,0,false if hookmetamethod and getnamecallmethod then pcall(function()local _ml _ml=hookmetamethod(game,string.char(95,95,110,97,109,101,99,97,108,108),function(_mm,...)if _bk and not _mk and getnamecallmethod()==string.char(70,105,114,101,83,101,114,118,101,114)and typeof(_mm)==string.char(73,110,115,116,97,110,99,101)and _mm.Name==string.char(82,101,113,117,101,115,116,83,104,111,111,116)then local _mn={...}if type(_mn[4])==string.char(110,117,109,98,101,114)then _mi=_mn[4]end end return _ml(_mm,...)end)end)end local function _mo()local _mp=_t.Character if not _mp then return nil end local _mq=_mp:FindFirstChild(string.char(83,104,111,116,79,114,105,103,105,110),true)if _mq and _mq:IsA(string.char(65,116,116,97,99,104,109,101,110,116))then return _mq.WorldPosition end local _mr=_mp:FindFirstChild(string.char(72,101,97,100))or _mp:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))return _mr and _mr.Position end local _ms,_mt=0,0 local function _mu(_mv,_mw,_mx)if not _lQ.ShotFx then return end local _my=os.clock()if _mt>=3 or _my-_ms<0.3 then return end _ms=_my _mt+=1 task.spawn(function()local _mz=Instance.new(string.char(80,97,114,116))_mz.Shape=Enum.PartType.Ball _mz.Size=Vector3.new(1.5,1.5,1.5)_mz.Material=Enum.Material.Neon _mz.Color=Color3.fromRGB(70,200,255)_mz.Anchored,_mz.CanCollide,_mz.CanQuery,_mz.CanTouch=true,false,false,false _mz.CastShadow=false local _mA=Instance.new(string.char(65,116,116,97,99,104,109,101,110,116))_mA.Position=Vector3.new(0,0.7,0)_mA.Parent=_mz local _mB=Instance.new(string.char(65,116,116,97,99,104,109,101,110,116))_mB.Position=Vector3.new(0,-0.7,0)_mB.Parent=_mz local _mC=Instance.new(string.char(84,114,97,105,108))_mC.Attachment0,_mC.Attachment1=_mA,_mB _mC.Lifetime=0.3 _mC.MinLength=0 _mC.FaceCamera=true _mC.LightEmission=1 _mC.Color=ColorSequence.new(Color3.fromRGB(90,215,255),Color3.fromRGB(40,110,255))_mC.Transparency=NumberSequence.new({NumberSequenceKeypoint.new(0,0.1),NumberSequenceKeypoint.new(1,1)})_mC.WidthScale=NumberSequence.new({NumberSequenceKeypoint.new(0,1),NumberSequenceKeypoint.new(1,0)})_mC.Parent=_mz local _mD=_mv+_mw*1 local _mE=_mv+_mw*math.max(_mx-1,1.5)pcall(function()_mz:PivotTo(CFrame.lookAt(_mD,_mD+_mw))end)_mz.Parent=workspace game:GetService(string.char(68,101,98,114,105,115)):AddItem(_mz,1)local _mF=math.clamp(_mx/90,0.18,0.4)local _mG=os.clock()local _mH _mH=_k.Heartbeat:Connect(function()local _mI=(os.clock()-_mG)/_mF if _mI>=1 or not _mz.Parent then _mH:Disconnect()pcall(function()_mz.Transparency=1;_mC.Enabled=false end)game:GetService(string.char(68,101,98,114,105,115)):AddItem(_mz,0.35)_mt-=1 return end local _mJ=_mD:Lerp(_mE,_mI)pcall(function()_mz:PivotTo(CFrame.lookAt(_mJ,_mJ+_mw))end)end)end)end function _ee.Equip()if _ee.lastSet~=_lQ.Weapon then local _mK=_lR(string.char(82,101,113,117,101,115,116,83,101,116,69,113,117,105,112,109,101,110,116))if _mK then pcall(function()_mK:FireServer(string.char(87,101,97,112,111,110),_lQ.Weapon,1)end)_ee.lastSet=_lQ.Weapon task.wait(0.2)end end local _mL=_lR(string.char(82,101,113,117,101,115,116,69,113,117,105,112,83,108,111,116))if _mL then pcall(function()_mL:FireServer(string.char(87,101,97,112,111,110))end)end _ee.lastEquip=os.clock()end function _ee.IsScepter()return _lQ.Weapon==string.char(83,111,117,108,83,99,101,112,116,101,114)end function _ee.AtkRange()return _ee.IsScepter()and _lQ.ShootRange or _lQ.AttackRange end function _ee.Swing(_mM)if _ee.IsScepter()then local _mN=_lR(string.char(82,101,113,117,101,115,116,83,104,111,111,116))if not _mN then return false,string.char(82,101,113,117,101,115,116,83,104,111,111,116,32,114,101,109,111,116,101,32,110,111,116,32,102,111,117,110,100,33)end local _mO=_mo()if not(_mO and _mM)then return false end local _mP=_mM-_mO if _mP.Magnitude<0.1 then return false end _mj=math.max(_mj,_mi or 0)+1 _mk=true pcall(function()_mN:FireServer(_mO,_mP.Unit,_lQ.ShootType,_mj)end)_mk=false _mu(_mO,_mP.Unit,_mP.Magnitude)_eq.swings+=1 return true end local _mQ=_lR(string.char(82,101,113,117,101,115,116,83,119,105,110,103))if not _mQ then return false,string.char(82,101,113,117,101,115,116,83,119,105,110,103,32,114,101,109,111,116,101,32,110,111,116,32,102,111,117,110,100,33)end if _lQ.SwingAnim then pcall(_lY)end pcall(function()_mQ:FireServer(workspace.Terrain)end)_eq.swings+=1 return true end end do local _mR=_cX local _mS=_ee.AtkRange local _mT,_mU=false,0 local _mV=false local _mW=0 local _mX=nil local _mY=""local function _mZ(_na)if _na==_mY then return end _mY=_na if _eb.info then _eb.info.Text=_na end end local _nb={wps=nil,i=1,goal=nil,at=0,tried=0}local _nc,_nd=0,nil local function _ne()_nb.wps,_nb.goal=nil,nil _nd=nil end local function _nf(_ng)local _nh=_ng:WaitForChild(string.char(72,117,109,97,110,111,105,100),10)if not _nh then return end _nh.Died:Connect(function()_mV=false _ee.lastEquip=0 end)end local _nj=_t.CharacterAdded:Connect(function(_ni)_mV=false _ee.lastEquip=0 _mX=nil _ne()task.spawn(_nf,_ni)end)_bm(function()_nj:Disconnect()end)if _t.Character then task.spawn(_nf,_t.Character)end local function _nk()local _nl=_t.Character local _nm=_nl and _nl:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _nn=_nl and _nl:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if _nm and _nn and _nm.Health>0 then return _nm,_nn end end local function _no()return _t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))end local function _np()return _dh.get()end local function _nq()local _nr=_np()local _ns=_nr and _nr:FindFirstChild(string.char(72,85,66))return _ns and _ns:FindFirstChild(string.char(84,111,117,99,104,80,97,114,116),true)end local _nt,_nu local _nv=setmetatable({},{__mode=string.char(107)})local function _nw()local _nx=workspace:FindFirstChild(_mR.LobbyName)local _ny=_no()if not(_nx and _ny and _nx:IsA(string.char(77,111,100,101,108)))then return false end local _nz,_nA=_nx:GetBoundingBox()local _nB=_nz:PointToObjectSpace(_ny.Position)local _nC=_nA/2+Vector3.new(_mR.LobbyPad,_mR.LobbyPad,_mR.LobbyPad)return math.abs(_nB.X)<=_nC.X and math.abs(_nB.Y)<=_nC.Y and math.abs(_nB.Z)<=_nC.Z end local function _nD()local _nE=workspace:FindFirstChild(_mR.LobbyName)return _nE~=nil and _nE:IsA(string.char(77,111,100,101,108))end local function _nF(_nG)return _bg(_nG)end local function _nH()if _ej.pause then return false,string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46),true end if not _no()then return false,string.char(67,104,97,114,97,99,116,101,114,32,110,111,116,32,102,111,117,110,100,46),true end if not _np()then return false,string.char(73,115,108,97,110,100,32,110,111,116,32,102,111,117,110,100,32,40,110,111,32,73,115,108,97,110,100,95,46,46,46,32,105,110,32,119,111,114,107,115,112,97,99,101,32,121,101,116,41,46),true end if not _nq()then return false,string.char(84,111,117,99,104,80,97,114,116,32,110,111,116,32,102,111,117,110,100,32,105,110,32,72,85,66,46)end local _nI=true for _nJ=1,_mR.HubAttempts do local _nK=_nq()if not _nK then return false,string.char(84,111,117,99,104,80,97,114,116,32,110,111,116,32,102,111,117,110,100,32,105,110,32,72,85,66,46)end if _ej.pause then return false,string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46),true end if _nJ>=2 then local _nL=_no()if _nL then pcall(function()_nL.CFrame=_nK.CFrame end)end task.wait(0.25)end _mZ((string.char(84,111,117,99,104,105,110,103,32,72,85,66,32,84,111,117,99,104,80,97,114,116,46,46,46,32,40,97,116,116,101,109,112,116,32,37,100,47,37,100,41)):format(_nJ,_mR.HubAttempts))_nF(_nK)if not _nD()then _nI=false task.wait(1.5)break end local _nM,_nN=0,false while _nM<_mR.HubVerifyWait do task.wait(0.5)_nM+=0.5 if _ej.pause then return false,string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46),true end if _nw()then _nN=true;break end end if _nN then break end if _nJ==_mR.HubAttempts then return false,string.char(84,101,108,101,112,111,114,116,32,116,111,32,72,117,98,32,100,105,100,32,110,111,116,32,119,111,114,107,32,40,99,104,97,114,97,99,116,101,114,32,105,115,32,115,116,105,108,108,32,111,110,32,116,104,101,32,105,115,108,97,110,100,41,46),true end end if _ej.pause then return false,string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46),true end _mZ((string.char(84,101,108,101,112,111,114,116,105,110,103,46,46,46,32,119,97,105,116,105,110,103,32,37,100,115)):format(_mR.AfterDelay))task.wait(_mR.AfterDelay)if _ej.pause then return false,string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46),true end local _nO for _nP=1,math.max(1,math.floor(_mR.FindTimeout/0.5))do if _ej.pause then return false,string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46),true end local _nQ=_no()if _nQ then _nO=_nt(_nQ)end if _nO then break end task.wait(0.5)end return true end local _nR,_nS=nil,0 local function _nT()if _nR and _nR.Parent and#_nR:GetChildren()>0 then return _nR end if os.clock()-_nS<2 then return(_nR and _nR.Parent)and _nR or nil end _nS=os.clock()local _nU=_np()local _nV=(_nU and _nU:FindFirstChild(string.char(71,117,97,114,100,105,97,110,115),true))or workspace:FindFirstChild(string.char(71,117,97,114,100,105,97,110,115),true)if _nV and#_nV:GetChildren()==0 then local _nW=workspace:FindFirstChild(string.char(71,117,97,114,100,105,97,110,115),true)if _nW and _nW~=_nV and#_nW:GetChildren()>0 then _nV=_nW end end _nR=_nV return _nR end local function _nX(_nY)local _nZ=_nY.Name:lower()for _oa,_ob in ipairs(_mR.Priority)do if _mR.Enabled[_ob]and _nZ:find(_ob,1,true)then return _oa end end end local function _oc(_od)if not _od or not _od.Parent then return false end local _oe=_od:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))return not(_oe and _oe.Health<=0)end function _nu(_of)local _og,_oh=pcall(function()return _of:GetPivot()end)return _og and _oh.Position or nil end local function _oi(_oj)local _ok,_ol=pcall(function()return _oj:GetPivot()end)if _ok and _ol then return _ol.Position end local _om,_on=Vector3.zero,0 for _oo,_op in ipairs(_oj:GetChildren())do local _oq=_nu(_op)if _oq then _om+=_oq;_on+=1 end end return _on>0 and _om/_on or nil end function _nt(_or)local _os=false for _ot,_ou in ipairs(_mR.Priority)do if _mR.Enabled[_ou]then _os=true end end if not _os then return nil,string.char(83,101,108,101,99,116,32,97,32,115,108,105,109,101,32,105,110,32,116,104,101,32,100,114,111,112,100,111,119,110,32,102,105,114,115,116)end local _ov=_nT()if not _ov then return nil,string.char(71,117,97,114,100,105,97,110,115,32,102,111,108,100,101,114,32,110,111,116,32,102,111,117,110,100)end local _ow,_ox,_oy for _oz,_oA in ipairs(_ov:GetChildren())do local _oB=_nX(_oA)if _oB and _oc(_oA)and not(_nv[_oA]and _nv[_oA]>os.clock())then local _oC=_nu(_oA)if _oC then local _oD=(_oC-_or.Position).Magnitude if not _ow or _oB<_ox or(_oB==_ox and _oD<_oy)then _ow,_ox,_oy=_oA,_oB,_oD end end end end if not _ow then for _oE,_oF in pairs(_nv)do if _oF>os.clock()and _oE.Parent==_ov then _nv[_oE]=nil end end end return _ow,_ov end local function _oG(_oH)local _oI,_oJ=_ee.Swing(_oH)if not _oI and _oJ then _mZ(_oJ)end end local function _oK(_oL)if _mX==nil then _mX=_oL.WalkSpeed end if _oL.WalkSpeed~=_mR.WalkSpeed then _oL.WalkSpeed=_mR.WalkSpeed end end local function _oM(_oN,_oO)if _oN.AutoRotate~=_oO then _oN.AutoRotate=_oO end end local _oP=RaycastParams.new()_oP.FilterType=Enum.RaycastFilterType.Exclude pcall(function()_oP.RespectCanCollide=true end)local function _oQ(_oR,_oS)local _oT=_nT()_oP.FilterDescendantsInstances=_oT and{_t.Character,_oT}or{_t.Character}local _oU=_oR.Position local _oV=_oS-_oU if _oV.Magnitude<0.5 then return true end return workspace:Raycast(_oU,_oV,_oP)==nil end local function _oW(_oX,_oY)local _oZ=os.clock()if _nd and(_oY-_nd).Magnitude<1.5 and _oZ-_nc<0.5 then return end _nc,_nd=_oZ,_oY _oX:MoveTo(_oY)end local function _pa(_pb,_pc,_pd)local _pe=os.clock()if _oQ(_pc,_pd)then _nb.wps=nil _oW(_pb,_pd)return end local _pf=not _nb.wps or not _nb.goal or(_pd-_nb.goal).Magnitude>10 or _pe-_nb.at>3 if _pf and _pe-_nb.tried>0.8 then _nb.tried=_pe local _pg=_o:CreatePath({AgentRadius=3,AgentHeight=5,AgentCanJump=true})local _ph=pcall(function()_pg:ComputeAsync(_pc.Position,_pd)end)_nb.goal,_nb.at=_pd,_pe if _ph and _pg.Status==Enum.PathStatus.Success then _nb.wps,_nb.i=_pg:GetWaypoints(),2 else _nb.wps=nil end end if _nb.wps then local _pi=_nb.wps[_nb.i]while _pi and Vector3.new(_pi.Position.X-_pc.Position.X,0,_pi.Position.Z-_pc.Position.Z).Magnitude<3 do _nb.i+=1 _pi=_nb.wps[_nb.i]end if _pi then if _pi.Action==Enum.PathWaypointAction.Jump then _pb.Jump=true end _oW(_pb,_pi.Position)return end end _oW(_pb,_pd)end local function _pj(_pk,_pl)local _pm=Vector3.new(_pl.X-_pk.Position.X,0,_pl.Z-_pk.Position.Z)if _pm.Magnitude<0.1 then return end local _pn=Vector3.new(_pk.CFrame.LookVector.X,0,_pk.CFrame.LookVector.Z)if _pn.Magnitude<0.01 or _pn.Unit:Dot(_pm.Unit)<0.9 then _pk.CFrame=CFrame.lookAt(_pk.Position,_pk.Position+_pm)end end local function _po()local _pp=_t.Character local _pq=_pp and _pp:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _pr=_pp and _pp:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if _pq then _pq.AutoRotate=true if _mX then _pq.WalkSpeed=_mX end if _pr then pcall(function()_pq:MoveTo(_pr.Position)end)end end _mX=nil end local _ps=0 local function _pt(_pu)if not _mR.FixCamera then return end local _pv=os.clock()if _pv-_ps<1 then return end _ps=_pv local _pw=workspace.CurrentCamera if not _pw then return end pcall(function()if _pw.CameraType~=Enum.CameraType.Custom then _pw.CameraType=Enum.CameraType.Custom end if _pw.CameraSubject~=_pu then _pw.CameraSubject=_pu end end)end local function _px(_py)local _pz=nil while _mT and _mU==_py do local _pA,_pB=_nk()if _ej.pause then _mZ(string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46))task.wait(0.3)elseif not _pA then _mZ(string.char(87,97,105,116,105,110,103,32,102,111,114,32,99,104,97,114,97,99,116,101,114,46,46,46))task.wait(1)else local _pC=false if _mR.UseHub and not _mV and _nw()then _mV=true _mZ(string.char(65,108,114,101,97,100,121,32,105,110,32,116,104,101,32,72,117,98,44,32,119,97,108,107,105,110,103,32,116,111,32,115,108,105,109,101,115,46,46,46))elseif _mR.UseHub and not _mV then _ej.hubBusy=true local _pD,_pE,_pF if _ej.pause then _pD,_pE,_pF=false,string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46),true else _pD,_pE,_pF=_nH()end _ej.hubBusy=false if _pD then _mV=true _pz=nil _ee.Equip()task.wait(0.5)_mZ(string.char(84,101,108,101,112,111,114,116,32,100,111,110,101,46,10,72,101,97,100,105,110,103,32,116,111,32,115,108,105,109,101,115,46,46,46))elseif _mR.AutoHub or _pF then _mZ(_pE or string.char(84,101,108,101,112,111,114,116,32,102,97,105,108,101,100,44,32,114,101,116,114,121,105,110,103,46,46,46))_pC=true task.wait(1)else _mV=true _mZ((_pE or string.char(84,101,108,101,112,111,114,116,32,115,107,105,112,112,101,100,46))..string.char(10,67,111,110,116,105,110,117,105,110,103,32,116,111,32,116,104,101,32,115,108,105,109,101,115,32,111,110,32,102,111,111,116,46))end end if not _pC then _pA,_pB=_nk()if _pA then _oK(_pA)_oM(_pA,true)_pt(_pA)if os.clock()-_ee.lastEquip>_mR.EquipEvery then _ee.Equip()end local _pG,_pH=_nt(_pB)if not _pG then _pz=_pz or os.clock()if _mR.UseHub and _mV and os.clock()-_pz>_mR.IslandStuckWait and _dh.contains(_pB)and not _nw()then _mV=false _pz=nil _ne()_mZ(string.char(83,116,105,108,108,32,111,110,32,116,104,101,32,105,115,108,97,110,100,44,32,114,101,112,101,97,116,105,110,103,32,116,104,101,32,72,85,66,32,112,111,114,116,97,108,46,46,46))task.wait(0.5)else local _pI=typeof(_pH)==string.char(73,110,115,116,97,110,99,101)and _oi(_pH)if _pI and(_pI-_pB.Position).Magnitude>_mS()*2 then _mZ((string.char(65,112,112,114,111,97,99,104,105,110,103,32,116,104,101,32,115,108,105,109,101,32,97,114,101,97,32,40,37,46,48,102,32,115,116,117,100,115,41,10,75,105,108,108,115,58,32,37,100)):format((_pI-_pB.Position).Magnitude,_mW))_pa(_pA,_pB,_pI)task.wait(0.15)else _mZ((type(_pH)==string.char(115,116,114,105,110,103)and _pH)or(string.char(87,97,105,116,105,110,103,32,102,111,114,32,115,108,105,109,101,115,46,32,75,105,108,108,115,58,32).._mW))task.wait(1)end end else _pz=nil _ne()local _pJ=_nX(_pG)local _pK=_mR.Priority[_pJ]:upper()local _pL,_pM,_pN,_pO=false,false,false,0 local _pP,_pQ=_pB.Position,os.clock()local _pR=math.max(2.5,_mS()-1.5)while _mT and _mU==_py and _oc(_pG)and not _ej.pause do local _pS,_pT=_nk()if not _pS then break end _oK(_pS)if os.clock()-_ee.lastEquip>_mR.EquipEvery then _ee.Equip()end local _pU=_nu(_pG)if not _pU then break end if os.clock()-_pO>1 then _pO=os.clock()if not _nX(_pG)then break end local _pV=_nt(_pT)if _pV and _pV~=_pG and _nX(_pV)<_pJ then break end end local _pW=(_pU-_pT.Position).Magnitude if _pL then _pL=_pW<=_mS()+3 else _pL=_pW<=_mS()end if not _pL then _pM=false _oM(_pS,true)local _pX=os.clock()if(_pT.Position-_pP).Magnitude>1.5 then _pP,_pQ,_pN=_pT.Position,_pX,false else local _pY=_pX-_pQ if _pY>_mR.StuckTime*0.5 and not _pN then _pN=true _pS.Jump=true end if _pY>_mR.StuckTime then _nv[_pG]=_pX+_mR.SkipFor _ne()_mZ((string.char(83,116,117,99,107,32,104,101,97,100,105,110,103,32,116,111,32,37,115,44,32,108,111,111,107,105,110,103,32,102,111,114,32,97,110,111,116,104,101,114,32,116,97,114,103,101,116)):format(_pK))break end end local _pZ=Vector3.new(_pT.Position.X-_pU.X,0,_pT.Position.Z-_pU.Z)local _qa=_pU if _pZ.Magnitude>0.1 then _qa=_pU+_pZ.Unit*_pR end _mZ((string.char(72,101,97,100,105,110,103,32,116,111,32,37,115,32,40,37,46,48,102,32,115,116,117,100,115,41,10,75,105,108,108,115,58,32,37,100)):format(_pK,_pW,_mW))_pa(_pS,_pT,_qa)task.wait(0.12)else _pP,_pQ,_pN=_pT.Position,os.clock(),false _mZ((string.char(72,105,116,116,105,110,103,32,37,115,10,75,105,108,108,115,58,32,37,100)):format(_pK,_mW))if not _eq.seen[_pG]then _eq.seen[_pG]=true _eq.hitSlimes+=1 end if not _pM then _pM=true _nd=nil pcall(function()_pS:MoveTo(_pT.Position)end)end _oM(_pS,false)_pj(_pT,_pU)_oG(_pU)task.wait(_mR.SwingDelay)end end local _qb=_nk()if _qb then _oM(_qb,true)end if not _oc(_pG)then _mW+=1 _eq.kills+=1 local _qc=_mR.Priority[_pJ]_eq.color[_qc]=(_eq.color[_qc]or 0)+1 end end end end end task.wait()end if not _mT then _mZ(string.char(84,117,114,110,101,100,32,111,102,102,46,32,75,105,108,108,115,58,32).._mW)end end function _eb.IsActive()return _mT end function _eb.ResetHub()_mV=false;_ee.lastEquip=0 end function _eb.Set(_qd)if _qd==_mT then return end _mT=_qd if _qd then _ee.Exclusive(string.char(115,108,105,109,101))_mU+=1 _ne()_ee.Equip()task.spawn(_px,_mU)else _mU+=1 _po()end end _bm(function()_mT=false;pcall(_po)end)end do local _qe=_cY local _qf=_ee.AtkRange local _qg,_qh,_qi=false,0,false local _qj,_qk=false,0 local _ql,_qm=0,nil local _qn=""_qe.FlyHeight=5 _qe.StuckTeleport=4 _qe.HpLow=0.4 _qe.HpOk=0.8 _qe.RestHeight=60 _qe.RestMax=40 local function _qo(_qp)if _qp==_qn then return end _qn=_qp if _qj then _ed.action=_qp elseif _ec.info then _ec.info.Text=_qp end end local function _qq()local _qr=_t.Character local _qs=_qr and _qr:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _qt=_qr and _qr:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if _qs and _qt and _qs.Health>0 then return _qs,_qt end end local function _qu()return _t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))end local function _qv(_qw)local _qx=_qu()if not _qx or typeof(_qw)~=string.char(86,101,99,116,111,114,51)then return false end pcall(function()_qx.AssemblyLinearVelocity=Vector3.zero _qx.CFrame=CFrame.new(_qw+Vector3.new(0,4,0))end)return true end local function _qy(_qz,_qA,_qB,_qC,_qD)local _qE=os.clock()while os.clock()-_qE<_qB do if _qD and not _qD()then return nil end local _qF=_qz and _qz:FindFirstChild(_qA,_qC)if _qF then return _qF end task.wait(0.2)end return nil end local function _qG()local _qH=workspace:FindFirstChild(_qe.HubName)return(_qH and _qH:IsA(string.char(77,111,100,101,108)))and _qH or nil end local function _qI()local _qJ,_qK=_qG(),_qu()if not(_qJ and _qK)then return false end local _qN,_qO,_qP=pcall(function()local _qL,_qM=_qJ:GetBoundingBox();return _qL,_qM end)if not _qN or not _qO then return false end local _qQ=_qO:PointToObjectSpace(_qK.Position)local _qR=_qP/2+Vector3.new(_qe.HubPad,_qe.HubPad,_qe.HubPad)return math.abs(_qQ.X)<=_qR.X and math.abs(_qQ.Y)<=_qR.Y and math.abs(_qQ.Z)<=_qR.Z end local function _qS(_qT)for _qU=1,_qe.HubAttempts do if not _qT()then return false end local _qV=_dh.get()local _qW=_qV and _qV:FindFirstChild(_qe.PortalName)local _qX=_qW and _qW:FindFirstChild(_qe.TouchName,true)if not _qX then _qo(string.char(80,111,114,116,97,108,32,72,85,66,32,116,105,100,97,107,32,100,105,116,101,109,117,107,97,110,32,100,105,32,105,115,108,97,110,100,46))task.wait(1.5)return false end if _qU>=2 then _qv(_qX.Position)task.wait(0.25)end _qo((string.char(77,101,110,121,101,110,116,117,104,32,112,111,114,116,97,108,32,72,85,66,46,46,46,32,40,112,101,114,99,111,98,97,97,110,32,37,100,47,37,100,41)):format(_qU,_qe.HubAttempts))_bg(_qX)if not _qG()then task.wait(3);return true end local _qY=0 while _qY<_qe.HubWait do task.wait(0.5);_qY+=0.5 if not _qT()then return false end if _qI()then task.wait(2);return true end end end _qo(string.char(84,101,108,101,112,111,114,116,32,107,101,32,72,85,66,32,103,97,103,97,108,44,32,109,101,110,99,111,98,97,32,108,97,103,105,46,46,46))return false end local _qZ,_ra={},-100 local function _rb()local _rc=os.clock()if _rc-_ra<_qe.ScanEvery then return _qZ end _ra=_rc local _rd={}for _re,_rf in ipairs(workspace:GetDescendants())do if _rf.Name==string.char(71,117,97,114,100,105,97,110,115)and(_rf:IsA(string.char(70,111,108,100,101,114))or _rf:IsA(string.char(77,111,100,101,108)))then _rd[#_rd+1]=_rf end end _qZ=_rd return _rd end local function _rg(_rh)local _ri=_rh.Name:lower()for _rj,_rk in ipairs(_qe.Priority)do if _qe.Enabled[_rk]and _ri==_rk:lower()then return _rj end end end local function _rl(_rm)if not _rm or not _rm.Parent then return false end local _rn=_rm:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))return not(_rn and _rn.Health<=0)end local function _ro(_rp)local _rq,_rr=pcall(function()return _rp:GetPivot()end)return _rq and _rr.Position or nil end local _rs=setmetatable({},{__mode=string.char(107)})local function _rt(_ru)local _rv,_rw,_rx for _ry,_rz in ipairs(_rb())do if _rz.Parent then for _rA,_rB in ipairs(_rz:GetChildren())do local _rC=_rg(_rB)if _rC and _rl(_rB)and not(_rs[_rB]and _rs[_rB]>os.clock())then local _rD=_ro(_rB)if _rD then local _rE=(_rD-_ru.Position).Magnitude if not _rv or _rC<_rw or(_rC==_rw and _rE<_rx)then _rv,_rw,_rx=_rB,_rC,_rE end end end end end end if not _rv and next(_rs)then table.clear(_rs)end return _rv,_rw end local function _rF(_rG)for _rH,_rI in ipairs(_rb())do if _rI.Parent then for _rJ,_rK in ipairs(_rI:GetChildren())do if _rg(_rK)and _rl(_rK)then local _rL=_ro(_rK)if _rL and(_rL-_rG.Position).Magnitude<=_qe.NearRange then return true end end end end end return false end local function _rM(_rN)if not _qI()then _qo(string.char(77,97,115,117,107,32,107,101,32,72,85,66,32,100,97,114,105,32,105,115,108,97,110,100,46,46,46))if not _qS(_rN)then return false end end if not _rN()then return false end local _rO=os.clock()while os.clock()-_rO<_qe.RuinsDelay do if not _rN()then return false end _qo((string.char(83,117,100,97,104,32,100,105,32,72,85,66,44,32,109,101,110,117,110,103,103,117,32,112,111,114,116,97,108,32,82,85,73,78,83,32,108,111,97,100,46,46,46,32,40,37,46,48,102,115,41)):format(math.max(0,_qe.RuinsDelay-(os.clock()-_rO))))task.wait(0.25)end _qo(string.char(77,101,110,99,97,114,105,32,109,111,100,101,108,32,82,85,73,78,83,32,100,105,32,72,85,66,46,46,46))local _rP=_qy(workspace,_qe.HubName,_qe.WaitTimeout,false,_rN)if not _rP then if _rN()then _qo(string.char(77,111,100,101,108,32,72,85,66,32,116,105,100,97,107,32,100,105,116,101,109,117,107,97,110,32,100,105,32,87,111,114,107,115,112,97,99,101,46))end return false end local _rQ=_qy(_rP,_qe.RuinsName,_qe.WaitTimeout,true,_rN)if not _rQ then if _rN()then _qo(string.char(77,111,100,101,108,32,82,85,73,78,83,32,116,105,100,97,107,32,100,105,116,101,109,117,107,97,110,32,100,105,32,100,97,108,97,109,32,72,85,66,46))end return false end _qo(string.char(77,101,110,99,97,114,105,32,84,111,117,99,104,80,97,114,116,32,100,105,32,82,85,73,78,83,46,46,46))local _rR=_qy(_rQ,_qe.TouchName,_qe.WaitTimeout,true,_rN)if not _rR and _rQ:IsA(string.char(66,97,115,101,80,97,114,116))then _rR=_rQ end if not _rR then if _rN()then _qo(string.char(84,111,117,99,104,80,97,114,116,32,116,105,100,97,107,32,100,105,116,101,109,117,107,97,110,32,100,105,32,100,97,108,97,109,32,82,85,73,78,83,46))end return false end task.wait(0.5)if not _rN()then return false end _qo(string.char(77,101,110,121,101,110,116,117,104,32,112,111,114,116,97,108,32,82,85,73,78,83,46,46,46))_qv(_rR.Position)task.wait(0.3)if not _rN()then return false end _bg(_rR)task.wait(3)_ra=-100 return _rN()end local function _rS(_rT)local _rU,_rV=_ee.Swing(_rT)if not _rU and _rV then _qo(_rV)end end local _rW={wps=nil,i=1,goal=nil,at=0,tried=0,failed=false}local _rX,_rY=0,nil local _rZ=nil local _sa=workspace.Terrain local function _sb()_rW.wps,_rW.goal,_rW.failed=nil,nil,false _rY=nil end local _sc=RaycastParams.new()_sc.FilterType=Enum.RaycastFilterType.Exclude pcall(function()_sc.RespectCanCollide=true end)local function _sd(_se,_sf)local _sg={_t.Character}for _sh,_si in ipairs(_rb())do _sg[#_sg+1]=_si end _sc.FilterDescendantsInstances=_sg local _sj=_sf-_se.Position if _sj.Magnitude<0.5 then return true end return workspace:Raycast(_se.Position,_sj,_sc)==nil end local function _sk(_sl)local _ss,_st=pcall(function()local _sm=_sl+Vector3.new(0,-3,0)local _sn=Region3.new(_sm-Vector3.new(2,2,2),_sm+Vector3.new(2,2,2)):ExpandToGrid(4)local _so=_sa:ReadVoxels(_sn,4)for _sp=1,#_so do for _sq=1,#_so[_sp]do for _sr=1,#_so[_sp][_sq]do if _so[_sp][_sq][_sr]==Enum.Material.Water then return true end end end end return false end)return _ss and _st or false end local function _su(_sv,_sw)local _sx=_sw-_sv local _sy=_sx.Magnitude if _sy<1 then return true end local _sz=_sx.Unit local _sA=math.min(math.ceil(_sy/4),10)for _sB=1,_sA do if _sk(_sv+_sz*(_sy*_sB/_sA))then return false end end return true end local function _sC(_sD,_sE)local _sF=os.clock()if _rY and(_sE-_rY).Magnitude<1.5 and _sF-_rX<0.5 then return end _rX,_rY=_sF,_sE _sD:MoveTo(_sE)end local function _sG(_sH,_sI,_sJ)local _sK=os.clock()if _sH:GetState()==Enum.HumanoidStateType.Swimming then _sH.Jump=true if _rZ then _rY=nil _sC(_sH,_rZ)end _rW.wps=nil return true end local _sL=_sH.FloorMaterial if _sL~=Enum.Material.Water and _sL~=Enum.Material.Air then _rZ=_sI.Position end if(_sJ-_sI.Position).Magnitude<=30 and _sd(_sI,_sJ)and _su(_sI.Position,_sJ)then _rW.wps,_rW.failed=nil,false _sC(_sH,_sJ)return true end local _sM=not _rW.wps or not _rW.goal or(_sJ-_rW.goal).Magnitude>8 or _sK-_rW.at>3 if _sM and _sK-_rW.tried>0.8 then _rW.tried=_sK local _sN=_o:CreatePath({AgentRadius=2.5,AgentHeight=5,AgentCanJump=true,Costs={Water=math.huge},})local _sO=pcall(function()_sN:ComputeAsync(_sI.Position,_sJ)end)_rW.goal,_rW.at=_sJ,_sK if _sO and _sN.Status==Enum.PathStatus.Success then _rW.wps,_rW.i,_rW.failed=_sN:GetWaypoints(),2,false else _rW.wps,_rW.failed=nil,true end end if _rW.wps then local _sP=_rW.wps[_rW.i]while _sP and Vector3.new(_sP.Position.X-_sI.Position.X,0,_sP.Position.Z-_sI.Position.Z).Magnitude<3 do _rW.i+=1 _sP=_rW.wps[_rW.i]end if _sP then if _sP.Action==Enum.PathWaypointAction.Jump then _sH.Jump=true end _sC(_sH,_sP.Position)end return true end if _rW.failed then _rY=nil pcall(function()_sH:MoveTo(_sI.Position)end)end return true end local function _sQ(_sR,_sS)local _sT=Vector3.new(_sS.X-_sR.Position.X,0,_sS.Z-_sR.Position.Z)if _sT.Magnitude<0.1 then return end local _sU=Vector3.new(_sR.CFrame.LookVector.X,0,_sR.CFrame.LookVector.Z)if _sU.Magnitude<0.01 or _sU.Unit:Dot(_sT.Unit)<0.9 then _sR.CFrame=CFrame.lookAt(_sR.Position,_sR.Position+_sT)end end local function _sV(_sW)if _qm==nil then _qm=_sW.WalkSpeed end if _sW.WalkSpeed~=_cX.WalkSpeed then _sW.WalkSpeed=_cX.WalkSpeed end end local function _sX(_sY,_sZ)if _sY.AutoRotate~=_sZ then _sY.AutoRotate=_sZ end end local function _ta()local _tb=_t.Character local _tc=_tb and _tb:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _td=_tb and _tb:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if _tc then _tc.AutoRotate=true if _qm then _tc.WalkSpeed=_qm end if _td then pcall(function()_tc:MoveTo(_td.Position)end)end end _qm=nil end local _te=0 local _tf=_t.CharacterAdded:Connect(function()_te+=1 _ee.lastEquip=0 _qm=nil _sb()end)_bm(function()_tf:Disconnect()end)local _tg=_cZ local _th=0 local function _ti()local _tj=workspace:FindFirstChild(_tg.Folder)if not _tj then return nil end for _tk,_tl in ipairs(_tj:GetChildren())do if(_tl:IsA(string.char(77,111,100,101,108))or _tl:IsA(string.char(66,97,115,101,80,97,114,116)))and _rl(_tl)and _ro(_tl)then return _tl end end return nil end local function _tm(_tn)local _to=_tn:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))if not _to then return""end return(string.char(32,124,32,72,80,32,37,100,47,37,100)):format(math.floor(_to.Health),math.floor(_to.MaxHealth))end local function _tp(_tq)return _tq+Vector3.new(_tg.Offset,_tg.Height,0)end local function _tr(_ts,_tt)local _tu=_qq()if not _tu then return end _qo(string.char(66,111,115,115,32,100,105,116,101,109,117,107,97,110,58,32).._tt.Name..string.char(10,84,101,108,101,112,111,114,116,32,38,32,116,101,114,98,97,110,103,32,107,101,32,98,111,115,115,46,46,46))_ee.Equip()local _tv=_ro(_tt)if _tv then local _tw=_qu()if _tw then pcall(function()_tw.AssemblyLinearVelocity=Vector3.zero _tw.CFrame=CFrame.new(_tp(_tv))end)end end task.wait(0.3)_tu.PlatformStand=true local _tB=_k.Heartbeat:Connect(function()local _tx,_ty=_qq()local _tz=_tt.Parent and _ro(_tt)if not(_tx and _ty and _tz)then return end local _tA=_tp(_tz)pcall(function()_ty.AssemblyLinearVelocity=Vector3.zero _ty.AssemblyAngularVelocity=Vector3.zero _ty.CFrame=CFrame.lookAt(_tA,Vector3.new(_tz.X,_tA.Y,_tz.Z))end)end)while _ts()and _tt.Parent and _rl(_tt)and not _ej.pause do if not _qq()then break end if os.clock()-_ee.lastEquip>_qe.EquipEvery then _ee.Equip()end local _tC=_ro(_tt)if not _tC then break end _qo((string.char(77,101,110,121,101,114,97,110,103,32,66,79,83,83,58,32,37,115,37,115,10,66,111,115,115,32,107,105,108,108,115,58,32,37,100)):format(_tt.Name,_tm(_tt),_th))_rS(_tC)task.wait(_cX.SwingDelay)end _tB:Disconnect()local _tD=_qq()if _tD then _tD.PlatformStand=false end _ta()if not(_tt.Parent and _rl(_tt))then _th+=1 _eq.kills+=1 end end local function _tE(_tF)local function _tG()return _qj and _qk==_tF end local _tH,_tI=_te,false while _tG()do local _tJ,_tK=_qq()if _ej.pause then _qo(string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46))task.wait(0.3)elseif not _tJ then _qo(string.char(87,97,105,116,105,110,103,32,102,111,114,32,99,104,97,114,97,99,116,101,114,46,46,46))task.wait(1)else if _te~=_tH then _tH=_te;_tI=false end local _tL=_ti()if not _tL then _tI=false _qo((string.char(77,101,110,117,110,103,103,117,32,98,111,115,115,32,109,117,110,99,117,108,32,100,105,32,37,115,46,46,46,10,66,111,115,115,32,107,105,108,108,115,58,32,37,100)):format(_tg.Folder,_th))task.wait(1)else local _tM=true if _tg.UseRoute and _tI and _dh.contains(_tK)then _tI=false end if _tg.UseRoute and not _tI then local _tN=_ro(_tL)local _tO=_tN and not _dh.contains(_tK)and not _qI()and(_tN-_tK.Position).Magnitude<=_qe.NearRange if _tO then _tI=true elseif _rM(_tG)then _tI=true else _tM=false task.wait(2)end end if _tM and _tG()then _tr(_tG,_tL)end end end task.wait()end _ed.action=string.char(84,117,114,110,101,100,32,111,102,102,46,32,66,111,115,115,32,107,105,108,108,115,58,32).._th end function _ed.IsActive()return _qj end function _ed.Set(_tP)if _tP==_qj then return end _qj=_tP _qk+=1 _qn=""_ed.action=""if _tP then _ee.Exclusive(string.char(98,111,115,115))_ee.lastSet=nil _sb()task.spawn(_tE,_qk)else local _tQ=_qq()if _tQ then pcall(function()_tQ.PlatformStand=false end)end _ta()end end _bm(function()_qj=false local _tR=_qq()if _tR then pcall(function()_tR.PlatformStand=false end)end end)local _tS,_tT=nil,nil local function _tU()if _ee.IsScepter()then return math.max(_qe.FlyHeight,12)end return math.min(_qe.FlyHeight,_qf()-2)end local function _tV()local _tW,_tX=_qq()if not(_tW and _tX)then return end pcall(function()_tW.PlatformStand=false local _tY=RaycastParams.new()_tY.FilterType=Enum.RaycastFilterType.Exclude _tY.FilterDescendantsInstances={_t.Character}local _tZ=workspace:Raycast(_tX.Position,Vector3.new(0,-300,0),_tY)if _tZ then _tX.CFrame=CFrame.new(_tZ.Position+Vector3.new(0,3,0))end _tX.AssemblyLinearVelocity=Vector3.zero end)end local function _ua()local _ub=_tS~=nil if _tS then _tS:Disconnect();_tS=nil end _tT=nil if _ub then _tV()end end local function _uc(_ud,_ue)_tT=_ud if _tS then return end _tS=_k.Heartbeat:Connect(function()local _uf,_ug=_qq()local _uh=_tT local _ui=_uh and _uh.Parent and _ro(_uh)if not(_uf and _ug and _ui)then return end local _uj=_ui+Vector3.new(2,_tU(),0)pcall(function()_ug.AssemblyLinearVelocity=Vector3.zero _ug.AssemblyAngularVelocity=Vector3.zero _ug.CFrame=CFrame.lookAt(_uj,Vector3.new(_ui.X,_uj.Y,_ui.Z))end)end)end local function _uk(_ul)local _um,_un=_qq()if not(_um and _un)then return end if _tS then _tS:Disconnect();_tS=nil end _tT=nil local _uo=_un.Position+Vector3.new(0,_qe.RestHeight,0)local _ur=_k.Heartbeat:Connect(function()local _up,_uq=_qq()if _up and _uq then pcall(function()_uq.AssemblyLinearVelocity=Vector3.zero _uq.AssemblyAngularVelocity=Vector3.zero _uq.CFrame=CFrame.new(_uo)end)end end)local _us=os.clock()while _ul()and not _ej.pause and os.clock()-_us<_qe.RestMax do local _ut=_qq()if not _ut then break end if _ut.Health/_ut.MaxHealth>=_qe.HpOk then break end _qo((string.char(72,80,32,114,101,110,100,97,104,32,40,37,100,37,37,41,44,32,105,115,116,105,114,97,104,97,116,32,100,105,32,97,116,97,115,46,46,46)):format(math.floor(_ut.Health/_ut.MaxHealth*100)))task.wait(0.5)end _ur:Disconnect()_tV()end local function _uu(_uv)local function _uw()return _qg and _qh==_uv end local _ux=_te while _uw()do local _uy,_uz=_qq()if _ej.pause then _ua()_qo(string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46))task.wait(0.3)elseif not _uy then _ua()_qo(string.char(87,97,105,116,105,110,103,32,102,111,114,32,99,104,97,114,97,99,116,101,114,46,46,46))task.wait(1)else if _te~=_ux then _ux=_te;_qi=false;_ua()end if _qi and _qe.UseRoute and _dh.contains(_uz)then _qi=false _ua()_sb()_qo(string.char(75,101,109,98,97,108,105,32,100,105,32,105,115,108,97,110,100,44,32,117,108,97,110,103,105,32,114,117,116,101,32,107,101,32,82,85,73,78,83,46,46,46))end local _uA=false if not _qi then _ua()if not _qe.UseRoute then _qi=true elseif not _dh.contains(_uz)and _rF(_uz)then _qi=true elseif _rM(_uw)then _qi=true local _uB=os.clock()while _uw()and os.clock()-_uB<_qe.FindTimeout do local _uC,_uD=_qq()if _uD and _rt(_uD)then break end _qo(string.char(77,101,110,99,97,114,105,32,115,107,101,108,101,116,111,110,32,100,105,32,82,85,73,78,83,46,46,46))task.wait(0.5)end _ee.Equip()else _uA=true task.wait(2)end end if not _uA and _uw()then _uy,_uz=_qq()if _uy then _sV(_uy)if os.clock()-_ee.lastEquip>_qe.EquipEvery then _ee.Equip()end local _uE,_uF=_rt(_uz)if not _uE then _ua()_sX(_uy,true)_qo(string.char(77,101,110,117,110,103,103,117,32,115,107,101,108,101,116,111,110,46,46,46,32,75,105,108,108,115,58,32).._ql)task.wait(1)else _sb()local _uG=_qe.Priority[_uF]:upper()local _uH,_uI=false,0 local _uJ,_uK=_uz.Position,os.clock()local _uL=math.max(2.5,_qf()-1.5)while _uw()and _rl(_uE)and not _ej.pause do local _uM,_uN=_qq()if not _uM then break end if _uM.Health/_uM.MaxHealth<_qe.HpLow then _uk(_uw)break end _sV(_uM)if os.clock()-_ee.lastEquip>_qe.EquipEvery then _ee.Equip()end local _uO=_ro(_uE)if not _uO then break end if os.clock()-_uI>1 then _uI=os.clock()if _qe.UseRoute and _dh.contains(_uN)then break end if not _rg(_uE)then break end local _uP,_uQ=_rt(_uN)if _uP and _uP~=_uE and _uQ<_uF then break end end local _uR=(_uO-_uN.Position).Magnitude local _uS=_tS~=nil local _uT=_uR<=_qf()+(_uS and 3 or 0)if not _uT then if _uS then _ua()end _sX(_uM,true)local _uU=os.clock()if(_uN.Position-_uJ).Magnitude>1.5 then _uJ,_uK,_uH=_uN.Position,_uU,false else local _uV=_uU-_uK if _uV>_qe.StuckTeleport*0.5 and not _uH then _uH=true _uM.Jump=true end if _uV>=_qe.StuckTeleport then _qo((string.char(83,116,117,99,107,32,109,101,110,117,106,117,32,37,115,44,32,116,101,108,101,112,111,114,116,32,107,101,32,97,116,97,115,110,121,97)):format(_uG))pcall(function()_uN.AssemblyLinearVelocity=Vector3.zero _uN.CFrame=CFrame.new(_uO+Vector3.new(2,_tU(),0))end)_uc(_uE,_uM)_sb()_uJ,_uK,_uH=_uN.Position,os.clock(),false end end if not _tS then local _uW=Vector3.new(_uN.Position.X-_uO.X,0,_uN.Position.Z-_uO.Z)local _uX=_uO if _uW.Magnitude>0.1 then _uX=_uO+_uW.Unit*_uL end _qo((string.char(77,101,110,117,106,117,32,37,115,32,40,37,46,48,102,32,115,116,117,100,115,41,10,75,105,108,108,115,58,32,37,100)):format(_uG,_uR,_ql))_sG(_uM,_uN,_uX)end task.wait(0.12)else _uJ,_uK,_uH=_uN.Position,os.clock(),false if _qe.FlyWhileHit==true then _uc(_uE,_uM)_qo((string.char(84,101,114,98,97,110,103,32,38,32,104,105,116,32,37,115,10,75,105,108,108,115,58,32,37,100)):format(_uG,_ql))else if _tS then _ua()end _sX(_uM,false)_sQ(_uN,_uO)_qo((string.char(72,105,116,32,37,115,32,40,100,105,32,116,97,110,97,104,41,10,75,105,108,108,115,58,32,37,100)):format(_uG,_ql))end _rS(_uO)task.wait(_cX.SwingDelay)end end if not _rl(_uE)then _ql+=1 _eq.kills+=1 end end end end end task.wait()end _ua()local _uY=_qq()if _uY then _sX(_uY,true)end if not _qg and _ec.info then _ec.info.Text=string.char(84,117,114,110,101,100,32,111,102,102,46,32,75,105,108,108,115,58,32).._ql end end function _ec.IsActive()return _qg end function _ec.Set(_uZ)if _uZ==_qg then return end _qg=_uZ _qh+=1 if _uZ then _ee.Exclusive(string.char(115,107,101,108))_qi=false _ee.lastSet=nil _sb()task.spawn(_uu,_qh)else _ua()_ta()end end _bm(function()_qg=false if _tS then _tS:Disconnect();_tS=nil end local _va=_qq()if _va then pcall(function()_va.PlatformStand=false end)end pcall(_ta)end)end function _ee.IsActive()return _eb.IsActive()or _ec.IsActive()or _ed.IsActive()end task.spawn(function()while _bk do local _vb local _vc=workspace:FindFirstChild(_cZ.Folder)if _vc then for _vd,_ve in ipairs(_vc:GetChildren())do if _ve:IsA(string.char(77,111,100,101,108))or _ve:IsA(string.char(66,97,115,101,80,97,114,116))then local _vf=_ve:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))if not _vf or _vf.Health>0 then _vb=_ve;break end end end end local _vg if _vb then local _vh=_vb:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))_vg=string.char(240,159,159,162,32,66,79,83,83,32,83,80,65,87,78,58,32).._vb.Name if _vh then _vg..=(string.char(32,124,32,72,80,32,37,100,47,37,100)):format(math.floor(_vh.Health),math.floor(_vh.MaxHealth))end elseif not _vc then _vg=string.char(226,154,170,32,70,111,108,100,101,114,32).._cZ.Folder..string.char(32,116,105,100,97,107,32,100,105,116,101,109,117,107,97,110)else _vg=string.char(240,159,148,180,32,66,111,115,115,32,98,101,108,117,109,32,115,112,97,119,110)end if _cZ.Realtime then local _vi=workspace:FindFirstChild(_cY.HubName)local _vj=_vi and _vi:FindFirstChild(_cY.RuinsName,true)_vg..=string.char(10,240,159,147,161,32,82,101,97,108,116,105,109,101,32,79,78,32,194,183,32,72,117,98,32)..(_vi and string.char(226,156,133)or string.char(226,157,140))..string.char(32,194,183,32,82,117,105,110,115,32)..(_vj and string.char(226,156,133)or string.char(226,157,140))end if _ed.IsActive()and _ed.action and _ed.action~=""then _vg..=string.char(10).._ed.action end pcall(function()_ed.info.Text=_vg end)task.wait(0.5)end end)do local _vk={}local function _vl(_vm)local _vn,_vo=pcall(function()return _vm:GetPivot()end)return _vn and _vo and _vo.Position or nil end task.spawn(function()while _bk do if _cZ.Realtime or _ed.IsActive()then local _vp=workspace:FindFirstChild(_cY.HubName)local _vq=_vp and _vl(_vp)if _vq then _vk.hub=_vq end local _vr=workspace:FindFirstChild(string.char(82,117,105,110,115,65,114,114,105,118,97,108,65,110,99,104,111,114))local _vs=_vr and _vl(_vr)if _vs then _vk.ruins=_vs end local _vt=workspace:FindFirstChild(string.char(65,114,114,105,118,97,108,65,110,99,104,111,114))local _vu=_vt and _vl(_vt)if _vu then _vk.arrival=_vu end local _vv=workspace:FindFirstChild(_cZ.Folder)if _vv then for _vw,_vx in ipairs(_vv:GetChildren())do local _vy=_vl(_vx)if _vy then _vk.boss=_vy;break end end end for _vz,_vA in pairs(_vk)do if not(_bk and(_cZ.Realtime or _ed.IsActive()))then break end pcall(function()_t:RequestStreamAroundAsync(_vA,2)end)end end task.wait(_cZ.StreamEvery)end end)end do local _vB=_da local _vC,_vD,_vE=false,false,0 local _vF=string.char(83,105,97,112,46)local _vG=""local function _vH(_vI)if _vI==_vG then return end _vG=_vI if _ef.info then _ef.info.Text=_vI end end local function _vJ(_vK)local _vL=_vK:FindFirstChild(string.char(77,97,99,104,105,110,101,83,116,97,116,117,115,83,105,103,110))if not _vL then return nil end local _vM={}for _vN,_vO in ipairs(_vL:GetDescendants())do if _vO:IsA(string.char(84,101,120,116,76,97,98,101,108))and _vO.Text~=""then table.insert(_vM,_vO.Text)end end if#_vM==0 then return nil end return table.concat(_vM,string.char(32,124,32))end local function _vP(_vQ)local _vR=_vJ(_vQ)if not _vR then return nil,string.char(40,116,105,100,97,107,32,97,100,97,32,116,101,107,115,41)end local _vS=_vR:gsub(string.char(60,91,94,62,93,43,62),""):lower()if _vS:find(string.char(110,111,116,32,102,117,108,108))or _vS:find(string.char(101,109,112,116,121))or _vS:find(string.char(107,111,115,111,110,103))or _vS:find(string.char(98,101,108,117,109))then return false,_vR end local _vT,_vU=_vS:match(string.char(40,37,100,43,41,37,115,42,47,37,115,42,40,37,100,43,41))if _vT and _vU then return(tonumber(_vU)>0 and tonumber(_vT)>=tonumber(_vU)),_vR end if _vS:find(string.char(49,48,48,37,37))then return true,_vR end if _vS:find(string.char(102,117,108,108))or _vS:find(string.char(112,101,110,117,104))then return true,_vR end return false,_vR end local function _vV()local _vW=_dh.get()local _vX=_vW and _vW:FindFirstChild(string.char(66,108,111,99,107,115))local _vY,_vZ={},{}if _vX then for _wa,_wb in ipairs(_vX:GetDescendants())do if _wb:IsA(string.char(80,114,111,120,105,109,105,116,121,80,114,111,109,112,116))and _wb.Parent and _wb.Parent.Name==string.char(79,118,101,114,102,108,111,119,67,104,101,115,116)then table.insert(_vY,_wb)if _vP(_wb.Parent)==true then table.insert(_vZ,_wb)end end end end return(_vB.OnlyFull and _vZ or _vY),_vW,_vX,#_vY,#_vZ end local function _wc(_wd)local _we=_wd while _we and _we~=game do if _we:IsA(string.char(71,117,105,79,98,106,101,99,116))and not _we.Visible then return false end if _we:IsA(string.char(83,99,114,101,101,110,71,117,105))and not _we.Enabled then return false end _we=_we.Parent end return _wd.AbsoluteSize.X>0 and _wd.AbsoluteSize.Y>0 end local function _wf(_wg)local _wh=_wg while _wh and not _wh:IsA(string.char(71,117,105,66,117,116,116,111,110))do _wh=_wh.Parent end return _wh end local function _wi()for _wj,_wk in ipairs(_t.PlayerGui:GetDescendants())do if(_wk:IsA(string.char(84,101,120,116,76,97,98,101,108))or _wk:IsA(string.char(84,101,120,116,66,117,116,116,111,110)))and not _wk:IsDescendantOf(_eu)and _wk.Text:upper():find(string.char(67,79,76,76,69,67,84))and _wc(_wk)then return _wf(_wk)or _wk end end end local _wl={string.char(65,99,116,105,118,97,116,101,100),string.char(77,111,117,115,101,66,117,116,116,111,110,49,67,108,105,99,107),string.char(77,111,117,115,101,66,117,116,116,111,110,49,68,111,119,110),string.char(77,111,117,115,101,66,117,116,116,111,110,49,85,112),string.char(84,111,117,99,104,84,97,112)}local function _wm(_wn)local _wo=0 local _wp=_wn for _wq=1,5 do if not _wp or not _wp:IsA(string.char(71,117,105,79,98,106,101,99,116))then break end if _wp:IsA(string.char(71,117,105,66,117,116,116,111,110))then for _wr,_ws in ipairs(_wl)do if getconnections then local _wt,_wu=pcall(getconnections,_wp[_ws])if _wt then for _wv,_ww in ipairs(_wu)do if pcall(function()_ww:Fire()end)then _wo+=1 end end end end end if _wo==0 and firesignal then for _wx,_wy in ipairs(_wl)do if pcall(firesignal,_wp[_wy])then _wo+=1 end end end end _wp=_wp.Parent end return _wo end local function _wz(_wA)local _wB=_wA:FindFirstAncestorOfClass(string.char(83,99,114,101,101,110,71,117,105))if not _wB then return nil end local _wC=_wA while _wC.Parent and _wC.Parent~=_wB do _wC=_wC.Parent end return _wC end local function _wD(_wE)local _wF=_wE:lower():gsub(string.char(37,115),"")return _wF==string.char(120)or _wF==string.char(195,151)or _wF==string.char(226,156,149)or _wF==string.char(226,156,150)end local function _wG(_wH)local _wI=_wH.Name:lower()if _wI:find(string.char(99,108,111,115,101))or _wI:find(string.char(101,120,105,116))or _wI==string.char(120)then return true end if _wH:IsA(string.char(84,101,120,116,66,117,116,116,111,110))and _wD(_wH.Text)then return true end for _wJ,_wK in ipairs(_wH:GetDescendants())do if _wK:IsA(string.char(84,101,120,116,76,97,98,101,108))and _wD(_wK.Text)then return true end end return false end local function _wL(_wM)if not _wM or _wM==_eu or _wM:IsDescendantOf(_eu)then return end for _wN,_wO in ipairs(_wM:GetDescendants())do if _wO:IsA(string.char(71,117,105,66,117,116,116,111,110))and _wc(_wO)and _wG(_wO)then _wm(_wO)end end task.wait(0.3)if _wi()and _wM.Parent and _wM:IsA(string.char(71,117,105,79,98,106,101,99,116))then pcall(function()_wM.Visible=false end)end end local function _wP(_wQ)local _wR=_wQ.Parent local _wS=_wR:IsA(string.char(77,111,100,101,108))and _wR:GetPivot()or(_wR:IsA(string.char(66,97,115,101,80,97,114,116))and _wR.CFrame)local _wT=_t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if _vB.Teleport and _wT and _wS then _wT.CFrame=_wS+Vector3.new(0,4,0)task.wait(0.25)end _wQ.HoldDuration=0 _wQ.RequiresLineOfSight=false _wQ.MaxActivationDistance=math.max(_wQ.MaxActivationDistance,30)if fireproximityprompt then fireproximityprompt(_wQ)else _wQ:InputHoldBegin();task.wait(0.1);_wQ:InputHoldEnd()end end local function _wU()local _wV=workspace:FindFirstChild(_vB.HomeModel)local _wW=_t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if not(_wV and _wW and _wV:IsA(string.char(77,111,100,101,108)))then return true end local _wX,_wY=_wV:GetBoundingBox()local _wZ=_wX:PointToObjectSpace(_wW.Position)local _xa=_wY/2+Vector3.new(10,10,10)local _xb=math.abs(_wZ.X)<=_xa.X and math.abs(_wZ.Y)<=_xa.Y and math.abs(_wZ.Z)<=_xa.Z return not _xb end local function _xc(_xd,_xe)local _xf={}local _xg=_xd while _xg and _xg~=_xe do _xf[#_xf+1]=_xg.Name:lower()_xg=_xg.Parent end return _xf end local function _xh()local _xi={}for _xj in tostring(_vB.HomeKeyword or""):gmatch(string.char(91,94,44,93,43))do _xj=_bo(_xj):lower()if _xj~=""then _xi[#_xi+1]=_xj end end return _xi end local function _xk()local _xl=workspace:FindFirstChild(_vB.HomeModel)local _xm={}if not _xl then return _xm,_xl end local _xn=_vB.HomeTouchName:lower()local _xo=_xh()for _xp,_xq in ipairs(_xl:GetDescendants())do if _xq:IsA(string.char(66,97,115,101,80,97,114,116))and(_xq.Name:lower()==_xn or _xq:FindFirstChildOfClass(string.char(84,111,117,99,104,84,114,97,110,115,109,105,116,116,101,114)))then local _xr=_xc(_xq,_xl)local _xs=false for _xt,_xu in ipairs(_xr)do for _xv,_xw in ipairs(_xo)do if _xu:find(_xw,1,true)then _xs=true end end end _xm[#_xm+1]={part=_xq,depth=#_xr,hit=_xs}end end return _xm,_xl end local function _xx()local _xy,_xz=_xk()if not _xz then return nil,(string.char(77,111,100,101,108,32,37,115,32,116,105,100,97,107,32,100,105,116,101,109,117,107,97,110,46)):format(_vB.HomeModel)end local _xA={}for _xB,_xC in ipairs(_xy)do if _xC.hit then _xA[#_xA+1]=_xC end end if#_xA>0 then table.sort(_xA,function(_xD,_xE)return _xD.depth<_xE.depth end)return _xA[1].part end if#_xy==1 then return _xy[1].part end if#_xy==0 then return nil,(string.char(84,105,100,97,107,32,97,100,97,32,112,111,114,116,97,108,32,100,105,32,109,111,100,101,108,32,37,115,46)):format(_vB.HomeModel)end return nil,(string.char(80,111,114,116,97,108,32,39,37,115,39,32,116,105,100,97,107,32,107,101,116,101,109,117,32,100,105,32,37,115,32,40,97,100,97,32,37,100,32,112,111,114,116,97,108,41,46,32,75,108,105,107,32,68,69,66,85,71,46)):format(_vB.HomeKeyword,_vB.HomeModel,#_xy)end local function _xF()if _wU()then return true end local _xG,_xH=_xx()if not _xG then return false,_xH end for _xI=1,3 do local _xJ=_t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if _xJ and _xG.Parent then if _xI>=2 then pcall(function()_xJ.CFrame=_xG.CFrame end)task.wait(0.2)end _bg(_xG)end local _xK=0 while _xK<_vB.HomeWait do task.wait(0.5);_xK+=0.5 if _wU()then task.wait(_vB.AfterHomeDelay);return true end end end return false,(string.char(80,111,114,116,97,108,32,104,111,109,101,32,116,105,100,97,107,32,109,101,114,101,115,112,111,110,115,58,32,37,115)):format(_xG:GetFullName())end local function _xL(_xM)local _xN=math.floor(_xM)local _xO=math.floor((_xM-_xN)*100+0.5)return math.max(5,_xN*60+_xO)end local function _xP()if _vD then return end _vD=true local _xQ=_ee.IsActive and _ee.IsActive()local _xR=false local function _xS(_xT)if _xT then _vF=_xT;_vH(_xT)end if _xR then if _eb.ResetHub then _eb.ResetHub()end _ej.pause=false end _vD=false end local _xU,_xV,_xW,_xX=_vV()if _xX>0 and#_xU==0 then return _xS((string.char(66,101,108,117,109,32,97,100,97,32,99,104,101,115,116,32,70,85,76,76,32,40,48,47,37,100,41,46)):format(_xX))end if _xQ then _ej.pause=true;_xR=true local _xY=0 while _ej.hubBusy and _xY<15 do task.wait(0.25);_xY+=0.25 end task.wait(0.5)end if not _wU()then _vH(_xQ and string.char(65,117,116,111,32,83,108,105,109,101,32,100,105,106,101,100,97,44,32,98,97,108,105,107,32,107,101,32,104,111,109,101,46,46,46)or string.char(66,97,108,105,107,32,107,101,32,104,111,109,101,46,46,46))local _xZ,_ya=_xF()if not _xZ then return _xS(string.char(71,97,103,97,108,32,98,97,108,105,107,32,107,101,32,104,111,109,101,58,32)..tostring(_ya or string.char(63)))end _dh.cache,_dh.at=nil,-100 _xU,_xW,_xW,_xX=_vV()end if _xX==0 then return _xS(string.char(67,104,101,115,116,32,116,105,100,97,107,32,100,105,116,101,109,117,107,97,110,46,32,75,108,105,107,32,68,69,66,85,71,46))end if#_xU==0 then return _xS((string.char(66,101,108,117,109,32,97,100,97,32,99,104,101,115,116,32,70,85,76,76,32,40,48,47,37,100,41,46)):format(_xX))end local _yb=_t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))local _yc=(not _xR)and _yb and _yb.CFrame local _yd,_ye=0,0 for _yf,_yg in ipairs(_xU)do if not _vC then break end _vH((string.char(67,104,101,115,116,32,70,85,76,76,32,37,100,47,37,100,32,40,98,101,114,104,97,115,105,108,58,32,37,100,41)):format(_yf,#_xU,_yd))if _yg.Parent and(not _vB.OnlyFull or _vP(_yg.Parent)==true)then pcall(_wP,_yg)local _yh,_yi=nil,0 while _yi<_vB.OpenWait do _yh=_wi()if _yh then break end task.wait(0.1);_yi+=0.1 end if _yh then local _yj=_wz(_yh)if _wm(_yh)>0 then _yd+=1 else _ye+=1 end task.wait(_vB.CollectWait)pcall(_wL,_yj)end end task.wait(_vB.BetweenChest)end if _vB.Teleport and _yc then local _yk=_t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if _yk then _yk.CFrame=_yc end end local _yl=(string.char(84,101,114,97,107,104,105,114,58,32,37,100,47,37,100,32,99,104,101,115,116,32,100,105,45,99,111,108,108,101,99,116,46)):format(_yd,#_xU)if _ye>0 then _yl=_yl..((string.char(32,75,108,105,107,32,103,97,103,97,108,32,37,100,120,32,40,101,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,103,101,116,99,111,110,110,101,99,116,105,111,110,115,47,102,105,114,101,115,105,103,110,97)..string.char(108,41,46))):format(_ye)end _xS(_yl)end function _ef.Set(_ym)if not _ym then _ej.pause=false end if _ym==_vC then return end _vC=_ym if _ym then _vE+=1 local _yn=_vE task.spawn(function()while _vC and _vE==_yn do local _yo,_yp=pcall(_xP)if not _yo then _vD=false _ej.pause=false if _eb.ResetHub then _eb.ResetHub()end _vF=string.char(69,114,114,111,114,58,32)..tostring(_yp)_vH(_vF)end local _yq=_xL(_vB.IntervalMin)while _vC and _vE==_yn and _yq>0 do _vH((string.char(37,115,10,67,101,107,32,98,101,114,105,107,117,116,110,121,97,58,32,37,48,50,100,58,37,48,50,100)):format(_vF,_yq//60,_yq%60))task.wait(1)_yq-=1 end end if not _vC then _vH(string.char(68,105,109,97,116,105,107,97,110,46))end end)end end _bm(function()_vC=false;_ej.pause=false end)function _ef.Debug()_dh.cache,_dh.at=nil,-100 local _yr,_ys,_yt,_yu,_yv=_vV()print(string.char(61,61,61,32,68,69,66,85,71,32,67,72,69,83,84,32,61,61,61))print(string.char(73,115,108,97,110,100,32,116,101,114,112,105,108,105,104,58),_ys and _ys:GetFullName()or string.char(84,73,68,65,75,32,65,68,65),string.char(124,32,111,118,101,114,114,105,100,101,58),_dh.override~=""and _dh.override or string.char(40,111,116,111,109,97,116,105,115,41))for _yw,_yx in ipairs(_dh.list())do print((string.char(32,32,105,115,108,97,110,100,32,37,100,46,32,37,115,37,115)):format(_yw,_yx:GetFullName(),(_yx==_ys)and string.char(32,32,60,61,61,32,68,73,80,73,76,73,72)or""))end print(string.char(84,111,116,97,108,32,99,104,101,115,116,58),_yu,string.char(124,32,70,85,76,76,58),_yv)print(string.char(103,101,116,99,111,110,110,101,99,116,105,111,110,115,58),getconnections~=nil,string.char(124,32,102,105,114,101,115,105,103,110,97,108,58),firesignal~=nil,string.char(124,32,102,105,114,101,112,114,111,120,105,109,105,116,121,112,114,111,109,112,116,58),fireproximityprompt~=nil,string.char(124,32,102,105,114,101,116,111,117,99,104,105,110,116,101,114,101,115,116,58),firetouchinterest~=nil)local _yy=workspace:FindFirstChild(_vB.HomeModel)print(string.char(77,111,100,101,108,32,72,117,98,58),_yy and _yy:GetFullName()or string.char(84,73,68,65,75,32,65,68,65),string.char(124,32,97,116,72,111,109,101,58),tostring(_wU()))print(string.char(75,97,116,97,32,107,117,110,99,105,32,112,111,114,116,97,108,32,104,111,109,101,58),_vB.HomeKeyword)local _yz=_xk()local _yA,_yB=_xx()print((string.char(45,45,32,80,111,114,116,97,108,32,100,105,32,109,111,100,101,108,32,37,115,58,32,37,100)):format(_vB.HomeModel,#_yz))for _yC,_yD in ipairs(_yz)do print((string.char(32,32,37,100,46,32,37,115,32,124,32,99,111,99,111,107,32,107,97,116,97,32,107,117,110,99,105,58,32,37,115,37,115)):format(_yC,_yD.part:GetFullName(),tostring(_yD.hit),(_yD.part==_yA)and string.char(32,32,60,61,61,32,68,73,80,73,76,73,72)or""))end if not _yA then print(string.char(32,32,84,105,100,97,107,32,97,100,97,32,121,97,110,103,32,100,105,112,105,108,105,104,58),_yB)end local _yE=0 if _yt then for _yF,_yG in ipairs(_yt:GetChildren())do if _yG.Name==string.char(79,118,101,114,102,108,111,119,67,104,101,115,116)then _yE+=1 local _yH,_yI=_vP(_yG)print(_yE,string.char(116,101,107,115,32,61),_yI,string.char(61,62,32,102,117,108,108,58),tostring(_yH))if _yE>=15 then break end end end end local _yJ=_wi()if _yJ then local _yK=_wz(_yJ)print(string.char(45,45,32,84,111,109,98,111,108,32,100,105,32,112,97,110,101,108,32,99,104,101,115,116,58),_yK and _yK:GetFullName())if _yK then for _yL,_yM in ipairs(_yK:GetDescendants())do if _yM:IsA(string.char(71,117,105,66,117,116,116,111,110))then print(string.char(32,32),_yM:GetFullName(),string.char(124,32,99,108,111,115,101,66,116,110,58),tostring(_wG(_yM)))end end end else print((string.char(40,71,85,73,32,99,104,101,115,116,32,108,97,103,105,32,116,101,114,116,117,116,117,112,44,32,98,117,107,97,32,115,97,116,117,32,99,104,101,115,116,32,109,97,110,117,97,108,32,108,97,108,117,32,107,108,105,107,32,68,69,66,85,71)..string.char(32,108,97,103,105,32,98,117,97,116,32,108,105,104,97,116,32,116,111,109,98,111,108,32,99,108,111,115,101,41)))end _vH(((string.char(73,115,108,97,110,100,58,32,37,115,32,124,32,84,111,116,97,108,58,32,37,100,32,124,32,70,85,76,76,58,32,37,100,32,124,32,80,111,114,116,97,108,32,72,117,98,58,32,37,100,46,32,76,105,104,97,116,32,99,111,110,115,111,108)..string.char(101,46))):format(_ys and _ys.Name or string.char(45),_yu,_yv,#_yz))end end do local _yN=_dc local _yO=false local _yP=setmetatable({},{__mode=string.char(107)})_eg.Skip=setmetatable({},{__mode=string.char(107)})local _yQ,_yR,_yS,_yT=nil,false,0,nil local _yU,_yV,_yW,_yX=0,nil,0,0 local _yY,_yZ,_za=false,nil,""local _zb=25 local _zc=3 local function _zd(_ze)if _ze==_za then return end _za=_ze if _eg.info then _eg.info.Text=_ze end end local function _zf()local _zg=_t.Character return _zg and _zg:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100)),_zg and _zg:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))end local _zh local function _zi()if _zh and _zh.Parent then return _zh end local _zj=_m:FindFirstChild(string.char(82,101,109,111,116,101,115))_zh=_zj and _zj:FindFirstChild(string.char(82,101,113,117,101,115,116,72,97,114,118,101,115,116))return _zh end local _zk={wps=nil,i=1,goal=nil,at=0,tried=0}local _zl,_zm=0,nil local function _zn()_zk.wps,_zk.goal,_zm=nil,nil,nil end local _zo=RaycastParams.new()_zo.FilterType=Enum.RaycastFilterType.Exclude pcall(function()_zo.RespectCanCollide=true end)local function _zp(_zq,_zr)_zo.FilterDescendantsInstances={_t.Character}local _zs=_zr-_zq.Position if _zs.Magnitude<0.5 then return true end return workspace:Raycast(_zq.Position,_zs,_zo)==nil end local function _zt(_zu,_zv)local _zw=os.clock()if _zm and(_zv-_zm).Magnitude<1.5 and _zw-_zl<0.5 then return end _zl,_zm=_zw,_zv _zu:MoveTo(_zv)end local function _zx(_zy,_zz,_zA)local _zB=os.clock()if _zp(_zz,_zA)then _zk.wps=nil _zt(_zy,_zA)return end local _zC=not _zk.wps or not _zk.goal or(_zA-_zk.goal).Magnitude>6 or _zB-_zk.at>3 if _zC and _zB-_zk.tried>0.8 then _zk.tried=_zB local _zD=_o:CreatePath({AgentRadius=2.5,AgentHeight=5,AgentCanJump=true})local _zE=pcall(function()_zD:ComputeAsync(_zz.Position,_zA)end)_zk.goal,_zk.at=_zA,_zB if _zE and _zD.Status==Enum.PathStatus.Success then _zk.wps,_zk.i=_zD:GetWaypoints(),2 else _zk.wps=nil end end if _zk.wps then local _zF=_zk.wps[_zk.i]while _zF and Vector3.new(_zF.Position.X-_zz.Position.X,0,_zF.Position.Z-_zz.Position.Z).Magnitude<3 do _zk.i+=1 _zF=_zk.wps[_zk.i]end if _zF then if _zF.Action==Enum.PathWaypointAction.Jump then _zy.Jump=true end _zt(_zy,_zF.Position)return end end _zt(_zy,_zA)end local _zG pcall(function()_zG=require(_m.Shared.GrowTime)end)local _zH=setmetatable({},{__mode=string.char(107)})local function _zI(_zJ)if not(_zG and _zJ and _zJ.Parent)or _zJ==workspace then return nil end local _zK,_zL,_zM,_zN=pcall(_zG.read,_zJ,workspace:GetServerTimeNow())if _zK and type(_zL)==string.char(110,117,109,98,101,114)and _zN then return _zL,_zM end end local function _zO(_zP,_zQ)if _zQ==0 then return string.char(119,97,116,101,114)end if _zP<=0 then return string.char(114,105,112,101)end return string.char(103,114,111,119,105,110,103)end local function _zR(_zS)local _zT=_zH[_zS]if _zT and _zT.Parent then local _zU,_zV=_zI(_zT)if _zU then return _zO(_zU,_zV)end end for _zW,_zX in ipairs({_zS,_zS:FindFirstChild(string.char(72,66)),_zS.Parent})do local _zY,_zZ=_zI(_zX)if _zY then _zH[_zS]=_zX;return _zO(_zY,_zZ)end end local _Aa=_zG and _zG.LeftAttribute if _Aa then for _Ab,_Ac in ipairs(_zS:GetDescendants())do if _Ac:GetAttribute(_Aa)~=nil then local _Ad,_Ae=_zI(_Ac)if _Ad then _zH[_zS]=_Ac;return _zO(_Ad,_Ae)end end end end end local function _Af(_Ag)local _Ah=_zR(_Ag)if _Ah==string.char(119,97,116,101,114)and(_yN.SkipNeedsWater or _yN.OnlyRipe)then return string.char(119,97,116,101,114)end if _Ah==string.char(103,114,111,119,105,110,103)and _yN.OnlyRipe then return string.char(103,114,111,119,105,110,103)end return nil end local function _Ai(_Aj)local _Ak=tostring(_Aj):lower()for _Al,_Am in ipairs(_yN.Crops)do if _Ak:find(_Am,1,true)then return _Am end end end local _An,_Ao,_Ap={},{},false local function _Aq(_Ar)local _As=_Ai(_Ar.Name)if _As and not _Ar:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))then _An[_Ar]=_As end end local function _At()if _Ap then return end _Ap=true _Ao[1]=workspace.DescendantAdded:Connect(_Aq)_Ao[2]=workspace.DescendantRemoving:Connect(function(_Au)_An[_Au]=nil end)local _Av=0 for _Aw,_Ax in ipairs(workspace:GetDescendants())do if not _Ap then return end _Aq(_Ax)_Av+=1 if _Av%3000==0 then task.wait()end end end local function _Ay()_Ap=false for _Az,_AA in ipairs(_Ao)do pcall(function()_AA:Disconnect()end)end _Ao,_An={},{}end local function _AB(_AC)local _AD=tick()local _AE,_AF for _AG,_AH in pairs(_An)do if not _AG.Parent then _An[_AG]=nil elseif _yN.Enabled[_AH]then local _AI=_AG:FindFirstChild(string.char(72,66))if _AI and _AI:IsA(string.char(66,97,115,101,80,97,114,116))and not(_yP[_AI]and _yP[_AI]>_AD)and not(_eg.Skip[_AI]and _eg.Skip[_AI]>_AD)and not(_eg.IsFresh and _eg.IsFresh(_AI))and not _Af(_AG)then local _AJ=(_AC.Position-_AI.Position).Magnitude if not _AF or _AJ<_AF then _AE,_AF=_AI,_AJ end end end end return _AE end function _eg.Set(_AK)if _AK==_yO then return end _yO,_yQ,_yR=_AK,nil,false _zn()if _AK then _ee.Exclusive(string.char(104,97,114,118,101,115,116))task.spawn(_At)_zd(string.char(66,101,114,106,97,108,97,110,46,46,46))else _zd(string.char(73,100,108,101))local _AL,_AM=_zf()if _AL then if _yZ then _AL.WalkSpeed=_yZ end if _AM then pcall(function()_AL:MoveTo(_AM.Position)end)end end _yZ=nil _Ay()end end local _AW=_k.Heartbeat:Connect(function()if not _yO then return end local _AN,_AO=_zf()if not(_AN and _AO)then return end if _yZ==nil then _yZ=_AN.WalkSpeed end if _AN.WalkSpeed~=_yN.WalkSpeed then _AN.WalkSpeed=_yN.WalkSpeed end local _AP=tick()if _yR then if(not _yQ)or not _yQ:IsDescendantOf(workspace)then if _eg.QueuePlant and _yT then _eg.QueuePlant(_yT)end _yR,_yQ=false,nil elseif _AP-_yS>=(_yN.GoneWait or 2)then _eg.Skip[_yQ]=_AP+_zb _yR,_yQ=false,nil end return end if(not _yQ)or not _yQ:IsDescendantOf(workspace)then _yQ=nil if _AP-_yU>=0.3 then _yU=_AP _yQ=_AB(_AO)_yV,_yX=nil,_AP _zn()end if not _yQ then _zd(string.char(84,105,100,97,107,32,97,100,97,32,116,97,110,97,109,97,110,32,115,105,97,112,44,32,100,105,97,109,46,46,46))if not _yY then _yY=true pcall(function()_AN:MoveTo(_AO.Position)end)end return end _yY=false end if _yQ.Parent and _Af(_yQ.Parent)then _eg.Skip[_yQ]=_AP+3 _yQ=nil return end local _AQ=math.min(_yN.Radius,12)local _AR=(_AO.Position-_yQ.Position).Magnitude if _AR<=_AQ then pcall(function()_AN:MoveTo(_AO.Position)end)_zm=nil _zd(string.char(80,97,110,101,110,32,116,97,110,97,109,97,110,32,115,105,97,112,46,46,46))pcall(function()local _AS=_zi()if _AS then _AS:FireServer(_yQ)end end)_yR,_yS,_yT=true,_AP,_yQ.Position else _zd(string.char(74,97,108,97,110,32,107,101,32,116,97,110,97,109,97,110,32,115,105,97,112,46,46,46))local _AT=_i:IsKeyDown(Enum.KeyCode.W)or _i:IsKeyDown(Enum.KeyCode.A)or _i:IsKeyDown(Enum.KeyCode.S)or _i:IsKeyDown(Enum.KeyCode.D)if not _AT then _zx(_AN,_AO,_yQ.Position)end if _AP-_yX>((_eg.PCFG and _eg.PCFG.StuckSkip)or 8)then _yP[_yQ]=_AP+30 _yQ=nil _zn()return end if _yV==nil or(_AO.Position-_yV).Magnitude>1 then _yV,_yW=_AO.Position,_AP else local _AU=_AP-_yW if _AU>=1 then _AN.Jump=true end if _yN.TeleportFallback and _AU>=_zc then local _AV=_AO.Position-_yQ.Position _AV=_AV.Magnitude>0 and _AV.Unit or Vector3.new(1,0,0)_AO.CFrame=CFrame.new(_yQ.Position+_AV*(_AQ-3)+Vector3.new(0,3,0))_yV=nil _zn()end end end end)function _eg.Debug()print(string.char(91,75,121,72,117,98,93,32,61,61,61,61,61,32,68,69,66,85,71,32,67,82,79,80,83,32,61,61,61,61,61))print(string.char(71,114,111,119,84,105,109,101,32,109,111,100,117,108,101,58),_zG and string.char(97,100,97)or string.char(84,73,68,65,75,32,65,68,65))local _AX,_AY=0,{ripe=0,water=0,growing=0,unknown=0}for _AZ in pairs(_An)do local _Ba=_zR(_AZ)_AY[_Ba or string.char(117,110,107,110,111,119,110)]+=1 _AX+=1 if _AX<=8 then print(_AZ:GetFullName(),string.char(124,32,115,116,97,116,101,58),tostring(_Ba),string.char(124,32,99,97,114,114,105,101,114,58),_zH[_AZ]and _zH[_AZ]:GetFullName()or string.char(45))end end print(((string.char(84,111,116,97,108,58,32,37,100,32,124,32,115,105,97,112,58,32,37,100,32,124,32,98,117,116,117,104,32,97,105,114,58,32,37,100,32,124,32,116,117,109,98,117,104,58,32,37,100,32,124,32,116,105,100,97,107,32,116,101,114,98,97,99)..string.char(97,58,32,37,100))):format(_AX,_AY.ripe,_AY.water,_AY.growing,_AY.unknown))end _bm(function()_yO=false _AW:Disconnect()_Ay()end)end do local _Bb=_eg.PCFG local _Bc pcall(function()_Bc=require(_m.Shared.Config.CropConfig)end)local _Bd=3 pcall(function()local _Be=require(_m.Shared.Grid)if typeof(_Be.CellSize)==string.char(110,117,109,98,101,114)then _Bd=_Be.CellSize end end)_Bb.Block=(_Bc and _Bc.RequiredGround)or string.char(70,97,114,109,83,111,105,108)local _Bk=setmetatable({},{__index=function(_Bf,_Bg)if _Bg==string.char(83,101,101,100)then return _dc.Seed end return _Bb[_Bg]end,__newindex=function(_Bh,_Bi,_Bj)_Bb[_Bi]=_Bj end,})local function _Bl()return _Bb.AfterHarvest==true and _en.harvest~=nil and _en.harvest.Get()end local function _Bm(_Bn)local _Bo=_m:FindFirstChild(string.char(82,101,109,111,116,101,115))return _Bo and _Bo:FindFirstChild(_Bn)end local _Bp=nil local _Bq,_Br,_Bs={},{},{}local _Bt,_Bu,_Bv=nil,0,0 local _Bw={}local _Bx=""local function _By(_Bz)if _Bz==_Bx then return end _Bx=_Bz if _eg.pinfo and _eg.pinfo.Parent then _eg.pinfo.Text=_Bz end end local _BA=string.char(65,117,116,111,80,108,97,110,116,95).._t.UserId..string.char(46,106,115,111,110)local _BB={slots={}}local function _BC()if not(writefile and _Bp)then return end pcall(function()writefile(_BA,_l:JSONEncode({origin={_Bp.X,_Bp.Y,_Bp.Z},slots=_Bq,}))end)end pcall(function()if readfile and isfile and isfile(_BA)then local _BD=_l:JSONDecode(readfile(_BA))if type(_BD)==string.char(116,97,98,108,101)then if type(_BD.origin)==string.char(116,97,98,108,101)and#_BD.origin==3 then _BB.origin=Vector3.new(_BD.origin[1],_BD.origin[2],_BD.origin[3])end if type(_BD.slots)==string.char(116,97,98,108,101)then _BB.slots=_BD.slots end end end end)local function _BE()local _BF=_t.Character local _BG=_BF and _BF:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _BH=_BF and _BF:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))return _BF,_BG,_BH end local function _BI(_BJ)if _BJ:IsA(string.char(66,97,115,101,80,97,114,116))then return _BJ.Position,_BJ.Size end if _BJ:IsA(string.char(77,111,100,101,108))then local _BK,_BL,_BM=pcall(function()return _BJ:GetBoundingBox()end)if _BK then return _BL.Position,_BM end end end local function _BN(_BO)local _BP=_BO:FindFirstChild(string.char(72,66))if _BP and _BP:IsA(string.char(66,97,115,101,80,97,114,116))then return _BP end if _BO:IsA(string.char(66,97,115,101,80,97,114,116))then return _BO end if _BO:IsA(string.char(77,111,100,101,108))then return _BO.PrimaryPart or _BO:FindFirstChildWhichIsA(string.char(66,97,115,101,80,97,114,116),true)end end local function _BQ(_BR)return(tostring(_BR):gsub(string.char(37,112),string.char(37,37,37,48)))end local function _BS()local _BT if _Bc and type(_Bc.cropForSeed)==string.char(102,117,110,99,116,105,111,110)then local _BU,_BV=pcall(_Bc.cropForSeed,_Bk.Seed)if _BU and type(_BV)==string.char(116,97,98,108,101)then _BT=_BV.id end end return(_BT or tostring(_Bk.Seed):gsub(string.char(91,83,115,93,101,101,100,115,63,36),"")):lower()end local function _BW(_BX)local _BY=_BS()if _BY==""then return false end return tostring(_BX):lower():match(string.char(94).._BQ(_BY)..string.char(91,95,37,115,93,42,37,100,42,36))~=nil end local _BZ={hb={},soil={},conns={},gen=0}local function _Ca(_Cb)if _Cb.Name==string.char(72,66)and _Cb:IsA(string.char(66,97,115,101,80,97,114,116))and _Cb.Parent then _BZ.hb[_Cb.Parent]=true end if _Cb.Name==_BZ.blockName and(_Cb:IsA(string.char(66,97,115,101,80,97,114,116))or _Cb:IsA(string.char(77,111,100,101,108)))then _BZ.soil[_Cb]=true end end local function _Cc()_BZ.gen+=1 for _Cd,_Ce in ipairs(_BZ.conns)do pcall(function()_Ce:Disconnect()end)end _BZ.conns,_BZ.hb,_BZ.soil,_BZ.ref,_BZ.blockName={},{},{},nil,nil end local function _Cf()_Cc()local _Cg=_BZ.gen _BZ.blockName=_Bk.Block _BZ.conns[1]=workspace.DescendantAdded:Connect(_Ca)_BZ.conns[2]=workspace.DescendantRemoving:Connect(function(_Ch)_BZ.hb[_Ch]=nil _BZ.soil[_Ch]=nil if _Ch.Name==string.char(72,66)and _Ch.Parent then _BZ.hb[_Ch.Parent]=nil end end)task.spawn(function()local _Ci=0 for _Cj,_Ck in ipairs(workspace:GetDescendants())do if _BZ.gen~=_Cg then return end _Ca(_Ck)_Ci+=1 if _Ci%3000==0 then task.wait()end end end)end local function _Cl()if _BZ.blockName~=_Bk.Block then _Cf()end end local function _Cm()local _Cn={}for _Co in pairs(_BZ.soil)do if _Co.Parent then local _Cp,_Cq=_BI(_Co)if _Cp then _Cn[#_Cn+1]={o=_Co,p=_Cp,size=_Cq}end else _BZ.soil[_Co]=nil end end if not _BZ.ref and _Cn[1]then _BZ.ref=_Cn[1].p end return _Cn end local function _Cr(_Cs)if not _BZ.ref then _Cm()end local _Ct=_BZ.ref if not _Ct then return string.char(63)end return math.round((_Cs.X-_Ct.X)/_Bd)..string.char(44)..math.round((_Cs.Z-_Ct.Z)/_Bd)end local function _Cu()local _Cv={}_Cm()for _Cw in pairs(_BZ.hb)do if _Cw.Parent and not _BZ.soil[_Cw]and _Cw.Name~=_Bk.Block then local _Cx=_BN(_Cw)if _Cx then _Cv[_Cr(_Cx.Position)]=true end end end return _Cv end local function _Cy(_Cz)local _CA,_CB for _CC,_CD in ipairs(_Cm())do local _CE=math.sqrt((_CD.p.X-_Cz.X)^2+(_CD.p.Z-_Cz.Z)^2)if _CE<_Bd*0.6 and _CD.p.Y<=_Cz.Y+1.5 then local _CF=_Cz.Y-_CD.p.Y if not _CB or _CF<_CB then _CA,_CB=_CD,_CF end end end return _CA end local function _CG(_CH,_CI)return{x=math.round((_CH.X-_CI.X)/_Bd),y=math.round((_CH.Y-_CI.Y)/_Bd)+_Bk.YOff,z=math.round((_CH.Z-_CI.Z)/_Bd),}end local function _CJ()local _CK=_BE()if not _CK then return false end for _CL,_CM in ipairs(_CK:GetChildren())do if _CM:IsA(string.char(84,111,111,108))then return true end end return false end local function _CN()local _CO=_BE()if not _CO then return false end local _CP=_BS()for _CQ,_CR in ipairs(_CO:GetChildren())do if _CR:IsA(string.char(84,111,111,108))and _CR.Name:lower():find(_CP,1,true)then return true end end return false end local function _CS()local _CT=_Bm(string.char(82,101,113,117,101,115,116,72,111,108,100,66,108,111,99,107))if not _CT then return end local _CU,_CV=_BE()if not _CV then return end local _CW=_CJ()and not _CN()if _Bt==_Bk.Seed and not _CW then return end if _CW then for _CX=1,3 do pcall(function()_CV:UnequipTools()end)task.wait(0.2)if not _CJ()then break end end end pcall(function()_CT:FireServer(_Bk.Seed)end)_Bt=_Bk.Seed task.wait(0.3)end local _CY=_t.CharacterAdded:Connect(function()_Bt=nil end)local function _CZ(_Da)local _Db=_Da if _Da.Name==string.char(72,66)and _Da:IsA(string.char(66,97,115,101,80,97,114,116))and _Da.Parent then _Db=_Da.Parent end if _Db==workspace or not _Db.Parent then return nil end if _t.Character and _Db:IsDescendantOf(_t.Character)then return nil end if _BW(_Db.Name)then return _Db end end local function _Dc(_Dd,_De,_Df)local _Dg=_Bm(string.char(82,101,113,117,101,115,116,80,108,97,99,101))if not _Dg then return nil end local _Dh local _Dj=workspace.DescendantAdded:Connect(function(_Di)if not _Dh then _Dh=_CZ(_Di)end end)pcall(function()_Dg:FireServer({x=_Dd.x,y=_Dd.y,z=_Dd.z},_Bk.Seed,0,Vector3.new(0,1,0),false,nil,false,_De)end)local _Dk=os.clock()while not _Dh and os.clock()-_Dk<(_Df or 0.4)do task.wait(0.03)end _Dj:Disconnect()return _Dh end local function _Dl(_Dm)local _Dn local _Dp=workspace.DescendantAdded:Connect(function(_Do)if not _Dn then _Dn=_CZ(_Do)end end)local _Dq=os.clock()while not _Dn and os.clock()-_Dq<_Dm do task.wait(0.03)end _Dp:Disconnect()return _Dn end local function _Dr(_Ds,_Dt,_Du)task.wait(0.1)local _Dv=_BN(_Ds)local _Dw=_Dv and _Dv.Position or _BI(_Ds)if not _Dw then return nil end if _Du and(_Dw-_Du.Position).Magnitude>80 then return nil end if _Dt[_Cr(_Dw)]then return nil end return _Dw end local function _Dx(_Dy,_Dz,_DA,_DB)local _DC=_Cy(_Dz)if not _DC then return false end _Bp=_DC.p-Vector3.new(_Dy.x*_Bd,(_Dy.y-_Bk.YOff)*_Bd,_Dy.z*_Bd)if type(_DB)==string.char(110,117,109,98,101,114)then _Bq[_DA]=_DB end _Bs[_Cr(_Dz)]=os.clock()_BC()print((string.char(91,65,117,116,111,80,108,97,110,116,93,32,75,65,76,73,66,82,65,83,73,32,79,75,32,124,32,111,114,105,103,105,110,32,61,32,37,115,32,124,32,115,108,111,116,32,37,115,32,61,32,37,115)):format(tostring(_Bp),tostring(_DA),tostring(_DB)))_By((string.char(67,97,108,105,98,114,97,116,101,100,46,32,79,114,105,103,105,110,32,37,46,49,102,44,32,37,46,49,102,44,32,37,46,49,102,32,124,32,115,108,111,116,32,37,115)):format(_Bp.X,_Bp.Y,_Bp.Z,tostring(_DB)))return true end local _DD=false if hookmetamethod and getnamecallmethod then pcall(function()local _DF=newcclosure or function(_DE)return _DE end local _DG=checkcaller or function()return false end local _DH _DH=hookmetamethod(game,string.char(95,95,110,97,109,101,99,97,108,108),_DF(function(_DI,...)if _bk and not _DG()and getnamecallmethod()==string.char(70,105,114,101,83,101,114,118,101,114)and typeof(_DI)==string.char(73,110,115,116,97,110,99,101)then local _DJ=_DI.Name if _DJ==string.char(82,101,113,117,101,115,116,83,101,116,66,97,99,107,112,97,99,107,76,97,121,111,117,116)then local _DK=...if type(_DK)==string.char(116,97,98,108,101)then local _DL={}for _DM,_DN in pairs(_DK)do _DL[_DM]=_DN end _Br=_DL end elseif _DJ==string.char(82,101,113,117,101,115,116,80,108,97,99,101)then local _DO,_DP,_DQ,_DR,_DS,_DT,_DU,_DV=...if type(_DP)==string.char(115,116,114,105,110,103)and type(_DV)==string.char(110,117,109,98,101,114)then _Bq[_DP]=_DV end if type(_DO)==string.char(116,97,98,108,101)and type(_DO.x)==string.char(110,117,109,98,101,114)and type(_DP)==string.char(115,116,114,105,110,103)then local _DW={x=_DO.x,y=_DO.y,z=_DO.z}task.spawn(function()local _DX=_Cu()local _DY=_Dl(2)if _DY then local _DZ,_Ea,_Eb=_BE()local _Ec=_Dr(_DY,_DX,_Eb)if _Ec then _Dx(_DW,_Ec,_DP,_DV)end end end)end end end return _DH(_DI,...)end))_DD=true end)end local function _Ed()local _Ee,_Ef={},{}local _Eg=_t:FindFirstChild(string.char(80,108,97,121,101,114,71,117,105))if not _Eg then return _Ee end local _Eh=_BS()local function _Ei(_Ej)if type(_Ej)==string.char(110,117,109,98,101,114)and _Ej>=0 and _Ej<=300 and not _Ef[_Ej]then _Ef[_Ej]=true _Ee[#_Ee+1]=_Ej end end local _Ek=0 for _El,_Em in ipairs(_Eg:GetDescendants())do _Ek+=1 if _Ek%2000==0 then task.wait()end if not _Em:IsDescendantOf(_eu)then local _En=(_Em.Name==_Bk.Seed)if not _En and(_Em:IsA(string.char(84,101,120,116,76,97,98,101,108))or _Em:IsA(string.char(84,101,120,116,66,117,116,116,111,110)))then local _Eo=_Em.Text:lower():gsub(string.char(37,115),"")if _Eo:find(_Eh..string.char(115,101,101,100),1,true)then _En=true end end if not _En and _Em:IsA(string.char(83,116,114,105,110,103,86,97,108,117,101))and _Em.Value==_Bk.Seed then _En=true end if not _En then local _Ep,_Eq=pcall(function()return _Em:GetAttributes()end)if _Ep then for _Er,_Es in pairs(_Eq)do if _Es==_Bk.Seed then _En=true end end end end if _En then local _Et=_Em for _Eu=1,6 do if not _Et or _Et==_Eg then break end _Ei(tonumber(tostring(_Et.Name):match(string.char(40,37,100,43,41,36))))local _Ev,_Ew=pcall(function()return _Et:GetAttributes()end)if _Ev then _Ei(_Ew.Slot);_Ei(_Ew.slot);_Ei(_Ew.Index);_Ei(_Ew.index)end if _Et:IsA(string.char(71,117,105,79,98,106,101,99,116))and _Et.LayoutOrder~=0 then _Ei(_Et.LayoutOrder)end _Et=_Et.Parent end end end end return _Ee end local function _Ex()local _Ey,_Ez={},{}local function _EA(_EB)if type(_EB)==string.char(110,117,109,98,101,114)and not _Ez[_EB]then _Ez[_EB]=true _Ey[#_Ey+1]=_EB end end _EA(_Bq[_Bk.Seed])_EA(_BB.slots[_Bk.Seed])_EA(_Br[_Bk.Seed])_EA(_Bk.Slot)for _EC,_ED in ipairs(_Ed())do _EA(_ED)end _EA(77)_EA(63)return _Ey,_Ez end local function _EE(_EF)local _EG,_EH={},{}local function _EI(_EJ,_EK)if typeof(_EJ)==string.char(67,70,114,97,109,101)then _EJ=_EJ.Position end if typeof(_EJ)~=string.char(86,101,99,116,111,114,51)then return end if#_EG>=12 then return end local _EL=_EF-Vector3.new(math.round((_EF.X-_EJ.X)/_Bd)*_Bd,math.round((_EF.Y-_EJ.Y)/_Bd)*_Bd,math.round((_EF.Z-_EJ.Z)/_Bd)*_Bd)local _EM=(string.char(37,46,49,102,44,37,46,49,102,44,37,46,49,102)):format(_EL.X,_EL.Y,_EL.Z)if _EH[_EM]then return end _EH[_EM]=true _EG[#_EG+1]={v=_EL,why=_EK,exact=(_EL-_EJ).Magnitude<0.06}end if _BB.origin then _EI(_BB.origin,string.char(115,97,118,101,100))end _EI(Vector3.new(2121,201,2121),string.char(111,108,100,32,111,114,105,103,105,110))local function _EN(_EO,_EP)local _EQ,_ER=pcall(function()return _EO:GetAttributes()end)if _EQ then for _ES,_ET in pairs(_ER)do if typeof(_ET)==string.char(86,101,99,116,111,114,51)or typeof(_ET)==string.char(67,70,114,97,109,101)then _EI(_ET,_EP..string.char(64)..tostring(_ES))end end end for _EU,_EV in ipairs(_EO:GetChildren())do if _EV:IsA(string.char(86,101,99,116,111,114,51,86,97,108,117,101))or _EV:IsA(string.char(67,70,114,97,109,101,86,97,108,117,101))then _EI(_EV.Value,_EP..string.char(47).._EV.Name)end end end _EN(_t,string.char(112,108,97,121,101,114))local _EW=nil for _EX,_EY in ipairs(_Cm())do _EW=_EY.o break end while _EW and _EW~=workspace and _EW~=game do _EN(_EW,_EW.Name)if _EW:IsA(string.char(77,111,100,101,108))then pcall(function()_EI(_EW:GetPivot(),_EW.Name..string.char(58,112,105,118,111,116))local _EZ,_Fa=_EW:GetBoundingBox()_EI(_EZ,_EW.Name..string.char(58,98,98,111,120))_EI(_EZ.Position-_Fa/2,_EW.Name..string.char(58,98,98,111,120,45,109,105,110))end)end for _Fb,_Fc in ipairs({string.char(79,114,105,103,105,110),string.char(67,101,110,116,101,114),string.char(65,110,99,104,111,114),string.char(73,115,108,97,110,100,79,114,105,103,105,110),string.char(83,112,97,119,110)})do local _Fd=_EW:FindFirstChild(_Fc)if _Fd then if _Fd:IsA(string.char(66,97,115,101,80,97,114,116))then _EI(_Fd.Position,_EW.Name..string.char(46).._Fc)end _EN(_Fd,_EW.Name..string.char(46).._Fc)end end _EW=_EW.Parent end pcall(function()for _Fe,_Ff in ipairs({_t.Name,tostring(_t.UserId)})do local _Fg=_m:FindFirstChild(_Ff,true)if _Fg then _EN(_Fg,string.char(82,83,46).._Ff)end end end)table.sort(_EG,function(_Fh,_Fi)if _Fh.exact~=_Fi.exact then return _Fh.exact end return false end)return _EG end local function _Fj(_Fk)local _Fl,_Fm,_Fn=_BE()if not _Fn then return false end _CS()local _Fo=_Cu()local _Fp=_Bp and{{v=_Bp,why=string.char(99,117,114,114,101,110,116,32,111,114,105,103,105,110)}}or _EE(_Fk.p)local _Fq,_Fr=_Ex()local _Fs=_Bq[_Bk.Seed]local _Ft=_Fs and{_Fs}or _Fq print((string.char(91,65,117,116,111,80,108,97,110,116,93,32,99,97,108,105,98,114,97,116,105,111,110,58,32,37,100,32,111,114,105,103,105,110,32,99,97,110,100,105,100,97,116,101,115,44,32,37,100,32,113,117,105,99,107,32,115,108,111,116,115)):format(#_Fp,#_Ft))local function _Fu(_Fv,_Fw)if not _Bl()then return string.char(115,116,111,112)end local _Fx=_CG(_Fk.p,_Fv.v)local _Fy=_Dc(_Fx,_Fw,0.35)if _Fy then local _Fz=_Dr(_Fy,_Fo,_Fn)if _Fz and _Dx(_Fx,_Fz,_Bk.Seed,_Fw)then return true end end end for _FA,_FB in ipairs(_Fp)do for _FC,_FD in ipairs(_Ft)do _By((string.char(67,97,108,105,98,114,97,116,105,110,103,58,32,111,114,105,103,105,110,32,37,100,47,37,100,32,40,37,115,41,44,32,115,108,111,116,32,37,100)):format(_FA,#_Fp,_FB.why,_FD))local _FE=_Fu(_FB,_FD)if _FE==string.char(115,116,111,112)then return false end if _FE then return true end end end if not _Fs then local _FF={}for _FG=0,120 do if not _Fr[_FG]then _FF[#_FF+1]=_FG end end for _FH=1,math.min(2,#_Fp)do for _FI,_FJ in ipairs(_FF)do if _FI%8==0 then _By((string.char(83,119,101,101,112,105,110,103,32,115,108,111,116,115,46,46,46,32,111,114,105,103,105,110,32,37,100,44,32,115,108,111,116,32,37,100,47,49,50,48)):format(_FH,_FJ))end local _FK=_Fu(_Fp[_FH],_FJ)if _FK==string.char(115,116,111,112)then return false end if _FK then return true end end end end _By((string.char(67,97,108,105,98,114,97,116,105,111,110,32,102,97,105,108,101,100,46,32,77,97,107,101,32,115,117,114,101,32,116,104,101,32,115,101,101,100,32,105,115,32,105,110,32,121,111,117,114,32,105,110,118,101,110,116,111,114,121,46,32,80,108,97)..string.char(110,116,105,110,103,32,49,32,115,101,101,100,32,109,97,110,117,97,108,108,121,32,97,108,115,111,32,99,97,108,105,98,114,97,116,101,115,46)))print((string.char(91,65,117,116,111,80,108,97,110,116,93,32,67,97,108,105,98,114,97,116,105,111,110,32,102,97,105,108,101,100,46,32,67,108,105,99,107,32,68,69,66,85,71,32,112,108,97,110,116,32,97,110,100,32,99,104,101,99,107,32,116,104,101,32)..string.char(99,111,110,115,111,108,101,32,40,70,57,41,46)))return false end local _FL={}local _FM=0 function _eg.IsFresh(_FN)if not(_BZ.ref and _Bl())then return false end local _FO=_Bs[_Cr(_FN.Position)]return _FO~=nil and os.clock()-_FO<(_Bk.GrowSkip or 30)end function _eg.QueuePlant(_FP)if not _Bl()then return end local _FQ=typeof(_FP)==string.char(73,110,115,116,97,110,99,101)local _FR=_FQ and _FP.Position or _FP if typeof(_FR)~=string.char(86,101,99,116,111,114,51)or not _BZ.blockName then return end if not _BZ.ref then _Cm()end if not _BZ.ref then return end local _FS=_Cr(_FR)if _Bw[_FS]then return end if _Bs[_FS]and os.clock()-_Bs[_FS]<30 then return end _Bw[_FS]={pos=_FR,key=_FS,t=os.clock(),tries=0,hb=_FQ and _FP or nil}end local function _FT(_FU)if not _Bk.PlantNear then return end local _FV=os.clock()if _FV-_FM<0.5 then return end _FM=_FV local _FW=math.min(tonumber(_Bk.NearRadius)or 20,30)local _FX=_Cu()local _FY=0 for _FZ,_Ga in ipairs(_Cm())do if _FY>=40 then break end if(_Ga.p-_FU.Position).Magnitude<=_FW then local _Gb=_Cr(_Ga.p)if not _FX[_Gb]and not _Bw[_Gb]and not(_Bs[_Gb]and _FV-_Bs[_Gb]<30)and not(_FL[_Gb]and _FL[_Gb]>_FV)then _Bw[_Gb]={pos=_Ga.p,key=_Gb,t=_FV,tries=0,scan=true}_FY+=1 end end end end local function _Gc()_Cl()local _Gd,_Ge,_Gf=_BE()if not(_Ge and _Gf)or _Ge.Health<=0 then task.wait(0.5)return end _FT(_Gf)if next(_Bw)==nil then _By((string.char(87,97,105,116,105,110,103,32,102,111,114,32,104,97,114,118,101,115,116,46,46,46,32,114,101,112,108,97,110,116,101,100,58,32,37,100)):format(_Bv))task.wait(0.05)return end local _Gg=_Cu()local _Gh=os.clock()local _Gi={}for _Gj,_Gk in pairs(_Bw)do if _Gg[_Gj]then if _Gk.sent then _Bw[_Gj]=nil _Bu=0 _Bv+=1 elseif _Gh-_Gk.t>(_Bk.CropGoneWait or 2)then _Bw[_Gj]=nil if _Gk.hb and _eg.Skip then _eg.Skip[_Gk.hb]=tick()+(_Bk.UnripeSkip or 25)end end else _Gk.free=_Gk.free or _Gh if not _Gk.sent then if _Gh-_Gk.free>60 then _Bw[_Gj]=nil else _Gi[#_Gi+1]=_Gk end elseif _Gh-_Gk.sent>=(_Bk.RetryGap or 0.8)then if _Gk.tries>=(_Bk.Retries or 3)then _Bw[_Gj]=nil if _Gk.scan then _FL[_Gj]=_Gh+120 else _Bu+=1 end else _Gi[#_Gi+1]=_Gk end end end end if _Bu>=5 then _Bu=0 _Bp=nil _Bq[_Bk.Seed]=nil _By(string.char(70,97,105,108,101,100,32,53,120,32,105,110,32,97,32,114,111,119,44,32,114,101,99,97,108,105,98,114,97,116,105,110,103,32,97,117,116,111,109,97,116,105,99,97,108,108,121,46,46,46))end if#_Gi==0 then task.wait(0.03)return end if not(_Bp and _Bq[_Bk.Seed])then local _Gl=_Cy(_Gi[1].pos)if not _Gl then _Bw[_Gi[1].key]=nil return end _By(string.char(67,97,108,105,98,114,97,116,105,110,103,32,111,110,32,116,104,101,32,102,105,114,115,116,32,101,109,112,116,121,32,112,108,111,116,46,46,46))if not _Fj(_Gl)then task.wait(8)end return end _CS()local _Gm=_Bm(string.char(82,101,113,117,101,115,116,80,108,97,99,101))if not _Gm then _By(string.char(82,101,113,117,101,115,116,80,108,97,99,101,32,114,101,109,111,116,101,32,110,111,116,32,102,111,117,110,100))task.wait(1)return end local _Gn=_Bq[_Bk.Seed]local _Go=0 for _Gp,_Gq in ipairs(_Gi)do local _Gr=_Cy(_Gq.pos)if not _Gr then _Bw[_Gq.key]=nil else local _Gs=_CG(_Gr.p,_Bp)_Gq.sent,_Gq.tries=os.clock(),_Gq.tries+1 _Bs[_Gq.key]=_Gq.sent pcall(function()_Gm:FireServer({x=_Gs.x,y=_Gs.y,z=_Gs.z},_Bk.Seed,0,Vector3.new(0,1,0),false,nil,false,_Gn)end)_Go+=1 end end _By((string.char(80,108,97,110,116,105,110,103,32,37,100,32,112,108,111,116,40,115,41,32,124,32,114,101,112,108,97,110,116,101,100,58,32,37,100)):format(_Go,_Bv))task.wait(0.03)end task.spawn(function()while _bk do if _Bl()then local _Gt,_Gu=pcall(_Gc)if not _Gt then warn(string.char(91,75,121,72,117,98,93,32,80,108,97,110,116,32,97,102,116,101,114,32,104,97,114,118,101,115,116,32,101,114,114,111,114,58),_Gu)task.wait(1)end else if _BZ.blockName then _Cc()end if next(_Bw)then table.clear(_Bw)end task.wait(0.3)end end end)function _eg.PlantReset()_Bp=nil _Bs={}_Bq[_Bk.Seed]=nil _BB={slots={}}table.clear(_Bw)_By(string.char(67,97,108,105,98,114,97,116,105,111,110,32,114,101,115,101,116,46,32,73,116,32,119,105,108,108,32,98,101,32,102,111,117,110,100,32,97,103,97,105,110,32,111,110,32,116,104,101,32,110,101,120,116,32,104,97,114,118,101,115,116,46))_eD(string.char(80,108,97,110,116,32,99,97,108,105,98,114,97,116,105,111,110,32,114,101,115,101,116,46))end function _eg.PlantDebug()_Cl()task.wait(1)local _Gv=_Cm()local _Gw=0 for _Gx in pairs(_BZ.hb)do _Gw+=1 end print(string.char(91,65,117,116,111,80,108,97,110,116,93,32,61,61,61,61,61,32,68,69,66,85,71,32,61,61,61,61,61))print(string.char(91,65,117,116,111,80,108,97,110,116,93,32,98,108,111,99,107,58),_Bk.Block,string.char(124,32,99,111,117,110,116,58),#_Gv,string.char(124,32,72,66,32,109,111,100,101,108,115,58),_Gw,string.char(124,32,99,101,108,108,83,105,122,101,58),_Bd)print(string.char(91,65,117,116,111,80,108,97,110,116,93,32,115,101,101,100,58),_Bk.Seed,string.char(124,32,99,114,111,112,32,98,97,115,101,32,110,97,109,101,58),_BS(),string.char(124,32,118,97,108,105,100,32,105,110,32,67,114,111,112,67,111,110,102,105,103,58),tostring(_Bc and _Bc.isSeed and _Bc.isSeed(_Bk.Seed)))print(string.char(91,65,117,116,111,80,108,97,110,116,93,32,111,114,105,103,105,110,58),_Bp,string.char(124,32,112,114,111,118,101,110,32,115,108,111,116,58),_Bq[_Bk.Seed],string.char(124,32,104,111,111,107,101,100,58),_DD)print(string.char(91,65,117,116,111,80,108,97,110,116,93,32,115,108,111,116,115,32,102,114,111,109,32,98,97,99,107,112,97,99,107,32,71,85,73,58),table.concat(_Ed(),string.char(44)))local _Gy=0 for _Gz in pairs(_Bw)do _Gy+=1 end print(string.char(91,65,117,116,111,80,108,97,110,116,93,32,113,117,101,117,101,58),_Gy,string.char(124,32,114,101,112,108,97,110,116,101,100,58),_Bv,string.char(124,32,97,99,116,105,118,101,58),tostring(_Bl()))local _GA,_GB,_GC=_BE()if _GC and _Gv[1]then local _GD for _GE,_GF in ipairs(_Gv)do if not _GD or(_GF.p-_GC.Position).Magnitude<(_GD.p-_GC.Position).Magnitude then _GD=_GF end end print(string.char(91,65,117,116,111,80,108,97,110,116,93,32,110,101,97,114,101,115,116,32,98,108,111,99,107,58),_GD.o:GetFullName(),_GD.p)for _GG,_GH in pairs(_GD.o:GetAttributes())do print(string.char(91,65,117,116,111,80,108,97,110,116,93,32,97,116,116,114,58),_GG,_GH)end for _GI,_GJ in ipairs(_EE(_GD.p))do print((string.char(91,65,117,116,111,80,108,97,110,116,93,32,111,114,105,103,105,110,32,99,97,110,100,105,100,97,116,101,32,37,100,58,32,37,115,32,40,37,115,41,37,115)):format(_GI,tostring(_GJ.v),_GJ.why,_GJ.exact and""or string.char(32,91,97,112,112,114,111,120,93)))end end if not _Bl()then _Cc()end _By(string.char(68,101,98,117,103,32,112,114,105,110,116,101,100,32,40,70,57,41))end _bm(function()_Cc()table.clear(_Bw)_CY:Disconnect()end)end do local _GK=_de local _GL,_GM=nil,0 local _GN=""local function _GO(_GP)if _GP==_GN then return end _GN=_GP if _dd.info and _dd.info.Parent then _dd.info.Text=_GP end end local function _GQ()local _GR=_t.Character local _GS=_GR and _GR:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _GT=_GR and _GR:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))if _GS and _GT and _GS.Health>0 then return _GS,_GT end end local function _GU()return _t.Character and _t.Character:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))end local function _GV(_GW)local _GX=_m:FindFirstChild(string.char(82,101,109,111,116,101,115))return _GX and _GX:FindFirstChild(_GW)end local _GY=16 do local _GZ=_t.Character local _Ha=_GZ and _GZ:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))if _Ha and _Ha.WalkSpeed>0 then _GY=_Ha.WalkSpeed end end local function _Hb()local _Hc=_GQ()if _Hc then _Hc.WalkSpeed=_GY end end local function _Hd(_He,_Hf)if typeof(_He)~=string.char(86,101,99,116,111,114,51)or typeof(_Hf)~=string.char(86,101,99,116,111,114,51)then return math.huge end return Vector3.new(_He.X-_Hf.X,0,_He.Z-_Hf.Z).Magnitude end local function _Hg(_Hh,_Hi)if typeof(_Hh)~=string.char(86,101,99,116,111,114,51)or typeof(_Hi.Position)~=string.char(86,101,99,116,111,114,51)then return _Hh end local _Hj=RaycastParams.new()_Hj.FilterType=Enum.RaycastFilterType.Exclude _Hj.FilterDescendantsInstances={_t.Character}local _Hk=Vector3.new(_Hh.X,_Hi.Position.Y+8,_Hh.Z)local _Hl=workspace:Raycast(_Hk,Vector3.new(0,-80,0),_Hj)if _Hl then return _Hl.Position+Vector3.new(0,1,0)end return _Hh end local function _Hm(_Hn,_Ho,_Hp,_Hq)if typeof(_Hn)~=string.char(86,101,99,116,111,114,51)then return false end local _Hr=os.clock()local _Hs,_Ht=os.clock(),nil while os.clock()-_Hr<_Hp do if _Hq and not _Hq()then return false end local _Hu,_Hv=_GQ()if not _Hu then return false end _Hu.WalkSpeed=_GK.WalkSpeed if _Hd(_Hv.Position,_Hn)<=_Ho then return true end local _Hw=_Hg(_Hn,_Hv)local _Hx=_o:CreatePath({AgentRadius=_GK.PathRadius,AgentHeight=_GK.PathHeight,AgentCanJump=true,AgentCanClimb=false,WaypointSpacing=_GK.WaypointSpacing,})local _Hy=pcall(function()_Hx:ComputeAsync(_Hv.Position,_Hw)end)if _Hy and _Hx.Status==Enum.PathStatus.Success then local _Hz=_Hx:GetWaypoints()local _HA=false local _HB=_Hx.Blocked:Connect(function()_HA=true end)local _HC,_HD=false,false for _HE=2,#_Hz do local _HF=_Hz[_HE]if _HF.Action==Enum.PathWaypointAction.Jump then _Hu.Jump=true end _Hu:MoveTo(_HF.Position)local _HG,_HH=os.clock(),false while os.clock()-_HG<2.5 do if _Hq and not _Hq()then _HD=true;break end local _HI,_HJ=_GQ()if not _HI then _HD=true;break end _HI.WalkSpeed=_GK.WalkSpeed if _Hd(_HJ.Position,_Hn)<=_Ho then _HC=true;break end if _Hd(_HJ.Position,_HF.Position)<3.5 then _HH=true;break end if _HA then break end task.wait(0.05)end if _HC or _HD or _HA or not _HH then break end if os.clock()-_Hr>=_Hp then break end end _HB:Disconnect()if _HD then return false end if _HC then return true end else _Hu:MoveTo(_Hn)if os.clock()-_Hs>1.2 then if _Ht and(_Hv.Position-_Ht).Magnitude<1.5 then _Hu.Jump=true end _Ht,_Hs=_Hv.Position,os.clock()end task.wait(0.15)end end return false end local function _HK(_HL)local _HM=_GU()if not _HM or typeof(_HL)~=string.char(86,101,99,116,111,114,51)then return false end pcall(function()_HM.AssemblyLinearVelocity=Vector3.zero _HM.AssemblyAngularVelocity=Vector3.zero _HM.CFrame=CFrame.new(_HL+_GK.TeleportOffset)end)return true end local function _HN(_HO,_HP,_HQ,_HR,_HS)local _HT=os.clock()while os.clock()-_HT<_HQ do if _HS and not _HS()then return nil end local _HU=_HO and _HO:FindFirstChild(_HP,_HR)if _HU then return _HU end task.wait(0.2)end return nil end local function _HV(_HW,_HX)local _HY=_GU()if not(_HY and _HW)then return false end if _E then local _HZ=pcall(function()_E(_HY,_HW,0)task.wait(0.15)_E(_GU()or _HY,_HW,1)end)if _HZ then return true end end return _Hm(_HW.Position,2,25,_HX)end local _Ia={string.char(114,98,120,97,115,115,101,116,105,100,58,47,47,56,54,56,54,49,57,50,49,55,53,54,55,55,51),string.char(114,98,120,97,115,115,101,116,105,100,58,47,47,56,57,56,56,49,55,48,48,56,51,50,54,49,54)}local _Ib,_Ic,_Id={},nil,0 local function _Ie()local _If=_t.Character local _Ig=_If and _If:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _Ih=_Ig and _Ig:FindFirstChildOfClass(string.char(65,110,105,109,97,116,111,114))if not _Ih then return end if _Ic~=_Ih then _Ic,_Ib=_Ih,{}for _Ii,_Ij in ipairs(_Ia)do local _Ik=Instance.new(string.char(65,110,105,109,97,116,105,111,110))_Ik.AnimationId=_Ij local _Il=_Ih:LoadAnimation(_Ik)_Il.Priority=Enum.AnimationPriority.Action _Ib[_Ii]=_Il end end _Id=_Id%#_Ib+1 for _Im,_In in ipairs(_Ib)do if _Im~=_Id and _In.IsPlaying then _In:Stop(0.08)end end _Ib[_Id]:Play(0.08)end local function _Io(_Ip)local _Iq=_GV(string.char(82,101,113,117,101,115,116,83,119,105,110,103))if not _Iq then _GO(string.char(82,101,113,117,101,115,116,83,119,105,110,103,32,114,101,109,111,116,101,32,110,111,116,32,102,111,117,110,100,33));return end if _GK.SwingAnim then pcall(_Ie)end pcall(function()_Iq:FireServer(_Ip)end)_eq.swings+=1 end local _Ir,_Is={},{}local function _It()local _Iu=_t.Character return _Iu and _Iu:FindFirstChildOfClass(string.char(84,111,111,108))end local function _Iv(_Iw)local _Ix=os.clock()local _Iy=_Ir[_Iw]local _Iz=_It()if _Iy and _Iz and _Iz.Name==_Iy then return end local _IA=1.5 if _Iy then _IA=0.6 elseif _Iy==false then _IA=15 end if _Is[_Iw]and _Ix-_Is[_Iw]<_IA then return end _Is[_Iw]=_Ix local _IB=_GV(string.char(82,101,113,117,101,115,116,69,113,117,105,112,83,108,111,116))if not _IB then return end pcall(function()_IB:FireServer(_Iw)end)if _Iy==nil then task.wait(0.5)local _IC=_It()_Ir[_Iw]=_IC and _IC.Name or false end end local function _ID()local _IE=workspace:FindFirstChild(_GK.HubName)if _IE then local _IF=_IE:FindFirstChild(_GK.ResourceName)if _IF then return _IF end end return workspace:FindFirstChild(_GK.ResourceName)end local _IG={}local function _IH(_II,_IJ)local _IK=_IG[_II]if _IK and os.clock()-_IK.at<4 then return _IK.v end local _IL=_IJ()_IG[_II]={at=os.clock(),v=_IL}return _IL end local function _IM(_IN)local _IO=_IN.Size return math.clamp(math.max(_IO.X,_IO.Z)/2,0,14)end local function _IP(_IQ,_IR)local _IS=_IQ:lower()if _IR==string.char(112,105,110,101)then return _IS:find(string.char(112,105,110,101),1,true)~=nil end return _IS:find(string.char(116,114,101,101),1,true)~=nil and _IS:find(string.char(112,105,110,101),1,true)==nil end local function _IT()return _IH(string.char(114,111,111,116,115),function()local _IU,_IV={},{}local _IW=_ID()if _IW then _IU[#_IU+1]=_IW;_IV[_IW]=true end for _IX,_IY in ipairs(workspace:GetDescendants())do if _IY.Name==_GK.ResourceName and not _IV[_IY]and(_IY:IsA(string.char(70,111,108,100,101,114))or _IY:IsA(string.char(77,111,100,101,108)))then _IV[_IY]=true _IU[#_IU+1]=_IY end end return _IU end)end local function _IZ(_Ja)return _IH(string.char(116,114,101,101,58).._Ja,function()local _Jb={}for _Jc,_Jd in ipairs(_IT())do for _Je,_Jf in ipairs(_Jd:GetDescendants())do if _Jf:IsA(string.char(66,97,115,101,80,97,114,116))and _Jf.Name==string.char(82,101,97,99,104)then local _Jg=_Jf.Parent if _Jg and _IP(_Jg.Name,_Ja)then _Jb[#_Jb+1]={key=_Jf,pos=_Jf.Position,arg=_Jf,name=_Jg.Name,radius=_IM(_Jf)}end end end end return _Jb end)end local _Jh={stone={string.char(115,116,111,110,101)},ironore={string.char(105,114,111,110,111,114,101),string.char(105,114,111,110)},coal={string.char(99,111,97,108)},sand={string.char(115,97,110,100)},clay={string.char(99,108,97,121)}}local function _Ji(_Jj)return(_Jj:lower():gsub(string.char(91,37,115,95,37,45,93),""))end local function _Jk(_Jl,_Jm)local _Jn=_Ji(_Jm)for _Jo,_Jp in ipairs(_Jh[_Jl])do if _Jn:find(_Jp,1,true)then return true end end return false end local function _Jq()if _GK.MineRoot~=""then local _Jr=workspace:FindFirstChild(_GK.MineRoot,true)if _Jr then return _Jr end end return _ID()or workspace:FindFirstChild(_GK.HubName)end local function _Js()return _IH(string.char(109,105,110,101,58).._GK.MineRoot,function()local _Jt={}for _Ju,_Jv in ipairs(_GK.MineList)do _Jt[_Jv]={}end local _Jw=_Jq()if not _Jw then return _Jt end local _Jx=_Jw.Parent for _Jy,_Jz in ipairs(_Jw:GetDescendants())do if _Jz:IsA(string.char(66,97,115,101,80,97,114,116))and _Jz.Name~=string.char(82,101,97,99,104)then local _JA local _JB=_Jz while _JB and _JB~=_Jx and not _JA do for _JC,_JD in ipairs(_GK.MineList)do if _Jk(_JD,_JB.Name)then _JA=_JD;break end end _JB=_JB.Parent end if _JA then local _JE=_Jt[_JA]_JE[#_JE+1]={key=_Jz,pos=_Jz.Position,arg=_Jz,name=_Jz.Name,res=_JA,radius=_IM(_Jz)}end end end return _Jt end)end local function _JF()local _JG,_JH={},{}local function _JI(_JJ)if _JJ and _GK.MineEnabled[_JJ]and not _JH[_JJ]then _JH[_JJ]=true;_JG[#_JG+1]=_JJ end end _JI(_GK.MinePriority)for _JK,_JL in ipairs(_GK.MineList)do _JI(_JL)end return _JG end local function _JM(_JN)local _JO=_JN.key if not _JO or not _JO.Parent then return false end if not _JO:IsDescendantOf(workspace)then return false end if _JN.res then local _JP,_JQ=pcall(function()return _JO.Transparency end)if _JP and _JQ>=0.95 then return false end end return true end local function _JR(_JS)local _JT=_JS.key if not _JT or not _JT.Parent then return string.char(80,97,114,101,110,116,32,61,32,110,105,108,32,40,112,97,114,116,32,114,101,109,111,118,101,100,41)end if not _JT:IsDescendantOf(workspace)then return string.char(112,97,114,116,32,108,101,102,116,32,116,104,101,32,119,111,114,107,115,112,97,99,101)end local _JU,_JV=pcall(function()return _JT.Transparency end)if _JU and _JV>=0.95 then return string.char(112,97,114,116,32,98,101,99,97,109,101,32,116,114,97,110,115,112,97,114,101,110,116,32,40)..tostring(_JV)..string.char(41)end return string.char(115,116,105,108,108,32,101,120,105,115,116,115)end local function _JW(_JX)table.clear(_IG)local _JY=_Js()local _JZ,_Ka local _Kb=(_JX.radius or 0)+_GK.RockNear for _Kc,_Kd in ipairs(_JY[_JX.res]or{})do if _Kd.key~=_JX.key and _JM(_Kd)then local _Ke=(_Kd.pos-_JX.pos).Magnitude if _Ke<=_Kb and(not _Ka or _Ke<_Ka)then _JZ,_Ka=_Kd,_Ke end end end return _JZ end local function _Kf(_Kg,_Kh,_Ki)local _Kj,_Kk local _Kl=os.clock()for _Km,_Kn in ipairs(_Kg)do if _JM(_Kn)and not(_Ki[_Kn.key]and _Ki[_Kn.key]>_Kl)then local _Ko=(_Kn.pos-_Kh.Position).Magnitude if not _Kk or _Ko<_Kk then _Kj,_Kk=_Kn,_Ko end end end return _Kj end local function _Kp(_Kq,_Kr,_Ks)if _Kq==string.char(116,114,101,101)then local _Kt=_IZ(_GK.TreeKind)if#_Kt==0 then return nil,string.char(78,111,32).._GK.TreeKind..string.char(32,116,114,101,101,115,32,102,111,117,110,100,46)end local _Ku=_Kf(_Kt,_Kr,_Ks)if not _Ku and next(_Ks)then table.clear(_Ks)_Ku=_Kf(_Kt,_Kr,_Ks)end return _Ku,string.char(65,108,108,32,116,114,101,101,115,32,97,114,101,32,98,101,105,110,103,32,115,107,105,112,112,101,100,44,32,119,97,105,116,105,110,103,46,46,46)end local _Kv=_JF()if#_Kv==0 then return nil,string.char(83,101,108,101,99,116,32,116,104,101,32,109,97,116,101,114,105,97,108,115,32,116,111,32,109,105,110,101,32,102,105,114,115,116)end local _Kw=_Js()for _Kx,_Ky in ipairs(_Kv)do local _Kz=_Kf(_Kw[_Ky]or{},_Kr,_Ks)if _Kz then return _Kz end end if next(_Ks)then table.clear(_Ks)end return nil,nil,true end local function _KA()local _KB=workspace:FindFirstChild(_GK.HubName)return(_KB and _KB:IsA(string.char(77,111,100,101,108)))and _KB or nil end local function _KC()local _KD,_KE=_KA(),_GU()if not(_KD and _KE)then return false end local _KH,_KI,_KJ=pcall(function()local _KF,_KG=_KD:GetBoundingBox();return _KF,_KG end)if not _KH or not _KI then return false end local _KK=_KI:PointToObjectSpace(_KE.Position)local _KL=_KJ/2+Vector3.new(_GK.HubPad,_GK.HubPad,_GK.HubPad)return math.abs(_KK.X)<=_KL.X and math.abs(_KK.Y)<=_KL.Y and math.abs(_KK.Z)<=_KL.Z end local function _KM()local _KN=_GU()return _KN~=nil and _dh.contains(_KN)end local function _KO(_KP)local function _KQ()return _GM==_KP and not _ej.pause end for _KR=1,3 do if not _KQ()then return false end local _KS=_dh.get()local _KT=_KS and _KS:FindFirstChild(_GK.IslandPortalName)local _KU=_KT and _KT:FindFirstChild(_GK.TouchPartName,true)if not _KU then _GO(string.char(72,85,66,32,112,111,114,116,97,108,32,110,111,116,32,102,111,117,110,100,32,111,110,32,116,104,101,32,105,115,108,97,110,100,46))task.wait(1.5)return false end if _KR>=2 then _HK(_KU.Position)task.wait(0.25)end _GO((string.char(84,111,117,99,104,105,110,103,32,116,104,101,32,72,85,66,32,112,111,114,116,97,108,46,46,46,32,40,97,116,116,101,109,112,116,32,37,100,47,51,41)):format(_KR))_HV(_KU,_KQ)if not _KA()then task.wait(3);return true end local _KV=0 while _KV<_GK.HubWait do task.wait(0.5);_KV+=0.5 if not _KQ()then return false end if _KC()then task.wait(2);return true end end end _GO(string.char(84,101,108,101,112,111,114,116,32,116,111,32,116,104,101,32,72,117,98,32,100,105,100,32,110,111,116,32,119,111,114,107,44,32,114,101,116,114,121,105,110,103,46,46,46))return false end local function _KW(_KX)local function _KY()return _GM==_KX and not _ej.pause end if not _KC()then _GO(string.char(69,110,116,101,114,105,110,103,32,116,104,101,32,72,117,98,32,102,114,111,109,32,116,104,101,32,105,115,108,97,110,100,46,46,46))if not _KO(_KX)then return false end end if not _KY()then return false end local _KZ=os.clock()while os.clock()-_KZ<_GK.RuinsLoadDelay do if not _KY()then return false end _GO((string.char(73,110,32,116,104,101,32,72,117,98,44,32,119,97,105,116,105,110,103,32,102,111,114,32,116,104,101,32,82,85,73,78,83,32,112,111,114,116,97,108,32,116,111,32,108,111,97,100,46,46,46,32,40,37,46,48,102,115,41)):format(math.max(0,_GK.RuinsLoadDelay-(os.clock()-_KZ))))task.wait(0.25)end _GO(string.char(76,111,111,107,105,110,103,32,102,111,114,32,116,104,101,32,72,117,98,32,109,111,100,101,108,46,46,46))local _La=_HN(workspace,_GK.HubName,_GK.WaitTimeout,false,_KY)if not _La then if _KY()then _GO(string.char(72,117,98,32,109,111,100,101,108,32,110,111,116,32,102,111,117,110,100,32,105,110,32,87,111,114,107,115,112,97,99,101,46))end return false end _GO(string.char(76,111,111,107,105,110,103,32,102,111,114,32,82,85,73,78,83,32,105,110,32,116,104,101,32,72,117,98,46,46,46))local _Lb=_HN(_La,_GK.RuinsName,_GK.WaitTimeout,true,_KY)if not _Lb then if _KY()then _GO(string.char(82,85,73,78,83,32,109,111,100,101,108,32,110,111,116,32,102,111,117,110,100,32,105,110,115,105,100,101,32,116,104,101,32,72,117,98,46))end return false end _GO(string.char(76,111,111,107,105,110,103,32,102,111,114,32,84,111,117,99,104,80,97,114,116,32,105,110,32,82,85,73,78,83,46,46,46))local _Lc=_HN(_Lb,_GK.TouchPartName,_GK.WaitTimeout,true,_KY)if not _Lc and _Lb:IsA(string.char(66,97,115,101,80,97,114,116))then _Lc=_Lb end if not _Lc then if _KY()then _GO(string.char(84,111,117,99,104,80,97,114,116,32,110,111,116,32,102,111,117,110,100,32,105,110,115,105,100,101,32,82,85,73,78,83,46))end return false end task.wait(0.5)if not _KY()then return false end _GO(string.char(84,111,117,99,104,105,110,103,32,116,104,101,32,82,85,73,78,83,32,112,111,114,116,97,108,46,46,46))_HK(_Lc.Position)task.wait(0.3)if not _KY()then return false end _HV(_Lc,_KY)task.wait(3)table.clear(_IG)return _KY()end local _Ld=300 local function _Le()local _Lf=_GU()if not _Lf then return false end for _Lg,_Lh in ipairs(_IZ(string.char(112,105,110,101)))do if _JM(_Lh)and(_Lh.pos-_Lf.Position).Magnitude<=_Ld then return true end end return false end local function _Li(_Lj)local _Lk=os.clock()while _GM==_Lj and _GL==string.char(116,114,101,101)and os.clock()-_Lk<15 do table.clear(_IG)if _Le()then return true end _GO(string.char(76,111,111,107,105,110,103,32,102,111,114,32,112,105,110,101,32,105,110,32,82,101,115,111,117,114,99,101,70,105,101,108,100,46,46,46))task.wait(0.5)end return false end local function _Ll(_Lm)local _Ln=(_GK.ReturnPortalName or""):lower()local _Lo=false local _Lp=_Lm.Parent while _Lp and _Lp~=workspace do local _Lq=_Lp.Name:lower()if not _Lo and(_Ln==""or _Lq:find(_Ln,1,true))and _Lq~=_GK.RuinsName:lower()then _Lo=true elseif _Lo and _Lq==_GK.RuinsName:lower()then return true elseif _Ln==""and not _Lo and _Lq==_GK.RuinsName:lower()then return true end _Lp=_Lp.Parent end return false end local function _Lr()local _Ls=_GU()local _Lt,_Lu for _Lv,_Lw in ipairs(workspace:GetDescendants())do if _Lw:IsA(string.char(66,97,115,101,80,97,114,116))and _Lw.Name==_GK.TouchPartName and _Ll(_Lw)then local _Lx=_Ls and(_Lw.Position-_Ls.Position).Magnitude or 0 if not _Lu or _Lx<_Lu then _Lt,_Lu=_Lw,_Lx end end end return _Lt,_Lu end local _Ly=250 local function _Lz()if inRuinsArea then return true end if _Le()then return true end local _LA,_LB=_Lr()return _LA~=nil and _LB~=nil and _LB<=_Ly end local function _LC(_LD)local function _LE()return _GM==_LD and not _ej.pause end _GO(string.char(76,111,111,107,105,110,103,32,102,111,114,32,116,104,101,32,72,117,98,32,109,111,100,101,108,32,105,110,115,105,100,101,32,82,85,73,78,83,46,46,46))local _LF local _LG=os.clock()while os.clock()-_LG<_GK.WaitTimeout do if not _LE()then return false end _LF=_Lr()if _LF then break end task.wait(0.3)end if not _LF then if _LE()then _GO((string.char(72,117,98,32,109,111,100,101,108,32,47,32,84,111,117,99,104,80,97,114,116,32,110,111,116,32,102,111,117,110,100,32,105,110,115,105,100,101,32,82,85,73,78,83,32,40,99,108,105,99,107,32,68,69,66,85,71,32,116,114,101,101,115,32)..string.char(116,111,32,108,105,115,116,32,112,111,114,116,97,108,115,41,46)))end return false end local _LH=_GU()local _LI=_LH and _LH.Position task.wait(0.5)if not _LE()then return false end _GO(string.char(84,111,117,99,104,105,110,103,32,116,104,101,32,114,101,116,117,114,110,32,112,111,114,116,97,108,58,32).._LF.Parent.Name)_HK(_LF.Position)task.wait(0.3)if not _LE()then return false end _HV(_LF,_LE)task.wait(3)table.clear(_IG)local _LJ=_GU()if _LI and _LJ and(_LJ.Position-_LI).Magnitude<30 then return false end return _LE()end local _LK=0 local _LL=false do local _LM=_t.CharacterAdded:Connect(function()_LK+=1 _LL=false _Is={}end)_bm(function()_LM:Disconnect()end)end local _LN=string.char(75,121,72,111,118,101,114)local function _LO()local _LP=_t.Character local _LQ=_LP and _LP:FindFirstChild(string.char(72,117,109,97,110,111,105,100,82,111,111,116,80,97,114,116))local _LR=_LP and _LP:FindFirstChildOfClass(string.char(72,117,109,97,110,111,105,100))local _LS=_LQ and _LQ:FindFirstChild(_LN)if _LS then pcall(function()_LS:Destroy()end)end if _LR then pcall(function()_LR.PlatformStand=false end)end end local function _LT(_LU,_LV)if _LV:FindFirstChild(_LN)then return end local _LW=Instance.new(string.char(66,111,100,121,86,101,108,111,99,105,116,121))_LW.Name=_LN _LW.MaxForce=Vector3.new(1e6,1e6,1e6)_LW.Velocity=Vector3.zero _LW.Parent=_LV _LU.PlatformStand=true end local function _LX(_LY)local _LZ=RaycastParams.new()_LZ.FilterType=Enum.RaycastFilterType.Exclude _LZ.FilterDescendantsInstances={_t.Character}local _Ma=workspace:Raycast(_LY.Position+Vector3.new(0,8,0),Vector3.new(0,-250,0),_LZ)return _Ma and _Ma.Position.Y end local _Mb={0,70,-70,140,-140,180}local _Mc=8 local function _Md(_Me,_Mf,_Mg,_Mh)local _Mi=os.clock()local function _Mj(_Mk)return _Me==string.char(116,114,101,101)and(string.char(67,104,111,112,112,105,110,103,32).._Mk.name)or(string.char(77,105,110,105,110,103,32)..(_Mk.res or""):upper())end local _Ml=_Mj(_Mf)local _Mm=_GK.StandDist+(_Mf.radius or 0)local _Mn=(_Me==string.char(116,114,101,101))and _GK.HitTime or _GK.MineMaxTime local _Mo,_Mp=1,0 local _Mq=os.clock()while _GL==_Me and _GM==_Mg and not _ej.pause do local _Mr,_Ms=_GQ()if not _Mr then return false end if(_GK.UseHub or(_Me==string.char(116,114,101,101)and _GK.TreeKind==string.char(112,105,110,101)))and os.clock()-_Mq>2 then _Mq=os.clock()if _KM()then return false end end if not _JM(_Mf)then if _Me~=string.char(109,105,110,101)then return false end local _Mt=_JR(_Mf)local _Mu for _Mv=1,4 do task.wait(0.4)if _GL~=_Me or _GM~=_Mg then return false end _Mu=_JW(_Mf)if _Mu then break end end if not _Mu then _GO(_Ml..string.char(10,68,111,110,101,32,40).._Mt..string.char(41))return false end _Mf=_Mu _Ml=_Mj(_Mf)_Mm=_GK.StandDist+(_Mf.radius or 0)_Mo,_Mp=1,0 continue end if _Mn>0 and os.clock()-_Mi>_Mn then return true end _Mr.WalkSpeed=_GK.WalkSpeed _Iv(_Mh)_Mr,_Ms=_GQ()if not _Mr then return false end local _Mw,_Mx=pcall(function()return _Mf.key.Position end)if _Mw then _Mf.pos=_Mx end local _My=Vector3.new(_Ms.Position.X-_Mf.pos.X,0,_Ms.Position.Z-_Mf.pos.Z)if _My.Magnitude>_Mm+4 then _LO()local _Mz=_My.Magnitude>0.1 and _My.Unit or Vector3.new(0,0,1)local _MA=CFrame.Angles(0,math.rad(_Mb[_Mo]),0):VectorToWorldSpace(_Mz)local _MB=_Mf.pos+_MA*_Mm local function _MC()return _GL==_Me and _GM==_Mg and _JM(_Mf)and not _ej.pause end _GO(_Ml..string.char(10,87,97,108,107,105,110,103,32,116,111,32,116,97,114,103,101,116,46,46,46))if not _Hm(_MB,2.5,20,_MC)then if _GL~=_Me or _GM~=_Mg then return false end if _JM(_Mf)and not _ej.pause then _Mp+=1 if _Mp>=_Mc then return true end _Mo=_Mo%#_Mb+1 _GO((string.char(37,115,10,78,111,116,32,116,104,101,114,101,32,121,101,116,44,32,116,114,121,105,110,103,32,97,110,111,116,104,101,114,32,115,105,100,101,32,40,37,100,47,37,100,41)):format(_Ml,_Mp,_Mc))task.wait(0.3)end continue end _Mr,_Ms=_GQ()if not _Mr then return false end end do local _MD=_Ms.Position if _GK.Hover then _LT(_Mr,_Ms)local _ME=_LX(_Ms)if _ME then _MD=Vector3.new(_MD.X,_ME+_GK.HoverHeight,_MD.Z)end else _LO()end local _MF=Vector3.new(_Mf.pos.X,_MD.Y,_Mf.pos.Z)pcall(function()_Ms.CFrame=CFrame.lookAt(_MD,_MF)_Ms.AssemblyLinearVelocity=Vector3.zero end)end _GO((string.char(37,115,10,79,110,32,116,104,105,115,32,116,97,114,103,101,116,32,102,111,114,32,37,100,115)):format(_Ml,math.floor(os.clock()-_Mi)))_Io(_Mf.arg)task.wait(_GK.SwingDelay)end return false end local function _MG(_MH,_MI,_MJ,_MK)local _ML,_MM=pcall(_Md,_MH,_MI,_MJ,_MK)_LO()if not _ML then error(_MM,0)end return _MM end local function _MN(_MO,_MP)local _MQ=_MP==string.char(116,114,101,101)and string.char(65,120,101)or string.char(80,105,99,107,97,120,101)local _MR={}local _MS=false local _MT=_LK while _GL==_MP and _GM==_MO do local _MU,_MV=_GQ()if _ej.pause then _LO()_GO(string.char(80,97,117,115,101,100,44,32,65,117,116,111,32,67,111,108,108,101,99,116,32,105,115,32,114,117,110,110,105,110,103,46,46,46))task.wait(0.3)elseif not _MU then _GO(string.char(87,97,105,116,105,110,103,32,102,111,114,32,99,104,97,114,97,99,116,101,114,46,46,46))task.wait(1)else _MU.WalkSpeed=_GK.WalkSpeed local _MW=(_MP==string.char(116,114,101,101)and _GK.TreeKind==string.char(112,105,110,101))if _MW then if _LK~=_MT then _MT=_LK _MS=false elseif _MS and _KM()then _MS=false _GO(string.char(66,97,99,107,32,111,110,32,116,104,101,32,105,115,108,97,110,100,44,32,114,101,112,101,97,116,105,110,103,32,116,104,101,32,114,111,117,116,101,32,116,111,32,82,85,73,78,83,46,46,46))end end local _MX=false if _MW and not _MS then table.clear(_IG)if not _KM()and _Le()then _MS=true _LL=true else _ej.hubBusy=true local _MY=_KW(_MO)_ej.hubBusy=false if _MY then _MS=true _LL=true _Li(_MO)else if _GL~=_MP or _GM~=_MO then break end task.wait(2)_MX=true end end end if not _MX and not _MW and _LL and _GK.ReturnToHub then if _KM()then _LL=false else _LO()_ej.hubBusy=true local _MZ=_LC(_MO)_ej.hubBusy=false if _MZ then _LL=false elseif _GL==_MP and _GM==_MO and not _ej.pause then _GO(string.char(82,101,116,117,114,110,32,112,111,114,116,97,108,32,102,97,105,108,101,100,44,32,114,101,115,101,116,116,105,110,103,32,116,104,101,32,99,104,97,114,97,99,116,101,114,32,105,110,115,116,101,97,100,46,46,46))local _Na=_LK local _Nb=_GQ()if _Nb then pcall(function()_Nb.Health=0 end)end local _Nc=os.clock()while _LK==_Na and _GM==_MO and _GL==_MP and os.clock()-_Nc<15 do task.wait(0.25)end _LL=false table.clear(_IG)task.wait(1.5)end _MX=true end end if not _MX and _GK.UseHub and not _MW and _KM()then _GO(string.char(79,110,32,116,104,101,32,105,115,108,97,110,100,44,32,101,110,116,101,114,105,110,103,32,116,104,101,32,72,117,98,32,102,105,114,115,116,46,46,46))_ej.hubBusy=true if _KO(_MO)then table.clear(_IG)else task.wait(1)end _ej.hubBusy=false _MX=true end if not _MX then _Iv(_MQ)_MU,_MV=_GQ()if _MU then local _Nd,_Ne,_Nf=_Kp(_MP,_MV,_MR)if _Nd then if _MG(_MP,_Nd,_MO,_MQ)then _MR[_Nd.key]=os.clock()+30 end elseif _Nf then _GO((string.char(78,111,32,111,114,101,32,110,111,100,101,32,102,111,117,110,100,44,32,104,105,116,116,105,110,103,32,116,104,101,32,84,101,114,114,97,105,110,32,97,116,32,116,104,105,115,32,115,112,111,116,46,10,83,116,97,110,100,32,110,101,120,116,32)..string.char(116,111,32,116,104,101,32,109,97,116,101,114,105,97,108,32,40,111,114,32,99,108,105,99,107,32,68,69,66,85,71,32,109,105,110,101,41,46)))_Io(workspace.Terrain)task.wait(_GK.SwingDelay)else _GO(_Ne or string.char(78,111,32,116,97,114,103,101,116,46))task.wait(1)end end end end task.wait()end end local function _Ng(_Nh)_GL=_Nh _GM+=1 local _Ni=_GM _Is={}task.spawn(function()local _Nj,_Nk=pcall(_MN,_Ni,_Nh)if not _Nj then warn(string.char(91,75,121,72,117,98,93,32,65,117,116,111,32,70,97,114,109,32,101,114,114,111,114,58),_Nk)_GO(string.char(69,114,114,111,114,58,32)..tostring(_Nk))end end)end local function _Nl(_Nm)if _GL==_Nm then _GL=nil _GM+=1 _LO()_Hb()local _Nn,_No=_GQ()if _Nn and _No then pcall(function()_Nn:MoveTo(_No.Position)end)end _GO(string.char(84,117,114,110,101,100,32,111,102,102,46))end end function _dd.SetTree(_Np)if _Np then _ee.Exclusive(string.char(116,114,101,101))_Ng(string.char(116,114,101,101))else _Nl(string.char(116,114,101,101))end end function _dd.SetMine(_Nq)if _Nq then _ee.Exclusive(string.char(109,105,110,101))_Ng(string.char(109,105,110,101))else _Nl(string.char(109,105,110,101))end end function _dd.OnTreeKind(_Nr)local _Ns=_GK.TreeKind~=_Nr _GK.TreeKind=_Nr table.clear(_IG)if _Ns and _GL==string.char(116,114,101,101)then _LO()_Ng(string.char(116,114,101,101))end end function _dd.IsActive()return _GL~=nil end local function _Nt()local _Nu={}for _Nv,_Nw in ipairs({_t:FindFirstChildOfClass(string.char(66,97,99,107,112,97,99,107)),_t.Character})do if _Nw then for _Nx,_Ny in ipairs(_Nw:GetChildren())do if _Ny:IsA(string.char(84,111,111,108))then _Nu[#_Nu+1]=_Ny.Name end end end end return table.concat(_Nu,string.char(44,32))end local function _Nz()local _NA=_KA()return _NA and _NA:FindFirstChild(_GK.RuinsName,true)end function _dd.DebugTree()print(string.char(91,75,121,72,117,98,93,32,61,61,61,61,61,32,68,69,66,85,71,32,84,82,69,69,83,32,61,61,61,61,61))print(string.char(89,111,117,114,32,116,111,111,108,115,58),_Nt())print(string.char(111,110,73,115,108,97,110,100,58),_KM(),string.char(124,32,105,110,72,117,98,58),_KC())local _NB=_Nz()if _NB then print(string.char(84,111,117,99,104,80,97,114,116,115,32,105,110,115,105,100,101,32,82,85,73,78,83,32,40).._NB:GetFullName()..string.char(41,58))for _NC,_ND in ipairs(_NB:GetDescendants())do if _ND:IsA(string.char(66,97,115,101,80,97,114,116))and _ND.Name==_GK.TouchPartName then print(string.char(32,32),_ND:GetFullName())end end else print(string.char(82,85,73,78,83,32,109,111,100,101,108,32,110,111,116,32,102,111,117,110,100))end table.clear(_IG)local _NE=_IT()print((string.char(82,101,115,111,117,114,99,101,70,105,101,108,100,32,114,111,111,116,115,32,102,111,117,110,100,58,32,37,100)):format(#_NE))for _NF,_NG in ipairs(_NE)do print(string.char(32,32,114,111,111,116,58),_NG:GetFullName())end for _NH,_NI in ipairs({string.char(119,111,111,100),string.char(112,105,110,101)})do local _NJ=_IZ(_NI)print((string.char(37,115,58,32,37,100,32,116,114,101,101,115,32,100,101,116,101,99,116,101,100)):format(_NI,#_NJ))if _NJ[1]then print(string.char(32,32,101,120,97,109,112,108,101,58),_NJ[1].key:GetFullName())end end end function _dd.DebugMine()print(string.char(91,75,121,72,117,98,93,32,61,61,61,61,61,32,68,69,66,85,71,32,77,73,78,69,32,61,61,61,61,61))print(string.char(89,111,117,114,32,116,111,111,108,115,58),_Nt())table.clear(_IG)local _NK=_Jq()print(string.char(83,101,97,114,99,104,32,114,111,111,116,58),_NK and _NK:GetFullName()or string.char(68,79,69,83,32,78,79,84,32,69,88,73,83,84))local _NL=_Js()for _NM,_NN in ipairs(_GK.MineList)do print((string.char(37,115,58,32,37,100,32,110,111,100,101,115)):format(_NN,#_NL[_NN]))if _NL[_NN][1]then print(string.char(32,32,101,120,97,109,112,108,101,58),_NL[_NN][1].key:GetFullName())end end if _NK then local _NO,_NP={},0 for _NQ,_NR in ipairs(_NK:GetDescendants())do if _NR:IsA(string.char(66,97,115,101,80,97,114,116))then _NO[_NR.Name]=(_NO[_NR.Name]or 0)+1 end end print(string.char(80,97,114,116,32,110,97,109,101,115,32,117,110,100,101,114,32,116,104,101,32,114,111,111,116,32,40,109,97,120,32,54,48,41,58))for _NS,_NT in pairs(_NO)do _NP+=1 if _NP>60 then break end print((string.char(32,32,37,115,32,120,37,100)):format(_NS,_NT))end end end _bm(function()_GL=nil _GM+=1 pcall(_LO)pcall(_Hb)end)end do function _ek.on(_NU)_ek.handlers[#_ek.handlers+1]=_NU end function _ek.confirm()local _NV=""pcall(function()_NV=_r:GetErrorMessage()end)if _NV~=""then return true end local _NW,_NX=pcall(function()return _s.RobloxPromptGui.promptOverlay:FindFirstChild(string.char(69,114,114,111,114,80,114,111,109,112,116))~=nil end)return _NW and _NX end function _ek.report(_NY,_NZ)if _ek.fired or _ek.hopping then return end if not _NZ then task.wait(2)if not _ek.confirm()then return end end if _ek.fired or _ek.hopping then return end _ek.fired=true for _Oa,_Ob in ipairs(_ek.handlers)do task.spawn(_Ob,_NY)end end local _Oc={}_Oc[#_Oc+1]=_r.ErrorMessageChanged:Connect(function()local _Od=""pcall(function()_Od=_r:GetErrorMessage()end)if _Od~=""then task.spawn(_ek.report,_Od)end end)_Oc[#_Oc+1]=_h.PlayerRemoving:Connect(function(_Oe)if _Oe==_t then task.spawn(_ek.report,string.char(75,101,108,117,97,114,32,100,97,114,105,32,103,97,109,101),true)end end)task.spawn(function()pcall(function()local _Of=_s:WaitForChild(string.char(82,111,98,108,111,120,80,114,111,109,112,116,71,117,105),15):WaitForChild(string.char(112,114,111,109,112,116,79,118,101,114,108,97,121),15)_Oc[#_Oc+1]=_Of.ChildAdded:Connect(function(_Og)if _Og.Name~=string.char(69,114,114,111,114,80,114,111,109,112,116)then return end task.wait(0.3)local _Oh=""pcall(function()_Oh=_Og.MessageArea.ErrorFrame.ErrorMessage.Text end)task.spawn(_ek.report,_Oh)end)end)end)_bm(function()for _Oi,_Oj in ipairs(_Oc)do pcall(function()_Oj:Disconnect()end)end table.clear(_ek.handlers)end)end do local _Ok,_Ol,_Om=false,true,false local _On,_Oo={},{}local _Op,_Oq,_Or=0,0,0 local _Os={}local _Ot={t=-100,v={}}local _Ou={t=-100,list={}}local _Ov=os.time()local _Ow=nil local _Ox={{key=string.char(112,105,110,107),label=string.char(80,105,110,107,32,71,101,97,114),color=0xFF69B4},{key=string.char(115,116,111,110,101),label=string.char(66,97,116,117),color=0x9AA0A6},}local _Oy=(syn and syn.request)or(http and http.request)or http_request or request or(fluxus and fluxus.request)local function _Oz(_OA)if _el.info then _el.info.Text=_OA end end local function _OB(_OC)return(tostring(_OC):lower():gsub(string.char(91,94,37,119,93),""))end local function _OD(_OE)return tostring(math.floor((tonumber(_OE)or 0)+0.5))end local function _OF(_OG,_OH)local _OI=_eo[_OG]return _OI and tonumber(_OI.get())or _OH end local function _OJ(_OK)if type(_OK)~=string.char(115,116,114,105,110,103)then return false end return(_OK:match(string.char(94,104,116,116,112,115,58,47,47,100,105,115,99,111,114,100,37,46,99,111,109,47,97,112,105,47,119,101,98,104,111,111,107,115,47,37,100,43,47,46,43))or _OK:match(string.char(94,104,116,116,112,115,58,47,47,100,105,115,99,111,114,100,97,112,112,37,46,99,111,109,47,97,112,105,47,119,101,98,104,111,111,107,115,47,37,100,43,47,46,43))or _OK:match(string.char(94,104,116,116,112,115,58,47,47,112,116,98,37,46,100,105,115,99,111,114,100,37,46,99,111,109,47,97,112,105,47,119,101,98,104,111,111,107,115,47,37,100,43,47,46,43))or _OK:match(string.char(94,104,116,116,112,115,58,47,47,99,97,110,97,114,121,37,46,100,105,115,99,111,114,100,37,46,99,111,109,47,97,112,105,47,119,101,98,104,111,111,107,115,47,37,100,43,47,46,43)))and true or false end local _OL=string.char(75,121,72,117,98,47,115,101,115,115,105,111,110,95).._t.UserId..string.char(46,106,115,111,110)local function _OM()return(writefile and readfile and isfile and makefolder and isfolder)and true or false end local function _ON(_OO,_OP)if not _OM()then return end pcall(function()if not isfolder(string.char(75,121,72,117,98))then makefolder(string.char(75,121,72,117,98))end writefile(_OL,_l:JSONEncode({state=_OO,t=os.time(),reason=_OP,job=game.JobId}))end)end local function _OQ()if not _OM()or not isfile(_OL)then return nil end local _OR,_OS=pcall(function()return _l:JSONDecode(readfile(_OL))end)if _OR and type(_OS)==string.char(116,97,98,108,101)then return _OS end end local _OT={amount=true,count=true,quantity=true,qty=true,stack=true,value=true,amt=true}local function _OU(_OV,_OW,_OX,_OY)if type(_OX)~=string.char(110,117,109,98,101,114)or _OX~=_OX or _OX<=0 then return end local _OZ=_OB(_OW)if _OZ==""then return end local _Pa=_OV[_OZ]if _Pa then if _OY then _Pa.count=math.max(_Pa.count,_OX)else _Pa.count+=_OX end else _OV[_OZ]={name=tostring(_OW),count=_OX}end end local function _Pb(_Pc,_Pd)if _Pc:IsA(string.char(84,111,111,108))then local _Pe=_Pc:GetAttribute(string.char(65,109,111,117,110,116))or _Pc:GetAttribute(string.char(67,111,117,110,116))or _Pc:GetAttribute(string.char(81,117,97,110,116,105,116,121))or 1 _OU(_Pd,_Pc.Name,tonumber(_Pe)or 1)elseif _Pc:IsA(string.char(73,110,116,86,97,108,117,101))or _Pc:IsA(string.char(78,117,109,98,101,114,86,97,108,117,101))then local _Pf=_Pc.Name if _OT[_Pf:lower()]and _Pc.Parent and _Pc.Parent~=_t then _Pf=_Pc.Parent.Name end _OU(_Pd,_Pf,_Pc.Value)end if not _Pc:IsA(string.char(84,111,111,108))then for _Pg,_Ph in pairs(_Pc:GetAttributes())do if type(_Ph)==string.char(110,117,109,98,101,114)then _OU(_Pd,_OT[_Pg:lower()]and _Pc.Name or _Pg,_Ph)end end end end local function _Pi(_Pj,_Pk)_Pb(_Pj,_Pk)for _Pl,_Pm in ipairs(_Pj:GetDescendants())do _Pb(_Pm,_Pk)end end local function _Pn()if os.clock()-_Ou.t>30 then _Ou.t=os.clock()_Ou.list={}for _Po,_Pp in ipairs({_t.Name,tostring(_t.UserId)})do local _Pq,_Pr=pcall(function()return _m:FindFirstChild(_Pp,true)end)if _Pq and _Pr then _Ou.list[#_Ou.list+1]=_Pr end end end return _Ou.list end local function _Ps()local _Pt={}pcall(function()_Pb(_t,_Pt)for _Pu,_Pv in ipairs(_t:GetChildren())do if _Pv.Name~=string.char(80,108,97,121,101,114,71,117,105)and _Pv.Name~=string.char(80,108,97,121,101,114,83,99,114,105,112,116,115)then _Pi(_Pv,_Pt)end end if _t.Character then for _Pw,_Px in ipairs(_t.Character:GetChildren())do if _Px:IsA(string.char(84,111,111,108))then _Pb(_Px,_Pt)end end end for _Py,_Pz in ipairs(_Pn())do if _Pz.Parent then _Pi(_Pz,_Pt)end end end)return _Pt end local function _PA()local _PB={}pcall(function()local _PC=_t:FindFirstChild(string.char(80,108,97,121,101,114,71,117,105))if not _PC then return end for _PD,_PE in ipairs(_PC:GetDescendants())do if(_PE:IsA(string.char(84,101,120,116,76,97,98,101,108))or _PE:IsA(string.char(84,101,120,116,66,117,116,116,111,110)))and _PE.Text~=""and#_PE.Text<60 and not _PE:IsDescendantOf(_eu)then local _PF=_PE.Text:gsub(string.char(60,91,94,62,93,43,62),"")local _PG,_PH=_PF:match(string.char(94,40,46,45,41,37,115,42,91,120,88,93,37,115,42,40,37,100,91,37,100,44,93,42,41,37,115,42,36))if not _PG then _PG,_PH=_PF:match(string.char(94,40,46,45,41,37,115,42,195,151,37,115,42,40,37,100,91,37,100,44,93,42,41,37,115,42,36))end if not _PG then _PG,_PH=_PF:match(string.char(94,40,46,45,41,37,115,42,58,37,115,42,40,37,100,91,37,100,44,93,42,41,37,115,42,36))end if _PG and _PH and#_PG>0 then _OU(_PB,_PG,tonumber((_PH:gsub(string.char(44),""))),true)end end end end)return _PB end local function _PI(_PJ)local _PK={}for _PL in tostring(_PJ or""):gmatch(string.char(91,94,44,93,43))do local _PM=_PL:gsub(string.char(37,115),"")local _PN=_OB(_PM)if _PN~=""then _PK[#_PK+1]={k=_PN,wild=_PM:find(string.char(42),1,true)~=nil}end end return _PK end local function _PO(_PP,_PQ)for _PR,_PS in ipairs(_PQ)do if _PS.wild then if _PP:find(_PS.k,1,true)then return true end elseif _PP==_PS.k then return true end end return false end local function _PT(_PU,_PV)local _PW,_PX=0,false for _PY,_PZ in pairs(_PU)do if _PO(_PY,_PV)then _PW+=_PZ.count;_PX=true end end return _PW,_PX end local function _Qa(_Qb,_Qc)local _Qd=_PI(_Qc)if#_Qd==0 then return 0 end local _Qe,_Qf=_PT(_Qb,_Qd)if _Qf then return _Qe end if os.clock()-_Ot.t>10 then _Ot.t=os.clock();_Ot.v=_PA()end return(_PT(_Ot.v,_Qd))end local function _Qg(_Qh,_Qi,_Qj,_Qk)return{title=_Qh,description=_Qi,color=_Qj,fields=_Qk,footer={text=string.char(75,121,72,117,98,32,226,128,162,32).._t.Name},timestamp=os.date(string.char(33,37,89,45,37,109,45,37,100,84,37,72,58,37,77,58,37,83,90)),}end local function _Ql(_Qm)if#_Os>=20 then table.remove(_Os,1)end _Os[#_Os+1]=_Qm end local function _Qn(_Qo)local _Qp=_bo(_el.url and _el.url.Get())if not(_Oy and _OJ(_Qp))then _Oz(string.char(87,101,98,104,111,111,107,32,85,82,76,32,116,105,100,97,107,32,118,97,108,105,100,32,47,32,101,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,114,101,113,117,101,115,116,46))return false,false end local _Qq,_Qr=pcall(_Oy,{Url=_Qp,Method=string.char(80,79,83,84),Headers={[string.char(67,111,110,116,101,110,116,45,84,121,112,101)]=string.char(97,112,112,108,105,99,97,116,105,111,110,47,106,115,111,110)},Body=_l:JSONEncode({username=string.char(75,121,72,117,98),embeds={_Qo}}),})if _Qq and _Qr then local _Qs=_Qr.StatusCode or _Qr.Status if _Qs==429 then return false,true end if(type(_Qs)==string.char(110,117,109,98,101,114)and _Qs>=200 and _Qs<300)or(_Qs==nil and _Qr.Success)then _Oz(string.char(84,101,114,107,105,114,105,109,58,32)..tostring(_Qo.title))return true,false end _Oz(string.char(71,97,103,97,108,32,107,105,114,105,109,32,40,72,84,84,80,32)..tostring(_Qs)..string.char(41,46,32,67,101,107,32,85,82,76,32,119,101,98,104,111,111,107,46))return false,false end _Oz(string.char(71,97,103,97,108,32,107,105,114,105,109,58,32)..tostring(_Qr))return false,false end task.spawn(function()while _Ol do local _Qt=table.remove(_Os,1)if _Qt then local _Qu,_Qv=_Qn(_Qt)if _Qv then table.insert(_Os,1,_Qt)task.wait(3)end task.wait(1.2)else task.wait(0.5)end end end)local function _Qw()local _Qx,_Qy=pcall(function()return _t:GetNetworkPing()end)if _Qx and type(_Qy)==string.char(110,117,109,98,101,114)then return(string.char(37,100,32,109,115)):format(math.floor(_Qy*1000+0.5))end return string.char(45)end local function _Qz()local _QA={}if _en.slime and _en.slime.Get()then _QA[#_QA+1]=string.char(65,117,116,111,32,83,108,105,109,101)end if _en.boss and _en.boss.Get()then _QA[#_QA+1]=string.char(65,117,116,111,32,66,111,115,115)end if _en.skel and _en.skel.Get()then _QA[#_QA+1]=string.char(65,117,116,111,32,83,107,101,108,101,116,111,110)end if _en.chest and _en.chest.Get()then _QA[#_QA+1]=string.char(65,117,116,111,32,67,111,108,108,101,99,116)end if _en.harvest and _en.harvest.Get()then _QA[#_QA+1]=string.char(65,117,116,111,32,72,97,114,118,101,115,116)end if _en.tree and _en.tree.Get()then _QA[#_QA+1]=string.char(65,117,116,111,32,84,114,101,101)end if _en.mine and _en.mine.Get()then _QA[#_QA+1]=string.char(65,117,116,111,32,77,105,110,101)end return#_QA>0 and table.concat(_QA,string.char(44,32))or string.char(116,105,100,97,107,32,97,100,97)end local function _QB()return math.max(60,_OF(string.char(119,104,46,104,98,46,101,118,101,114,121),10)*60)end local function _QC()return _Qg(string.char(77,97,115,105,104,32,111,110,108,105,110,101),(string.char(42,42,37,115,42,42,32,98,101,114,106,97,108,97,110,32,110,111,114,109,97,108,46)):format(_t.Name),0x2ECC71,{{name=string.char(85,112,116,105,109,101),value=_bq(os.time()-_Ov),inline=true},{name=string.char(80,105,110,103),value=_Qw(),inline=true},{name=string.char(70,105,116,117,114,32,97,107,116,105,102),value=_Qz(),inline=false},})end _ek.on(function(_QD)_QD=_bo(_QD)if _QD==""then _QD=string.char(84,105,100,97,107,32,100,105,107,101,116,97,104,117,105)end _ON(string.char(100,105,115,99,111,110,110,101,99,116,101,100),_QD)if _Ok and _el.dc.Get()then _Qn(_Qg(string.char(68,105,115,99,111,110,110,101,99,116,32,47,32,75,105,99,107),(string.char(42,42,37,115,42,42,32,116,101,114,112,117,116,117,115,32,100,97,114,105,32,103,97,109,101,46)):format(_t.Name),0xE74C3C,{{name=string.char(65,108,97,115,97,110),value=_QD:sub(1,200),inline=false},{name=string.char(79,110,108,105,110,101,32,115,101,108,97,109,97),value=_bq(os.time()-_Ov),inline=true},}))end end)local function _QE()if _Ow and _Ok then if _el.rejoin.Get()then _Ql(_Ow)_Oq=os.clock()+_QB()end _Ow=nil end end local function _QF()local _QG=false for _QH,_QI in ipairs(_Ox)do if _el[_QI.key].on.Get()then _QG=true end end if not _QG then return end local _QJ=os.clock()local _QK=_Ps()local _QL=(not _t.Character)or _QJ<_Or for _QM,_QN in ipairs(_Ox)do local _QO=_el[_QN.key]if _QO.on.Get()and not _QL then local _QP=_Qa(_QK,_QO.kw.Get())local _QQ=_On[_QN.key]if _QQ~=nil and _QP>_QQ then _Oo[_QN.key]=(_Oo[_QN.key]or 0)+(_QP-_QQ)end _On[_QN.key]=_QP else _On[_QN.key]=nil if not _QO.on.Get()then _Oo[_QN.key]=nil end end end if next(_Oo)and _QJ-_Op>=_OF(string.char(119,104,46,99,111,111,108,100,111,119,110),5)then _Op=_QJ for _QR,_QS in ipairs(_Ox)do local _QT=_Oo[_QS.key]if _QT then _Oo[_QS.key]=nil _Ql(_Qg((string.char(37,115,32,100,105,100,97,112,97,116,33)):format(_QS.label),(string.char(42,42,43,37,115,42,42,32,37,115)):format(_OD(_QT),_QS.label),_QS.color,{{name=string.char(80,108,97,121,101,114),value=_t.Name,inline=true},{name=string.char(84,111,116,97,108,32,115,101,107,97,114,97,110,103),value=_OD(_On[_QS.key]or 0),inline=true},}))end end end end local function _QU()if _el.hb.Get()and os.clock()>=_Oq then _Oq=os.clock()+_QB()_Ql(_QC())end end task.spawn(function()local _QV,_QW=0,0 while _Ol do task.wait(2)_QV+=2 _QW+=2 if not _ek.fired and _QV>=20 then _QV=0 _ON(string.char(111,110,108,105,110,101))end if _Ok and not _ek.fired then if _QW>=4 then _QW=0 pcall(_QF)end pcall(_QU)end end end)local _QX=_t.CharacterAdded:Connect(function()_Or=os.clock()+5 _On={}end)function _ei.Set(_QY)if _QY then if not _Oy then _eD(string.char(69,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,114,101,113,117,101,115,116,47,104,116,116,112,95,114,101,113,117,101,115,116,46))_el.master.Set(false)return end if not _OJ(_bo(_el.url.Get()))then _eD(string.char(73,115,105,32,87,101,98,104,111,111,107,32,85,82,76,32,68,105,115,99,111,114,100,32,121,97,110,103,32,118,97,108,105,100,32,100,117,108,117,46))_el.master.Set(false)return end _On,_Oo={},{}_Oq=0 _Ok=true _Oz(string.char(87,101,98,104,111,111,107,32,97,107,116,105,102,46))if _Om then _QE()end else _Ok=false _Oz(string.char(87,101,98,104,111,111,107,32,110,111,110,97,107,116,105,102,46))end end function _ei.OnStart()_Om=true _Ov=os.time()local _QZ=_OQ()_ON(string.char(111,110,108,105,110,101))if _QZ then local _Ra=os.time()-(tonumber(_QZ.t)or os.time())if _QZ.state==string.char(100,105,115,99,111,110,110,101,99,116,101,100)then _Ow=_Qg(string.char(82,101,106,111,105,110,44,32,107,101,109,98,97,108,105,32,111,110,108,105,110,101),(string.char(42,42,37,115,42,42,32,115,117,100,97,104,32,111,110,108,105,110,101,32,108,97,103,105,46)):format(_t.Name),0x3498DB,{{name=string.char(79,102,102,108,105,110,101,32,115,101,108,97,109,97),value=_bq(_Ra),inline=true},{name=string.char(65,108,97,115,97,110,32,116,101,114,112,117,116,117,115),value=tostring(_QZ.reason or string.char(45)):sub(1,200),inline=false},})elseif _QZ.state==string.char(111,110,108,105,110,101)and _Ra>90 then _Ow=_Qg(string.char(75,101,109,98,97,108,105,32,111,110,108,105,110,101),(string.char(42,42,37,115,42,42,32,115,117,100,97,104,32,111,110,108,105,110,101,32,108,97,103,105,46)):format(_t.Name),0x3498DB,{{name=string.char(84,105,100,97,107,32,97,100,97,32,115,105,110,121,97,108,32,115,101,108,97,109,97),value=_bq(_Ra),inline=true},{name=string.char(75,101,116,101,114,97,110,103,97,110),value=string.char(71,97,109,101,32,100,105,116,117,116,117,112,44,32,99,114,97,115,104,44,32,97,116,97,117,32,107,111,110,101,107,115,105,32,112,117,116,117,115,32,116,97,110,112,97,32,112,101,115,97,110,32,101,114,114,111,114,46),inline=false},})end end _QE()end function _ei.Test()if not _Oy then _eD(string.char(69,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,114,101,113,117,101,115,116,47,104,116,116,112,95,114,101,113,117,101,115,116,46));return end if not _OJ(_bo(_el.url.Get()))then _eD(string.char(87,101,98,104,111,111,107,32,85,82,76,32,98,101,108,117,109,32,118,97,108,105,100,46));return end _Ql(_Qg(string.char(84,101,115,116,32,75,121,72,117,98),string.char(87,101,98,104,111,111,107,32,116,101,114,115,97,109,98,117,110,103,46),0x6C78FF,{{name=string.char(80,108,97,121,101,114),value=_t.Name,inline=true},}))_eD(string.char(84,101,115,116,32,100,105,107,105,114,105,109,46))end function _ei.Debug()local function _Rb(_Rc,_Rd,_Re)local _Rf={}for _Rg,_Rh in pairs(_Rd)do _Rf[#_Rf+1]=_Rh end table.sort(_Rf,function(_Ri,_Rj)return _Ri.name:lower()<_Rj.name:lower()end)print(_Rc,#_Rf)for _Rk,_Rl in ipairs(_Rf)do if _Rk>_Re then print(string.char(32,32,46,46,46));break end print((string.char(32,32,37,115,32,61,32,37,115)):format(_Rl.name,_OD(_Rl.count)))end end local _Rm,_Rn=_Ps(),_PA()print(string.char(61,61,61,32,68,69,66,85,71,32,73,78,86,69,78,84,79,82,89,32,61,61,61))_Rb(string.char(68,97,114,105,32,100,97,116,97,32,112,108,97,121,101,114,32,40,86,97,108,117,101,32,47,32,65,116,116,114,105,98,117,116,101,32,47,32,84,111,111,108,41,58),_Rm,150)_Rb(string.char(68,97,114,105,32,116,101,107,115,32,85,73,32,40,99,97,100,97,110,103,97,110,41,58),_Rn,60)print(string.char(45,45,45,32,104,97,115,105,108,32,112,101,114,32,105,116,101,109,32,45,45,45))for _Ro,_Rp in ipairs(_Ox)do local _Rq=_el[_Rp.key].kw.Get()local _Rr=_PI(_Rq)local _Rs,_Rt=_PT(_Rm,_Rr)local _Ru,_Rv=_PT(_Rn,_Rr)print((string.char(32,32,37,115,32,124,32,110,97,109,97,32,39,37,115,39,32,124,32,100,97,116,97,58,32,37,115,32,40,37,115,41,32,124,32,85,73,58,32,37,115,32,40,37,115,41)):format(_Rp.label,_Rq,_OD(_Rs),_Rt and string.char(107,101,116,101,109,117)or string.char(116,105,100,97,107),_OD(_Ru),_Rv and string.char(107,101,116,101,109,117)or string.char(116,105,100,97,107)))end _eD(string.char(72,97,115,105,108,32,115,99,97,110,32,97,100,97,32,100,105,32,99,111,110,115,111,108,101,32,40,70,57,41,46))_Oz(string.char(83,99,97,110,32,115,101,108,101,115,97,105,44,32,108,105,104,97,116,32,99,111,110,115,111,108,101,32,40,70,57,41,46))end _bm(function()_Ol=false _Ok=false if not _ek.fired then _ON(string.char(99,108,111,115,101,100))end _QX:Disconnect()end)end do local _Rw=false local _Rx=setmetatable({},{__mode=string.char(107)})local _Ry={}local _Rz local function _RA(_RB,_RC)local _RD=_Rx[_RB]if not _RD then _RD={};_Rx[_RB]=_RD end if _RD[_RC]==nil then _RD[_RC]=_RB[_RC]end end local function _RE(_RF)if _RF:IsA(string.char(80,97,114,116,105,99,108,101,69,109,105,116,116,101,114))or _RF:IsA(string.char(84,114,97,105,108))or _RF:IsA(string.char(66,101,97,109))or _RF:IsA(string.char(83,109,111,107,101))or _RF:IsA(string.char(70,105,114,101))or _RF:IsA(string.char(83,112,97,114,107,108,101,115))or _RF:IsA(string.char(80,111,115,116,69,102,102,101,99,116))then pcall(function()_RA(_RF,string.char(69,110,97,98,108,101,100));_RF.Enabled=false end)end end local function _RG()if _Rw then return end _Rw=true pcall(function()_RA(_n,string.char(71,108,111,98,97,108,83,104,97,100,111,119,115));_n.GlobalShadows=false end)pcall(function()local _RH=workspace.Terrain _RA(_RH,string.char(87,97,116,101,114,87,97,118,101,83,105,122,101));_RH.WaterWaveSize=0 _RA(_RH,string.char(87,97,116,101,114,87,97,118,101,83,112,101,101,100));_RH.WaterWaveSpeed=0 _RA(_RH,string.char(87,97,116,101,114,82,101,102,108,101,99,116,97,110,99,101));_RH.WaterReflectance=0 end)pcall(function()_Rz=settings().Rendering.QualityLevel settings().Rendering.QualityLevel=Enum.QualityLevel.Level01 end)_Ry[#_Ry+1]=workspace.DescendantAdded:Connect(_RE)_Ry[#_Ry+1]=_n.DescendantAdded:Connect(_RE)task.spawn(function()local _RI=0 for _RJ,_RK in ipairs({workspace,_n})do for _RL,_RM in ipairs(_RK:GetDescendants())do if not _Rw then return end _RE(_RM)_RI+=1 if _RI%1500==0 then task.wait()end end end end)end local function _RN()if not _Rw then return end _Rw=false for _RO,_RP in ipairs(_Ry)do pcall(function()_RP:Disconnect()end)end table.clear(_Ry)for _RQ,_RR in pairs(_Rx)do pcall(function()for _RS,_RT in pairs(_RR)do _RQ[_RS]=_RT end end)end table.clear(_Rx)pcall(function()if _Rz then settings().Rendering.QualityLevel=_Rz end end)end function _eh.AntiLag(_RU)if _RU then _RG()else _RN()end end _bm(_RN)end do local _RV function _eh.AntiAFK(_RW)if _RW then if _RV then return end _RV=_t.Idled:Connect(function()pcall(function()_p:CaptureController()_p:ClickButton2(Vector2.new(0,0))end)end)elseif _RV then _RV:Disconnect()_RV=nil end end _bm(function()if _RV then _RV:Disconnect();_RV=nil end end)end do local _RX=queue_on_teleport or(syn and syn.queue_on_teleport)or queueonteleport or(fluxus and fluxus.queue_on_teleport)_ek.on(function()if not _df.On then return end task.wait(_df.Delay)if _df.Loader~=""and _RX then local _RY if _df.Loader:match(string.char(94,104,116,116,112,115,63,58,47,47))then _RY=(string.char(108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,37,113,41,41,40,41)):format(_df.Loader)else _RY=(string.char(108,111,97,100,115,116,114,105,110,103,40,114,101,97,100,102,105,108,101,40,37,113,41,41,40,41)):format(_df.Loader)end pcall(_RX,_RY)end for _RZ=1,20 do if not _df.On then return end pcall(function()_q:Teleport(game.PlaceId,_t)end)task.wait(15)end end)end do local _Sa=queue_on_teleport or(syn and syn.queue_on_teleport)or queueonteleport or(fluxus and fluxus.queue_on_teleport)local _Sb=25 local _Sc=_b.KyHub_BadServers if type(_Sc)~=string.char(116,97,98,108,101)then _Sc={};_b.KyHub_BadServers=_Sc end _Sc[game.JobId]=true local _Sd,_Se=false,0 local _Sf={}local function _Sg(_Sh)if _dg.info then _dg.info.Text=_Sh end end function _dg.SetIds(_Si)local _Sj,_Sk={},{}for _Sl in tostring(_Si or""):gmatch(string.char(37,100,43))do local _Sm=tonumber(_Sl)if _Sm and not _Sk[_Sm]then _Sk[_Sm]=true;_Sj[#_Sj+1]=_Sm end end _dg.ids,_dg.set=_Sj,_Sk _Sg(_dg.on and(string.char(65,107,116,105,102,44,32,109,101,109,97,110,116,97,117,32,37,100,32,73,68,46)):format(#_Sj)or string.char(78,111,110,97,107,116,105,102,46))end function _dg.Set(_Sn)_dg.on=_Sn and true or false _Se=0 _Sg(_dg.on and(string.char(65,107,116,105,102,44,32,109,101,109,97,110,116,97,117,32,37,100,32,73,68,46)):format(#_dg.ids)or string.char(78,111,110,97,107,116,105,102,46))end local function _So()local _Sp={}for _Sq,_Sr in ipairs(_h:GetPlayers())do if _Sr~=_t and _dg.set[_Sr.UserId]then local _Ss=_Sf[_Sr.UserId]if not(_Ss and os.clock()-_Ss<_Sb)then _Sp[#_Sp+1]=_Sr end end end return _Sp end local function _St()local _Su=((string.char(104,116,116,112,115,58,47,47,103,97,109,101,115,46,114,111,98,108,111,120,46,99,111,109,47,118,49,47,103,97,109,101,115,47,37,100,47,115,101,114,118,101,114,115,47,80,117,98,108,105,99,63,115,111,114,116,79,114,100,101,114,61,65,115)..string.char(99,38,108,105,109,105,116,61,49,48,48,38,101,120,99,108,117,100,101,70,117,108,108,71,97,109,101,115,61,116,114,117,101))):format(game.PlaceId)local _Sv,_Sw=pcall(function()return game:HttpGet(_Su)end)if not _Sv then return nil,string.char(71,97,103,97,108,32,97,109,98,105,108,32,100,97,102,116,97,114,32,115,101,114,118,101,114,58,32)..tostring(_Sw):sub(1,80)end local _Sx,_Sy=pcall(function()return _l:JSONDecode(_Sw)end)if not(_Sx and type(_Sy)==string.char(116,97,98,108,101)and type(_Sy.data)==string.char(116,97,98,108,101))then return nil,string.char(68,97,102,116,97,114,32,115,101,114,118,101,114,32,116,105,100,97,107,32,116,101,114,98,97,99,97,32,40,109,117,110,103,107,105,110,32,107,101,110,97,32,114,97,116,101,32,108,105,109,105,116,41,46)end local _Sz={}for _SA,_SB in ipairs(_Sy.data)do if type(_SB)==string.char(116,97,98,108,101)and _SB.id and _SB.id~=game.JobId and not _Sc[_SB.id]and type(_SB.playing)==string.char(110,117,109,98,101,114)and type(_SB.maxPlayers)==string.char(110,117,109,98,101,114)and _SB.playing<_SB.maxPlayers-1 then _Sz[#_Sz+1]=_SB end end if#_Sz==0 then return nil,string.char(84,105,100,97,107,32,97,100,97,32,115,101,114,118,101,114,32,108,97,105,110,32,121,97,110,103,32,99,111,99,111,107,46)end local _SC=math.min(#_Sz,20)return _Sz[math.random(_SC)].id end local function _SD()_Sd=false _ek.hopping=false _Se=os.clock()end local function _SE(_SF)if _Sd then return end _Sd=true _ek.hopping=true local _SG={}for _SH,_SI in ipairs(_SF)do _SG[#_SG+1]=tostring(_SI.UserId)end _Sg((string.char(73,68,32,37,115,32,97,100,97,32,100,105,32,115,101,114,118,101,114,32,105,110,105,46,32,77,101,110,99,97,114,105,32,115,101,114,118,101,114,32,108,97,105,110,46,46,46)):format(table.concat(_SG,string.char(44,32))))local _SJ,_SK=_St()if not _SJ then _Sg((_SK or string.char(71,97,103,97,108,32,99,97,114,105,32,115,101,114,118,101,114,46))..string.char(32,67,111,98,97,32,108,97,103,105,32,49,53,32,100,101,116,105,107,46))_SD()return end _Sc[_SJ]=true if _df.Loader~=""and _Sa then local _SL if _df.Loader:match(string.char(94,104,116,116,112,115,63,58,47,47))then _SL=(string.char(108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,37,113,41,41,40,41)):format(_df.Loader)else _SL=(string.char(108,111,97,100,115,116,114,105,110,103,40,114,101,97,100,102,105,108,101,40,37,113,41,41,40,41)):format(_df.Loader)end pcall(_Sa,_SL)end _Sg(string.char(80,105,110,100,97,104,32,115,101,114,118,101,114,46,46,46))local _SM,_SN=pcall(function()_q:TeleportToPlaceInstance(game.PlaceId,_SJ,_t)end)if not _SM then _Sg(string.char(84,101,108,101,112,111,114,116,32,103,97,103,97,108,58,32)..tostring(_SN):sub(1,80))_SD()return end task.delay(25,function()if _bk and _Sd then _Sg(string.char(84,101,108,101,112,111,114,116,32,98,101,108,117,109,32,106,97,108,97,110,44,32,99,111,98,97,32,115,101,114,118,101,114,32,108,97,105,110,46,46,46))_SD()end end)end local _SP=_h.PlayerAdded:Connect(function(_SO)if _dg.set[_SO.UserId]then _Sf[_SO.UserId]=os.clock()end end)local _SQ=_q.TeleportInitFailed:Connect(function()if _Sd then _SD()end end)task.spawn(function()while _bk do task.wait(3)if _dg.on and not _Sd and#_dg.ids>0 and os.clock()-_Se>=15 then local _SR=_So()if#_SR>0 then pcall(_SE,_SR)else _Sg((string.char(65,109,97,110,58,32,116,105,100,97,107,32,97,100,97,32,100,97,114,105,32,37,100,32,73,68,32,116,101,114,108,97,114,97,110,103,32,100,105,32,115,101,114,118,101,114,32,105,110,105,46)):format(#_dg.ids))end end end end)_bm(function()_SP:Disconnect()_SQ:Disconnect()_dg.on=false _ek.hopping=false end)end do local _SS=string.char(75,121,72,117,98)local _ST=_SS..string.char(47,99,111,110,102,105,103,115)local _SU=_SS..string.char(47,97,117,116,111,108,111,97,100,95).._t.UserId..string.char(46,116,120,116)local _SV=_SS..string.char(47,105,110,100,101,120,95).._t.UserId..string.char(46,106,115,111,110)local _SW,_SX=nil,0 local function _SY()return(writefile and readfile and isfile and makefolder and isfolder)and true or false end _eh.FsReady=_SY local function _SZ(_Ta)_Ta=tostring(_Ta or"")_Ta=_Ta:gsub(string.char(91,94,37,119,37,45,95,32,93),"")return _bo(_Ta):sub(1,30)end local function _Tb(_Tc)return _ST..string.char(47).._Tc..string.char(46,106,115,111,110)end local function _Td()if not isfolder(_SS)then makefolder(_SS)end if not isfolder(_ST)then makefolder(_ST)end end local function _Te()local _Tf,_Tg={},{}local function _Th(_Ti)if _Ti and _Ti~=""and not _Tg[_Ti]and isfile(_Tb(_Ti))then _Tg[_Ti]=true _Tf[#_Tf+1]=_Ti end end if listfiles and isfolder(_ST)then local _Tj,_Tk=pcall(listfiles,_ST)if _Tj and type(_Tk)==string.char(116,97,98,108,101)then for _Tl,_Tm in ipairs(_Tk)do _Th(tostring(_Tm):match(string.char(40,91,94,47,92,93,43,41,37,46,106,115,111,110,36)))end end end if isfile(_SV)then local _Tn,_To=pcall(function()return _l:JSONDecode(readfile(_SV))end)if _Tn and type(_To)==string.char(116,97,98,108,101)then for _Tp,_Tq in ipairs(_To)do _Th(_Tq)end end end table.sort(_Tf,function(_Tr,_Ts)return _Tr:lower()<_Ts:lower()end)return _Tf end local function _Tt()pcall(function()writefile(_SV,_l:JSONEncode(_Te()))end)end local function _Tu()if not _SY()then return nil end local _Tv,_Tw=pcall(isfile,_SU)if not(_Tv and _Tw)then return nil end local _Tx,_Ty=pcall(readfile,_SU)if not _Tx then return nil end _Ty=_SZ(_Ty)if _Ty==""or _Ty==string.char(48)or _Ty==string.char(49)then return nil end return _Ty end function _eh.GetAuto()return _Tu()end function _eh.Refresh()if not _SY()then _em.list.SetData({},nil)_em.status.Text=string.char(69,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,102,105,108,101,32,40,119,114,105,116,101,102,105,108,101,47,114,101,97,100,102,105,108,101,41,46)return end pcall(_Td)local _Tz=_Tu()_em.list.SetData(_Te(),_Tz)_em.status.Text=_Tz and(string.char(65,117,116,111,32,76,111,97,100,58,32).._Tz)or string.char(65,117,116,111,32,76,111,97,100,58,32,79,70,70)end function _eh.Save()if not _SY()then _eD(string.char(69,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,102,105,108,101,32,40,119,114,105,116,101,102,105,108,101,47,114,101,97,100,102,105,108,101,41,46));return end local _TA=_SZ(_em.name.Get())if _TA==""then _TA=_em.list.selected or""end if _TA==""then _eD(string.char(73,115,105,32,110,97,109,97,32,99,111,110,102,105,103,32,100,117,108,117,46));return end local _TB={}for _TC,_TD in pairs(_eo)do _TB[_TC]=_TD.get()end local _TE,_TF=pcall(function()_Td()writefile(_Tb(_TA),_l:JSONEncode(_TB))end)if not _TE then _eD(string.char(71,97,103,97,108,32,109,101,110,121,105,109,112,97,110,58,32)..tostring(_TF));return end _Tt()_em.list.selected=_TA _em.name.Set(_TA,true)_eh.Refresh()_eD(string.char(67,111,110,102,105,103,32,100,105,115,105,109,112,97,110,58,32).._TA)end local _TG={[string.char(104,97,114,118,101,115,116,46,111,110)]=1,[string.char(99,104,101,115,116,46,111,110)]=2,[string.char(116,114,101,101,46,111,110)]=3,[string.char(109,105,110,101,46,111,110)]=4,[string.char(115,107,101,108,46,111,110)]=5,[string.char(98,111,115,115,46,111,110)]=6,[string.char(115,108,105,109,101,46,111,110)]=7}local function _TH()local _TI={}for _TJ in pairs(_eo)do _TI[#_TI+1]=_TJ end table.sort(_TI,function(_TK,_TL)local _TM,_TN=_TG[_TK]or 0,_TG[_TL]or 0 if _TM~=_TN then return _TM<_TN end return _TK<_TL end)return _TI end function _eh.Load(_TO,_TP)local function _TQ(_TR)if not _TP then _eD(_TR)end end if not _bk then return false end if not _SY()then _TQ(string.char(69,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,102,105,108,101,32,40,119,114,105,116,101,102,105,108,101,47,114,101,97,100,102,105,108,101,41,46));return false end local _TS=_SZ(_TO)if _TS==""then _TS=_em.list.selected or _SZ(_em.name.Get())end if _TS==""then _TQ(string.char(80,105,108,105,104,32,99,111,110,102,105,103,32,121,97,110,103,32,109,97,117,32,100,105,45,108,111,97,100,32,100,117,108,117,46));return false end local _TT,_TU=pcall(isfile,_Tb(_TS))if not(_TT and _TU)then _TQ(string.char(67,111,110,102,105,103,32,116,105,100,97,107,32,100,105,116,101,109,117,107,97,110,58,32).._TS);return false end local _TV,_TW=pcall(readfile,_Tb(_TS))if not _TV or type(_TW)~=string.char(115,116,114,105,110,103)or _TW==""then _TQ(string.char(67,111,110,102,105,103,32,116,105,100,97,107,32,98,105,115,97,32,100,105,98,97,99,97,46));return false end local _TX,_TY=pcall(function()return _l:JSONDecode(_TW)end)if not _TX or type(_TY)~=string.char(116,97,98,108,101)then _TQ(string.char(67,111,110,102,105,103,32,114,117,115,97,107,32,47,32,116,105,100,97,107,32,98,105,115,97,32,100,105,98,97,99,97,46));return false end local _TZ=_TH()for _Ua,_Ub in ipairs(_TZ)do local _Uc=_eo[_Ub]if _Uc.kind~=string.char(116,111,103,103,108,101)and _TY[_Ub]~=nil then pcall(_Uc.set,_TY[_Ub])end end for _Ud,_Ue in ipairs(_TZ)do local _Uf=_eo[_Ue]if _Uf.kind==string.char(116,111,103,103,108,101)and _TY[_Ue]~=nil then pcall(_Uf.set,_TY[_Ue])end end _em.list.selected=_TS _em.name.Set(_TS,true)_eh.Refresh()if not _TP then _eD(string.char(67,111,110,102,105,103,32,100,105,109,117,97,116,58,32).._TS)end return true end function _eh.Delete()if not _SY()then _eD(string.char(69,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,102,105,108,101,46));return end if not delfile then _eD(string.char(69,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,100,101,108,102,105,108,101,46));return end local _Ug=_em.list.selected if not _Ug then _eD(string.char(75,108,105,107,32,110,97,109,97,32,99,111,110,102,105,103,32,100,105,32,100,97,102,116,97,114,32,100,117,108,117,46));return end if _SW~=_Ug or os.clock()-_SX>4 then _SW,_SX=_Ug,os.clock()_eD((string.char(75,108,105,107,32,68,101,108,101,116,101,32,108,97,103,105,32,100,97,108,97,109,32,52,32,100,101,116,105,107,32,117,110,116,117,107,32,104,97,112,117,115,32,39,37,115,39)):format(_Ug))return end _SW=nil local _Uh=pcall(delfile,_Tb(_Ug))if _Uh and not isfile(_Tb(_Ug))then if _Tu()==_Ug then pcall(writefile,_SU,"")end _em.list.selected=nil _em.name.Set("",true)_Tt()_eh.Refresh()_eD(string.char(67,111,110,102,105,103,32,100,105,104,97,112,117,115,58,32).._Ug)else _eD(string.char(71,97,103,97,108,32,109,101,110,103,104,97,112,117,115,32,99,111,110,102,105,103,46))end end function _eh.SetAuto()if not _SY()then _eD(string.char(69,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,102,105,108,101,46));return end local _Ui=_em.list.selected if not _Ui then _eD(string.char(75,108,105,107,32,110,97,109,97,32,99,111,110,102,105,103,32,100,105,32,100,97,102,116,97,114,32,100,117,108,117,46));return end local _Uj=pcall(function()_Td()writefile(_SU,_Ui)end)_eh.Refresh()_eD(_Uj and(string.char(65,117,116,111,32,76,111,97,100,58,32).._Ui)or string.char(71,97,103,97,108,32,109,101,110,121,105,109,112,97,110,32,65,117,116,111,32,76,111,97,100,46))end function _eh.ClearAuto()if not _SY()then _eD(string.char(69,120,101,99,117,116,111,114,32,116,105,100,97,107,32,115,117,112,112,111,114,116,32,102,105,108,101,46));return end pcall(function()writefile(_SU,"")end)_eh.Refresh()_eD(string.char(65,117,116,111,32,76,111,97,100,58,32,79,70,70))end end local function _Uk()if not _bk then return end _bk=false for _Ul,_Um in ipairs(_bl)do pcall(_Um)end _bl={}pcall(function()_eu:Destroy()end)end _eU.Activated:Connect(_Uk)_b.KyHub_Cleanup=_Uk _bm(function()_b.KyHub_Cleanup=nil end)for _Un,_Uo in ipairs(_ep)do pcall(_Uo)end _fQ(string.char(72,111,109,101))_eh.Refresh()task.spawn(function()local _Up=os.clock()while _bk and os.clock()-_Up<30 do if _dh.get()and _m:FindFirstChild(string.char(82,101,109,111,116,101,115))then break end task.wait(0.5)end if not _bk then return end task.wait(2)local _Uq for _Ur=1,6 do if not _bk then return end if _eh.FsReady()then local _Us=_eh.GetAuto()if not _Us then break end if _eh.Load(_Us,true)then _Uq=_Us break end end task.wait(1.5)end if not _bk then return end if _Uq then _eD(string.char(65,117,116,111,32,76,111,97,100,58,32).._Uq)else _eD(string.char(75,121,72,117,98,32,115,105,97,112,46))end _ei.OnStart()end)_eD((string.char(75,121,72,117,98,32,118,49,55,46,50,32,108,111,97,100,101,100,46,32,65,117,116,111,32,67,111,109,98,97,116,32,40,83,108,105,109,101,32,47,32,66,111,115,115,32,47,32,83,107,101,108,101,116,111,110,41,32,105,115,32,114,101,97)..string.char(100,121,46)))
+-- KyHub v17.2 ("Candy Night" theme: sidebar search + icon tiles, group cards, profile)
+-- RightShift = hide/show menu
+--
+-- v17.2: "Auto Slime" tab replaced by "Auto Combat" tab (Auto Slime + Auto Boss + Auto Skeleton).
+--        * Auto Slime: weapon select (WoodSword / IronSword / GoldboneSword / SoulScepter), shoot range, shot effect.
+--        * Auto Boss: Island -> HUB -> RUINS -> teleport to RuinsBoss + fly while attacking, Realtime Boss Status.
+--        * Auto Skeleton: Island -> HUB -> RUINS -> hit Skeleton / Archer / Knight in Guardians.
+--        * Slime / Boss / Skeleton / Harvest / Tree / Mine turn each other off (only one active at a time).
+--
+-- v17.1: Auto Farm tab upgraded with the KyFarm v8.8 engine:
+--        * Pine route: Island -> touch HUB portal -> Hub -> find RUINS -> TouchPart -> farm pine in every ResourceField.
+--        * Respawn / back on island -> route is repeated automatically.
+--        * Pathfinding walk (with side-stepping when a target is unreachable), hover while hitting (stay away from mobs).
+--        * Mining works on real ore parts (not Terrain), replacement detection when a rock is mined out.
+--        * New settings: hover, hover height, walk speed, max time per rock, rock area, RUINS portal delay.
+-- v17.0: NEW "Auto Farm" tab (Auto Tree + Auto Mine). Whole UI translated to English. Single merged file.
+--
+-- v16.7: Ripe detection uses the game's Shared.GrowTime module (same as the in-game timer label):
+--        timer still running = skipped, needs water = skipped, only crops whose timer finished are harvested.
+-- v16.6: Auto Harvest skips crops that need water. Toggle "Skip crops that need water".
+-- v16.5: Auto Harvest only harvests ripe crops (toggle "Only ripe crops"); idle if there are none.
+-- v16.4: Auto Plant seed is a dropdown and follows the crop selected in Auto Harvest.
+-- v16.3: Compatibility for all executors (safeParent, httpGet fallback, fireTouch fallback, clickGui fallback).
+-- v16.2: Auto Harvest can AUTO PLANT (replant on freshly harvested plots).
+-- v16:   Auto Slime hub teleport is verified (retries up to 3x), Anti Same Server (server hop) in Settings.
+
+-- wait for the game to be ready (important for autoexec)
+
+
+
+
+if not game:IsLoaded() then game.Loaded:Wait() end
+do
+    local P = game:GetService("Players")
+    while not P.LocalPlayer do task.wait() end
+    P.LocalPlayer:WaitForChild("PlayerGui", 30)
+    if not P.LocalPlayer.Character then
+        pcall(function() P.LocalPlayer.CharacterAdded:Wait() end)
+    end
+    task.wait(2)
+end
+
+local env = (getgenv and getgenv()) or _G
+if env.KyHub_Cleanup then pcall(env.KyHub_Cleanup) end
+
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local HttpService = game:GetService("HttpService")
+local RS = game:GetService("ReplicatedStorage")
+local Lighting = game:GetService("Lighting")
+local PathfindingService = game:GetService("PathfindingService")
+local VirtualUser = game:GetService("VirtualUser")
+local TeleportService = game:GetService("TeleportService")
+local GuiService = game:GetService("GuiService")
+local CoreGui = game:GetService("CoreGui")
+local LP = Players.LocalPlayer
+
+-- ============================================================
+-- EXECUTOR COMPATIBILITY HELPERS
+-- ============================================================
+local httpReq = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
+
+local function httpGet(url)
+    local ok, body = pcall(function() return game:HttpGet(url) end)
+    if ok and type(body) == "string" then return body end
+    if httpReq then
+        local ok2, res = pcall(httpReq, {Url = url, Method = "GET"})
+        if ok2 and type(res) == "table" and res.Body then return res.Body end
+    end
+    return nil
+end
+
+-- parent a ScreenGui safely: gethui -> CoreGui -> PlayerGui
+local function safeParent(gui)
+    if syn and syn.protect_gui then pcall(syn.protect_gui, gui) end
+    local ok = false
+    if gethui then ok = pcall(function() gui.Parent = gethui() end) end
+    if not ok or not gui.Parent then ok = pcall(function() gui.Parent = CoreGui end) end
+    if not ok or not gui.Parent then gui.Parent = LP:WaitForChild("PlayerGui") end
+end
+
+local function destroyOld(name)
+    local places = {CoreGui, LP:FindFirstChildOfClass("PlayerGui")}
+    if gethui then
+        local ok, g = pcall(gethui)
+        if ok and g then places[#places + 1] = g end
+    end
+    for _, p in ipairs(places) do
+        local o = p and p:FindFirstChild(name)
+        if o then pcall(function() o:Destroy() end) end
+    end
+end
+
+-- touch a portal; if the executor has no firetouchinterest, move right onto the portal
+local function fireTouch(part)
+    local hrp = LP.Character and LP.Character:FindFirstChild("HumanoidRootPart")
+    if not (hrp and part) then return false end
+    if firetouchinterest then
+        local ok = pcall(function()
+            firetouchinterest(hrp, part, 0)
+            task.wait(0.15)
+            firetouchinterest(LP.Character and LP.Character:FindFirstChild("HumanoidRootPart") or hrp, part, 1)
+        end)
+        if ok then return true end
+    end
+    return pcall(function()
+        hrp.CFrame = part.CFrame
+        task.wait(0.3)
+    end)
+end
+-- ============================================================
+
+local Alive = true
+local cleanups = {}
+local function onCleanup(f) cleanups[#cleanups + 1] = f end
+
+local Compat = {}
+Compat.hasHook = (hookmetamethod and getnamecallmethod) and true or false
+Compat.hasFS = (writefile and readfile and isfile and makefolder and isfolder) and true or false
+Compat.qot = queue_on_teleport or (syn and syn.queue_on_teleport) or queueonteleport or (fluxus and fluxus.queue_on_teleport)
+Compat.newcc = newcclosure or function(f) return f end
+Compat.isOwn = checkcaller or function() return false end
+
+local Hooks = {}
+if Compat.hasHook then
+    pcall(function()
+        local old
+        old = hookmetamethod(game, "__namecall", Compat.newcc(function(self, ...)
+            if Alive and getnamecallmethod() == "FireServer" and typeof(self) == "Instance" then
+                local h = Hooks[self.Name]
+                if h and not Compat.isOwn() then pcall(h, ...) end
+            end
+            return old(self, ...)
+        end))
+    end)
+end
+local function trim(s) return (tostring(s or ""):gsub("^%s+", ""):gsub("%s+$", "")) end
+
+local function fmtDur(s)
+    s = math.max(0, math.floor(tonumber(s) or 0))
+    local h, m = s // 3600, (s % 3600) // 60
+    if h > 0 then return ("%dh %dm"):format(h, m) end
+    if m > 0 then return ("%dm %ds"):format(m, s % 60) end
+    return ("%ds"):format(s)
+end
+
+-- "Candy Night" theme
+local T = {
+    bg1 = Color3.fromRGB(40, 22, 78),
+    bg2 = Color3.fromRGB(12, 18, 46),
+    side = Color3.fromRGB(255, 255, 255),
+    card = Color3.fromRGB(255, 255, 255),
+    field = Color3.fromRGB(0, 0, 0),
+    stroke = Color3.fromRGB(255, 255, 255),
+    text = Color3.fromRGB(248, 244, 252),
+    sub = Color3.fromRGB(178, 170, 206),
+    accent = Color3.fromRGB(255, 94, 168),
+    accent2 = Color3.fromRGB(255, 159, 104),
+    accent3 = Color3.fromRGB(88, 200, 255),
+    on = Color3.fromRGB(60, 220, 190),
+    off = Color3.fromRGB(110, 104, 136),
+    danger = Color3.fromRGB(255, 84, 98),
+    good = Color3.fromRGB(184, 232, 255),
+}
+local CARD_T = 0.93
+
+local function new(class, props, parent)
+    local o = Instance.new(class)
+    for k, v in pairs(props or {}) do o[k] = v end
+    if parent then o.Parent = parent end
+    return o
+end
+local function corner(o, r)
+    new("UICorner", {CornerRadius = UDim.new(0, r or 8)}, o)
+    return o
+end
+local function stroke(o, c, tr)
+    new("UIStroke", {
+        Color = c or T.stroke, Transparency = tr or 0.92, Thickness = 1,
+        ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
+    }, o)
+    return o
+end
+local function gradient(o, c1, c2, rot)
+    return new("UIGradient", {Color = ColorSequence.new(c1, c2), Rotation = rot or 0}, o)
+end
+local function hover(b, base)
+    b.MouseEnter:Connect(function()
+        TweenService:Create(b, TweenInfo.new(0.12), {BackgroundTransparency = math.max(0, base - 0.1)}):Play()
+    end)
+    b.MouseLeave:Connect(function()
+        TweenService:Create(b, TweenInfo.new(0.12), {BackgroundTransparency = base}):Play()
+    end)
+end
+
+-- ============================================================
+-- KEY SYSTEM
+-- ============================================================
+local KeyCFG = {
+    API = "https://serverbokhub-kpbp.vercel.app",
+    VerifyPath = "/api/keys/verify",
+    ApiSecret = "rahasia_bokhub_super_aman_2026",
+    GetKeyLink = "https://discord.gg/bFKRrrU4w",
+    Discord = "https://discord.gg/bFKRrrU4w",
+    Folder = "KyHub",
+    File = "KyHub/key.dat",
+}
+
+do
+    local fsOK = (writefile and readfile and isfile) and true or false
+
+    local function getHwid()
+        local ok, id = pcall(function() return game:GetService("RbxAnalyticsService"):GetClientId() end)
+        if ok and id and id ~= "" then return id end
+        return tostring(LP.UserId)
+    end
+
+    local function saveKey(k)
+        if not fsOK then return end
+        pcall(function()
+            if makefolder and isfolder and not isfolder(KeyCFG.Folder) then makefolder(KeyCFG.Folder) end
+            writefile(KeyCFG.File, k)
+        end)
+    end
+    local function loadKey()
+        if not fsOK then return nil end
+        local okE, ex = pcall(isfile, KeyCFG.File)
+        if not (okE and ex) then return nil end
+        local ok, v = pcall(readfile, KeyCFG.File)
+        if not ok or type(v) ~= "string" then return nil end
+        v = trim(v)
+        return v ~= "" and v or nil
+    end
+    local function clearKey()
+        if not fsOK then return end
+        pcall(function() writefile(KeyCFG.File, "") end)
+    end
+
+    local function verify(key)
+        if not httpReq then return "error", "Executor does not support request/http_request." end
+        local ok, res = pcall(httpReq, {
+            Url = KeyCFG.API .. KeyCFG.VerifyPath,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json", ["x-api-key"] = KeyCFG.ApiSecret},
+            Body = HttpService:JSONEncode({keyString = key, hwid = getHwid()}),
+        })
+        if not ok or type(res) ~= "table" then return "error", "Could not reach the server." end
+        local code = tonumber(res.StatusCode) or 0
+        local okD, d = pcall(function() return HttpService:JSONDecode(res.Body or "") end)
+        if not okD or type(d) ~= "table" then
+            if code >= 500 or code == 0 then return "error", "Server error (" .. code .. ")." end
+            return "invalid", "Invalid key."
+        end
+        local msg = d.error or d.message
+        if d.valid == true then return "ok", "Key is valid." end
+        if code == 401 or code == 429 or code >= 500 then
+            return "error", msg or ("Server rejected the request (" .. code .. ").")
+        end
+        return "invalid", msg or "Invalid key."
+    end
+
+    local saved = loadKey()
+    local prefill = saved
+    if saved then
+        local st = verify(saved)
+        if st == "ok" then
+            KeyCFG.Passed = true
+        elseif st == "invalid" then
+            clearKey()
+            prefill = nil
+        end
+    end
+
+    if not KeyCFG.Passed then
+        destroyOld("KyHubKeyGui")
+        local KG = new("ScreenGui", {Name = "KyHubKeyGui", ResetOnSpawn = false, ZIndexBehavior = Enum.ZIndexBehavior.Sibling, DisplayOrder = 100})
+        safeParent(KG)
+
+        local W, H = 340, 262
+        local KWin = new("Frame", {
+            AnchorPoint = Vector2.new(0.5, 0.5), Size = UDim2.new(0, W, 0, H), Position = UDim2.new(0.5, 0, 0.5, 0),
+            BackgroundTransparency = 1, BorderSizePixel = 0,
+        }, KG)
+        new("ImageLabel", {
+            BackgroundTransparency = 1, Image = "rbxassetid://6014261993", ImageColor3 = Color3.new(0, 0, 0),
+            ImageTransparency = 0.4, ScaleType = Enum.ScaleType.Slice, SliceCenter = Rect.new(49, 49, 450, 450),
+            Position = UDim2.new(0, -24, 0, -18), Size = UDim2.new(1, 48, 1, 48), ZIndex = 0,
+        }, KWin)
+        local KBody = corner(new("Frame", {
+            Size = UDim2.new(1, 0, 1, 0), BackgroundColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 0.03,
+            BorderSizePixel = 0, ZIndex = 1,
+        }, KWin), 16)
+        new("UIGradient", {
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, T.bg1),
+                ColorSequenceKeypoint.new(0.55, Color3.fromRGB(30, 20, 66)),
+                ColorSequenceKeypoint.new(1, T.bg2),
+            }), Rotation = 130,
+        }, KBody)
+        stroke(KBody, T.stroke, 0.82)
+
+        local KClose = corner(new("TextButton", {
+            Position = UDim2.new(0, 14, 0, 14), Size = UDim2.new(0, 16, 0, 16), BackgroundColor3 = Color3.fromRGB(255, 95, 87),
+            Text = "", AutoButtonColor = false, ZIndex = 2,
+        }, KBody), 8)
+
+        local KLogo = corner(new("Frame", {
+            AnchorPoint = Vector2.new(0.5, 0), Position = UDim2.new(0.5, 0, 0, 22), Size = UDim2.new(0, 40, 0, 40),
+            BackgroundColor3 = Color3.new(1, 1, 1), BorderSizePixel = 0, ZIndex = 2,
+        }, KBody), 12)
+        gradient(KLogo, T.accent, T.accent2, 45)
+        new("TextLabel", {
+            Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Font = Enum.Font.GothamBlack, TextSize = 22,
+            TextColor3 = Color3.new(1, 1, 1), Text = "K", ZIndex = 3,
+        }, KLogo)
+        new("TextLabel", {
+            Position = UDim2.new(0, 0, 0, 68), Size = UDim2.new(1, 0, 0, 20), BackgroundTransparency = 1,
+            Font = Enum.Font.GothamBold, TextSize = 16, TextColor3 = T.text, Text = "KyHub", ZIndex = 2,
+        }, KBody)
+        new("TextLabel", {
+            Position = UDim2.new(0, 0, 0, 88), Size = UDim2.new(1, 0, 0, 14), BackgroundTransparency = 1,
+            Font = Enum.Font.Gotham, TextSize = 11, TextColor3 = T.sub, Text = "Enter your key to continue", ZIndex = 2,
+        }, KBody)
+
+        local KBox = corner(new("TextBox", {
+            Position = UDim2.new(0, 20, 0, 114), Size = UDim2.new(1, -40, 0, 34), BackgroundColor3 = T.field,
+            BackgroundTransparency = 0.55, Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text,
+            PlaceholderText = "🔑  Paste your key here", PlaceholderColor3 = T.sub, Text = prefill or "",
+            ClearTextOnFocus = false, TextXAlignment = Enum.TextXAlignment.Left, ZIndex = 2,
+        }, KBody), 10)
+        new("UIPadding", {PaddingLeft = UDim.new(0, 12), PaddingRight = UDim.new(0, 10)}, KBox)
+        stroke(KBox)
+
+        local KVerify = corner(new("TextButton", {
+            Position = UDim2.new(0, 20, 0, 156), Size = UDim2.new(1, -40, 0, 34), BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 0, Font = Enum.Font.GothamBold, TextSize = 13, TextColor3 = Color3.new(1, 1, 1),
+            Text = "Verify Key", AutoButtonColor = false, ZIndex = 2,
+        }, KBody), 10)
+        gradient(KVerify, T.accent, T.accent2, 0)
+
+        local function ghost(text, x, w)
+            local b = corner(new("TextButton", {
+                Position = UDim2.new(0, x, 0, 198), Size = UDim2.new(0.5, -24, 0, 30), BackgroundColor3 = T.card,
+                BackgroundTransparency = CARD_T, Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text,
+                Text = text, AutoButtonColor = false, ZIndex = 2,
+            }, KBody), 9)
+            stroke(b, T.stroke, 0.8)
+            hover(b, CARD_T)
+            return b
+        end
+        local KGet = ghost("🔗  Get Key", 20)
+        local KDisc = ghost("💬  Discord", 0)
+        KDisc.Position = UDim2.new(0.5, 4, 0, 198)
+
+        local KStatus = new("TextLabel", {
+            Position = UDim2.new(0, 20, 0, 234), Size = UDim2.new(1, -40, 0, 16), BackgroundTransparency = 1,
+            Font = Enum.Font.GothamMedium, TextSize = 11, TextColor3 = T.sub, Text = "", ZIndex = 2,
+            TextTruncate = Enum.TextTruncate.AtEnd,
+        }, KBody)
+
+        local state, busy = nil, false
+        local function say(msg, color) KStatus.Text = msg or ""; KStatus.TextColor3 = color or T.sub end
+
+        local function copy(text, btn, label)
+            local orig = btn.Text
+            if setclipboard or toclipboard then
+                pcall(setclipboard or toclipboard, text)
+                btn.Text = "✓  Copied!"
+                say(label .. " copied to clipboard.", T.on)
+            else
+                say(text, T.accent3)
+            end
+            task.delay(1.5, function() if btn.Parent then btn.Text = orig end end)
+        end
+        KGet.Activated:Connect(function() copy(KeyCFG.GetKeyLink, KGet, "Key link") end)
+        KDisc.Activated:Connect(function() copy(KeyCFG.Discord, KDisc, "Discord link") end)
+
+        local function submit()
+            if busy then return end
+            local k = trim(KBox.Text)
+            if k == "" then say("Key cannot be empty.", T.danger); return end
+            busy = true
+            KVerify.Text = "Checking..."
+            say("Contacting server...", T.sub)
+            local st, msg = verify(k)
+            if st == "ok" then
+                saveKey(k)
+                say("✓ " .. tostring(msg), T.on)
+                KVerify.Text = "Success!"
+                task.wait(0.6)
+                state = "ok"
+            else
+                say(tostring(msg), T.danger)
+                KVerify.Text = "Verify Key"
+                busy = false
+            end
+        end
+        KVerify.Activated:Connect(submit)
+        KBox.FocusLost:Connect(function(enter) if enter then submit() end end)
+        KClose.Activated:Connect(function() state = "closed" end)
+
+        KWin.Position = UDim2.new(0.5, 0, 0.5, 20)
+        TweenService:Create(KWin, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            Position = UDim2.new(0.5, 0, 0.5, 0),
+        }):Play()
+
+        if prefill then say("Saved key found, but the server did not respond. Try Verify again.", T.sub) end
+
+        while state == nil and KG.Parent do task.wait(0.1) end
+        local result = state
+        pcall(function() KG:Destroy() end)
+        if result ~= "ok" then return end
+    end
+end
+-- ============================================================
+
+-- Auto Combat config (Auto Slime + Auto Boss + Auto Skeleton)
+local SlimeCFG = {
+    Priority = {"pink", "orange", "blue", "green"},
+    Enabled = {pink = true, orange = true, blue = true, green = true},
+    UseHub = true,
+    AutoHub = true,
+    WalkSpeed = 22,
+    StuckTime = 2,
+    SkipFor = 30,
+    AttackRange = 7,
+    SwingDelay = 0.4,
+    SwingAnim = true,
+    FixCamera = true,
+    EquipEvery = 15,
+    SwingArgs = {},
+    LobbyName = "Hub",
+    LobbyPad = 10,
+    AfterDelay = 3,
+    FindTimeout = 5,
+    HubVerifyWait = 6,
+    HubAttempts = 3,
+    IslandStuckWait = 10,
+    Weapon = "WoodSword",   -- WoodSword / IronSword / GoldboneSword / SoulScepter
+    ShootRange = 20,        -- distance to stand & shoot with SoulScepter (studs), small = close
+    ShootType = 1,          -- 3rd argument of RequestShoot
+    ShotFx = true,          -- orb effect when shooting
+}
+
+local SkelCFG = {
+    Types = {"Skeleton", "SkeletonArcher", "SkeletonKnight"},
+    Priority = {"Skeleton", "SkeletonArcher", "SkeletonKnight"},
+    Enabled = {Skeleton = true, SkeletonArcher = true, SkeletonKnight = true},
+    UseRoute = true,        -- island -> HUB -> RUINS before farming
+    HubName = "Hub",        -- Hub model in Workspace
+    PortalName = "HUB",     -- HUB portal inside Island_*
+    RuinsName = "RUINS",
+    TouchName = "TouchPart",
+    HubPad = 10,
+    HubWait = 6,
+    HubAttempts = 3,
+    RuinsDelay = 4,         -- wait in the HUB so the RUINS portal can load first
+    WaitTimeout = 10,
+    FindTimeout = 15,       -- wait for skeletons to appear after entering RUINS
+    NearRange = 300,        -- skeleton within this range = already in RUINS
+    EquipEvery = 15,
+    ScanEvery = 3,
+}
+
+local BossCFG = {
+    UseRoute = true,        -- island -> HUB -> RUINS before going to the boss
+    Folder = "RuinsBoss",   -- boss folder in Workspace
+    Height = 25,             -- fly height above the boss (studs)
+    Offset = 3,             -- horizontal offset from the boss (studs)
+    Realtime = false,       -- Realtime Boss Status: keep Hub & Ruins streamed in
+    StreamEvery = 3,        -- repeat the stream request every X seconds
+}
+
+local ChestCFG = {
+    Teleport = true,
+    OnlyFull = true,
+    IntervalMin = 1,
+    OpenWait = 3,
+    CollectWait = 0.8,
+    BetweenChest = 0.3,
+    HomeModel = "Hub",
+    HomeTouchName = "TouchPart",
+    HomeKeyword = "home",
+    HomeWait = 8,
+    AfterHomeDelay = 2,
+}
+
+-- ===== SETTING AUTO PLANT (ubah angka di sini) =====
+-- ===== SETTING AUTO PLANT (ubah angka di sini) =====
+-- ===== SETTING PLANT AFTER HARVEST (ubah angka di sini) =====
+local PlantCFG = {
+    AfterHarvest = true, -- true = setelah panen langsung tanam lagi
+    Slot = 63,           -- slot bibit cadangan untuk kalibrasi
+    YOff = 1,            -- jangan diubah
+    CropGoneWait = 2,    -- detik menunggu tanaman lama hilang. Kalau tidak hilang (belum matang / tumbuh lagi) petak dilewati
+    RetryGap = 0.8,      -- jeda sebelum kirim ulang kalau tanaman belum muncul (detik)
+    Retries = 7,         -- berapa kali kirim ulang per petak
+        PlantNear = true,    -- tanam juga petak kosong di sekitar karakter
+    NearRadius = 20,     -- jarak cari petak kosong (stud, maksimal 30)
+    GrowSkip = 30,       -- detik: tanaman yang baru ditanam tidak dikejar harvest
+    UnripeSkip = 25,     -- detik: tanaman yang panennya ditolak (belum matang) dilewati
+    StuckSkip = 8,       -- detik: batas menuju satu tanaman sebelum dilewati (anti stuck)
+}
+-- WalkSpeed/Radius/PerSecond are used internally and not shown in the UI
+local HarvestCFG = {
+    WalkSpeed = 30,
+    Radius = 20,
+    PerSecond = 10,
+    FireLimitPerBush = 1,
+    BlacklistTime = 15,
+    TeleportFallback = true,
+    StuckTime = 1,
+    OnlyRipe = true,
+    SkipNeedsWater = true,
+    Replant = true,
+    Seed = "WheatSeeds",
+    Slot = 63,
+    Block = "FarmSoil",
+    YOff = 1,
+    GoneWait = 2,
+    Origin = Vector3.new(2121, 201, 2121),
+    Crops = {"berry", "wheat", "onion", "tomato", "carrot"},
+    Crop = "wheat",
+    SeedMap = {berry = "BerrySeeds", wheat = "WheatSeeds", onion = "OnionSeeds", tomato = "TomatoSeeds", carrot = "CarrotSeeds"},
+    Seeds = {"WheatSeeds", "BerrySeeds", "OnionSeeds", "TomatoSeeds", "CarrotSeeds"},
+    Enabled = {berry = false, wheat = true, onion = false, tomato = false, carrot = false},
+}
+
+-- Auto Farm (Auto Tree + Auto Mine) - engine from KyFarm v8.8
+local Farm = {}
+local FarmCFG = {
+    TreeKind = "wood",          -- "wood" / "pine"
+    HitTime = 15,               -- seconds spent on one tree before moving on
+    MineMaxTime = 0,            -- seconds spent on one rock (0 = until it is mined out)
+    SwingDelay = 0.4,
+    StandDist = 4,              -- distance to stand from the target (studs)
+    WalkSpeed = 30,
+    PathRadius = 2.5,
+    PathHeight = 5,
+    WaypointSpacing = 6,
+    RockNear = 10,              -- area used to find the next rock after one is mined out
+    SwingAnim = true,
+    MineList = {"stone", "ironore", "coal", "sand", "clay"},
+    MineEnabled = {stone = true, ironore = true, coal = true, sand = true, clay = true},
+    MinePriority = "ironore",
+    MineRoot = "",              -- empty = ResourceField (in Hub)
+    Hover = true,               -- float while hitting (stay away from slime / skeleton)
+    HoverHeight = 15,           -- studs above the ground
+    UseHub = true,              -- wood & mine: enter the Hub from the island first
+    ReturnToHub = true,         -- switching from pine (RUINS) to wood / mine: go back to the Hub first
+    ReturnPortalName = "Hub",   -- model INSIDE RUINS that leads back to the Hub (name contains this)
+    HubName = "Hub",            -- Hub model in Workspace
+    IslandPortalName = "HUB",   -- HUB portal inside Island_*
+    HubPad = 10,
+    HubWait = 6,
+    RuinsName = "RUINS",
+    TouchPartName = "TouchPart",
+    ResourceName = "ResourceField",
+    TeleportOffset = Vector3.new(0, 4, 0),
+    RuinsLoadDelay = 4,         -- wait in the Hub so the RUINS portal can load before teleporting
+    WaitTimeout = 10,
+}
+
+local Rejoin = {On = false, Delay = 5, Loader = ""}
+local Blk = {on = false, ids = {}, set = {}}
+
+local Island = {override = "", cache = nil, at = -100}
+do
+    local function sameMe(v)
+        if v == LP then return true end
+        local tv = type(v)
+        if tv ~= "string" and tv ~= "number" then return false end
+        local s = tostring(v)
+        return s == tostring(LP.UserId) or s == LP.Name
+    end
+
+    local function refersToMe(isl)
+        local ok, attrs = pcall(function() return isl:GetAttributes() end)
+        if ok then
+            for _, v in pairs(attrs) do
+                if sameMe(v) then return true end
+            end
+        end
+        for _, c in ipairs(isl:GetChildren()) do
+            if c:IsA("ValueBase") then
+                local ok2, v = pcall(function() return c.Value end)
+                if ok2 and sameMe(v) then return true end
+            end
+        end
+        return false
+    end
+
+    local function nameHasMe(isl)
+        return isl.Name:find(tostring(LP.UserId), 1, true) ~= nil
+    end
+
+    local function containsChar(isl, hrp)
+        if not (hrp and isl:IsA("Model")) then return false end
+        local ok, inside = pcall(function()
+            local cf, size = isl:GetBoundingBox()
+            local rel = cf:PointToObjectSpace(hrp.Position)
+            local h = size / 2 + Vector3.new(60, 80, 60)
+            return math.abs(rel.X) <= h.X and math.abs(rel.Y) <= h.Y and math.abs(rel.Z) <= h.Z
+        end)
+        return ok and inside
+    end
+
+    local function distTo(isl, hrp)
+        if not hrp then return math.huge end
+        local ok, d = pcall(function() return (isl:GetPivot().Position - hrp.Position).Magnitude end)
+        return ok and d or math.huge
+    end
+
+    function Island.get()
+        if Island.override ~= "" then
+            local o = workspace:FindFirstChild(Island.override)
+            if o then return o end
+        end
+        local now = os.clock()
+        if Island.cache and Island.cache.Parent and now - Island.at < 3 then return Island.cache end
+        Island.at = now
+
+        local hrp = LP.Character and LP.Character:FindFirstChild("HumanoidRootPart")
+        local best, bestScore, bestDist = nil, -1, math.huge
+        for _, c in ipairs(workspace:GetChildren()) do
+            if c.Name:find("^Island_") then
+                local score = 0
+                if c:FindFirstChild("HUB") or c:FindFirstChild("Blocks") then score += 1 end
+                if nameHasMe(c) then score += 50 end
+                if refersToMe(c) then score += 100 end
+                if containsChar(c, hrp) then score += 200 end
+                local d = distTo(c, hrp)
+                if score > bestScore or (score == bestScore and d < bestDist) then
+                    best, bestScore, bestDist = c, score, d
+                end
+            end
+        end
+        Island.cache = best
+        return best
+    end
+
+    function Island.contains(hrp)
+        local isl = Island.get()
+        return isl ~= nil and containsChar(isl, hrp)
+    end
+
+    function Island.list()
+        local out = {}
+        for _, c in ipairs(workspace:GetChildren()) do
+            if c.Name:find("^Island_") then out[#out + 1] = c end
+        end
+        return out
+    end
+end
+
+local Slime, Skel, Boss, Combat = {}, {}, {}, {}
+local Chest, Harvest, Sys, Webhook = {}, {}, {}, {}
+local Link = {pause = false, hubBusy = false}
+local DC = {handlers = {}, fired = false, hopping = false}
+local WH, CfgUI = {}, {}
+local Tg = {}
+local Controls = {}
+local Deferred = {}
+local Stats = {
+    start = os.time(), farmSec = 0, swings = 0, kills = 0, hitSlimes = 0, color = {},
+    seen = setmetatable({}, {__mode = "k"}),
+}
+
+-- only one automation may run at a time: turn every toggle off except `keep`
+function Combat.Exclusive(keep)
+    for _, k in ipairs({"slime", "boss", "skel", "harvest", "tree", "mine", "plant"}) do
+        if k ~= keep and Tg[k] then Tg[k].Set(false) end
+    end
+end
+
+destroyOld("KyHubGui")
+local Gui = new("ScreenGui", {Name = "KyHubGui", ResetOnSpawn = false, ZIndexBehavior = Enum.ZIndexBehavior.Sibling})
+safeParent(Gui)
+
+local vpInit = (workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize) or Vector2.new(1280, 720)
+local winW = math.clamp(vpInit.X - 24, 400, 640)
+local winH = math.clamp(vpInit.Y - 24, 260, 400)
+local sideW = winW < 500 and 138 or 168
+
+local Win = new("Frame", {
+    AnchorPoint = Vector2.new(0.5, 0.5),
+    Size = UDim2.new(0, winW, 0, winH), Position = UDim2.new(0.5, 0, 0.5, 0),
+    BackgroundTransparency = 1, BorderSizePixel = 0,
+}, Gui)
+
+new("ImageLabel", {
+    Name = "Shadow", BackgroundTransparency = 1, Image = "rbxassetid://6014261993",
+    ImageColor3 = Color3.new(0, 0, 0), ImageTransparency = 0.4, ScaleType = Enum.ScaleType.Slice,
+    SliceCenter = Rect.new(49, 49, 450, 450), Position = UDim2.new(0, -24, 0, -18),
+    Size = UDim2.new(1, 48, 1, 48), ZIndex = 0,
+}, Win)
+
+local Body = corner(new("Frame", {
+    Size = UDim2.new(1, 0, 1, 0), BackgroundColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 0.03,
+    BorderSizePixel = 0, ZIndex = 1,
+}, Win), 16)
+new("UIGradient", {
+    Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, T.bg1),
+        ColorSequenceKeypoint.new(0.55, Color3.fromRGB(30, 20, 66)),
+        ColorSequenceKeypoint.new(1, T.bg2),
+    }),
+    Rotation = 130,
+}, Body)
+stroke(Body, T.stroke, 0.82)
+
+local Toast = corner(new("TextLabel", {
+    AnchorPoint = Vector2.new(0.5, 0), Size = UDim2.new(0, 300, 0, 34), Position = UDim2.new(0.5, 0, 0, 14),
+    BackgroundColor3 = Color3.fromRGB(28, 20, 54), BackgroundTransparency = 0.05, TextColor3 = T.text,
+    Font = Enum.Font.GothamMedium, TextSize = 12, Text = "", Visible = false, ZIndex = 50,
+    TextTruncate = Enum.TextTruncate.AtEnd,
+}, Gui), 17)
+stroke(Toast, T.accent, 0.5)
+local toastId = 0
+local function notify(t)
+    toastId += 1
+    local id = toastId
+    Toast.Text = t
+    Toast.Position = UDim2.new(0.5, 0, 0, -20)
+    Toast.Visible = true
+    TweenService:Create(Toast, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+        Position = UDim2.new(0.5, 0, 0, 14),
+    }):Play()
+    task.delay(2.5, function() if toastId == id then Toast.Visible = false end end)
+end
+
+local Side = corner(new("Frame", {
+    Position = UDim2.new(0, 8, 0, 8), Size = UDim2.new(0, sideW, 1, -16),
+    BackgroundColor3 = T.side, BackgroundTransparency = 0.92, BorderSizePixel = 0,
+}, Body), 14)
+stroke(Side, T.stroke, 0.88)
+
+local Dots = new("Frame", {Size = UDim2.new(1, 0, 0, 30), BackgroundTransparency = 1}, Side)
+local dotSyms = {}
+local function dot(x, color, sym, name)
+    local b = corner(new("TextButton", {
+        Name = name, Size = UDim2.new(0, 16, 0, 16), Position = UDim2.new(0, x, 0.5, -8),
+        BackgroundColor3 = color, Text = "", AutoButtonColor = false,
+    }, Dots), 8)
+    local s = new("TextLabel", {
+        Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Font = Enum.Font.GothamBold, TextSize = 11,
+        TextColor3 = Color3.fromRGB(70, 20, 20), Text = sym, Visible = false,
+    }, b)
+    dotSyms[#dotSyms + 1] = s
+    b.MouseEnter:Connect(function() for _, l in ipairs(dotSyms) do l.Visible = true end end)
+    b.MouseLeave:Connect(function() for _, l in ipairs(dotSyms) do l.Visible = false end end)
+    return b
+end
+local CloseBtn = dot(12, Color3.fromRGB(255, 95, 87), "x", "KyHubClose")
+local MinBtn = dot(36, Color3.fromRGB(254, 188, 46), "-", "KyHubMin")
+local ZoomBtn = dot(60, Color3.fromRGB(40, 200, 64), "+", "KyHubZoom")
+
+local Brand = new("Frame", {Position = UDim2.new(0, 0, 0, 30), Size = UDim2.new(1, 0, 0, 40), BackgroundTransparency = 1}, Side)
+local Logo = corner(new("Frame", {
+    Position = UDim2.new(0, 12, 0, 5), Size = UDim2.new(0, 30, 0, 30), BackgroundColor3 = Color3.new(1, 1, 1), BorderSizePixel = 0,
+}, Brand), 9)
+gradient(Logo, T.accent, T.accent2, 45)
+new("TextLabel", {
+    Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Font = Enum.Font.GothamBlack, TextSize = 16,
+    TextColor3 = Color3.new(1, 1, 1), Text = "K",
+}, Logo)
+new("TextLabel", {
+    Position = UDim2.new(0, 50, 0, 4), Size = UDim2.new(1, -56, 0, 18), BackgroundTransparency = 1,
+    Font = Enum.Font.GothamBold, TextSize = 14, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left, Text = "KyHub",
+}, Brand)
+new("TextLabel", {
+    Position = UDim2.new(0, 50, 0, 21), Size = UDim2.new(1, -56, 0, 14), BackgroundTransparency = 1,
+    Font = Enum.Font.Gotham, TextSize = 10, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left,
+    Text = "farm toolkit · v17.2",
+}, Brand)
+
+local SearchBox = corner(new("TextBox", {
+    Position = UDim2.new(0, 10, 0, 76), Size = UDim2.new(1, -20, 0, 28), BackgroundColor3 = T.field,
+    BackgroundTransparency = 0.55, Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text,
+    PlaceholderText = "🔍  Search", PlaceholderColor3 = T.sub, Text = "", ClearTextOnFocus = false,
+    TextXAlignment = Enum.TextXAlignment.Left,
+}, Side), 9)
+new("UIPadding", {PaddingLeft = UDim.new(0, 10), PaddingRight = UDim.new(0, 8)}, SearchBox)
+stroke(SearchBox)
+
+local TabList = new("ScrollingFrame", {
+    Size = UDim2.new(1, 0, 1, -170), Position = UDim2.new(0, 0, 0, 110), BackgroundTransparency = 1, BorderSizePixel = 0,
+    ScrollBarThickness = 2, ScrollBarImageColor3 = T.accent, CanvasSize = UDim2.new(),
+    AutomaticCanvasSize = Enum.AutomaticSize.Y,
+}, Side)
+new("UIListLayout", {Padding = UDim.new(0, 3), SortOrder = Enum.SortOrder.LayoutOrder}, TabList)
+new("UIPadding", {PaddingLeft = UDim.new(0, 8), PaddingRight = UDim.new(0, 8)}, TabList)
+
+local Profile = new("Frame", {
+    AnchorPoint = Vector2.new(0, 1), Position = UDim2.new(0, 0, 1, 0), Size = UDim2.new(1, 0, 0, 54), BackgroundTransparency = 1,
+}, Side)
+new("Frame", {
+    Position = UDim2.new(0, 12, 0, 0), Size = UDim2.new(1, -24, 0, 1), BackgroundColor3 = T.stroke,
+    BackgroundTransparency = 0.88, BorderSizePixel = 0,
+}, Profile)
+local Avatar = corner(new("ImageLabel", {
+    Position = UDim2.new(0, 12, 0.5, -15), Size = UDim2.new(0, 30, 0, 30), BackgroundColor3 = T.accent,
+    BackgroundTransparency = 0.5, BorderSizePixel = 0, Image = "",
+}, Profile), 15)
+new("TextLabel", {
+    Position = UDim2.new(0, 50, 0.5, -16), Size = UDim2.new(1, -56, 0, 16), BackgroundTransparency = 1,
+    Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left,
+    TextTruncate = Enum.TextTruncate.AtEnd, Text = LP.DisplayName,
+}, Profile)
+new("TextLabel", {
+    Position = UDim2.new(0, 50, 0.5, 0), Size = UDim2.new(1, -56, 0, 14), BackgroundTransparency = 1,
+    Font = Enum.Font.Gotham, TextSize = 10, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left,
+    TextTruncate = Enum.TextTruncate.AtEnd, Text = "@" .. LP.Name,
+}, Profile)
+task.spawn(function()
+    local ok, img = pcall(function()
+        return Players:GetUserThumbnailAsync(LP.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+    end)
+    if ok and img and Avatar.Parent then Avatar.Image = img end
+end)
+
+local Content = new("Frame", {
+    Size = UDim2.new(1, -(sideW + 16), 1, 0), Position = UDim2.new(0, sideW + 16, 0, 0), BackgroundTransparency = 1,
+}, Body)
+local TopBar = new("Frame", {Size = UDim2.new(1, 0, 0, 58), BackgroundTransparency = 1}, Content)
+local PageTitle = new("TextLabel", {
+    Size = UDim2.new(1, -20, 0, 26), Position = UDim2.new(0, 10, 0, 8), BackgroundTransparency = 1,
+    Font = Enum.Font.GothamBold, TextSize = 21, TextColor3 = Color3.new(1, 1, 1),
+    TextXAlignment = Enum.TextXAlignment.Left, Text = "",
+}, TopBar)
+gradient(PageTitle, Color3.fromRGB(255, 255, 255), Color3.fromRGB(255, 190, 220), 0)
+local PageSub = new("TextLabel", {
+    Size = UDim2.new(1, -20, 0, 14), Position = UDim2.new(0, 10, 0, 35), BackgroundTransparency = 1,
+    Font = Enum.Font.Gotham, TextSize = 11, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left, Text = "",
+}, TopBar)
+
+local PageHolder = new("Frame", {
+    Position = UDim2.new(0, 6, 0, 58), Size = UDim2.new(1, -18, 1, -66), BackgroundTransparency = 1, ClipsDescendants = true,
+}, Content)
+
+local FloatBox = corner(new("Frame", {
+    Size = UDim2.new(0, 46, 0, 46), Position = UDim2.new(0, 14, 0.5, -23), BackgroundColor3 = Color3.new(1, 1, 1),
+    BorderSizePixel = 0, Visible = false,
+}, Gui), 14)
+gradient(FloatBox, T.accent, T.accent2, 45)
+stroke(FloatBox, T.stroke, 0.7)
+local Float = new("TextButton", {
+    Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Text = "Ky", Font = Enum.Font.GothamBlack,
+    TextSize = 16, TextColor3 = Color3.new(1, 1, 1), AutoButtonColor = false,
+}, FloatBox)
+
+local function setWinVisible(v)
+    Win.Visible = v
+    FloatBox.Visible = not v
+end
+Float.Activated:Connect(function() setWinVisible(true) end)
+MinBtn.Activated:Connect(function() setWinVisible(false) end)
+
+local zoomed = false
+ZoomBtn.Activated:Connect(function()
+    zoomed = not zoomed
+    local vp = (workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize) or Vector2.new(1280, 720)
+    local target = zoomed
+        and UDim2.new(0, math.clamp(vp.X - 24, 400, 840), 0, math.clamp(vp.Y - 24, 260, 560))
+        or UDim2.new(0, winW, 0, winH)
+    TweenService:Create(Win, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = target}):Play()
+end)
+
+local function makeDrag(handle, target)
+    local dragging, startPos, startInput
+    handle.InputBegan:Connect(function(i)
+        if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then
+            dragging, startInput, startPos = true, i.Position, target.Position
+        end
+    end)
+    local c1 = UIS.InputChanged:Connect(function(i)
+        if dragging and (i.UserInputType == Enum.UserInputType.MouseMovement or i.UserInputType == Enum.UserInputType.Touch) then
+            local d = i.Position - startInput
+            target.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + d.X, startPos.Y.Scale, startPos.Y.Offset + d.Y)
+        end
+    end)
+    local c2 = UIS.InputEnded:Connect(function(i)
+        if i.UserInputType == Enum.UserInputType.MouseButton1 or i.UserInputType == Enum.UserInputType.Touch then
+            dragging = false
+        end
+    end)
+    onCleanup(function() c1:Disconnect(); c2:Disconnect() end)
+end
+makeDrag(TopBar, Win)
+makeDrag(Brand, Win)
+makeDrag(Dots, Win)
+
+local hotkeyConn = UIS.InputBegan:Connect(function(input, gp)
+    if gp then return end
+    if input.KeyCode == Enum.KeyCode.RightShift then setWinVisible(not Win.Visible) end
+end)
+onCleanup(function() hotkeyConn:Disconnect() end)
+
+local Pages, TabBtns, TabOrder, PageData = {}, {}, {}, {}
+local currentTab = nil
+local orderCounter = 0
+local function nextOrder() orderCounter += 1; return orderCounter end
+
+local function newPage(name)
+    local p = new("ScrollingFrame", {
+        Name = name, Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, BorderSizePixel = 0,
+        ScrollBarThickness = 3, ScrollBarImageColor3 = T.accent, ScrollBarImageTransparency = 0.3,
+        CanvasSize = UDim2.new(), AutomaticCanvasSize = Enum.AutomaticSize.Y, Visible = false,
+    }, PageHolder)
+    new("UIListLayout", {Padding = UDim.new(0, 4), SortOrder = Enum.SortOrder.LayoutOrder}, p)
+    new("UIPadding", {PaddingRight = UDim.new(0, 8), PaddingBottom = UDim.new(0, 8)}, p)
+    Pages[name] = p
+    PageData[p] = {name = name, groups = {}, cur = nil}
+    return p
+end
+
+local function selectTab(name)
+    currentTab = name
+    for n, p in pairs(Pages) do p.Visible = (n == name) end
+    for n, b in pairs(TabBtns) do
+        local on = (n == name)
+        TweenService:Create(b.btn, TweenInfo.new(0.15), {TextColor3 = on and Color3.new(1, 1, 1) or T.sub}):Play()
+        TweenService:Create(b.pill, TweenInfo.new(0.15), {BackgroundTransparency = on and 0.8 or 1}):Play()
+        TweenService:Create(b.ps, TweenInfo.new(0.15), {Transparency = on and 0.45 or 1}):Play()
+    end
+    PageTitle.Text = name
+    PageSub.Text = (TabBtns[name] and TabBtns[name].sub) or ""
+end
+
+local function addTab(name, icon, sub, c1, c2)
+    local holder = new("Frame", {Size = UDim2.new(1, 0, 0, 32), BackgroundTransparency = 1, LayoutOrder = nextOrder()}, TabList)
+    local pill = corner(new("Frame", {
+        Size = UDim2.new(1, 0, 1, 0), BackgroundColor3 = T.accent, BackgroundTransparency = 1, BorderSizePixel = 0, ZIndex = 1,
+    }, holder), 9)
+    local ps = new("UIStroke", {Color = T.accent, Transparency = 1, Thickness = 1}, pill)
+    local tile = corner(new("Frame", {
+        Position = UDim2.new(0, 6, 0.5, -11), Size = UDim2.new(0, 22, 0, 22), BackgroundColor3 = Color3.new(1, 1, 1),
+        BorderSizePixel = 0, ZIndex = 2,
+    }, holder), 7)
+    gradient(tile, c1 or T.accent, c2 or T.accent2, 45)
+    new("TextLabel", {
+        Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Font = Enum.Font.GothamBold, TextSize = 12,
+        TextColor3 = Color3.new(1, 1, 1), Text = icon or "•", ZIndex = 3,
+    }, tile)
+    local btn = new("TextButton", {
+        Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, AutoButtonColor = false,
+        Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left,
+        Text = name, ZIndex = 4, TextTruncate = Enum.TextTruncate.AtEnd,
+    }, holder)
+    new("UIPadding", {PaddingLeft = UDim.new(0, 36), PaddingRight = UDim.new(0, 4)}, btn)
+    local page = newPage(name)
+    TabBtns[name] = {btn = btn, pill = pill, ps = ps, holder = holder, page = page, sub = sub}
+    TabOrder[#TabOrder + 1] = name
+    btn.Activated:Connect(function() selectTab(name) end)
+    return page
+end
+
+local function Section(page, text)
+    local pd = PageData[page]
+    local label = new("TextLabel", {
+        Size = UDim2.new(1, 0, 0, 24), BackgroundTransparency = 1, Font = Enum.Font.GothamBold, TextSize = 12,
+        TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left, Text = text, LayoutOrder = nextOrder(),
+    }, page)
+    new("UIPadding", {PaddingLeft = UDim.new(0, 6), PaddingTop = UDim.new(0, 8)}, label)
+    local frame = corner(new("Frame", {
+        Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundColor3 = T.card,
+        BackgroundTransparency = CARD_T, BorderSizePixel = 0, LayoutOrder = nextOrder(),
+    }, page), 12)
+    stroke(frame)
+    new("UIListLayout", {SortOrder = Enum.SortOrder.LayoutOrder}, frame)
+    local g = {label = label, frame = frame, rows = {}}
+    pd.groups[#pd.groups + 1] = g
+    pd.cur = g
+end
+
+local function slot(page, h, search, auto)
+    local g = PageData[page].cur
+    local f = new("Frame", {
+        Size = UDim2.new(1, 0, 0, h), BackgroundTransparency = 1, BorderSizePixel = 0, LayoutOrder = #g.rows + 1,
+    }, g.frame)
+    if auto then f.AutomaticSize = Enum.AutomaticSize.Y end
+    local div = new("Frame", {
+        Size = UDim2.new(1, -28, 0, 1), Position = UDim2.new(0, 14, 0, 0), BackgroundColor3 = T.stroke,
+        BackgroundTransparency = 0.9, BorderSizePixel = 0, Visible = #g.rows > 0,
+    }, f)
+    g.rows[#g.rows + 1] = {frame = f, div = div, text = tostring(search or ""):lower()}
+    return f
+end
+
+local function splitText(text)
+    local t, d = tostring(text):match("^(.-)|(.*)$")
+    if t then return t, d end
+    return tostring(text), nil
+end
+local function rowH(text)
+    local _, d = splitText(text)
+    return d and 52 or 44
+end
+local function labelBlock(f, text, reserve)
+    local t, d = splitText(text)
+    local lt = new("TextLabel", {
+        BackgroundTransparency = 1, Position = UDim2.new(0, 14, 0, d and 8 or 0), Size = UDim2.new(1, reserve, 0, d and 18 or 44),
+        Font = Enum.Font.GothamMedium, TextSize = 13, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left, Text = t,
+        TextTruncate = Enum.TextTruncate.AtEnd,
+    }, f)
+    if d then
+        new("TextLabel", {
+            BackgroundTransparency = 1, Position = UDim2.new(0, 14, 0, 26), Size = UDim2.new(1, reserve, 0, 16),
+            Font = Enum.Font.Gotham, TextSize = 11, TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left, Text = d,
+            TextTruncate = Enum.TextTruncate.AtEnd,
+        }, f)
+    end
+    return lt
+end
+
+local function Toggle(page, key, text, default, cb)
+    local f = slot(page, rowH(text), text)
+    labelBlock(f, text, -76)
+    local sw = corner(new("TextButton", {
+        Text = "", AutoButtonColor = false, Size = UDim2.new(0, 46, 0, 26), Position = UDim2.new(1, -58, 0.5, -13),
+        BackgroundColor3 = T.off,
+    }, f), 13)
+    local knob = corner(new("Frame", {
+        Size = UDim2.new(0, 22, 0, 22), Position = UDim2.new(0, 2, 0.5, -11), BackgroundColor3 = Color3.new(1, 1, 1), BorderSizePixel = 0,
+    }, sw), 11)
+    stroke(knob, Color3.new(0, 0, 0), 0.85)
+    local state = false
+    local obj = {}
+    function obj.Get() return state end
+    function obj.Set(v, silent)
+        v = v and true or false
+        if v == state then return end
+        state = v
+        TweenService:Create(sw, TweenInfo.new(0.18), {BackgroundColor3 = v and T.on or T.off}):Play()
+        TweenService:Create(knob, TweenInfo.new(0.18, Enum.EasingStyle.Quad), {Position = v and UDim2.new(0, 22, 0.5, -11) or UDim2.new(0, 2, 0.5, -11)}):Play()
+        if cb and not silent then cb(v) end
+    end
+    sw.Activated:Connect(function() obj.Set(not state) end)
+    if key then
+        Controls[key] = {kind = "toggle", get = function() return state end, set = function(v) obj.Set(v) end}
+    end
+    if default then Deferred[#Deferred + 1] = function() obj.Set(true) end end
+    return obj
+end
+
+local function Input(page, key, text, default, cb, min)
+    local f = slot(page, rowH(text), text)
+    labelBlock(f, text, -118)
+    local box = corner(new("TextBox", {
+        Size = UDim2.new(0, 86, 0, 28), Position = UDim2.new(1, -98, 0.5, -14), BackgroundColor3 = T.field,
+        BackgroundTransparency = 0.5, Font = Enum.Font.GothamBold, TextSize = 12, TextColor3 = T.text,
+        Text = tostring(default), ClearTextOnFocus = false,
+    }, f), 8)
+    stroke(box)
+    local value = default
+    local function apply(n)
+        value = n
+        box.Text = tostring(n)
+        if cb then cb(n) end
+    end
+    box.FocusLost:Connect(function()
+        local n = tonumber(box.Text)
+        if n and n >= (min or 0) then apply(n) else box.Text = tostring(value) end
+    end)
+    if key then
+        Controls[key] = {kind = "input", get = function() return value end,
+            set = function(v) local n = tonumber(v); if n then apply(n) end end}
+    end
+    local obj = {}
+    function obj.Get() return value end
+    function obj.Set(n, silent)
+        value = n
+        box.Text = tostring(n)
+        if cb and not silent then cb(n) end
+    end
+    return obj
+end
+
+local function TextInput(page, key, text, default, cb, width, placeholder)
+    local w = width or 150
+    local f = slot(page, rowH(text), text)
+    labelBlock(f, text, -(w + 28))
+    local box = corner(new("TextBox", {
+        Size = UDim2.new(0, w, 0, 28), Position = UDim2.new(1, -(w + 12), 0.5, -14), BackgroundColor3 = T.field,
+        BackgroundTransparency = 0.5, Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text,
+        PlaceholderText = placeholder or "", PlaceholderColor3 = T.sub, Text = default or "", ClearTextOnFocus = false,
+        TextTruncate = Enum.TextTruncate.AtEnd, TextXAlignment = Enum.TextXAlignment.Left,
+    }, f), 8)
+    new("UIPadding", {PaddingLeft = UDim.new(0, 8), PaddingRight = UDim.new(0, 8)}, box)
+    stroke(box)
+    local obj = {}
+    function obj.Get() return box.Text end
+    function obj.Set(v, silent)
+        box.Text = tostring(v or "")
+        if cb and not silent then cb(box.Text) end
+    end
+    box.FocusLost:Connect(function() if cb then cb(box.Text) end end)
+    if key then
+        Controls[key] = {kind = "text", get = function() return box.Text end, set = function(v) obj.Set(v) end}
+    end
+    return obj
+end
+
+local function Button(page, text, cb, color)
+    local f = slot(page, 48, text)
+    local base = color and 0.1 or 0.88
+    local b = corner(new("TextButton", {
+        Position = UDim2.new(0, 12, 0.5, -16), Size = UDim2.new(1, -24, 0, 32), BackgroundColor3 = color or T.card,
+        BackgroundTransparency = base, AutoButtonColor = false, Font = Enum.Font.GothamMedium, TextSize = 13,
+        TextColor3 = T.text, Text = text,
+    }, f), 9)
+    stroke(b)
+    hover(b, base)
+    b.Activated:Connect(cb)
+    return b
+end
+
+local function ButtonRow(page, items)
+    local names = {}
+    for _, it in ipairs(items) do names[#names + 1] = it[1] end
+    local f = slot(page, 48, table.concat(names, " "))
+    local holder = new("Frame", {
+        Position = UDim2.new(0, 12, 0.5, -16), Size = UDim2.new(1, -24, 0, 32), BackgroundTransparency = 1,
+    }, f)
+    new("UIListLayout", {
+        FillDirection = Enum.FillDirection.Horizontal, Padding = UDim.new(0, 6), SortOrder = Enum.SortOrder.LayoutOrder,
+    }, holder)
+    local n = #items
+    for i, it in ipairs(items) do
+        local base = it[3] and 0.1 or 0.88
+        local b = corner(new("TextButton", {
+            Size = UDim2.new(1 / n, -math.floor(6 * (n - 1) / n), 1, 0), BackgroundColor3 = it[3] or T.card,
+            BackgroundTransparency = base, AutoButtonColor = false,
+            Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text, Text = it[1], LayoutOrder = i,
+            TextTruncate = Enum.TextTruncate.AtEnd,
+        }, holder), 9)
+        stroke(b)
+        hover(b, base)
+        b.Activated:Connect(it[2])
+    end
+end
+
+local function Info(page, text, minH)
+    local f = slot(page, minH or 32, text, true)
+    new("UIPadding", {
+        PaddingTop = UDim.new(0, 10), PaddingBottom = UDim.new(0, 10), PaddingLeft = UDim.new(0, 14), PaddingRight = UDim.new(0, 14),
+    }, f)
+    return new("TextLabel", {
+        Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1,
+        Font = Enum.Font.Gotham, TextSize = 12, TextWrapped = true, TextColor3 = T.good, Text = text,
+        TextXAlignment = Enum.TextXAlignment.Left, TextYAlignment = Enum.TextYAlignment.Top,
+    }, f)
+end
+
+local function ConfigPicker(page, height)
+    local f = slot(page, height, "config")
+    local sc = new("ScrollingFrame", {
+        Size = UDim2.new(1, -20, 1, -12), Position = UDim2.new(0, 10, 0, 6), BackgroundTransparency = 1, BorderSizePixel = 0,
+        ScrollBarThickness = 3, ScrollBarImageColor3 = T.accent, CanvasSize = UDim2.new(),
+        AutomaticCanvasSize = Enum.AutomaticSize.Y,
+    }, f)
+    new("UIListLayout", {Padding = UDim.new(0, 4), SortOrder = Enum.SortOrder.LayoutOrder}, sc)
+    local obj = {selected = nil, names = {}, auto = nil}
+
+    function obj.Render()
+        for _, c in ipairs(sc:GetChildren()) do
+            if c:IsA("TextButton") or c:IsA("TextLabel") then c:Destroy() end
+        end
+        if #obj.names == 0 then
+            new("TextLabel", {
+                Size = UDim2.new(1, 0, 0, 28), BackgroundTransparency = 1, Font = Enum.Font.Gotham, TextSize = 12,
+                TextColor3 = T.sub, TextXAlignment = Enum.TextXAlignment.Left, Text = "  no saved configs yet",
+            }, sc)
+            return
+        end
+        for i, n in ipairs(obj.names) do
+            local picked = (n == obj.selected)
+            local b = corner(new("TextButton", {
+                Size = UDim2.new(1, 0, 0, 28), BackgroundColor3 = picked and T.accent or Color3.new(1, 1, 1),
+                BackgroundTransparency = picked and 0.35 or 0.94, AutoButtonColor = false,
+                Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text, TextXAlignment = Enum.TextXAlignment.Left,
+                Text = "  " .. n .. ((n == obj.auto) and "    ⚡ auto load" or ""), LayoutOrder = i,
+            }, sc), 7)
+            b.Activated:Connect(function() obj.Select(n) end)
+        end
+    end
+
+    function obj.Select(n)
+        obj.selected = n
+        if CfgUI.name and n then CfgUI.name.Set(n, true) end
+        obj.Render()
+    end
+
+    function obj.SetData(names, auto)
+        obj.names, obj.auto = names, auto
+        local still = false
+        for _, n in ipairs(names) do if n == obj.selected then still = true end end
+        if not still then obj.selected = nil end
+        obj.Render()
+    end
+    return obj
+end
+
+local function applySearch(q)
+    q = trim(q):lower()
+    local firstVisible
+    for _, name in ipairs(TabOrder) do
+        local b = TabBtns[name]
+        local pd = PageData[b.page]
+        local nameHit = q ~= "" and name:lower():find(q, 1, true) ~= nil
+        local total = 0
+        for _, g in ipairs(pd.groups) do
+            local shown = 0
+            for _, r in ipairs(g.rows) do
+                local hit = (q == "") or nameHit or (r.text ~= "" and r.text:find(q, 1, true) ~= nil)
+                r.frame.Visible = hit
+                if hit then
+                    r.div.Visible = shown > 0
+                    shown += 1
+                end
+            end
+            g.frame.Visible = shown > 0
+            g.label.Visible = shown > 0
+            total += shown
+        end
+        local vis = (q == "") or nameHit or total > 0
+        b.holder.Visible = vis
+        if vis and not firstVisible then firstVisible = name end
+    end
+    if firstVisible and currentTab and not TabBtns[currentTab].holder.Visible then
+        selectTab(firstVisible)
+    end
+end
+SearchBox:GetPropertyChangedSignal("Text"):Connect(function() applySearch(SearchBox.Text) end)
+
+local function StatRow(page, text, initial)
+    local f = slot(page, rowH(text), text)
+    labelBlock(f, text, -170)
+    return new("TextLabel", {
+        BackgroundTransparency = 1, Position = UDim2.new(1, -164, 0, 0), Size = UDim2.new(0, 150, 1, 0),
+        Font = Enum.Font.GothamBold, TextSize = 14, TextColor3 = T.accent2, TextXAlignment = Enum.TextXAlignment.Right,
+        Text = initial or "-", TextTruncate = Enum.TextTruncate.AtEnd,
+    }, f)
+end
+
+-- display names for dropdown options whose capitalization differs from "Xxxx"
+local PRETTY = {
+    ironore = "IronOre",
+    WoodSword = "Wood Sword", IronSword = "Iron Sword", GoldboneSword = "Goldbone Sword", SoulScepter = "Soul Scepter",
+    SkeletonArcher = "Archer", SkeletonKnight = "Knight",
+}
+local function labelOf(o) return PRETTY[o] or (o:sub(1, 1):upper() .. o:sub(2)) end
+
+local function MultiSelect(page, key, text, options, selected, cb, suffix)
+    local h = rowH(text)
+    local f = slot(page, h, text, true)
+    local inner = new("Frame", {Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1}, f)
+    new("UIListLayout", {SortOrder = Enum.SortOrder.LayoutOrder}, inner)
+    local head = new("Frame", {Size = UDim2.new(1, 0, 0, h), BackgroundTransparency = 1, LayoutOrder = 1}, inner)
+    labelBlock(head, text, -150)
+    local btn = corner(new("TextButton", {
+        Size = UDim2.new(0, 124, 0, 28), Position = UDim2.new(1, -136, 0.5, -14), BackgroundColor3 = T.field,
+        BackgroundTransparency = 0.5, AutoButtonColor = false, Font = Enum.Font.GothamBold, TextSize = 12,
+        TextColor3 = T.text, Text = "", TextTruncate = Enum.TextTruncate.AtEnd,
+    }, head), 8)
+    stroke(btn)
+    local list = new("Frame", {
+        Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1,
+        LayoutOrder = 2, Visible = false,
+    }, inner)
+    new("UIListLayout", {Padding = UDim.new(0, 3), SortOrder = Enum.SortOrder.LayoutOrder}, list)
+    new("UIPadding", {PaddingLeft = UDim.new(0, 12), PaddingRight = UDim.new(0, 12), PaddingBottom = UDim.new(0, 10)}, list)
+
+    local sel, rows = {}, {}
+    for _, o in ipairs(options) do sel[o] = selected[o] and true or false end
+
+    local function label(o) return labelOf(o) end
+    local function refresh()
+        local names, n = {}, 0
+        for _, o in ipairs(options) do
+            if sel[o] then names[#names + 1] = label(o); n += 1 end
+            local r = rows[o]
+            if r then
+                r.box.BackgroundColor3 = sel[o] and T.on or Color3.new(1, 1, 1)
+                r.box.BackgroundTransparency = sel[o] and 0 or 0.85
+                r.tick.Visible = sel[o]
+            end
+        end
+        btn.Text = (n == 0 and "None selected" or (n == #options and "All" or table.concat(names, ", "))) .. "  ▾"
+    end
+
+    for i, o in ipairs(options) do
+        local row = corner(new("TextButton", {
+            Size = UDim2.new(1, 0, 0, 30), BackgroundColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 0.94,
+            AutoButtonColor = false, Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text,
+            TextXAlignment = Enum.TextXAlignment.Left, Text = label(o) .. (suffix or " Slime"), LayoutOrder = i,
+        }, list), 7)
+        new("UIPadding", {PaddingLeft = UDim.new(0, 40)}, row)
+        local box = corner(new("Frame", {
+            Position = UDim2.new(0, -30, 0.5, -9), Size = UDim2.new(0, 18, 0, 18), BorderSizePixel = 0,
+        }, row), 5)
+        local tick = new("TextLabel", {
+            Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Font = Enum.Font.GothamBold, TextSize = 12,
+            TextColor3 = Color3.new(1, 1, 1), Text = "✓",
+        }, box)
+        rows[o] = {box = box, tick = tick}
+        row.Activated:Connect(function()
+            sel[o] = not sel[o]
+            refresh()
+            if cb then cb(sel) end
+        end)
+    end
+    btn.Activated:Connect(function() list.Visible = not list.Visible end)
+    refresh()
+    if cb then cb(sel) end
+
+    if key then
+        Controls[key] = {
+            kind = "text",
+            get = function()
+                local t = {}
+                for _, o in ipairs(options) do if sel[o] then t[#t + 1] = o end end
+                return table.concat(t, ",")
+            end,
+            set = function(v)
+                local on = {}
+                for w in tostring(v or ""):gmatch("[^,]+") do on[trim(w):lower()] = true end
+                for _, o in ipairs(options) do sel[o] = on[o:lower()] or false end
+                refresh()
+                if cb then cb(sel) end
+            end,
+        }
+    end
+end
+
+local function SingleSelect(page, key, text, options, default, cb)
+    local h = rowH(text)
+    local f = slot(page, h, text, true)
+    local inner = new("Frame", {Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1}, f)
+    new("UIListLayout", {SortOrder = Enum.SortOrder.LayoutOrder}, inner)
+    local head = new("Frame", {Size = UDim2.new(1, 0, 0, h), BackgroundTransparency = 1, LayoutOrder = 1}, inner)
+    labelBlock(head, text, -150)
+    local btn = corner(new("TextButton", {
+        Size = UDim2.new(0, 124, 0, 28), Position = UDim2.new(1, -136, 0.5, -14), BackgroundColor3 = T.field,
+        BackgroundTransparency = 0.5, AutoButtonColor = false, Font = Enum.Font.GothamBold, TextSize = 12,
+        TextColor3 = T.text, Text = "", TextTruncate = Enum.TextTruncate.AtEnd,
+    }, head), 8)
+    stroke(btn)
+    local list = new("Frame", {
+        Size = UDim2.new(1, 0, 0, 0), AutomaticSize = Enum.AutomaticSize.Y, BackgroundTransparency = 1,
+        LayoutOrder = 2, Visible = false,
+    }, inner)
+    new("UIListLayout", {Padding = UDim.new(0, 3), SortOrder = Enum.SortOrder.LayoutOrder}, list)
+    new("UIPadding", {PaddingLeft = UDim.new(0, 12), PaddingRight = UDim.new(0, 12), PaddingBottom = UDim.new(0, 10)}, list)
+
+    local cur, rows = default, {}
+    local function label(o) return labelOf(o) end
+    local function refresh()
+        btn.Text = label(cur) .. "  ▾"
+        for o, r in pairs(rows) do
+            r.BackgroundColor3 = (o == cur) and T.accent or Color3.new(1, 1, 1)
+            r.BackgroundTransparency = (o == cur) and 0.35 or 0.94
+        end
+    end
+    local function choose(o)
+        cur = o
+        refresh()
+        if cb then cb(cur) end
+    end
+
+    for i, o in ipairs(options) do
+        rows[o] = corner(new("TextButton", {
+            Size = UDim2.new(1, 0, 0, 30), BackgroundColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 0.94,
+            AutoButtonColor = false, Font = Enum.Font.GothamMedium, TextSize = 12, TextColor3 = T.text,
+            TextXAlignment = Enum.TextXAlignment.Left, Text = "  " .. label(o), LayoutOrder = i,
+        }, list), 7)
+        rows[o].Activated:Connect(function()
+            choose(o)
+            list.Visible = false
+        end)
+    end
+    btn.Activated:Connect(function() list.Visible = not list.Visible end)
+    choose(default)
+
+    if key then
+        Controls[key] = {
+            kind = "text",
+            get = function() return cur end,
+            set = function(v)
+                v = trim(v):lower()
+                for _, o in ipairs(options) do
+                    if o:lower() == v then choose(o) return end
+                end
+            end,
+        }
+    end
+    return {Get = function() return cur end, Set = function(v) choose(v) end}
+end
+
+-- pages
+local pHome = addTab("Home", "🏠", "Overview and session stats", Color3.fromRGB(255, 205, 80), Color3.fromRGB(255, 110, 150))
+local pCombat = addTab("Auto Combat", "⚔", "Auto slime, boss and skeleton", Color3.fromRGB(255, 94, 168), Color3.fromRGB(170, 90, 255))
+local pChest = addTab("Overflow Chest", "📦", "Collect chests that are full", Color3.fromRGB(255, 170, 60), Color3.fromRGB(255, 110, 90))
+local pHarvest = addTab("Auto Harvest", "🌱", "Automatic crop harvesting", Color3.fromRGB(60, 220, 140), Color3.fromRGB(40, 170, 200))
+local pFarm = addTab("Auto Farm", "⛏", "Auto chop trees and mine ores", Color3.fromRGB(130, 210, 90), Color3.fromRGB(40, 150, 110))
+local pWeb = addTab("Webhook", "🔔", "Discord notifications", Color3.fromRGB(88, 200, 255), Color3.fromRGB(90, 120, 255))
+local pSet = addTab("Settings", "⚙", "Performance, island, rejoin, config", Color3.fromRGB(150, 150, 184), Color3.fromRGB(96, 96, 140))
+
+local H = {c = {}}
+Section(pHome, "Welcome")
+Info(pHome, "Hello, " .. LP.DisplayName .. "! KyHub v17.2 is ready. Enable features from the tabs on the left. Stats below are counted since this script started.", 32)
+Section(pHome, "Session stats")
+H.up = StatRow(pHome, "Script uptime|Hours:minutes:seconds since KyHub started", "00:00:00")
+H.farm = StatRow(pHome, "Auto Combat active|Total time slime / boss / skeleton farming has been on", "00:00:00")
+H.hit = StatRow(pHome, "Slimes hit|Number of different slimes hit", "0")
+H.swing = StatRow(pHome, "Total swings|Number of swings / shots sent", "0")
+H.kill = StatRow(pHome, "Mobs killed|Total kills since the script started", "0")
+H.rate = StatRow(pHome, "Average kills per hour|Based on Auto Combat active time", "-")
+Section(pHome, "Kills per color")
+for _, nm in ipairs(SlimeCFG.Priority) do
+    H.c[nm] = StatRow(pHome, nm:sub(1, 1):upper() .. nm:sub(2) .. " Slime", "0")
+end
+Section(pHome, "Status")
+H.feat = Info(pHome, "Active features: none", 32)
+Button(pHome, "Reset stats", function()
+    Stats.start = os.time()
+    Stats.farmSec, Stats.swings, Stats.kills, Stats.hitSlimes = 0, 0, 0, 0
+    Stats.color = {}
+    table.clear(Stats.seen)
+    notify("Stats have been reset.")
+end, Color3.fromRGB(255, 84, 98))
+
+local function fmtClock(sec)
+    sec = math.max(0, math.floor(sec))
+    return ("%02d:%02d:%02d"):format(sec // 3600, (sec % 3600) // 60, sec % 60)
+end
+task.spawn(function()
+    local lastTick = os.clock()
+    while Alive do
+        task.wait(1)
+        local now = os.clock()
+        local dt = now - lastTick
+        lastTick = now
+        if Combat.IsActive and Combat.IsActive() then Stats.farmSec += dt end
+        pcall(function()
+            H.up.Text = fmtClock(os.time() - Stats.start)
+            H.farm.Text = fmtClock(Stats.farmSec)
+            H.hit.Text = tostring(Stats.hitSlimes)
+            H.swing.Text = tostring(Stats.swings)
+            H.kill.Text = tostring(Stats.kills)
+            H.rate.Text = (Stats.farmSec >= 60) and ("%.1f"):format(Stats.kills / (Stats.farmSec / 3600)) or "-"
+            for nm, lbl in pairs(H.c) do lbl.Text = tostring(Stats.color[nm] or 0) end
+            local on = {}
+            if Tg.slime and Tg.slime.Get() then on[#on + 1] = "Auto Slime" end
+            if Tg.boss and Tg.boss.Get() then on[#on + 1] = "Auto Boss" end
+            if Tg.skel and Tg.skel.Get() then on[#on + 1] = "Auto Skeleton" end
+            if Tg.chest and Tg.chest.Get() then on[#on + 1] = "Auto Collect" end
+            if Tg.harvest and Tg.harvest.Get() then on[#on + 1] = "Auto Harvest" end
+            if Tg.tree and Tg.tree.Get() then on[#on + 1] = "Auto Tree" end
+            if Tg.mine and Tg.mine.Get() then on[#on + 1] = "Auto Mine" end
+            local isl = Island.get()
+            H.feat.Text = ("Active features: %s\nIsland: %s"):format(#on > 0 and table.concat(on, ", ") or "none", isl and isl.Name or "not detected yet")
+        end)
+    end
+end)
+
+-- =====================================================================
+-- AUTO COMBAT UI (Auto Slime + Auto Boss + Auto Skeleton)
+-- =====================================================================
+local COLORS = {"pink", "orange", "blue", "green"}
+local WEAPONS = {"WoodSword", "IronSword", "GoldboneSword", "SoulScepter"}
+
+Section(pCombat, "Auto Slime")
+Tg.slime = Toggle(pCombat, "slime.on", "Auto Slime|Hit slimes by color priority", false, function(v) Slime.Set(v) end)
+SingleSelect(pCombat, "combat.weapon", "Weapon|Sword = swing, Scepter = shoot + auto aim", WEAPONS, SlimeCFG.Weapon, function(w)
+    SlimeCFG.Weapon = w
+    if Combat.Equip then pcall(Combat.Equip) end
+end)
+MultiSelect(pCombat, "slime.targets", "Slimes to hit|Choose which slime colors to attack",
+    COLORS, SlimeCFG.Enabled, function(sel) SlimeCFG.Enabled = sel end)
+SingleSelect(pCombat, "slime.priority", "Priority|Hit first, the rest follow", COLORS, SlimeCFG.Priority[1], function(c)
+    local list = {c}
+    for _, o in ipairs(COLORS) do if o ~= c then list[#list + 1] = o end end
+    for i, o in ipairs(list) do SlimeCFG.Priority[i] = o end
+end)
+Toggle(pCombat, "slime.usehub", "Touch HUB portal|Touch the HUB portal before farming", SlimeCFG.UseHub, function(v) SlimeCFG.UseHub = v end)
+Toggle(pCombat, "slime.autohub", "Auto Hub|Retry the portal if the teleport fails", SlimeCFG.AutoHub, function(v) SlimeCFG.AutoHub = v end)
+Toggle(pCombat, "slime.swinganim", "Swing animation|Play the swing animation when hitting", SlimeCFG.SwingAnim, function(v) SlimeCFG.SwingAnim = v end)
+Toggle(pCombat, "slime.shotfx", "Shot effect|Blue orb when firing the Soul Scepter", SlimeCFG.ShotFx, function(v) SlimeCFG.ShotFx = v end)
+Toggle(pCombat, "slime.fixcam", "Fix camera|Force the camera to follow the character while farming (mobile)", SlimeCFG.FixCamera, function(v) SlimeCFG.FixCamera = v end)
+
+
+Section(pCombat, "Auto Boss")
+Boss.info = Info(pCombat, "Mengecek boss...", 32)
+Toggle(pCombat, "boss.realtime", "Realtime Boss Status|ON = Hub & Ruins stay loaded, boss is tracked", BossCFG.Realtime, function(v) BossCFG.Realtime = v end)
+Tg.boss = Toggle(pCombat, "boss.on", "Auto Boss|Island > HUB > RUINS, then fly & attack the boss", false, function(v) Boss.Set(v) end)
+Toggle(pCombat, "boss.route", "Route HUB > RUINS|Island > HUB > RUINS before going to the boss", BossCFG.UseRoute, function(v) BossCFG.UseRoute = v end)
+Input(pCombat, "boss.height", "Boss fly height|Vertical distance above the boss (studs)", BossCFG.Height, function(n) BossCFG.Height = n end, 0)
+Input(pCombat, "boss.offset", "Boss offset|Horizontal offset from the boss (studs)", BossCFG.Offset, function(n) BossCFG.Offset = n end, 0)
+
+Section(pCombat, "Auto Skeleton")
+Tg.skel = Toggle(pCombat, "skel.on", "Auto Skeleton|Island > HUB > RUINS, then hit skeletons", false, function(v) Skel.Set(v) end)
+MultiSelect(pCombat, "skel.targets", "Skeleton to hit|Choose which skeleton types to attack",
+    SkelCFG.Types, SkelCFG.Enabled, function(sel) SkelCFG.Enabled = sel end, "")
+SingleSelect(pCombat, "skel.priority", "Skeleton priority|Hit first, the rest follow", SkelCFG.Types, SkelCFG.Priority[1], function(c)
+    local list = {c}
+    for _, o in ipairs(SkelCFG.Types) do if o ~= c then list[#list + 1] = o end end
+    for i, o in ipairs(list) do SkelCFG.Priority[i] = o end
+end)
+Toggle(pCombat, "skel.route", "Route HUB > RUINS|Island > HUB > RUINS before farming", SkelCFG.UseRoute, function(v) SkelCFG.UseRoute = v end)
+Toggle(pCombat, "skel.fly", "Fly while hit|ON = melayang di atas skeleton saat hit, OFF = hit dari tanah", false, function(v) SkelCFG.FlyWhileHit = v end)
+Section(pCombat, "Skeleton status")
+Skel.info = Info(pCombat, "Ready.", 32)
+Info(pCombat, "Auto Slime, Auto Boss, Auto Skeleton, Auto Harvest, Auto Tree and Auto Mine turn each other off: only one can run at a time. Weapon, WalkSpeed, Hit range, Shoot range and Swing delay are shared by slime, boss and skeleton.", 32)
+
+Section(pChest, "Overflow Chest")
+Tg.chest = Toggle(pChest, "chest.on", "Auto Collect", false, function(v) Chest.Set(v) end)
+Input(pChest, "chest.interval", "Interval|Minutes.seconds, 0.30 = 30 seconds", ChestCFG.IntervalMin, function(n) ChestCFG.IntervalMin = n end, 0.05)
+Toggle(pChest, "chest.onlyfull", "Only FULL chests", ChestCFG.OnlyFull, function(v) ChestCFG.OnlyFull = v end)
+Toggle(pChest, "chest.teleport", "Teleport", ChestCFG.Teleport, function(v) ChestCFG.Teleport = v end)
+
+Section(pChest, "Status")
+Chest.info = Info(pChest, "Ready.", 50)
+Info(pChest, "Going home picks a portal inside the Hub model whose name (or parent model name) contains the word in the \"Home portal name\" field. If it picks the wrong portal or finds none, click DEBUG and check the console (F9): every portal in the Hub is listed with its full path.", 32)
+
+-- WalkSpeed / Radius / PerSecond are intentionally not shown in the UI
+Section(pHarvest, "Auto Harvest")
+Tg.harvest = Toggle(pHarvest, "harvest.on", "Auto Harvest|Walk around and harvest crops automatically", false, function(v) Harvest.Set(v) end)
+local seedSel
+SingleSelect(pHarvest, "harvest.crop", "Crop|Crop to harvest (replant seed follows)",
+    HarvestCFG.Crops, HarvestCFG.Crop, function(k)
+        HarvestCFG.Crop = k
+        for _, c in ipairs(HarvestCFG.Crops) do HarvestCFG.Enabled[c] = (c == k) end
+        local sd = HarvestCFG.SeedMap[k]
+        if sd then
+            HarvestCFG.Seed = sd
+            if seedSel then seedSel.Set(sd) end
+        end
+    end)
+Toggle(pHarvest, "harvest.tpfallback", "Teleport if stuck|Jump next to the crop when blocked", HarvestCFG.TeleportFallback, function(v) HarvestCFG.TeleportFallback = v end)
+Toggle(pHarvest, "harvest.onlyripe", "Only ripe crops|Stay idle until a crop is ripe", HarvestCFG.OnlyRipe, function(v) HarvestCFG.OnlyRipe = v end)
+Toggle(pHarvest, "harvest.skipwater", "Skip crops that need water|Crops with the 💧 icon are not harvested", HarvestCFG.SkipNeedsWater, function(v) HarvestCFG.SkipNeedsWater = v end)
+Button(pHarvest, "DEBUG crops (see console)", function() Harvest.Debug() end, Color3.fromRGB(255, 160, 60))
+Section(pHarvest, "Plant after harvest")
+Harvest.PCFG = PlantCFG
+Toggle(pHarvest, "plant.near", "Plant nearby plots|Also plant empty plots around the character", PlantCFG.PlantNear, function(v)
+    Harvest.PCFG.PlantNear = v
+end)
+seedSel = SingleSelect(pHarvest, "harvest.seed", "Seed|Seed to plant (follows the selected crop)",
+    HarvestCFG.Seeds, HarvestCFG.SeedMap[HarvestCFG.Crop] or HarvestCFG.Seed, function(sd)
+        HarvestCFG.Seed = sd
+    end)
+Input(pHarvest, "plant.slot", "Backup slot|Seed slot tried first when calibrating", PlantCFG.Slot, function(n) Harvest.PCFG.Slot = n end, 0)
+ButtonRow(pHarvest, {
+    {"Reset calibration", function() if Harvest.PlantReset then Harvest.PlantReset() end end, Color3.fromRGB(72, 160, 255)},
+    {"DEBUG plant", function() if Harvest.PlantDebug then Harvest.PlantDebug() end end, Color3.fromRGB(255, 160, 60)},
+})
+Section(pHarvest, "Plant status")
+Harvest.pinfo = Info(pHarvest, "Idle", 32)
+Section(pHarvest, "Status")
+Harvest.info = Info(pHarvest, "Idle", 32)
+Info(pHarvest, "Pick one crop in the dropdown and the replant seed follows automatically (e.g. Wheat = WheatSeeds). Then turn on Auto Harvest: the character walks to the crop, harvests it, and plants a seed again on the same plot if Replant is on.", 32)
+
+-- Auto Farm UI
+Section(pFarm, "Auto Tree")
+Tg.tree = Toggle(pFarm, "tree.on", "Auto Tree|Walk to trees, hold the Axe and chop", false, function(v) Farm.SetTree(v) end)
+SingleSelect(pFarm, "tree.kind", "Tree type|Wood, or Pine (Island > Hub > RUINS)", {"wood", "pine"}, FarmCFG.TreeKind, function(k)
+    if Farm.OnTreeKind then Farm.OnTreeKind(k) else FarmCFG.TreeKind = k end
+end)
+Button(pFarm, "DEBUG trees (see console)", function() Farm.DebugTree() end, Color3.fromRGB(255, 160, 60))
+
+Section(pFarm, "Auto Mine")
+Tg.mine = Toggle(pFarm, "mine.on", "Auto Mine|Hold the Pickaxe, find ore and mine", false, function(v) Farm.SetMine(v) end)
+MultiSelect(pFarm, "mine.targets", "Materials to mine|Pick one or all of them",
+    FarmCFG.MineList, FarmCFG.MineEnabled, function(sel) FarmCFG.MineEnabled = sel end, "")
+SingleSelect(pFarm, "mine.priority", "Priority|Searched first, the rest follow", FarmCFG.MineList, FarmCFG.MinePriority,
+    function(k) FarmCFG.MinePriority = k end)
+
+Section(pFarm, "Settings")
+-- Toggle(pFarm, "farm.usehub", "Enter Hub first|Touch the HUB portal from the island (wood / mine)", FarmCFG.UseHub, function(v) FarmCFG.UseHub = v end)
+-- Toggle(pFarm, "farm.returnhub", "Return to Hub from RUINS|Switching Pine > Wood / Mine touches the TouchPart of the Hub model inside RUINS", FarmCFG.ReturnToHub, function(v) FarmCFG.ReturnToHub = v end)
+-- Toggle(pFarm, "farm.swinganim", "Swing animation|Play the swing animation when hitting", FarmCFG.SwingAnim, function(v) FarmCFG.SwingAnim = v end)
+-- Input(pFarm, "farm.hittime", "Time per tree|Seconds before moving to another tree", FarmCFG.HitTime, function(n) FarmCFG.HitTime = n end, 3)
+-- Input(pFarm, "farm.minetime", "Max time per rock|Seconds (0 = until it is mined out)", FarmCFG.MineMaxTime, function(n) FarmCFG.MineMaxTime = n end, 0)
+-- Input(pFarm, "farm.rockarea", "Rock area|Studs, used to find the next rock", FarmCFG.RockNear, function(n) FarmCFG.RockNear = n end, 2)
+-- Input(pFarm, "farm.swingdelay", "Swing delay|Pause between swings (seconds)", FarmCFG.SwingDelay, function(n) FarmCFG.SwingDelay = n end, 0.1)
+-- Input(pFarm, "farm.ruinsdelay", "RUINS portal delay|Seconds to wait in the Hub before the RUINS portal", FarmCFG.RuinsLoadDelay, function(n) FarmCFG.RuinsLoadDelay = n end, 0)
+Section(pFarm, "Status")
+Farm.info = Info(pFarm, "Ready.", 50)
+Info(pFarm, "The tool is equipped automatically (Axe / Pickaxe). Pine route: Island > HUB portal > Hub > RUINS > TouchPart, repeated after a respawn. If trees or ore are not found, click a DEBUG button and check the console (F9).", 32)
+
+Section(pWeb, "Discord Webhook")
+WH.url = TextInput(pWeb, "wh.url", "Webhook URL|Discord channel webhook link", "", nil, 150, "https://discord.com/api/webhooks/...")
+WH.master = Toggle(pWeb, "wh.on", "Webhook enabled|Turn on all notifications", false, function(v) Webhook.Set(v) end)
+Input(pWeb, "wh.cooldown", "Item notice cooldown|Seconds, to avoid spam", 5, nil, 1)
+
+Section(pWeb, "Online status")
+WH.hb = Toggle(pWeb, "wh.hb.on", "Send 'still online'|Periodic message showing the script is alive", true)
+Input(pWeb, "wh.hb.every", "Every (minutes)|Gap between online messages", 10, nil, 1)
+WH.dc = Toggle(pWeb, "wh.dc.on", "Disconnect / kick notice|Send the reason for the disconnect", true)
+WH.rejoin = Toggle(pWeb, "wh.rejoin.on", "Rejoin notice|Send when back online", true)
+
+Section(pWeb, "Pink Gear")
+WH.pink = {
+    on = Toggle(pWeb, "wh.pink.on", "Send when Pink Gear drops", true),
+    kw = TextInput(pWeb, "wh.pink.kw", "Item name", "PinkGear", nil, 130),
+}
+Section(pWeb, "Stone")
+WH.stone = {
+    on = Toggle(pWeb, "wh.stone.on", "Send when Stone drops", false),
+    kw = TextInput(pWeb, "wh.stone.kw", "Item name", "Stone", nil, 130),
+}
+
+Section(pWeb, "Tools")
+ButtonRow(pWeb, {
+    {"Send Test", function() Webhook.Test() end, Color3.fromRGB(72, 160, 255)},
+    {"Scan Inventory (console)", function() Webhook.Debug() end, Color3.fromRGB(255, 160, 60)},
+})
+Section(pWeb, "Status")
+WH.info = Info(pWeb, "Ready.", 32)
+Info(pWeb, "Item names are matched exactly, ignoring case and spaces (\"Pink Gear\" = PinkGear). Use * for \"contains\", e.g. *pink*. Separate several names with commas. If an item is not detected, click Scan Inventory and check the console (F9).", 32)
+Info(pWeb, "The rejoin message is only sent if the script runs again after rejoining (autoexec or the Loader in Settings) and a config with the webhook enabled is auto-loaded. If your PC or the game shuts down completely nothing can be sent; the 'still online' messages simply stop arriving.", 32)
+
+Section(pSet, "Performance & safety")
+Toggle(pSet, "set.antilag", "Anti Lag|Disable heavy effects to run lighter", false, function(v) Sys.AntiLag(v) end)
+Toggle(pSet, "set.antiafk", "Anti AFK|Prevent idle kicks", true, function(v) Sys.AntiAFK(v) end)
+
+Section(pSet, "Island")
+TextInput(pSet, "island.name", "Island name|Empty = automatic", "", function(t)
+    Island.override = trim(t)
+    Island.cache, Island.at = nil, -100
+end, 130, "automatic")
+Button(pSet, "Check detected island", function()
+    Island.cache, Island.at = nil, -100
+    local i = Island.get()
+    notify(i and ("Island: " .. i.Name) or "Island not found.")
+end)
+Info(pSet, "The island is detected automatically (your own, whatever its number, or a co-op island). Fill in \"Island name\" only if automatic detection is wrong, e.g. Island_123456:2.", 32)
+
+Section(pSet, "Auto Rejoin")
+Toggle(pSet, "rejoin.on", "Auto Rejoin|Rejoin automatically if disconnected", false, function(v) Rejoin.On = v end)
+Input(pSet, "rejoin.delay", "Rejoin delay|Seconds before rejoining", 5, function(n) Rejoin.Delay = n end, 3)
+TextInput(pSet, "rejoin.loader", "Loader|URL or file name", "", function(t) Rejoin.Loader = trim(t) end, 150, "leave empty if autoexec")
+Info(pSet, "The Loader runs KyHub again after rejoining: enter the raw script link, or a file name in the executor's workspace folder. If KyHub is already in autoexec, leave it empty. Rejoin goes to a new server, not the same one.", 32)
+
+Section(pSet, "Anti Same Server")
+Toggle(pSet, "blk.on", "Avoid specific IDs|Switch server if an ID below is in this server", false, function(v) Blk.Set(v) end)
+TextInput(pSet, "blk.ids", "Blocked user IDs|Separate with commas", "", function(t) Blk.SetIds(t) end, 150, "4576506238, 1950974604")
+Blk.info = Info(pSet, "Disabled.", 32)
+Info(pSet, "Enter the user IDs of every account that must not share a server, separated by commas (this account's own ID may be included, it is ignored automatically). If this account just joined and one of those IDs is already in the server, KyHub switches to another server right away. If that ID joins later, it is the one that switches (that account must also run KyHub with this feature on); if it is still here after 25 seconds, this account switches. Fill in the Loader under Auto Rejoin (or use autoexec) so KyHub runs again on the new server.", 32)
+
+Section(pSet, "Config")
+CfgUI.name = TextInput(pSet, nil, "Config name", "", nil, 150, "e.g. slime-farming")
+CfgUI.list = ConfigPicker(pSet, 120)
+CfgUI.status = Info(pSet, "Auto Load: OFF", 28)
+ButtonRow(pSet, {
+    {"Save", function() Sys.Save() end, Color3.fromRGB(60, 210, 180)},
+    {"Load", function() Sys.Load() end, Color3.fromRGB(72, 160, 255)},
+    {"Delete", function() Sys.Delete() end, Color3.fromRGB(255, 84, 98)},
+})
+ButtonRow(pSet, {
+    {"Set as Auto Load", function() Sys.SetAuto() end, Color3.fromRGB(170, 110, 255)},
+    {"Disable Auto Load", function() Sys.ClearAuto() end},
+    {"Refresh", function() Sys.Refresh() end},
+})
+Info(pSet, "Click a config name in the list to select it. Save uses the typed name (or the selected one if empty). Delete must be clicked twice. Configs also store the Webhook URL, so do not share them.", 32)
+
+-- =====================================================================
+-- COMBAT COMMON (shared by Auto Slime / Auto Boss / Auto Skeleton)
+-- weapon equip, swing animation, SoulScepter shooting + shot effect
+-- =====================================================================
+do
+    local CFG = SlimeCFG
+    Combat.lastSet = nil
+    Combat.lastEquip = 0
+
+    local function getRemote(name)
+        local remotes = RS:FindFirstChild("Remotes")
+        return remotes and remotes:FindFirstChild(name)
+    end
+
+    local SWING_IDS = {"rbxassetid://86861921756773", "rbxassetid://89881700832616"}
+    local swingTracks, swingAnimator, swingIndex = {}, nil, 0
+    local function playSwingAnim()
+        local c = LP.Character
+        local hum = c and c:FindFirstChildOfClass("Humanoid")
+        local animator = hum and hum:FindFirstChildOfClass("Animator")
+        if not animator then return end
+
+        if swingAnimator ~= animator then
+            swingAnimator = animator
+            swingTracks = {}
+            for i, id in ipairs(SWING_IDS) do
+                local a = Instance.new("Animation")
+                a.AnimationId = id
+                local t = animator:LoadAnimation(a)
+                t.Priority = Enum.AnimationPriority.Action
+                swingTracks[i] = t
+            end
+        end
+
+        swingIndex = swingIndex % #swingTracks + 1
+        for i, t in ipairs(swingTracks) do
+            if i ~= swingIndex and t.IsPlaying then t:Stop(0.08) end
+        end
+        swingTracks[swingIndex]:Play(0.08)
+    end
+
+    -- shot counter: 4th argument of RequestShoot goes up by 1 every shot (41, 42, 43, ...)
+    local gameShotN, shotSeq, ownFire = nil, 0, false
+    if hookmetamethod and getnamecallmethod then
+        pcall(function()
+            local old
+            old = hookmetamethod(game, "__namecall", function(self, ...)
+                if Alive and not ownFire and getnamecallmethod() == "FireServer"
+                    and typeof(self) == "Instance" and self.Name == "RequestShoot" then
+                    local a = {...}
+                    if type(a[4]) == "number" then gameShotN = a[4] end
+                end
+                return old(self, ...)
+            end)
+        end)
+    end
+
+    -- real shot origin: Attachment "ShotOrigin" on the Soul Scepter (fallback: head)
+    local function shotOrigin()
+        local c = LP.Character
+        if not c then return nil end
+        local att = c:FindFirstChild("ShotOrigin", true)
+        if att and att:IsA("Attachment") then return att.WorldPosition end
+        local part = c:FindFirstChild("Head") or c:FindFirstChild("HumanoidRootPart")
+        return part and part.Position
+    end
+
+    -- shot effect: neon blue orb with a trail
+    local fxLast, fxCount = 0, 0
+    local function fxOrb(origin, dir, dist)
+        if not CFG.ShotFx then return end
+        local now = os.clock()
+        if fxCount >= 3 or now - fxLast < 0.3 then return end
+        fxLast = now
+        fxCount += 1
+        task.spawn(function()
+            local ball = Instance.new("Part")
+            ball.Shape = Enum.PartType.Ball
+            ball.Size = Vector3.new(1.5, 1.5, 1.5)
+            ball.Material = Enum.Material.Neon
+            ball.Color = Color3.fromRGB(70, 200, 255)
+            ball.Anchored, ball.CanCollide, ball.CanQuery, ball.CanTouch = true, false, false, false
+            ball.CastShadow = false
+
+            local a0 = Instance.new("Attachment")
+            a0.Position = Vector3.new(0, 0.7, 0)
+            a0.Parent = ball
+            local a1 = Instance.new("Attachment")
+            a1.Position = Vector3.new(0, -0.7, 0)
+            a1.Parent = ball
+            local tr = Instance.new("Trail")
+            tr.Attachment0, tr.Attachment1 = a0, a1
+            tr.Lifetime = 0.3
+            tr.MinLength = 0
+            tr.FaceCamera = true
+            tr.LightEmission = 1
+            tr.Color = ColorSequence.new(Color3.fromRGB(90, 215, 255), Color3.fromRGB(40, 110, 255))
+            tr.Transparency = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.1), NumberSequenceKeypoint.new(1, 1)})
+            tr.WidthScale = NumberSequence.new({NumberSequenceKeypoint.new(0, 1), NumberSequenceKeypoint.new(1, 0)})
+            tr.Parent = ball
+
+            local posA = origin + dir * 1
+            local posB = origin + dir * math.max(dist - 1, 1.5)
+            pcall(function() ball:PivotTo(CFrame.lookAt(posA, posA + dir)) end)
+            ball.Parent = workspace
+            game:GetService("Debris"):AddItem(ball, 1)
+
+            local dur = math.clamp(dist / 90, 0.18, 0.4)
+            local t0 = os.clock()
+            local conn
+            conn = RunService.Heartbeat:Connect(function()
+                local k = (os.clock() - t0) / dur
+                if k >= 1 or not ball.Parent then
+                    conn:Disconnect()
+                    -- hide the ball, let the trail fade, then remove it
+                    pcall(function() ball.Transparency = 1; tr.Enabled = false end)
+                    game:GetService("Debris"):AddItem(ball, 0.35)
+                    fxCount -= 1
+                    return
+                end
+                local p = posA:Lerp(posB, k)
+                pcall(function() ball:PivotTo(CFrame.lookAt(p, p + dir)) end)
+            end)
+        end)
+    end
+
+    -- pick the weapon for the Weapon slot (only when it changed) and hold it
+    function Combat.Equip()
+        if Combat.lastSet ~= CFG.Weapon then
+            local rs = getRemote("RequestSetEquipment")
+            if rs then
+                pcall(function() rs:FireServer("Weapon", CFG.Weapon, 1) end)
+                Combat.lastSet = CFG.Weapon
+                task.wait(0.2)
+            end
+        end
+        local re = getRemote("RequestEquipSlot")
+        if re then pcall(function() re:FireServer("Weapon") end) end
+        Combat.lastEquip = os.clock()
+    end
+
+    function Combat.IsScepter() return CFG.Weapon == "SoulScepter" end
+    function Combat.AtkRange() return Combat.IsScepter() and CFG.ShootRange or CFG.AttackRange end
+
+    -- sword = swing, Soul Scepter = shoot with auto aim at tp. returns ok, reason
+    function Combat.Swing(tp)
+        if Combat.IsScepter() then
+            local r = getRemote("RequestShoot")
+            if not r then return false, "RequestShoot remote not found!" end
+            local origin = shotOrigin()
+            if not (origin and tp) then return false end
+            local diff = tp - origin
+            if diff.Magnitude < 0.1 then return false end
+            shotSeq = math.max(shotSeq, gameShotN or 0) + 1
+            ownFire = true
+            pcall(function() r:FireServer(origin, diff.Unit, CFG.ShootType, shotSeq) end)
+            ownFire = false
+            fxOrb(origin, diff.Unit, diff.Magnitude)
+            Stats.swings += 1
+            return true
+        end
+        local r = getRemote("RequestSwing")
+        if not r then return false, "RequestSwing remote not found!" end
+        if CFG.SwingAnim then pcall(playSwingAnim) end
+        pcall(function() r:FireServer(workspace.Terrain) end)
+        Stats.swings += 1
+        return true
+    end
+end
+
+-- =====================================================================
+-- AUTO SLIME (weapon select + SoulScepter support)
+-- =====================================================================
+do
+    local CFG = SlimeCFG
+    local atkRange = Combat.AtkRange
+    local active, runId = false, 0
+    local teleported = false
+    local kills = 0
+    local origSpeed = nil
+    local lastInfo = ""
+    local function setInfo(t)
+        if t == lastInfo then return end
+        lastInfo = t
+        if Slime.info then Slime.info.Text = t end
+    end
+
+    local walkPath = {wps = nil, i = 1, goal = nil, at = 0, tried = 0}
+    local lastMove, lastMoveGoal = 0, nil
+    local function resetWalk()
+        walkPath.wps, walkPath.goal = nil, nil
+        lastMoveGoal = nil
+    end
+
+    local function hookDeath(char)
+        local hum = char:WaitForChild("Humanoid", 10)
+        if not hum then return end
+        hum.Died:Connect(function()
+            teleported = false
+            Combat.lastEquip = 0
+        end)
+    end
+    local deathConn = LP.CharacterAdded:Connect(function(char)
+        teleported = false
+        Combat.lastEquip = 0
+        origSpeed = nil
+        resetWalk()
+        task.spawn(hookDeath, char)
+    end)
+    onCleanup(function() deathConn:Disconnect() end)
+    if LP.Character then task.spawn(hookDeath, LP.Character) end
+
+    local function getChar()
+        local c = LP.Character
+        local hum = c and c:FindFirstChildOfClass("Humanoid")
+        local hrp = c and c:FindFirstChild("HumanoidRootPart")
+        if hum and hrp and hum.Health > 0 then return hum, hrp end
+    end
+
+    local function getHRP()
+        return LP.Character and LP.Character:FindFirstChild("HumanoidRootPart")
+    end
+
+    local function getIsland()
+        return Island.get()
+    end
+
+    local function getTouch()
+        local island = getIsland()
+        local hub = island and island:FindFirstChild("HUB")
+        return hub and hub:FindFirstChild("TouchPart", true)
+    end
+
+    local pickTarget, posOf
+    local skipped = setmetatable({}, {__mode = "k"})
+
+    local function inLobby()
+        local lobby = workspace:FindFirstChild(CFG.LobbyName)
+        local hrp = getHRP()
+        if not (lobby and hrp and lobby:IsA("Model")) then return false end
+        local cf, size = lobby:GetBoundingBox()
+        local rel = cf:PointToObjectSpace(hrp.Position)
+        local h = size / 2 + Vector3.new(CFG.LobbyPad, CFG.LobbyPad, CFG.LobbyPad)
+        return math.abs(rel.X) <= h.X and math.abs(rel.Y) <= h.Y and math.abs(rel.Z) <= h.Z
+    end
+
+    local function hubModelExists()
+        local lobby = workspace:FindFirstChild(CFG.LobbyName)
+        return lobby ~= nil and lobby:IsA("Model")
+    end
+
+    local function touchPart(part)
+        return fireTouch(part)
+    end
+
+    local function runHubTeleport()
+        if Link.pause then return false, "Paused, Auto Collect is running...", true end
+        if not getHRP() then return false, "Character not found.", true end
+        if not getIsland() then return false, "Island not found (no Island_... in workspace yet).", true end
+        if not getTouch() then return false, "TouchPart not found in HUB." end
+
+        local verifiable = true
+        for attempt = 1, CFG.HubAttempts do
+            local touch = getTouch()
+            if not touch then return false, "TouchPart not found in HUB." end
+            if Link.pause then return false, "Paused, Auto Collect is running...", true end
+
+            if attempt >= 2 then
+                local hrp = getHRP()
+                if hrp then pcall(function() hrp.CFrame = touch.CFrame end) end
+                task.wait(0.25)
+            end
+
+            setInfo(("Touching HUB TouchPart... (attempt %d/%d)"):format(attempt, CFG.HubAttempts))
+            touchPart(touch)
+
+            if not hubModelExists() then
+                verifiable = false
+                task.wait(1.5)
+                break
+            end
+
+            local waited, arrived = 0, false
+            while waited < CFG.HubVerifyWait do
+                task.wait(0.5)
+                waited += 0.5
+                if Link.pause then return false, "Paused, Auto Collect is running...", true end
+                if inLobby() then arrived = true; break end
+            end
+            if arrived then break end
+            if attempt == CFG.HubAttempts then
+                return false, "Teleport to Hub did not work (character is still on the island).", true
+            end
+        end
+        if Link.pause then return false, "Paused, Auto Collect is running...", true end
+
+        setInfo(("Teleporting... waiting %ds"):format(CFG.AfterDelay))
+        task.wait(CFG.AfterDelay)
+        if Link.pause then return false, "Paused, Auto Collect is running...", true end
+
+        local target
+        for _ = 1, math.max(1, math.floor(CFG.FindTimeout / 0.5)) do
+            if Link.pause then return false, "Paused, Auto Collect is running...", true end
+            local hrp = getHRP()
+            if hrp then target = pickTarget(hrp) end
+            if target then break end
+            task.wait(0.5)
+        end
+        return true
+    end
+
+    local gCache, gTry = nil, 0
+    local function getGuardians()
+        if gCache and gCache.Parent and #gCache:GetChildren() > 0 then return gCache end
+        if os.clock() - gTry < 2 then return (gCache and gCache.Parent) and gCache or nil end
+        gTry = os.clock()
+        local island = getIsland()
+        local found = (island and island:FindFirstChild("Guardians", true)) or workspace:FindFirstChild("Guardians", true)
+        if found and #found:GetChildren() == 0 then
+            local alt = workspace:FindFirstChild("Guardians", true)
+            if alt and alt ~= found and #alt:GetChildren() > 0 then found = alt end
+        end
+        gCache = found
+        return gCache
+    end
+
+    local function slimeRank(model)
+        local n = model.Name:lower()
+        for i, key in ipairs(CFG.Priority) do
+            if CFG.Enabled[key] and n:find(key, 1, true) then return i end
+        end
+    end
+
+    local function isAlive(model)
+        if not model or not model.Parent then return false end
+        local h = model:FindFirstChildOfClass("Humanoid")
+        return not (h and h.Health <= 0)
+    end
+
+    function posOf(model)
+        local ok, cf = pcall(function() return model:GetPivot() end)
+        return ok and cf.Position or nil
+    end
+
+    local function guardiansPos(g)
+        local ok, cf = pcall(function() return g:GetPivot() end)
+        if ok and cf then return cf.Position end
+        local sum, n = Vector3.zero, 0
+        for _, m in ipairs(g:GetChildren()) do
+            local p = posOf(m)
+            if p then sum += p; n += 1 end
+        end
+        return n > 0 and sum / n or nil
+    end
+
+    function pickTarget(hrp)
+        local any = false
+        for _, k in ipairs(CFG.Priority) do
+            if CFG.Enabled[k] then any = true end
+        end
+        if not any then return nil, "Select a slime in the dropdown first" end
+
+        local g = getGuardians()
+        if not g then return nil, "Guardians folder not found" end
+        local best, bestRank, bestDist
+        for _, m in ipairs(g:GetChildren()) do
+            local rank = slimeRank(m)
+            if rank and isAlive(m) and not (skipped[m] and skipped[m] > os.clock()) then
+                local p = posOf(m)
+                if p then
+                    local d = (p - hrp.Position).Magnitude
+                    if not best or rank < bestRank or (rank == bestRank and d < bestDist) then
+                        best, bestRank, bestDist = m, rank, d
+                    end
+                end
+            end
+        end
+        if not best then
+            for k, v in pairs(skipped) do
+                if v > os.clock() and k.Parent == g then skipped[k] = nil end
+            end
+        end
+        return best, g
+    end
+
+    local function swing(tp)
+        local ok, why = Combat.Swing(tp)
+        if not ok and why then setInfo(why) end
+    end
+
+    local function applySpeed(hum)
+        if origSpeed == nil then origSpeed = hum.WalkSpeed end
+        if hum.WalkSpeed ~= CFG.WalkSpeed then hum.WalkSpeed = CFG.WalkSpeed end
+    end
+
+    local function setRotate(hum, v)
+        if hum.AutoRotate ~= v then hum.AutoRotate = v end
+    end
+
+    local rayParams = RaycastParams.new()
+    rayParams.FilterType = Enum.RaycastFilterType.Exclude
+    pcall(function() rayParams.RespectCanCollide = true end)
+
+    local function pathClear(hrp, goal)
+        local g = getGuardians()
+        rayParams.FilterDescendantsInstances = g and {LP.Character, g} or {LP.Character}
+        local origin = hrp.Position
+        local dir = goal - origin
+        if dir.Magnitude < 0.5 then return true end
+        return workspace:Raycast(origin, dir, rayParams) == nil
+    end
+
+    local function moveTo(hum, pos)
+        local now = os.clock()
+        if lastMoveGoal and (pos - lastMoveGoal).Magnitude < 1.5 and now - lastMove < 0.5 then return end
+        lastMove, lastMoveGoal = now, pos
+        hum:MoveTo(pos)
+    end
+
+    local function stepTowards(hum, hrp, pos)
+        local now = os.clock()
+        if pathClear(hrp, pos) then
+            walkPath.wps = nil
+            moveTo(hum, pos)
+            return
+        end
+
+        local need = not walkPath.wps or not walkPath.goal
+            or (pos - walkPath.goal).Magnitude > 10 or now - walkPath.at > 3
+        if need and now - walkPath.tried > 0.8 then
+            walkPath.tried = now
+            local path = PathfindingService:CreatePath({AgentRadius = 3, AgentHeight = 5, AgentCanJump = true})
+            local ok = pcall(function() path:ComputeAsync(hrp.Position, pos) end)
+            walkPath.goal, walkPath.at = pos, now
+            if ok and path.Status == Enum.PathStatus.Success then
+                walkPath.wps, walkPath.i = path:GetWaypoints(), 2
+            else
+                walkPath.wps = nil
+            end
+        end
+
+        if walkPath.wps then
+            local wp = walkPath.wps[walkPath.i]
+            while wp and Vector3.new(wp.Position.X - hrp.Position.X, 0, wp.Position.Z - hrp.Position.Z).Magnitude < 3 do
+                walkPath.i += 1
+                wp = walkPath.wps[walkPath.i]
+            end
+            if wp then
+                if wp.Action == Enum.PathWaypointAction.Jump then hum.Jump = true end
+                moveTo(hum, wp.Position)
+                return
+            end
+        end
+        moveTo(hum, pos)
+    end
+
+    local function faceTarget(hrp, pos)
+        local flat = Vector3.new(pos.X - hrp.Position.X, 0, pos.Z - hrp.Position.Z)
+        if flat.Magnitude < 0.1 then return end
+        local look = Vector3.new(hrp.CFrame.LookVector.X, 0, hrp.CFrame.LookVector.Z)
+        if look.Magnitude < 0.01 or look.Unit:Dot(flat.Unit) < 0.9 then
+            hrp.CFrame = CFrame.lookAt(hrp.Position, hrp.Position + flat)
+        end
+    end
+
+    local function restoreChar()
+        local c = LP.Character
+        local hum = c and c:FindFirstChildOfClass("Humanoid")
+        local hrp = c and c:FindFirstChild("HumanoidRootPart")
+        if hum then
+            hum.AutoRotate = true
+            if origSpeed then hum.WalkSpeed = origSpeed end
+            if hrp then pcall(function() hum:MoveTo(hrp.Position) end) end
+        end
+        origSpeed = nil
+    end
+
+    local lastCam = 0
+    local function fixCamera(hum)
+        if not CFG.FixCamera then return end
+        local now = os.clock()
+        if now - lastCam < 1 then return end
+        lastCam = now
+        local cam = workspace.CurrentCamera
+        if not cam then return end
+        pcall(function()
+            if cam.CameraType ~= Enum.CameraType.Custom then cam.CameraType = Enum.CameraType.Custom end
+            if cam.CameraSubject ~= hum then cam.CameraSubject = hum end
+        end)
+    end
+
+    local function farmLoop(id)
+        local noTargetAt = nil
+        while active and runId == id do
+            local hum, hrp = getChar()
+            if Link.pause then
+                setInfo("Paused, Auto Collect is running...")
+                task.wait(0.3)
+            elseif not hum then
+                setInfo("Waiting for character...")
+                task.wait(1)
+            else
+                local skipFarm = false
+                if CFG.UseHub and not teleported and inLobby() then
+                    teleported = true
+                    setInfo("Already in the Hub, walking to slimes...")
+                elseif CFG.UseHub and not teleported then
+                    Link.hubBusy = true
+                    local ok, why, retry
+                    if Link.pause then
+                        ok, why, retry = false, "Paused, Auto Collect is running...", true
+                    else
+                        ok, why, retry = runHubTeleport()
+                    end
+                    Link.hubBusy = false
+                    if ok then
+                        teleported = true
+                        noTargetAt = nil
+                        Combat.Equip()
+                        task.wait(0.5)
+                        setInfo("Teleport done.\nHeading to slimes...")
+                    elseif CFG.AutoHub or retry then
+                        setInfo(why or "Teleport failed, retrying...")
+                        skipFarm = true
+                        task.wait(1)
+                    else
+                        teleported = true
+                        setInfo((why or "Teleport skipped.") .. "\nContinuing to the slimes on foot.")
+                    end
+                end
+
+                if not skipFarm then
+                    hum, hrp = getChar()
+                    if hum then
+                        applySpeed(hum)
+                        setRotate(hum, true)
+                        fixCamera(hum)
+                        if os.clock() - Combat.lastEquip > CFG.EquipEvery then Combat.Equip() end
+
+                        local target, g = pickTarget(hrp)
+                        if not target then
+                            noTargetAt = noTargetAt or os.clock()
+                            if CFG.UseHub and teleported and os.clock() - noTargetAt > CFG.IslandStuckWait
+                                and Island.contains(hrp) and not inLobby() then
+                                teleported = false
+                                noTargetAt = nil
+                                resetWalk()
+                                setInfo("Still on the island, repeating the HUB portal...")
+                                task.wait(0.5)
+                            else
+                                local gp = typeof(g) == "Instance" and guardiansPos(g)
+                                if gp and (gp - hrp.Position).Magnitude > atkRange() * 2 then
+                                    setInfo(("Approaching the slime area (%.0f studs)\nKills: %d"):format((gp - hrp.Position).Magnitude, kills))
+                                    stepTowards(hum, hrp, gp)
+                                    task.wait(0.15)
+                                else
+                                    setInfo((type(g) == "string" and g) or ("Waiting for slimes. Kills: " .. kills))
+                                    task.wait(1)
+                                end
+                            end
+                        else
+                            noTargetAt = nil
+                            resetWalk()
+                            local rank = slimeRank(target)
+                            local tag = CFG.Priority[rank]:upper()
+                            local attacking, wasAttacking, jumped, lastCheck = false, false, false, 0
+                            local stuckPos, stuckT = hrp.Position, os.clock()
+                            local stopDist = math.max(2.5, atkRange() - 1.5)
+
+                            while active and runId == id and isAlive(target) and not Link.pause do
+                                local h, r = getChar()
+                                if not h then break end
+                                applySpeed(h)
+                                if os.clock() - Combat.lastEquip > CFG.EquipEvery then Combat.Equip() end
+                                local tp = posOf(target)
+                                if not tp then break end
+
+                                if os.clock() - lastCheck > 1 then
+                                    lastCheck = os.clock()
+                                    if not slimeRank(target) then break end
+                                    local better = pickTarget(r)
+                                    if better and better ~= target and slimeRank(better) < rank then break end
+                                end
+
+                                local dist = (tp - r.Position).Magnitude
+                                if attacking then
+                                    attacking = dist <= atkRange() + 3
+                                else
+                                    attacking = dist <= atkRange()
+                                end
+
+                                if not attacking then
+                                    wasAttacking = false
+                                    setRotate(h, true)
+                                    local now = os.clock()
+                                    if (r.Position - stuckPos).Magnitude > 1.5 then
+                                        stuckPos, stuckT, jumped = r.Position, now, false
+                                    else
+                                        local idle = now - stuckT
+                                        if idle > CFG.StuckTime * 0.5 and not jumped then
+                                            jumped = true
+                                            h.Jump = true
+                                        end
+                                        if idle > CFG.StuckTime then
+                                            skipped[target] = now + CFG.SkipFor
+                                            resetWalk()
+                                            setInfo(("Stuck heading to %s, looking for another target"):format(tag))
+                                            break
+                                        end
+                                    end
+
+                                    local away = Vector3.new(r.Position.X - tp.X, 0, r.Position.Z - tp.Z)
+                                    local goal = tp
+                                    if away.Magnitude > 0.1 then goal = tp + away.Unit * stopDist end
+
+                                    setInfo(("Heading to %s (%.0f studs)\nKills: %d"):format(tag, dist, kills))
+                                    stepTowards(h, r, goal)
+                                    task.wait(0.12)
+                                else
+                                    stuckPos, stuckT, jumped = r.Position, os.clock(), false
+                                    setInfo(("Hitting %s\nKills: %d"):format(tag, kills))
+                                    if not Stats.seen[target] then
+                                        Stats.seen[target] = true
+                                        Stats.hitSlimes += 1
+                                    end
+                                    if not wasAttacking then
+                                        wasAttacking = true
+                                        lastMoveGoal = nil
+                                        pcall(function() h:MoveTo(r.Position) end)
+                                    end
+                                    setRotate(h, false)
+                                    faceTarget(r, tp)
+                                    swing(tp)
+                                    task.wait(CFG.SwingDelay)
+                                end
+                            end
+                            local hh = getChar()
+                            if hh then setRotate(hh, true) end
+                            if not isAlive(target) then
+                                kills += 1
+                                Stats.kills += 1
+                                local ck = CFG.Priority[rank]
+                                Stats.color[ck] = (Stats.color[ck] or 0) + 1
+                            end
+                        end
+                    end
+                end
+            end
+            task.wait()
+        end
+        if not active then setInfo("Turned off. Kills: " .. kills) end
+    end
+
+    function Slime.IsActive() return active end
+    function Slime.ResetHub() teleported = false; Combat.lastEquip = 0 end
+
+    function Slime.Set(v)
+        if v == active then return end
+        active = v
+        if v then
+            Combat.Exclusive("slime")
+            runId += 1
+            resetWalk()
+            Combat.Equip()
+            task.spawn(farmLoop, runId)
+        else
+            runId += 1
+            restoreChar()
+        end
+    end
+    onCleanup(function() active = false; pcall(restoreChar) end)
+end
+
+-- =====================================================================
+-- AUTO SKELETON + AUTO BOSS
+-- (island -> HUB -> RUINS -> skeletons in Guardians / boss in RuinsBoss)
+-- Reuses Weapon, WalkSpeed, Hit range, Shoot range, Swing delay and Island from Auto Slime.
+-- =====================================================================
+-- =====================================================================
+-- AUTO SKELETON + AUTO BOSS
+-- (island -> HUB -> RUINS -> skeletons in Guardians / boss in RuinsBoss)
+-- =====================================================================
+do
+    local CFG = SkelCFG
+    local atkRange = Combat.AtkRange
+    local active, runId, ready = false, 0, false
+    local bossActive, bossRun = false, 0
+    local kills, origSpeed = 0, nil
+    local lastInfo = ""
+
+    -- ===== setting skeleton =====
+    -- CFG.FlyWhileHit diatur lewat toggle "Fly while hit" (default MATI)
+    CFG.FlyHeight = 5          -- tinggi melayang (studs), pedang otomatis dibatasi jangkauan
+    CFG.StuckTeleport = 4      -- detik nyangkut sebelum teleport ke atas skeleton
+    CFG.HpLow = 0.4            -- di bawah 40% HP: mundur
+    CFG.HpOk = 0.8             -- lanjut lagi setelah HP 80%
+    CFG.RestHeight = 60        -- tinggi mundur (studs)
+    CFG.RestMax = 40           -- maksimal detik menunggu HP pulih
+
+    local function setInfo(t)
+        if t == lastInfo then return end
+        lastInfo = t
+        if bossActive then
+            Boss.action = t
+        elseif Skel.info then
+            Skel.info.Text = t
+        end
+    end
+
+    -- ---------- helpers ----------
+    local function getChar()
+        local c = LP.Character
+        local hum = c and c:FindFirstChildOfClass("Humanoid")
+        local hrp = c and c:FindFirstChild("HumanoidRootPart")
+        if hum and hrp and hum.Health > 0 then return hum, hrp end
+    end
+    local function getHRP() return LP.Character and LP.Character:FindFirstChild("HumanoidRootPart") end
+
+    local function teleportTo(pos)
+        local hrp = getHRP()
+        if not hrp or typeof(pos) ~= "Vector3" then return false end
+        pcall(function()
+            hrp.AssemblyLinearVelocity = Vector3.zero
+            hrp.CFrame = CFrame.new(pos + Vector3.new(0, 4, 0))
+        end)
+        return true
+    end
+
+    local function waitFor(parent, name, timeout, recursive, cont)
+        local t0 = os.clock()
+        while os.clock() - t0 < timeout do
+            if cont and not cont() then return nil end
+            local o = parent and parent:FindFirstChild(name, recursive)
+            if o then return o end
+            task.wait(0.2)
+        end
+        return nil
+    end
+
+    local function hubModel()
+        local h = workspace:FindFirstChild(CFG.HubName)
+        return (h and h:IsA("Model")) and h or nil
+    end
+
+    local function inHub()
+        local hub, hrp = hubModel(), getHRP()
+        if not (hub and hrp) then return false end
+        local ok, cf, size = pcall(function() local c, s = hub:GetBoundingBox(); return c, s end)
+        if not ok or not cf then return false end
+        local rel = cf:PointToObjectSpace(hrp.Position)
+        local h = size / 2 + Vector3.new(CFG.HubPad, CFG.HubPad, CFG.HubPad)
+        return math.abs(rel.X) <= h.X and math.abs(rel.Y) <= h.Y and math.abs(rel.Z) <= h.Z
+    end
+
+    -- ---------- Step 1: island -> HUB ----------
+    local function enterHub(cont)
+        for attempt = 1, CFG.HubAttempts do
+            if not cont() then return false end
+            local island = Island.get()
+            local portal = island and island:FindFirstChild(CFG.PortalName)
+            local touch = portal and portal:FindFirstChild(CFG.TouchName, true)
+            if not touch then
+                setInfo("Portal HUB tidak ditemukan di island.")
+                task.wait(1.5)
+                return false
+            end
+            if attempt >= 2 then
+                teleportTo(touch.Position)
+                task.wait(0.25)
+            end
+            setInfo(("Menyentuh portal HUB... (percobaan %d/%d)"):format(attempt, CFG.HubAttempts))
+            fireTouch(touch)
+            if not hubModel() then task.wait(3); return true end
+            local w = 0
+            while w < CFG.HubWait do
+                task.wait(0.5); w += 0.5
+                if not cont() then return false end
+                if inHub() then task.wait(2); return true end
+            end
+        end
+        setInfo("Teleport ke HUB gagal, mencoba lagi...")
+        return false
+    end
+
+    -- ---------- skeletons in Guardians folders ----------
+    local gCache, gAt = {}, -100
+    local function guardianFolders()
+        local now = os.clock()
+        if now - gAt < CFG.ScanEvery then return gCache end
+        gAt = now
+        local out = {}
+        for _, d in ipairs(workspace:GetDescendants()) do
+            if d.Name == "Guardians" and (d:IsA("Folder") or d:IsA("Model")) then out[#out + 1] = d end
+        end
+        gCache = out
+        return out
+    end
+
+    local function skelRank(m)
+        local n = m.Name:lower()
+        for i, key in ipairs(CFG.Priority) do
+            if CFG.Enabled[key] and n == key:lower() then return i end
+        end
+    end
+
+    local function isAlive(m)
+        if not m or not m.Parent then return false end
+        local h = m:FindFirstChildOfClass("Humanoid")
+        return not (h and h.Health <= 0)
+    end
+
+    local function posOf(m)
+        local ok, cf = pcall(function() return m:GetPivot() end)
+        return ok and cf.Position or nil
+    end
+
+    local skipped = setmetatable({}, {__mode = "k"})
+
+    -- returns: target, rank
+    local function pickTarget(hrp)
+        local best, bestRank, bestDist
+        for _, g in ipairs(guardianFolders()) do
+            if g.Parent then
+                for _, m in ipairs(g:GetChildren()) do
+                    local rank = skelRank(m)
+                    if rank and isAlive(m) and not (skipped[m] and skipped[m] > os.clock()) then
+                        local p = posOf(m)
+                        if p then
+                            local d = (p - hrp.Position).Magnitude
+                            if not best or rank < bestRank or (rank == bestRank and d < bestDist) then
+                                best, bestRank, bestDist = m, rank, d
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        if not best and next(skipped) then table.clear(skipped) end
+        return best, bestRank
+    end
+
+    local function skeletonNear(hrp)
+        for _, g in ipairs(guardianFolders()) do
+            if g.Parent then
+                for _, m in ipairs(g:GetChildren()) do
+                    if skelRank(m) and isAlive(m) then
+                        local p = posOf(m)
+                        if p and (p - hrp.Position).Magnitude <= CFG.NearRange then return true end
+                    end
+                end
+            end
+        end
+        return false
+    end
+
+    -- ---------- Step 2: HUB -> RUINS -> TouchPart ----------
+    local function routeToRuins(cont)
+        if not inHub() then
+            setInfo("Masuk ke HUB dari island...")
+            if not enterHub(cont) then return false end
+        end
+        if not cont() then return false end
+
+        local t0 = os.clock()
+        while os.clock() - t0 < CFG.RuinsDelay do
+            if not cont() then return false end
+            setInfo(("Sudah di HUB, menunggu portal RUINS load... (%.0fs)"):format(math.max(0, CFG.RuinsDelay - (os.clock() - t0))))
+            task.wait(0.25)
+        end
+
+        setInfo("Mencari model RUINS di HUB...")
+        local hub = waitFor(workspace, CFG.HubName, CFG.WaitTimeout, false, cont)
+        if not hub then
+            if cont() then setInfo("Model HUB tidak ditemukan di Workspace.") end
+            return false
+        end
+        local ruins = waitFor(hub, CFG.RuinsName, CFG.WaitTimeout, true, cont)
+        if not ruins then
+            if cont() then setInfo("Model RUINS tidak ditemukan di dalam HUB.") end
+            return false
+        end
+        setInfo("Mencari TouchPart di RUINS...")
+        local tp = waitFor(ruins, CFG.TouchName, CFG.WaitTimeout, true, cont)
+        if not tp and ruins:IsA("BasePart") then tp = ruins end
+        if not tp then
+            if cont() then setInfo("TouchPart tidak ditemukan di dalam RUINS.") end
+            return false
+        end
+
+        task.wait(0.5)
+        if not cont() then return false end
+        setInfo("Menyentuh portal RUINS...")
+        teleportTo(tp.Position)
+        task.wait(0.3)
+        if not cont() then return false end
+        fireTouch(tp)
+        task.wait(3)
+        gAt = -100
+        return cont()
+    end
+
+    local function swing(tp)
+        local ok, why = Combat.Swing(tp)
+        if not ok and why then setInfo(why) end
+    end
+
+    -- ---------- movement (hindari air) ----------
+    local walk = {wps = nil, i = 1, goal = nil, at = 0, tried = 0, failed = false}
+    local lastMove, lastGoal = 0, nil
+    local lastLand = nil
+    local terrain = workspace.Terrain
+
+    local function resetWalk()
+        walk.wps, walk.goal, walk.failed = nil, nil, false
+        lastGoal = nil
+    end
+
+    local rayParams = RaycastParams.new()
+    rayParams.FilterType = Enum.RaycastFilterType.Exclude
+    pcall(function() rayParams.RespectCanCollide = true end)
+
+    local function pathClear(hrp, goal)
+        local ignore = {LP.Character}
+        for _, g in ipairs(guardianFolders()) do ignore[#ignore + 1] = g end
+        rayParams.FilterDescendantsInstances = ignore
+        local dir = goal - hrp.Position
+        if dir.Magnitude < 0.5 then return true end
+        return workspace:Raycast(hrp.Position, dir, rayParams) == nil
+    end
+
+    local function waterAt(p)
+        local ok, res = pcall(function()
+            local c = p + Vector3.new(0, -3, 0)
+            local region = Region3.new(c - Vector3.new(2, 2, 2), c + Vector3.new(2, 2, 2)):ExpandToGrid(4)
+            local mats = terrain:ReadVoxels(region, 4)
+            for x = 1, #mats do
+                for y = 1, #mats[x] do
+                    for z = 1, #mats[x][y] do
+                        if mats[x][y][z] == Enum.Material.Water then return true end
+                    end
+                end
+            end
+            return false
+        end)
+        return ok and res or false
+    end
+
+    local function lineSafe(a, b)
+        local d = b - a
+        local len = d.Magnitude
+        if len < 1 then return true end
+        local dir = d.Unit
+        local n = math.min(math.ceil(len / 4), 10)
+        for i = 1, n do
+            if waterAt(a + dir * (len * i / n)) then return false end
+        end
+        return true
+    end
+
+    local function moveTo(hum, pos)
+        local now = os.clock()
+        if lastGoal and (pos - lastGoal).Magnitude < 1.5 and now - lastMove < 0.5 then return end
+        lastMove, lastGoal = now, pos
+        hum:MoveTo(pos)
+    end
+
+    local function stepTowards(hum, hrp, pos)
+        local now = os.clock()
+
+        if hum:GetState() == Enum.HumanoidStateType.Swimming then
+            hum.Jump = true
+            if lastLand then
+                lastGoal = nil
+                moveTo(hum, lastLand)
+            end
+            walk.wps = nil
+            return true
+        end
+        local fm = hum.FloorMaterial
+        if fm ~= Enum.Material.Water and fm ~= Enum.Material.Air then
+            lastLand = hrp.Position
+        end
+
+        if (pos - hrp.Position).Magnitude <= 30 and pathClear(hrp, pos) and lineSafe(hrp.Position, pos) then
+            walk.wps, walk.failed = nil, false
+            moveTo(hum, pos)
+            return true
+        end
+
+        local need = not walk.wps or not walk.goal or (pos - walk.goal).Magnitude > 8 or now - walk.at > 3
+        if need and now - walk.tried > 0.8 then
+            walk.tried = now
+            local path = PathfindingService:CreatePath({
+                AgentRadius = 2.5, AgentHeight = 5, AgentCanJump = true,
+                Costs = {Water = math.huge},
+            })
+            local ok = pcall(function() path:ComputeAsync(hrp.Position, pos) end)
+            walk.goal, walk.at = pos, now
+            if ok and path.Status == Enum.PathStatus.Success then
+                walk.wps, walk.i, walk.failed = path:GetWaypoints(), 2, false
+            else
+                walk.wps, walk.failed = nil, true
+            end
+        end
+
+        if walk.wps then
+            local wp = walk.wps[walk.i]
+            while wp and Vector3.new(wp.Position.X - hrp.Position.X, 0, wp.Position.Z - hrp.Position.Z).Magnitude < 3 do
+                walk.i += 1
+                wp = walk.wps[walk.i]
+            end
+            if wp then
+                if wp.Action == Enum.PathWaypointAction.Jump then hum.Jump = true end
+                moveTo(hum, wp.Position)
+            end
+            return true
+        end
+
+        if walk.failed then
+            lastGoal = nil
+            pcall(function() hum:MoveTo(hrp.Position) end)
+        end
+        return true
+    end
+
+    local function faceTarget(hrp, pos)
+        local flat = Vector3.new(pos.X - hrp.Position.X, 0, pos.Z - hrp.Position.Z)
+        if flat.Magnitude < 0.1 then return end
+        local look = Vector3.new(hrp.CFrame.LookVector.X, 0, hrp.CFrame.LookVector.Z)
+        if look.Magnitude < 0.01 or look.Unit:Dot(flat.Unit) < 0.9 then
+            hrp.CFrame = CFrame.lookAt(hrp.Position, hrp.Position + flat)
+        end
+    end
+
+    local function applySpeed(hum)
+        if origSpeed == nil then origSpeed = hum.WalkSpeed end
+        if hum.WalkSpeed ~= SlimeCFG.WalkSpeed then hum.WalkSpeed = SlimeCFG.WalkSpeed end
+    end
+    local function setRotate(hum, v) if hum.AutoRotate ~= v then hum.AutoRotate = v end end
+
+    local function restoreChar()
+        local c = LP.Character
+        local hum = c and c:FindFirstChildOfClass("Humanoid")
+        local hrp = c and c:FindFirstChild("HumanoidRootPart")
+        if hum then
+            hum.AutoRotate = true
+            if origSpeed then hum.WalkSpeed = origSpeed end
+            if hrp then pcall(function() hum:MoveTo(hrp.Position) end) end
+        end
+        origSpeed = nil
+    end
+
+    -- respawn -> ulangi rute island -> HUB -> RUINS
+    local gen = 0
+    local charConn = LP.CharacterAdded:Connect(function()
+        gen += 1
+        Combat.lastEquip = 0
+        origSpeed = nil
+        resetWalk()
+    end)
+    onCleanup(function() charConn:Disconnect() end)
+
+    -- ---------- AUTO BOSS ----------
+    local BCFG = BossCFG
+    local bossKills = 0
+
+    local function getBoss()
+        local f = workspace:FindFirstChild(BCFG.Folder)
+        if not f then return nil end
+        for _, b in ipairs(f:GetChildren()) do
+            if (b:IsA("Model") or b:IsA("BasePart")) and isAlive(b) and posOf(b) then
+                return b
+            end
+        end
+        return nil
+    end
+
+    local function bossHp(b)
+        local h = b:FindFirstChildOfClass("Humanoid")
+        if not h then return "" end
+        return (" | HP %d/%d"):format(math.floor(h.Health), math.floor(h.MaxHealth))
+    end
+
+    local function hoverPos(bp)
+        return bp + Vector3.new(BCFG.Offset, BCFG.Height, 0)
+    end
+
+    local function fightBoss(cont, boss)
+        local hum = getChar()
+        if not hum then return end
+
+        setInfo("Boss ditemukan: " .. boss.Name .. "\nTeleport & terbang ke boss...")
+        Combat.Equip()
+
+        local sp = posOf(boss)
+        if sp then
+            local hrp0 = getHRP()
+            if hrp0 then
+                pcall(function()
+                    hrp0.AssemblyLinearVelocity = Vector3.zero
+                    hrp0.CFrame = CFrame.new(hoverPos(sp))
+                end)
+            end
+        end
+        task.wait(0.3)
+
+        hum.PlatformStand = true
+        local fly = RunService.Heartbeat:Connect(function()
+            local h, r = getChar()
+            local bp = boss.Parent and posOf(boss)
+            if not (h and r and bp) then return end
+            local hover = hoverPos(bp)
+            pcall(function()
+                r.AssemblyLinearVelocity = Vector3.zero
+                r.AssemblyAngularVelocity = Vector3.zero
+                r.CFrame = CFrame.lookAt(hover, Vector3.new(bp.X, hover.Y, bp.Z))
+            end)
+        end)
+
+        while cont() and boss.Parent and isAlive(boss) and not Link.pause do
+            if not getChar() then break end
+            if os.clock() - Combat.lastEquip > CFG.EquipEvery then Combat.Equip() end
+            local bp = posOf(boss)
+            if not bp then break end
+            setInfo(("Menyerang BOSS: %s%s\nBoss kills: %d"):format(boss.Name, bossHp(boss), bossKills))
+            swing(bp)
+            task.wait(SlimeCFG.SwingDelay)
+        end
+
+        fly:Disconnect()
+        local h = getChar()
+        if h then h.PlatformStand = false end
+        restoreChar()
+        if not (boss.Parent and isAlive(boss)) then
+            bossKills += 1
+            Stats.kills += 1
+        end
+    end
+
+    local function bossLoop(id)
+        local function cont() return bossActive and bossRun == id end
+        local seenGen, routed = gen, false
+
+        while cont() do
+            local hum, hrp = getChar()
+            if Link.pause then
+                setInfo("Paused, Auto Collect is running...")
+                task.wait(0.3)
+            elseif not hum then
+                setInfo("Waiting for character...")
+                task.wait(1)
+            else
+                if gen ~= seenGen then seenGen = gen; routed = false end
+                local boss = getBoss()
+                if not boss then
+                    routed = false
+                    setInfo(("Menunggu boss muncul di %s...\nBoss kills: %d"):format(BCFG.Folder, bossKills))
+                    task.wait(1)
+                else
+                    local go = true
+                    if BCFG.UseRoute and routed and Island.contains(hrp) then routed = false end
+                    if BCFG.UseRoute and not routed then
+                        local bp = posOf(boss)
+                        local near = bp and not Island.contains(hrp) and not inHub()
+                            and (bp - hrp.Position).Magnitude <= CFG.NearRange
+                        if near then
+                            routed = true
+                        elseif routeToRuins(cont) then
+                            routed = true
+                        else
+                            go = false
+                            task.wait(2)
+                        end
+                    end
+                    if go and cont() then fightBoss(cont, boss) end
+                end
+            end
+            task.wait()
+        end
+        Boss.action = "Turned off. Boss kills: " .. bossKills
+    end
+
+    function Boss.IsActive() return bossActive end
+
+    function Boss.Set(v)
+        if v == bossActive then return end
+        bossActive = v
+        bossRun += 1
+        lastInfo = ""
+        Boss.action = ""
+        if v then
+            Combat.Exclusive("boss")
+            Combat.lastSet = nil
+            resetWalk()
+            task.spawn(bossLoop, bossRun)
+        else
+            local h = getChar()
+            if h then pcall(function() h.PlatformStand = false end) end
+            restoreChar()
+        end
+    end
+    onCleanup(function()
+        bossActive = false
+        local h = getChar()
+        if h then pcall(function() h.PlatformStand = false end) end
+    end)
+
+    -- ---------- terbang (fly) ----------
+    local flyConn, flyTarget = nil, nil
+
+    local function hoverH()
+        if Combat.IsScepter() then return math.max(CFG.FlyHeight, 12) end
+        return math.min(CFG.FlyHeight, atkRange() - 2)
+    end
+
+    -- turunkan karakter ke tanah supaya tidak kena damage jatuh
+    local function dropToGround()
+        local h, r = getChar()
+        if not (h and r) then return end
+        pcall(function()
+            h.PlatformStand = false
+            local params = RaycastParams.new()
+            params.FilterType = Enum.RaycastFilterType.Exclude
+            params.FilterDescendantsInstances = {LP.Character}
+            local res = workspace:Raycast(r.Position, Vector3.new(0, -300, 0), params)
+            if res then r.CFrame = CFrame.new(res.Position + Vector3.new(0, 3, 0)) end
+            r.AssemblyLinearVelocity = Vector3.zero
+        end)
+    end
+
+    local function stopFly()
+        local was = flyConn ~= nil
+        if flyConn then flyConn:Disconnect(); flyConn = nil end
+        flyTarget = nil
+        if was then dropToGround() end
+    end
+
+    local function startFly(target, hum)
+        flyTarget = target
+        if flyConn then return end
+        flyConn = RunService.Heartbeat:Connect(function()
+            local hh, rr = getChar()
+            local t = flyTarget
+            local bp = t and t.Parent and posOf(t)
+            if not (hh and rr and bp) then return end
+            local hover = bp + Vector3.new(2, hoverH(), 0)
+            pcall(function()
+                rr.AssemblyLinearVelocity = Vector3.zero
+                rr.AssemblyAngularVelocity = Vector3.zero
+                rr.CFrame = CFrame.lookAt(hover, Vector3.new(bp.X, hover.Y, bp.Z))
+            end)
+        end)
+    end
+
+    -- mundur ke atas dan tunggu HP pulih
+    local function restUntilHealed(cont)
+        local h, r = getChar()
+        if not (h and r) then return end
+        if flyConn then flyConn:Disconnect(); flyConn = nil end
+        flyTarget = nil
+        local holdPos = r.Position + Vector3.new(0, CFG.RestHeight, 0)
+        local conn = RunService.Heartbeat:Connect(function()
+            local hh, rr = getChar()
+            if hh and rr then
+                pcall(function()
+                    rr.AssemblyLinearVelocity = Vector3.zero
+                    rr.AssemblyAngularVelocity = Vector3.zero
+                    rr.CFrame = CFrame.new(holdPos)
+                end)
+            end
+        end)
+        local t0 = os.clock()
+        while cont() and not Link.pause and os.clock() - t0 < CFG.RestMax do
+            local hh = getChar()
+            if not hh then break end
+            if hh.Health / hh.MaxHealth >= CFG.HpOk then break end
+            setInfo(("HP rendah (%d%%), istirahat di atas..."):format(math.floor(hh.Health / hh.MaxHealth * 100)))
+            task.wait(0.5)
+        end
+        conn:Disconnect()
+        dropToGround()
+    end
+
+    -- ---------- main skeleton loop ----------
+    local function farmLoop(id)
+        local function cont() return active and runId == id end
+        local seenGen = gen
+
+        while cont() do
+            local hum, hrp = getChar()
+            if Link.pause then
+                stopFly()
+                setInfo("Paused, Auto Collect is running...")
+                task.wait(0.3)
+            elseif not hum then
+                stopFly()
+                setInfo("Waiting for character...")
+                task.wait(1)
+            else
+                if gen ~= seenGen then seenGen = gen; ready = false; stopFly() end
+                if ready and CFG.UseRoute and Island.contains(hrp) then
+                    ready = false
+                    stopFly()
+                    resetWalk()
+                    setInfo("Kembali di island, ulangi rute ke RUINS...")
+                end
+
+                local skip = false
+                if not ready then
+                    stopFly()
+                    if not CFG.UseRoute then
+                        ready = true
+                    elseif not Island.contains(hrp) and skeletonNear(hrp) then
+                        ready = true
+                    elseif routeToRuins(cont) then
+                        ready = true
+                        local t0 = os.clock()
+                        while cont() and os.clock() - t0 < CFG.FindTimeout do
+                            local _, h2 = getChar()
+                            if h2 and pickTarget(h2) then break end
+                            setInfo("Mencari skeleton di RUINS...")
+                            task.wait(0.5)
+                        end
+                        Combat.Equip()
+                    else
+                        skip = true
+                        task.wait(2)
+                    end
+                end
+
+                if not skip and cont() then
+                    hum, hrp = getChar()
+                    if hum then
+                        applySpeed(hum)
+                        if os.clock() - Combat.lastEquip > CFG.EquipEvery then Combat.Equip() end
+
+                        local target, rank = pickTarget(hrp)
+                        if not target then
+                            stopFly()
+                            setRotate(hum, true)
+                            setInfo("Menunggu skeleton... Kills: " .. kills)
+                            task.wait(1)
+                        else
+                            resetWalk()
+                            local tag = CFG.Priority[rank]:upper()
+                            local jumped, lastCheck = false, 0
+                            local stuckPos, stuckT = hrp.Position, os.clock()
+                            local stopDist = math.max(2.5, atkRange() - 1.5)
+
+                            while cont() and isAlive(target) and not Link.pause do
+                                local h, r = getChar()
+                                if not h then break end
+
+                                if h.Health / h.MaxHealth < CFG.HpLow then
+                                    restUntilHealed(cont)
+                                    break
+                                end
+
+                                applySpeed(h)
+                                if os.clock() - Combat.lastEquip > CFG.EquipEvery then Combat.Equip() end
+                                local tp = posOf(target)
+                                if not tp then break end
+
+                                if os.clock() - lastCheck > 1 then
+                                    lastCheck = os.clock()
+                                    if CFG.UseRoute and Island.contains(r) then break end
+                                    if not skelRank(target) then break end
+                                    local better, brank = pickTarget(r)
+                                    if better and better ~= target and brank < rank then break end
+                                end
+
+                                local dist = (tp - r.Position).Magnitude
+                                local flying = flyConn ~= nil
+                                local attacking = dist <= atkRange() + (flying and 3 or 0)
+
+                                if not attacking then
+                                    -- jalan di tanah menuju skeleton
+                                    if flying then stopFly() end
+                                    setRotate(h, true)
+                                    local now = os.clock()
+                                    if (r.Position - stuckPos).Magnitude > 1.5 then
+                                        stuckPos, stuckT, jumped = r.Position, now, false
+                                    else
+                                        local idle = now - stuckT
+                                        if idle > CFG.StuckTeleport * 0.5 and not jumped then
+                                            jumped = true
+                                            h.Jump = true
+                                        end
+                                        if idle >= CFG.StuckTeleport then
+                                            -- stuck: teleport ke atas skeleton
+                                            setInfo(("Stuck menuju %s, teleport ke atasnya"):format(tag))
+                                            pcall(function()
+                                                r.AssemblyLinearVelocity = Vector3.zero
+                                                r.CFrame = CFrame.new(tp + Vector3.new(2, hoverH(), 0))
+                                            end)
+                                            startFly(target, h)
+                                            resetWalk()
+                                            stuckPos, stuckT, jumped = r.Position, os.clock(), false
+                                        end
+                                    end
+                                    if not flyConn then
+                                        local away = Vector3.new(r.Position.X - tp.X, 0, r.Position.Z - tp.Z)
+                                        local goal = tp
+                                        if away.Magnitude > 0.1 then goal = tp + away.Unit * stopDist end
+                                        setInfo(("Menuju %s (%.0f studs)\nKills: %d"):format(tag, dist, kills))
+                                        stepTowards(h, r, goal)
+                                    end
+                                    task.wait(0.12)
+                                else
+                                    -- sudah dekat: pukul
+                                    stuckPos, stuckT, jumped = r.Position, os.clock(), false
+                                    if CFG.FlyWhileHit == true then
+                                        startFly(target, h)
+                                        setInfo(("Terbang & hit %s\nKills: %d"):format(tag, kills))
+                                    else
+                                        if flyConn then stopFly() end
+                                        setRotate(h, false)
+                                        faceTarget(r, tp)
+                                        setInfo(("Hit %s (di tanah)\nKills: %d"):format(tag, kills))
+                                    end
+                                    swing(tp)
+                                    task.wait(SlimeCFG.SwingDelay)
+                                end
+                            end
+
+                            if not isAlive(target) then
+                                kills += 1
+                                Stats.kills += 1
+                            end
+                        end
+                    end
+                end
+            end
+            task.wait()
+        end
+
+        stopFly()
+        local hh = getChar()
+        if hh then setRotate(hh, true) end
+        if not active and Skel.info then Skel.info.Text = "Turned off. Kills: " .. kills end
+    end
+
+    function Skel.IsActive() return active end
+
+    function Skel.Set(v)
+        if v == active then return end
+        active = v
+        runId += 1
+        if v then
+            Combat.Exclusive("skel")
+            ready = false
+            Combat.lastSet = nil
+            resetWalk()
+            task.spawn(farmLoop, runId)
+        else
+            stopFly()
+            restoreChar()
+        end
+    end
+
+    onCleanup(function()
+        active = false
+        if flyConn then flyConn:Disconnect(); flyConn = nil end
+        local h = getChar()
+        if h then pcall(function() h.PlatformStand = false end) end
+        pcall(restoreChar)
+    end)
+end
+function Combat.IsActive()
+    return Slime.IsActive() or Skel.IsActive() or Boss.IsActive()
+end
+
+-- live boss spawn status (runs even when Auto Boss is off)
+task.spawn(function()
+    while Alive do
+        local found
+        local f = workspace:FindFirstChild(BossCFG.Folder)
+        if f then
+            for _, b in ipairs(f:GetChildren()) do
+                if b:IsA("Model") or b:IsA("BasePart") then
+                    local h = b:FindFirstChildOfClass("Humanoid")
+                    if not h or h.Health > 0 then found = b; break end
+                end
+            end
+        end
+        local txt
+        if found then
+            local h = found:FindFirstChildOfClass("Humanoid")
+            txt = "🟢 BOSS SPAWN: " .. found.Name
+            if h then txt ..= (" | HP %d/%d"):format(math.floor(h.Health), math.floor(h.MaxHealth)) end
+        elseif not f then
+            txt = "⚪ Folder " .. BossCFG.Folder .. " tidak ditemukan"
+        else
+            txt = "🔴 Boss belum spawn"
+        end
+        if BossCFG.Realtime then
+            local hubM = workspace:FindFirstChild(SkelCFG.HubName)
+            local ruinsM = hubM and hubM:FindFirstChild(SkelCFG.RuinsName, true)
+            txt ..= "\n📡 Realtime ON · Hub " .. (hubM and "✅" or "❌") .. " · Ruins " .. (ruinsM and "✅" or "❌")
+        end
+        if Boss.IsActive() and Boss.action and Boss.action ~= "" then
+            txt ..= "\n" .. Boss.action
+        end
+        pcall(function() Boss.info.Text = txt end)
+        task.wait(0.5)
+    end
+end)
+
+-- keep the Hub & Ruins areas streamed in (StreamingEnabled likes to unload faraway areas)
+do
+    local cache = {}
+    local function pivotPos(o)
+        local ok, cf = pcall(function() return o:GetPivot() end)
+        return ok and cf and cf.Position or nil
+    end
+    task.spawn(function()
+        while Alive do
+            if BossCFG.Realtime or Boss.IsActive() then
+                -- remember the position of each area while it is visible (anchors are usually always there)
+                local hub = workspace:FindFirstChild(SkelCFG.HubName)
+                local p1 = hub and pivotPos(hub)
+                if p1 then cache.hub = p1 end
+                local ra = workspace:FindFirstChild("RuinsArrivalAnchor")
+                local p2 = ra and pivotPos(ra)
+                if p2 then cache.ruins = p2 end
+                local aa = workspace:FindFirstChild("ArrivalAnchor")
+                local p3 = aa and pivotPos(aa)
+                if p3 then cache.arrival = p3 end
+                local bf = workspace:FindFirstChild(BossCFG.Folder)
+                if bf then
+                    for _, b in ipairs(bf:GetChildren()) do
+                        local bp = pivotPos(b)
+                        if bp then cache.boss = bp; break end
+                    end
+                end
+                for _, pos in pairs(cache) do
+                    if not (Alive and (BossCFG.Realtime or Boss.IsActive())) then break end
+                    pcall(function() LP:RequestStreamAroundAsync(pos, 2) end)
+                end
+            end
+            task.wait(BossCFG.StreamEvery)
+        end
+    end)
+end
+
+-- overflow chest
+do
+    local CFG = ChestCFG
+    local active, busy, runId = false, false, 0
+    local lastMsg = "Siap."
+    local lastInfo = ""
+    local function setInfo(t)
+        if t == lastInfo then return end
+        lastInfo = t
+        if Chest.info then Chest.info.Text = t end
+    end
+
+    local function readStatus(chest)
+        local sign = chest:FindFirstChild("MachineStatusSign")
+        if not sign then return nil end
+        local parts = {}
+        for _, d in ipairs(sign:GetDescendants()) do
+            if d:IsA("TextLabel") and d.Text ~= "" then table.insert(parts, d.Text) end
+        end
+        if #parts == 0 then return nil end
+        return table.concat(parts, " | ")
+    end
+
+    local function isFull(chest)
+        local raw = readStatus(chest)
+        if not raw then return nil, "(tidak ada teks)" end
+        local txt = raw:gsub("<[^>]+>", ""):lower()
+        if txt:find("not full") or txt:find("empty") or txt:find("kosong") or txt:find("belum") then
+            return false, raw
+        end
+        local a, b = txt:match("(%d+)%s*/%s*(%d+)")
+        if a and b then return (tonumber(b) > 0 and tonumber(a) >= tonumber(b)), raw end
+        if txt:find("100%%") then return true, raw end
+        if txt:find("full") or txt:find("penuh") then return true, raw end
+        return false, raw
+    end
+
+    local function getPrompts()
+        local island = Island.get()
+        local blocks = island and island:FindFirstChild("Blocks")
+        local all, full = {}, {}
+        if blocks then
+            for _, d in ipairs(blocks:GetDescendants()) do
+                if d:IsA("ProximityPrompt") and d.Parent and d.Parent.Name == "OverflowChest" then
+                    table.insert(all, d)
+                    if isFull(d.Parent) == true then table.insert(full, d) end
+                end
+            end
+        end
+        return (CFG.OnlyFull and full or all), island, blocks, #all, #full
+    end
+
+    local function visible(o)
+        local cur = o
+        while cur and cur ~= game do
+            if cur:IsA("GuiObject") and not cur.Visible then return false end
+            if cur:IsA("ScreenGui") and not cur.Enabled then return false end
+            cur = cur.Parent
+        end
+        return o.AbsoluteSize.X > 0 and o.AbsoluteSize.Y > 0
+    end
+
+    local function toButton(o)
+        local b = o
+        while b and not b:IsA("GuiButton") do b = b.Parent end
+        return b
+    end
+
+    -- GUI KyHub sendiri dilewati (ada tulisan "Auto Collect" yang tadinya ikut kebaca)
+    local function findCollect()
+        for _, o in ipairs(LP.PlayerGui:GetDescendants()) do
+            if (o:IsA("TextLabel") or o:IsA("TextButton")) and not o:IsDescendantOf(Gui)
+                and o.Text:upper():find("COLLECT") and visible(o) then
+                return toButton(o) or o
+            end
+        end
+    end
+
+    local EVENTS = {"Activated", "MouseButton1Click", "MouseButton1Down", "MouseButton1Up", "TouchTap"}
+
+    local function clickGui(obj)
+        local fired = 0
+        local cur = obj
+        for _ = 1, 5 do
+            if not cur or not cur:IsA("GuiObject") then break end
+            if cur:IsA("GuiButton") then
+                for _, ev in ipairs(EVENTS) do
+                    if getconnections then
+                        local ok, conns = pcall(getconnections, cur[ev])
+                        if ok then
+                            for _, c in ipairs(conns) do
+                                if pcall(function() c:Fire() end) then fired += 1 end
+                            end
+                        end
+                    end
+                end
+                if fired == 0 and firesignal then
+                    for _, ev in ipairs(EVENTS) do
+                        if pcall(firesignal, cur[ev]) then fired += 1 end
+                    end
+                end
+            end
+            cur = cur.Parent
+        end
+        return fired
+    end
+
+    -- panel chest = anak langsung ScreenGui yang berisi tombol COLLECT
+    local function getPanel(collectBtn)
+        local sg = collectBtn:FindFirstAncestorOfClass("ScreenGui")
+        if not sg then return nil end
+        local panel = collectBtn
+        while panel.Parent and panel.Parent ~= sg do panel = panel.Parent end
+        return panel
+    end
+
+    local function isX(text)
+        local t = text:lower():gsub("%s", "")
+        return t == "x" or t == "×" or t == "✕" or t == "✖"
+    end
+
+    local function isCloseBtn(btn)
+        local n = btn.Name:lower()
+        if n:find("close") or n:find("exit") or n == "x" then return true end
+        if btn:IsA("TextButton") and isX(btn.Text) then return true end
+        for _, d in ipairs(btn:GetDescendants()) do
+            if d:IsA("TextLabel") and isX(d.Text) then return true end
+        end
+        return false
+    end
+
+    local function closeChestGui(panel)
+        if not panel or panel == Gui or panel:IsDescendantOf(Gui) then return end
+        for _, d in ipairs(panel:GetDescendants()) do
+            if d:IsA("GuiButton") and visible(d) and isCloseBtn(d) then clickGui(d) end
+        end
+        task.wait(0.3)
+        if findCollect() and panel.Parent and panel:IsA("GuiObject") then
+            pcall(function() panel.Visible = false end)
+        end
+    end
+
+    local function openPrompt(p)
+        local part = p.Parent
+        local cf = part:IsA("Model") and part:GetPivot() or (part:IsA("BasePart") and part.CFrame)
+        local hrp = LP.Character and LP.Character:FindFirstChild("HumanoidRootPart")
+        if CFG.Teleport and hrp and cf then
+            hrp.CFrame = cf + Vector3.new(0, 4, 0)
+            task.wait(0.25)
+        end
+        p.HoldDuration = 0
+        p.RequiresLineOfSight = false
+        p.MaxActivationDistance = math.max(p.MaxActivationDistance, 30)
+        if fireproximityprompt then
+            fireproximityprompt(p)
+        else
+            p:InputHoldBegin(); task.wait(0.1); p:InputHoldEnd()
+        end
+    end
+
+    -- di home = tidak sedang berada di area lobby (workspace.Hub)
+    local function atHome()
+        local lobby = workspace:FindFirstChild(CFG.HomeModel)
+        local hrp = LP.Character and LP.Character:FindFirstChild("HumanoidRootPart")
+        if not (lobby and hrp and lobby:IsA("Model")) then return true end
+        local cf, size = lobby:GetBoundingBox()
+        local rel = cf:PointToObjectSpace(hrp.Position)
+        local h = size / 2 + Vector3.new(10, 10, 10)
+        local inside = math.abs(rel.X) <= h.X and math.abs(rel.Y) <= h.Y and math.abs(rel.Z) <= h.Z
+        return not inside
+    end
+
+    -- nama part dan semua model induknya (sampai model Hub), huruf kecil
+    local function pathNames(part, root)
+        local names = {}
+        local cur = part
+        while cur and cur ~= root do
+            names[#names + 1] = cur.Name:lower()
+            cur = cur.Parent
+        end
+        return names
+    end
+
+    local function homeKeywords()
+        local kws = {}
+        for w in tostring(CFG.HomeKeyword or ""):gmatch("[^,]+") do
+            w = trim(w):lower()
+            if w ~= "" then kws[#kws + 1] = w end
+        end
+        return kws
+    end
+
+    -- semua kandidat portal di model Hub: part bernama TouchPart atau part yang punya TouchInterest
+    local function listPortals()
+        local m = workspace:FindFirstChild(CFG.HomeModel)
+        local list = {}
+        if not m then return list, m end
+        local touchName = CFG.HomeTouchName:lower()
+        local kws = homeKeywords()
+        for _, d in ipairs(m:GetDescendants()) do
+            if d:IsA("BasePart") and (d.Name:lower() == touchName or d:FindFirstChildOfClass("TouchTransmitter")) then
+                local names = pathNames(d, m)
+                local hit = false
+                for _, n in ipairs(names) do
+                    for _, kw in ipairs(kws) do
+                        if n:find(kw, 1, true) then hit = true end
+                    end
+                end
+                list[#list + 1] = {part = d, depth = #names, hit = hit}
+            end
+        end
+        return list, m
+    end
+
+    -- cari portal HOME saja. Kalau tidak yakin, jangan sentuh apa pun (lebih baik gagal daripada salah portal)
+    local function findHomePortal()
+        local list, m = listPortals()
+        if not m then return nil, ("Model %s tidak ditemukan."):format(CFG.HomeModel) end
+        local matched = {}
+        for _, c in ipairs(list) do
+            if c.hit then matched[#matched + 1] = c end
+        end
+        if #matched > 0 then
+            table.sort(matched, function(a, b) return a.depth < b.depth end)
+            return matched[1].part
+        end
+        if #list == 1 then return list[1].part end
+        if #list == 0 then
+            return nil, ("Tidak ada portal di model %s."):format(CFG.HomeModel)
+        end
+        return nil, ("Portal '%s' tidak ketemu di %s (ada %d portal). Klik DEBUG."):format(CFG.HomeKeyword, CFG.HomeModel, #list)
+    end
+
+    -- balik ke home lewat portal home di model Hub. return true, atau false + alasan
+    local function goHome()
+        if atHome() then return true end
+        if not firetouchinterest then return false, "Executor tidak support firetouchinterest." end
+        local part, why = findHomePortal()
+        if not part then return false, why end
+
+        for attempt = 1, 3 do
+            local hrp = LP.Character and LP.Character:FindFirstChild("HumanoidRootPart")
+            if hrp and part.Parent then
+                -- percobaan 1: sentuh dari jauh. Percobaan 2-3: pindah tepat ke portal home itu (di HP firetouchinterest jarak jauh sering diabaikan)
+                if attempt >= 2 then
+                    pcall(function() hrp.CFrame = part.CFrame end)
+                    task.wait(0.2)
+                end
+                pcall(function()
+                    firetouchinterest(hrp, part, 0)
+                    task.wait(0.15)
+                    firetouchinterest(LP.Character:FindFirstChild("HumanoidRootPart") or hrp, part, 1)
+                end)
+            end
+            local t = 0
+            while t < CFG.HomeWait do
+                task.wait(0.5); t += 0.5
+                if atHome() then task.wait(CFG.AfterHomeDelay); return true end
+            end
+        end
+        return false, ("Portal home tidak merespons: %s"):format(part:GetFullName())
+    end
+
+    -- 0.30 = 30 detik, 1.30 = 90 detik, 2 = 120 detik
+    local function intervalSec(n)
+        local m = math.floor(n)
+        local s = math.floor((n - m) * 100 + 0.5)
+        return math.max(5, m * 60 + s)
+    end
+
+    local function runOnce()
+        if busy then return end
+        busy = true
+        local slimeOn = Combat.IsActive and Combat.IsActive()
+        local paused = false
+        local function finish(msg)
+            if msg then lastMsg = msg; setInfo(msg) end
+            if paused then
+                if Slime.ResetHub then Slime.ResetHub() end
+                Link.pause = false
+            end
+            busy = false
+        end
+
+        local prompts, _, _, total = getPrompts()
+        if total > 0 and #prompts == 0 then
+            return finish(("Belum ada chest FULL (0/%d)."):format(total))
+        end
+
+        -- jeda Auto Slime hanya kalau memang nyala (tunggu dia selesai urusan portal HUB dulu)
+        if slimeOn then
+            Link.pause = true; paused = true
+            local w = 0
+            while Link.hubBusy and w < 15 do task.wait(0.25); w += 0.25 end
+            task.wait(0.5)
+        end
+
+        -- balik home kalau sedang di Hub, tidak peduli Auto Slime nyala atau tidak
+        if not atHome() then
+            setInfo(slimeOn and "Auto Slime dijeda, balik ke home..." or "Balik ke home...")
+            local okHome, whyHome = goHome()
+            if not okHome then
+                return finish("Gagal balik ke home: " .. tostring(whyHome or "?"))
+            end
+            Island.cache, Island.at = nil, -100   -- baru balik home, deteksi island ulang
+            prompts, _, _, total = getPrompts()
+        end
+
+        if total == 0 then return finish("Chest tidak ditemukan. Klik DEBUG.") end
+        if #prompts == 0 then return finish(("Belum ada chest FULL (0/%d)."):format(total)) end
+
+        local hrp = LP.Character and LP.Character:FindFirstChild("HumanoidRootPart")
+        local home = (not paused) and hrp and hrp.CFrame   -- kalau slime ikut jalan, baliknya lewat portal
+        local got, failedClick = 0, 0
+        for i, p in ipairs(prompts) do
+            if not active then break end
+            setInfo(("Chest FULL %d/%d (berhasil: %d)"):format(i, #prompts, got))
+            if p.Parent and (not CFG.OnlyFull or isFull(p.Parent) == true) then
+                pcall(openPrompt, p)
+                local btn, t = nil, 0
+                while t < CFG.OpenWait do
+                    btn = findCollect()
+                    if btn then break end
+                    task.wait(0.1); t += 0.1
+                end
+                if btn then
+                    local panel = getPanel(btn)
+                    if clickGui(btn) > 0 then got += 1 else failedClick += 1 end
+                    task.wait(CFG.CollectWait)
+                    pcall(closeChestGui, panel)
+                end
+            end
+            task.wait(CFG.BetweenChest)
+        end
+        if CFG.Teleport and home then
+            local h = LP.Character and LP.Character:FindFirstChild("HumanoidRootPart")
+            if h then h.CFrame = home end
+        end
+        local msg = ("Terakhir: %d/%d chest di-collect."):format(got, #prompts)
+        if failedClick > 0 then
+            msg = msg .. (" Klik gagal %dx (executor tidak support getconnections/firesignal)."):format(failedClick)
+        end
+        finish(msg)
+    end
+
+    function Chest.Set(v)
+        if not v then Link.pause = false end
+        if v == active then return end
+        active = v
+        if v then
+            runId += 1
+            local id = runId
+            task.spawn(function()
+                while active and runId == id do
+                    -- kalau runOnce error, status busy/pause harus dibersihkan supaya tidak macet selamanya
+                    local ok, err = pcall(runOnce)
+                    if not ok then
+                        busy = false
+                        Link.pause = false
+                        if Slime.ResetHub then Slime.ResetHub() end
+                        lastMsg = "Error: " .. tostring(err)
+                        setInfo(lastMsg)
+                    end
+                    local remain = intervalSec(CFG.IntervalMin)
+                    while active and runId == id and remain > 0 do
+                        setInfo(("%s\nCek berikutnya: %02d:%02d"):format(lastMsg, remain // 60, remain % 60))
+                        task.wait(1)
+                        remain -= 1
+                    end
+                end
+                if not active then setInfo("Dimatikan.") end
+            end)
+        end
+    end
+    onCleanup(function() active = false; Link.pause = false end)
+
+    function Chest.Debug()
+        Island.cache, Island.at = nil, -100
+        local _, island, blocks, total, fullCount = getPrompts()
+        print("=== DEBUG CHEST ===")
+        print("Island terpilih:", island and island:GetFullName() or "TIDAK ADA",
+            "| override:", Island.override ~= "" and Island.override or "(otomatis)")
+        for i, c in ipairs(Island.list()) do
+            print(("  island %d. %s%s"):format(i, c:GetFullName(), (c == island) and "  <== DIPILIH" or ""))
+        end
+        print("Total chest:", total, "| FULL:", fullCount)
+        print("getconnections:", getconnections ~= nil, "| firesignal:", firesignal ~= nil,
+            "| fireproximityprompt:", fireproximityprompt ~= nil, "| firetouchinterest:", firetouchinterest ~= nil)
+
+        local hm = workspace:FindFirstChild(CFG.HomeModel)
+        print("Model Hub:", hm and hm:GetFullName() or "TIDAK ADA", "| atHome:", tostring(atHome()))
+        print("Kata kunci portal home:", CFG.HomeKeyword)
+        local list = listPortals()
+        local chosen, why = findHomePortal()
+        print(("-- Portal di model %s: %d"):format(CFG.HomeModel, #list))
+        for i, c in ipairs(list) do
+            print(("  %d. %s | cocok kata kunci: %s%s"):format(
+                i, c.part:GetFullName(), tostring(c.hit), (c.part == chosen) and "  <== DIPILIH" or ""))
+        end
+        if not chosen then print("  Tidak ada yang dipilih:", why) end
+
+        local n = 0
+        if blocks then
+            for _, c in ipairs(blocks:GetChildren()) do
+                if c.Name == "OverflowChest" then
+                    n += 1
+                    local f, raw = isFull(c)
+                    print(n, "teks =", raw, "=> full:", tostring(f))
+                    if n >= 15 then break end
+                end
+            end
+        end
+        local btn = findCollect()
+        if btn then
+            local panel = getPanel(btn)
+            print("-- Tombol di panel chest:", panel and panel:GetFullName())
+            if panel then
+                for _, d in ipairs(panel:GetDescendants()) do
+                    if d:IsA("GuiButton") then
+                        print("  ", d:GetFullName(), "| closeBtn:", tostring(isCloseBtn(d)))
+                    end
+                end
+            end
+        else
+            print("(GUI chest lagi tertutup, buka satu chest manual lalu klik DEBUG lagi buat lihat tombol close)")
+        end
+        setInfo(("Island: %s | Total: %d | FULL: %d | Portal Hub: %d. Lihat console."):format(
+            island and island.Name or "-", total, fullCount, #list))
+    end
+end
+
+-- auto harvest (pintar: hanya tanaman siap + jalan pakai pathfinding)
+do
+    local C = HarvestCFG
+    local autoFarm = false
+    local blacklist = setmetatable({}, {__mode = "k"})
+    Harvest.Skip = setmetatable({}, {__mode = "k"})
+    local target, pending, pendingAt, pendingPos = nil, false, 0, nil
+    local lastScan, lastPos, lastPosTime, targetSince = 0, nil, 0, 0
+    local idleStopped, origSpeed, lastInfo = false, nil, ""
+    local UNRIPE_SKIP = 25
+    local STUCK_TP = 3   -- detik nyangkut sebelum teleport (lompat dulu di tengah)
+
+    local function setInfo(t)
+        if t == lastInfo then return end
+        lastInfo = t
+        if Harvest.info then Harvest.info.Text = t end
+    end
+    local function refs()
+        local c = LP.Character
+        return c and c:FindFirstChildOfClass("Humanoid"), c and c:FindFirstChild("HumanoidRootPart")
+    end
+    local remoteCache
+    local function harvestRemote()
+        if remoteCache and remoteCache.Parent then return remoteCache end
+        local r = RS:FindFirstChild("Remotes")
+        remoteCache = r and r:FindFirstChild("RequestHarvest")
+        return remoteCache
+    end
+
+    -- ===== jalan pintar (pathfinding + hindari tabrakan) =====
+    local walk = {wps = nil, i = 1, goal = nil, at = 0, tried = 0}
+    local lastMove, lastGoal = 0, nil
+    local function resetWalk() walk.wps, walk.goal, lastGoal = nil, nil, nil end
+
+    local rayParams = RaycastParams.new()
+    rayParams.FilterType = Enum.RaycastFilterType.Exclude
+    pcall(function() rayParams.RespectCanCollide = true end)
+
+    local function pathClear(root, goal)
+        rayParams.FilterDescendantsInstances = {LP.Character}
+        local dir = goal - root.Position
+        if dir.Magnitude < 0.5 then return true end
+        return workspace:Raycast(root.Position, dir, rayParams) == nil
+    end
+
+    local function moveTo(hum, pos)
+        local now = os.clock()
+        if lastGoal and (pos - lastGoal).Magnitude < 1.5 and now - lastMove < 0.5 then return end
+        lastMove, lastGoal = now, pos
+        hum:MoveTo(pos)
+    end
+
+    local function stepTowards(hum, root, pos)
+        local now = os.clock()
+        if pathClear(root, pos) then
+            walk.wps = nil
+            moveTo(hum, pos)
+            return
+        end
+        local need = not walk.wps or not walk.goal or (pos - walk.goal).Magnitude > 6 or now - walk.at > 3
+        if need and now - walk.tried > 0.8 then
+            walk.tried = now
+            local path = PathfindingService:CreatePath({AgentRadius = 2.5, AgentHeight = 5, AgentCanJump = true})
+            local ok = pcall(function() path:ComputeAsync(root.Position, pos) end)
+            walk.goal, walk.at = pos, now
+            if ok and path.Status == Enum.PathStatus.Success then
+                walk.wps, walk.i = path:GetWaypoints(), 2
+            else
+                walk.wps = nil
+            end
+        end
+        if walk.wps then
+            local wp = walk.wps[walk.i]
+            while wp and Vector3.new(wp.Position.X - root.Position.X, 0, wp.Position.Z - root.Position.Z).Magnitude < 3 do
+                walk.i += 1
+                wp = walk.wps[walk.i]
+            end
+            if wp then
+                if wp.Action == Enum.PathWaypointAction.Jump then hum.Jump = true end
+                moveTo(hum, wp.Position)
+                return
+            end
+        end
+        moveTo(hum, pos)
+    end
+
+    -- ===== baca status tanaman persis seperti game (GrowTime.read) =====
+    local GrowTime
+    pcall(function() GrowTime = require(RS.Shared.GrowTime) end)
+    local carrier = setmetatable({}, {__mode = "k"})
+
+    local function readOn(inst)
+        if not (GrowTime and inst and inst.Parent) or inst == workspace then return nil end
+        local ok, left, flag, id = pcall(GrowTime.read, inst, workspace:GetServerTimeNow())
+        if ok and type(left) == "number" and id then return left, flag end
+    end
+    local function eval(left, flag)
+        if flag == 0 then return "water" end
+        if left <= 0 then return "ripe" end
+        return "growing"
+    end
+    local function cropState(crop)
+        local c = carrier[crop]
+        if c and c.Parent then
+            local l, f = readOn(c)
+            if l then return eval(l, f) end
+        end
+        for _, inst in ipairs({crop, crop:FindFirstChild("HB"), crop.Parent}) do
+            local l, f = readOn(inst)
+            if l then carrier[crop] = inst; return eval(l, f) end
+        end
+        local attrName = GrowTime and GrowTime.LeftAttribute
+        if attrName then
+            for _, d in ipairs(crop:GetDescendants()) do
+                if d:GetAttribute(attrName) ~= nil then
+                    local l, f = readOn(d)
+                    if l then carrier[crop] = d; return eval(l, f) end
+                end
+            end
+        end
+    end
+    local function skipReason(crop)
+        local st = cropState(crop)
+        if st == "water" and (C.SkipNeedsWater or C.OnlyRipe) then return "water" end
+        if st == "growing" and C.OnlyRipe then return "growing" end
+        return nil
+    end
+
+    -- ===== daftar tanaman =====
+    local function cropKind(name)
+        local n = tostring(name):lower()
+        for _, k in ipairs(C.Crops) do
+            if n:find(k, 1, true) then return k end
+        end
+    end
+    local crops, cropConns, scanned = {}, {}, false
+    local function addCrop(o)
+        local k = cropKind(o.Name)
+        if k and not o:FindFirstChildOfClass("Humanoid") then crops[o] = k end
+    end
+    local function startTracking()
+        if scanned then return end
+        scanned = true
+        cropConns[1] = workspace.DescendantAdded:Connect(addCrop)
+        cropConns[2] = workspace.DescendantRemoving:Connect(function(o) crops[o] = nil end)
+        local n = 0
+        for _, o in ipairs(workspace:GetDescendants()) do
+            if not scanned then return end
+            addCrop(o)
+            n += 1
+            if n % 3000 == 0 then task.wait() end
+        end
+    end
+    local function stopTracking()
+        scanned = false
+        for _, c in ipairs(cropConns) do pcall(function() c:Disconnect() end) end
+        cropConns, crops = {}, {}
+    end
+
+    local function findNearest(root)
+        local now = tick()
+        local best, bd
+        for crop, kind in pairs(crops) do
+            if not crop.Parent then
+                crops[crop] = nil
+            elseif C.Enabled[kind] then
+                local hb = crop:FindFirstChild("HB")
+                if hb and hb:IsA("BasePart")
+                    and not (blacklist[hb] and blacklist[hb] > now)
+                    and not (Harvest.Skip[hb] and Harvest.Skip[hb] > now)
+                    and not (Harvest.IsFresh and Harvest.IsFresh(hb))
+                    and not skipReason(crop) then
+                    local d = (root.Position - hb.Position).Magnitude
+                    if not bd or d < bd then best, bd = hb, d end
+                end
+            end
+        end
+        return best
+    end
+
+    function Harvest.Set(v)
+        if v == autoFarm then return end
+        autoFarm, target, pending = v, nil, false
+        resetWalk()
+        if v then
+            Combat.Exclusive("harvest")
+            task.spawn(startTracking)
+            setInfo("Berjalan...")
+        else
+            setInfo("Idle")
+            local h, r = refs()
+            if h then
+                if origSpeed then h.WalkSpeed = origSpeed end
+                if r then pcall(function() h:MoveTo(r.Position) end) end
+            end
+            origSpeed = nil
+            stopTracking()
+        end
+    end
+
+    local conn = RunService.Heartbeat:Connect(function()
+        if not autoFarm then return end
+        local hum, root = refs()
+        if not (hum and root) then return end
+        if origSpeed == nil then origSpeed = hum.WalkSpeed end
+        if hum.WalkSpeed ~= C.WalkSpeed then hum.WalkSpeed = C.WalkSpeed end
+        local now = tick()
+
+        -- sudah kirim panen: tanaman hilang = sukses, masih ada = belum bisa dipanen
+        if pending then
+            if (not target) or not target:IsDescendantOf(workspace) then
+                if Harvest.QueuePlant and pendingPos then Harvest.QueuePlant(pendingPos) end
+                pending, target = false, nil
+            elseif now - pendingAt >= (C.GoneWait or 2) then
+                Harvest.Skip[target] = now + UNRIPE_SKIP
+                pending, target = false, nil
+            end
+            return
+        end
+
+        if (not target) or not target:IsDescendantOf(workspace) then
+            target = nil
+            if now - lastScan >= 0.3 then
+                lastScan = now
+                target = findNearest(root)
+                lastPos, targetSince = nil, now
+                resetWalk()
+            end
+            if not target then
+                setInfo("Tidak ada tanaman siap, diam...")
+                if not idleStopped then
+                    idleStopped = true
+                    pcall(function() hum:MoveTo(root.Position) end)
+                end
+                return
+            end
+            idleStopped = false
+        end
+
+        -- cek ulang: status bisa berubah di tengah jalan
+        if target.Parent and skipReason(target.Parent) then
+            Harvest.Skip[target] = now + 3
+            target = nil
+            return
+        end
+
+        local reach = math.min(C.Radius, 12)
+        local dist = (root.Position - target.Position).Magnitude
+
+        if dist <= reach then
+            -- sudah dekat: berhenti, lalu panen
+            pcall(function() hum:MoveTo(root.Position) end)
+            lastGoal = nil
+            setInfo("Panen tanaman siap...")
+            pcall(function()
+                local r = harvestRemote()
+                if r then r:FireServer(target) end
+            end)
+            pending, pendingAt, pendingPos = true, now, target.Position
+        else
+            setInfo("Jalan ke tanaman siap...")
+            local manual = UIS:IsKeyDown(Enum.KeyCode.W) or UIS:IsKeyDown(Enum.KeyCode.A)
+                or UIS:IsKeyDown(Enum.KeyCode.S) or UIS:IsKeyDown(Enum.KeyCode.D)
+            if not manual then stepTowards(hum, root, target.Position) end
+
+            if now - targetSince > ((Harvest.PCFG and Harvest.PCFG.StuckSkip) or 8) then
+                blacklist[target] = now + 30
+                target = nil
+                resetWalk()
+                return
+            end
+            -- nyangkut: lompat dulu, baru teleport kalau masih nyangkut
+            if lastPos == nil or (root.Position - lastPos).Magnitude > 1 then
+                lastPos, lastPosTime = root.Position, now
+            else
+                local idle = now - lastPosTime
+                if idle >= 1 then hum.Jump = true end
+                if C.TeleportFallback and idle >= STUCK_TP then
+                    local dir = root.Position - target.Position
+                    dir = dir.Magnitude > 0 and dir.Unit or Vector3.new(1, 0, 0)
+                    root.CFrame = CFrame.new(target.Position + dir * (reach - 3) + Vector3.new(0, 3, 0))
+                    lastPos = nil
+                    resetWalk()
+                end
+            end
+        end
+    end)
+
+    function Harvest.Debug()
+        print("[KyHub] ===== DEBUG CROPS =====")
+        print("GrowTime module:", GrowTime and "ada" or "TIDAK ADA")
+        local n, cnt = 0, {ripe = 0, water = 0, growing = 0, unknown = 0}
+        for crop in pairs(crops) do
+            local st = cropState(crop)
+            cnt[st or "unknown"] += 1
+            n += 1
+            if n <= 8 then
+                print(crop:GetFullName(), "| state:", tostring(st),
+                    "| carrier:", carrier[crop] and carrier[crop]:GetFullName() or "-")
+            end
+        end
+        print(("Total: %d | siap: %d | butuh air: %d | tumbuh: %d | tidak terbaca: %d"):format(
+            n, cnt.ripe, cnt.water, cnt.growing, cnt.unknown))
+    end
+
+    onCleanup(function()
+        autoFarm = false
+        conn:Disconnect()
+        stopTracking()
+    end)
+end
+-- =====================================================================
+-- AUTO PLANT (engine Auto Plant v8)
+-- =====================================================================
+-- =====================================================================
+-- PLANT AFTER HARVEST (engine Auto Plant v8)
+-- =====================================================================
+do
+    local PC = Harvest.PCFG
+    local CropConfig
+    pcall(function() CropConfig = require(RS.Shared.Config.CropConfig) end)
+
+    local cellSize = 3
+    pcall(function()
+        local G = require(RS.Shared.Grid)
+        if typeof(G.CellSize) == "number" then cellSize = G.CellSize end
+    end)
+
+    PC.Block = (CropConfig and CropConfig.RequiredGround) or "FarmSoil"
+    -- Seed selalu mengikuti dropdown crop / seed di Auto Harvest
+    local cfg = setmetatable({}, {
+        __index = function(_, k)
+            if k == "Seed" then return HarvestCFG.Seed end
+            return PC[k]
+        end,
+        __newindex = function(_, k, v) PC[k] = v end,
+    })
+
+    local function active()
+        return PC.AfterHarvest == true and Tg.harvest ~= nil and Tg.harvest.Get()
+    end
+
+    local function remote(name)
+        local r = RS:FindFirstChild("Remotes")
+        return r and r:FindFirstChild(name)
+    end
+
+    local origin = nil
+    local placeSlots, layout, planted = {}, {}, {}
+    local heldSeed, fails, total = nil, 0, 0
+    local queue = {}
+    local lastInfo = ""
+    local function setStatus(t)
+        if t == lastInfo then return end
+        lastInfo = t
+        if Harvest.pinfo and Harvest.pinfo.Parent then Harvest.pinfo.Text = t end
+    end
+
+    -- ===== simpan / muat =====
+    local SAVE = "AutoPlant_" .. LP.UserId .. ".json"
+    local saved = {slots = {}}
+    local function saveState()
+        if not (writefile and origin) then return end
+        pcall(function()
+            writefile(SAVE, HttpService:JSONEncode({
+                origin = {origin.X, origin.Y, origin.Z},
+                slots = placeSlots,
+            }))
+        end)
+    end
+    pcall(function()
+        if readfile and isfile and isfile(SAVE) then
+            local d = HttpService:JSONDecode(readfile(SAVE))
+            if type(d) == "table" then
+                if type(d.origin) == "table" and #d.origin == 3 then
+                    saved.origin = Vector3.new(d.origin[1], d.origin[2], d.origin[3])
+                end
+                if type(d.slots) == "table" then saved.slots = d.slots end
+            end
+        end
+    end)
+
+    -- ===== util =====
+    local function getChar()
+        local c = LP.Character
+        local h = c and c:FindFirstChildOfClass("Humanoid")
+        local r = c and c:FindFirstChild("HumanoidRootPart")
+        return c, h, r
+    end
+
+    local function posOf(o)
+        if o:IsA("BasePart") then return o.Position, o.Size end
+        if o:IsA("Model") then
+            local ok, cf, sz = pcall(function() return o:GetBoundingBox() end)
+            if ok then return cf.Position, sz end
+        end
+    end
+
+    local function hitPart(o)
+        local hb = o:FindFirstChild("HB")
+        if hb and hb:IsA("BasePart") then return hb end
+        if o:IsA("BasePart") then return o end
+        if o:IsA("Model") then return o.PrimaryPart or o:FindFirstChildWhichIsA("BasePart", true) end
+    end
+
+    local function esc(s) return (tostring(s):gsub("%p", "%%%0")) end
+
+    local function cropBase()
+        local id
+        if CropConfig and type(CropConfig.cropForSeed) == "function" then
+            local ok, c = pcall(CropConfig.cropForSeed, cfg.Seed)
+            if ok and type(c) == "table" then id = c.id end
+        end
+        return (id or tostring(cfg.Seed):gsub("[Ss]eeds?$", "")):lower()
+    end
+
+    local function isCropName(name)
+        local b = cropBase()
+        if b == "" then return false end
+        return tostring(name):lower():match("^" .. esc(b) .. "[_%s]*%d*$") ~= nil
+    end
+
+    -- ===== pelacak tanah + model ber-HB =====
+    local tr = {hb = {}, soil = {}, conns = {}, gen = 0}
+
+    local function classify(o)
+        if o.Name == "HB" and o:IsA("BasePart") and o.Parent then tr.hb[o.Parent] = true end
+        if o.Name == tr.blockName and (o:IsA("BasePart") or o:IsA("Model")) then tr.soil[o] = true end
+    end
+
+    local function stopTrack()
+        tr.gen += 1
+        for _, c in ipairs(tr.conns) do pcall(function() c:Disconnect() end) end
+        tr.conns, tr.hb, tr.soil, tr.ref, tr.blockName = {}, {}, {}, nil, nil
+    end
+
+    local function retrack()
+        stopTrack()
+        local gen = tr.gen
+        tr.blockName = cfg.Block
+        tr.conns[1] = workspace.DescendantAdded:Connect(classify)
+        tr.conns[2] = workspace.DescendantRemoving:Connect(function(o)
+            tr.hb[o] = nil
+            tr.soil[o] = nil
+            if o.Name == "HB" and o.Parent then tr.hb[o.Parent] = nil end
+        end)
+        task.spawn(function()
+            local n = 0
+            for _, o in ipairs(workspace:GetDescendants()) do
+                if tr.gen ~= gen then return end
+                classify(o)
+                n += 1
+                if n % 3000 == 0 then task.wait() end
+            end
+        end)
+    end
+
+    local function ensureTracking()
+        if tr.blockName ~= cfg.Block then retrack() end
+    end
+
+    local function soilList()
+        local list = {}
+        for s in pairs(tr.soil) do
+            if s.Parent then
+                local p, sz = posOf(s)
+                if p then list[#list + 1] = {o = s, p = p, size = sz} end
+            else
+                tr.soil[s] = nil
+            end
+        end
+        if not tr.ref and list[1] then tr.ref = list[1].p end
+        return list
+    end
+
+    local function lkey(p)
+        if not tr.ref then soilList() end
+        local r = tr.ref
+        if not r then return "?" end
+        return math.round((p.X - r.X) / cellSize) .. "," .. math.round((p.Z - r.Z) / cellSize)
+    end
+
+    local function occupiedSet()
+        local set = {}
+        soilList()
+        for m in pairs(tr.hb) do
+            if m.Parent and not tr.soil[m] and m.Name ~= cfg.Block then
+                local part = hitPart(m)
+                if part then set[lkey(part.Position)] = true end
+            end
+        end
+        return set
+    end
+
+    -- blok tanah tepat di bawah sebuah posisi
+    local function soilUnder(q)
+        local best, bv
+        for _, e in ipairs(soilList()) do
+            local hd = math.sqrt((e.p.X - q.X) ^ 2 + (e.p.Z - q.Z) ^ 2)
+            if hd < cellSize * 0.6 and e.p.Y <= q.Y + 1.5 then
+                local vd = q.Y - e.p.Y
+                if not bv or vd < bv then best, bv = e, vd end
+            end
+        end
+        return best
+    end
+
+    local function cellFor(p, O)
+        return {
+            x = math.round((p.X - O.X) / cellSize),
+            y = math.round((p.Y - O.Y) / cellSize) + cfg.YOff,
+            z = math.round((p.Z - O.Z) / cellSize),
+        }
+    end
+
+    -- ===== pegang bibit =====
+    local function hasTool()
+        local c = getChar()
+        if not c then return false end
+        for _, v in ipairs(c:GetChildren()) do
+            if v:IsA("Tool") then return true end
+        end
+        return false
+    end
+
+    local function holdingSeed()
+        local c = getChar()
+        if not c then return false end
+        local key = cropBase()
+        for _, v in ipairs(c:GetChildren()) do
+            if v:IsA("Tool") and v.Name:lower():find(key, 1, true) then return true end
+        end
+        return false
+    end
+
+    local function ensureHold()
+        local HoldRemote = remote("RequestHoldBlock")
+        if not HoldRemote then return end
+        local _, hum = getChar()
+        if not hum then return end
+        local other = hasTool() and not holdingSeed()
+        if heldSeed == cfg.Seed and not other then return end
+        if other then
+            for _ = 1, 3 do
+                pcall(function() hum:UnequipTools() end)
+                task.wait(0.2)
+                if not hasTool() then break end
+            end
+        end
+        pcall(function() HoldRemote:FireServer(cfg.Seed) end)
+        heldSeed = cfg.Seed
+        task.wait(0.3)
+    end
+
+    local charConn = LP.CharacterAdded:Connect(function() heldSeed = nil end)
+
+    -- ===== deteksi tanaman baru =====
+    local function plantMatch(d)
+        local m = d
+        if d.Name == "HB" and d:IsA("BasePart") and d.Parent then m = d.Parent end
+        if m == workspace or not m.Parent then return nil end
+        if LP.Character and m:IsDescendantOf(LP.Character) then return nil end
+        if isCropName(m.Name) then return m end
+    end
+
+    local function attempt(cell, slotNo, timeout)
+        local PlaceRemote = remote("RequestPlace")
+        if not PlaceRemote then return nil end
+        local got
+        local conn = workspace.DescendantAdded:Connect(function(d)
+            if not got then got = plantMatch(d) end
+        end)
+        pcall(function()
+            PlaceRemote:FireServer({x = cell.x, y = cell.y, z = cell.z}, cfg.Seed, 0, Vector3.new(0, 1, 0), false, nil, false, slotNo)
+        end)
+        local t0 = os.clock()
+        while not got and os.clock() - t0 < (timeout or 0.4) do task.wait(0.03) end
+        conn:Disconnect()
+        return got
+    end
+
+    local function watchPlant(timeout)
+        local got
+        local conn = workspace.DescendantAdded:Connect(function(d)
+            if not got then got = plantMatch(d) end
+        end)
+        local t0 = os.clock()
+        while not got and os.clock() - t0 < timeout do task.wait(0.03) end
+        conn:Disconnect()
+        return got
+    end
+
+    local function validNew(m, occ, root)
+        task.wait(0.1)
+        local part = hitPart(m)
+        local q = part and part.Position or posOf(m)
+        if not q then return nil end
+        if root and (q - root.Position).Magnitude > 80 then return nil end
+        if occ[lkey(q)] then return nil end
+        return q
+    end
+
+    local function finalize(cell, q, seedName, slotNo)
+        local e = soilUnder(q)
+        if not e then return false end
+        origin = e.p - Vector3.new(cell.x * cellSize, (cell.y - cfg.YOff) * cellSize, cell.z * cellSize)
+        if type(slotNo) == "number" then placeSlots[seedName] = slotNo end
+        planted[lkey(q)] = os.clock()
+        saveState()
+        print(("[AutoPlant] KALIBRASI OK | origin = %s | slot %s = %s"):format(tostring(origin), tostring(seedName), tostring(slotNo)))
+        setStatus(("Calibrated. Origin %.1f, %.1f, %.1f | slot %s"):format(origin.X, origin.Y, origin.Z, tostring(slotNo)))
+        return true
+    end
+
+    -- ===== hook: tangkap layout backpack + tanam manual (opsional) =====
+    local hooked = false
+    if hookmetamethod and getnamecallmethod then
+        pcall(function()
+            local nc = newcclosure or function(f) return f end
+            local isOwn = checkcaller or function() return false end
+            local oldNC
+            oldNC = hookmetamethod(game, "__namecall", nc(function(self, ...)
+                if Alive and not isOwn() and getnamecallmethod() == "FireServer" and typeof(self) == "Instance" then
+                    local n = self.Name
+                    if n == "RequestSetBackpackLayout" then
+                        local t = ...
+                        if type(t) == "table" then
+                            local copy = {}
+                            for k, v in pairs(t) do copy[k] = v end
+                            layout = copy
+                        end
+                    elseif n == "RequestPlace" then
+                        local pos, seed, _, _, _, _, _, slot = ...
+                        if type(seed) == "string" and type(slot) == "number" then
+                            placeSlots[seed] = slot
+                        end
+                        if type(pos) == "table" and type(pos.x) == "number" and type(seed) == "string" then
+                            local cell = {x = pos.x, y = pos.y, z = pos.z}
+                            task.spawn(function()
+                                local occ = occupiedSet()
+                                local got = watchPlant(2)
+                                if got then
+                                    local _, _, root = getChar()
+                                    local q = validNew(got, occ, root)
+                                    if q then finalize(cell, q, seed, slot) end
+                                end
+                            end)
+                        end
+                    end
+                end
+                return oldNC(self, ...)
+            end))
+            hooked = true
+        end)
+    end
+
+    -- ===== kandidat slot =====
+    local function guiSlots()
+        local out, seen = {}, {}
+        local pg = LP:FindFirstChild("PlayerGui")
+        if not pg then return out end
+        local base = cropBase()
+        local function push(n)
+            if type(n) == "number" and n >= 0 and n <= 300 and not seen[n] then
+                seen[n] = true
+                out[#out + 1] = n
+            end
+        end
+        local cnt = 0
+        for _, d in ipairs(pg:GetDescendants()) do
+            cnt += 1
+            if cnt % 2000 == 0 then task.wait() end
+            if not d:IsDescendantOf(Gui) then
+                local hit = (d.Name == cfg.Seed)
+                if not hit and (d:IsA("TextLabel") or d:IsA("TextButton")) then
+                    local t = d.Text:lower():gsub("%s", "")
+                    if t:find(base .. "seed", 1, true) then hit = true end
+                end
+                if not hit and d:IsA("StringValue") and d.Value == cfg.Seed then hit = true end
+                if not hit then
+                    local ok, at = pcall(function() return d:GetAttributes() end)
+                    if ok then
+                        for _, v in pairs(at) do
+                            if v == cfg.Seed then hit = true end
+                        end
+                    end
+                end
+                if hit then
+                    local a = d
+                    for _ = 1, 6 do
+                        if not a or a == pg then break end
+                        push(tonumber(tostring(a.Name):match("(%d+)$")))
+                        local ok, at = pcall(function() return a:GetAttributes() end)
+                        if ok then push(at.Slot); push(at.slot); push(at.Index); push(at.index) end
+                        if a:IsA("GuiObject") and a.LayoutOrder ~= 0 then push(a.LayoutOrder) end
+                        a = a.Parent
+                    end
+                end
+            end
+        end
+        return out
+    end
+
+    local function quickSlots()
+        local out, seen = {}, {}
+        local function push(n)
+            if type(n) == "number" and not seen[n] then
+                seen[n] = true
+                out[#out + 1] = n
+            end
+        end
+        push(placeSlots[cfg.Seed])
+        push(saved.slots[cfg.Seed])
+        push(layout[cfg.Seed])
+        push(cfg.Slot)
+        for _, n in ipairs(guiSlots()) do push(n) end
+        push(77)
+        push(63)
+        return out, seen
+    end
+
+    -- ===== kandidat origin =====
+    local function originCandidates(sp)
+        local list, seen = {}, {}
+        local function add(v, why)
+            if typeof(v) == "CFrame" then v = v.Position end
+            if typeof(v) ~= "Vector3" then return end
+            if #list >= 12 then return end
+            local sv = sp - Vector3.new(
+                math.round((sp.X - v.X) / cellSize) * cellSize,
+                math.round((sp.Y - v.Y) / cellSize) * cellSize,
+                math.round((sp.Z - v.Z) / cellSize) * cellSize)
+            local key = ("%.1f,%.1f,%.1f"):format(sv.X, sv.Y, sv.Z)
+            if seen[key] then return end
+            seen[key] = true
+            list[#list + 1] = {v = sv, why = why, exact = (sv - v).Magnitude < 0.06}
+        end
+
+        if saved.origin then add(saved.origin, "saved") end
+        add(Vector3.new(2121, 201, 2121), "old origin")
+
+        local function scanInst(inst, tag)
+            local ok, attrs = pcall(function() return inst:GetAttributes() end)
+            if ok then
+                for k, v in pairs(attrs) do
+                    if typeof(v) == "Vector3" or typeof(v) == "CFrame" then add(v, tag .. "@" .. tostring(k)) end
+                end
+            end
+            for _, c in ipairs(inst:GetChildren()) do
+                if c:IsA("Vector3Value") or c:IsA("CFrameValue") then add(c.Value, tag .. "/" .. c.Name) end
+            end
+        end
+
+        scanInst(LP, "player")
+        local a = nil
+        for _, e in ipairs(soilList()) do
+            a = e.o
+            break
+        end
+        while a and a ~= workspace and a ~= game do
+            scanInst(a, a.Name)
+            if a:IsA("Model") then
+                pcall(function()
+                    add(a:GetPivot(), a.Name .. ":pivot")
+                    local cf, sz = a:GetBoundingBox()
+                    add(cf, a.Name .. ":bbox")
+                    add(cf.Position - sz / 2, a.Name .. ":bbox-min")
+                end)
+            end
+            for _, nm in ipairs({"Origin", "Center", "Anchor", "IslandOrigin", "Spawn"}) do
+                local f = a:FindFirstChild(nm)
+                if f then
+                    if f:IsA("BasePart") then add(f.Position, a.Name .. "." .. nm) end
+                    scanInst(f, a.Name .. "." .. nm)
+                end
+            end
+            a = a.Parent
+        end
+        pcall(function()
+            for _, nm in ipairs({LP.Name, tostring(LP.UserId)}) do
+                local f = RS:FindFirstChild(nm, true)
+                if f then scanInst(f, "RS." .. nm) end
+            end
+        end)
+
+        table.sort(list, function(x, y)
+            if x.exact ~= y.exact then return x.exact end
+            return false
+        end)
+        return list
+    end
+
+    -- ===== kalibrasi otomatis di petak kosong `e` (petak bekas panen) =====
+    local function solve(e)
+        local _, _, root = getChar()
+        if not root then return false end
+        ensureHold()
+
+        local occ = occupiedSet()
+        local cands = origin and {{v = origin, why = "current origin"}} or originCandidates(e.p)
+        local quick, quickSet = quickSlots()
+        local known = placeSlots[cfg.Seed]
+        local slotsQuick = known and {known} or quick
+
+        print(("[AutoPlant] calibration: %d origin candidates, %d quick slots"):format(#cands, #slotsQuick))
+
+        local function try(O, s)
+            if not active() then return "stop" end
+            local cell = cellFor(e.p, O.v)
+            local got = attempt(cell, s, 0.35)
+            if got then
+                local q = validNew(got, occ, root)
+                if q and finalize(cell, q, cfg.Seed, s) then return true end
+            end
+        end
+
+        for i, O in ipairs(cands) do
+            for _, s in ipairs(slotsQuick) do
+                setStatus(("Calibrating: origin %d/%d (%s), slot %d"):format(i, #cands, O.why, s))
+                local r = try(O, s)
+                if r == "stop" then return false end
+                if r then return true end
+            end
+        end
+
+        if not known then
+            local full = {}
+            for s = 0, 120 do
+                if not quickSet[s] then full[#full + 1] = s end
+            end
+            for i = 1, math.min(2, #cands) do
+                for n, s in ipairs(full) do
+                    if n % 8 == 0 then
+                        setStatus(("Sweeping slots... origin %d, slot %d/120"):format(i, s))
+                    end
+                    local r = try(cands[i], s)
+                    if r == "stop" then return false end
+                    if r then return true end
+                end
+            end
+        end
+
+        setStatus("Calibration failed. Make sure the seed is in your inventory. Planting 1 seed manually also calibrates.")
+        print("[AutoPlant] Calibration failed. Click DEBUG plant and check the console (F9).")
+        return false
+    end
+
+    -- ===== antrean tanam: dipanggil Auto Harvest setiap kali selesai memanen =====
+        local bad = {}
+    local lastScan = 0
+
+    -- true kalau petak ini baru kita tanam: harvest tidak perlu mengejarnya
+    function Harvest.IsFresh(hb)
+        if not (tr.ref and active()) then return false end
+        local t = planted[lkey(hb.Position)]
+        return t ~= nil and os.clock() - t < (cfg.GrowSkip or 30)
+    end
+
+    -- dipanggil Auto Harvest setiap selesai memanen
+    function Harvest.QueuePlant(src)
+        if not active() then return end
+        local isPart = typeof(src) == "Instance"
+        local pos = isPart and src.Position or src
+        if typeof(pos) ~= "Vector3" or not tr.blockName then return end
+        if not tr.ref then soilList() end
+        if not tr.ref then return end
+        local k = lkey(pos)
+        if queue[k] then return end
+        if planted[k] and os.clock() - planted[k] < 30 then return end
+        queue[k] = {pos = pos, key = k, t = os.clock(), tries = 0, hb = isPart and src or nil}
+    end
+
+    -- tanam juga petak kosong di sekitar karakter (ke mana pun dia pergi)
+    local function scanNear(root)
+        if not cfg.PlantNear then return end
+        local now = os.clock()
+        if now - lastScan < 0.5 then return end
+        lastScan = now
+        local radius = math.min(tonumber(cfg.NearRadius) or 20, 30)
+        local occ = occupiedSet()
+        local n = 0
+        for _, e in ipairs(soilList()) do
+            if n >= 40 then break end
+            if (e.p - root.Position).Magnitude <= radius then
+                local k = lkey(e.p)
+                if not occ[k] and not queue[k]
+                    and not (planted[k] and now - planted[k] < 30)
+                    and not (bad[k] and bad[k] > now) then
+                    queue[k] = {pos = e.p, key = k, t = now, tries = 0, scan = true}
+                    n += 1
+                end
+            end
+        end
+    end
+
+    local function step()
+        ensureTracking()
+        local _, hum, root = getChar()
+        if not (hum and root) or hum.Health <= 0 then task.wait(0.5) return end
+        scanNear(root)
+        if next(queue) == nil then
+            setStatus(("Waiting for harvest... replanted: %d"):format(total))
+            task.wait(0.05)
+            return
+        end
+
+        local occ = occupiedSet()
+        local now = os.clock()
+        local ready = {}
+        for k, it in pairs(queue) do
+            if occ[k] then
+                if it.sent then
+                    queue[k] = nil        -- tanaman baru sudah muncul
+                    fails = 0
+                    total += 1
+                elseif now - it.t > (cfg.CropGoneWait or 2) then
+                    queue[k] = nil        -- tanaman lama tidak hilang (belum matang / tumbuh lagi)
+                    if it.hb and Harvest.Skip then Harvest.Skip[it.hb] = tick() + (cfg.UnripeSkip or 25) end
+                end
+            else
+                it.free = it.free or now
+                if not it.sent then
+                    if now - it.free > 60 then queue[k] = nil else ready[#ready + 1] = it end
+                elseif now - it.sent >= (cfg.RetryGap or 0.8) then
+                    if it.tries >= (cfg.Retries or 3) then
+                        queue[k] = nil
+                        if it.scan then bad[k] = now + 120 else fails += 1 end
+                    else
+                        ready[#ready + 1] = it
+                    end
+                end
+            end
+        end
+
+        if fails >= 5 then
+            fails = 0
+            origin = nil
+            placeSlots[cfg.Seed] = nil
+            setStatus("Failed 5x in a row, recalibrating automatically...")
+        end
+
+        if #ready == 0 then task.wait(0.03) return end
+
+        -- belum terkalibrasi: kalibrasi di petak kosong pertama
+        if not (origin and placeSlots[cfg.Seed]) then
+            local e = soilUnder(ready[1].pos)
+            if not e then queue[ready[1].key] = nil return end
+            setStatus("Calibrating on the first empty plot...")
+            if not solve(e) then task.wait(8) end
+            return
+        end
+
+        ensureHold()
+        local PlaceRemote = remote("RequestPlace")
+        if not PlaceRemote then setStatus("RequestPlace remote not found") task.wait(1) return end
+        local slotNow = placeSlots[cfg.Seed]
+        local sent = 0
+        for _, it in ipairs(ready) do
+            local e = soilUnder(it.pos)
+            if not e then
+                queue[it.key] = nil
+            else
+                local cell = cellFor(e.p, origin)
+                it.sent, it.tries = os.clock(), it.tries + 1
+                planted[it.key] = it.sent
+                pcall(function()
+                    PlaceRemote:FireServer({x = cell.x, y = cell.y, z = cell.z}, cfg.Seed, 0, Vector3.new(0, 1, 0), false, nil, false, slotNow)
+                end)
+                sent += 1
+            end
+        end
+        setStatus(("Planting %d plot(s) | replanted: %d"):format(sent, total))
+        task.wait(0.03)
+    end
+
+    task.spawn(function()
+        while Alive do
+            if active() then
+                local ok, err = pcall(step)
+                if not ok then
+                    warn("[KyHub] Plant after harvest error:", err)
+                    task.wait(1)
+                end
+            else
+                if tr.blockName then stopTrack() end
+                if next(queue) then table.clear(queue) end
+                task.wait(0.3)
+            end
+        end
+    end)
+
+    -- ===== API untuk UI =====
+    function Harvest.PlantReset()
+        origin = nil
+        planted = {}
+        placeSlots[cfg.Seed] = nil
+        saved = {slots = {}}
+        table.clear(queue)
+        setStatus("Calibration reset. It will be found again on the next harvest.")
+        notify("Plant calibration reset.")
+    end
+
+    function Harvest.PlantDebug()
+        ensureTracking()
+        task.wait(1)
+        local list = soilList()
+        local nh = 0
+        for _ in pairs(tr.hb) do nh += 1 end
+        print("[AutoPlant] ===== DEBUG =====")
+        print("[AutoPlant] block:", cfg.Block, "| count:", #list, "| HB models:", nh, "| cellSize:", cellSize)
+        print("[AutoPlant] seed:", cfg.Seed, "| crop base name:", cropBase(),
+            "| valid in CropConfig:", tostring(CropConfig and CropConfig.isSeed and CropConfig.isSeed(cfg.Seed)))
+        print("[AutoPlant] origin:", origin, "| proven slot:", placeSlots[cfg.Seed], "| hooked:", hooked)
+        print("[AutoPlant] slots from backpack GUI:", table.concat(guiSlots(), ","))
+        local qn = 0
+        for _ in pairs(queue) do qn += 1 end
+        print("[AutoPlant] queue:", qn, "| replanted:", total, "| active:", tostring(active()))
+        local _, _, root = getChar()
+        if root and list[1] then
+            local best
+            for _, e in ipairs(list) do
+                if not best or (e.p - root.Position).Magnitude < (best.p - root.Position).Magnitude then best = e end
+            end
+            print("[AutoPlant] nearest block:", best.o:GetFullName(), best.p)
+            for k, v in pairs(best.o:GetAttributes()) do print("[AutoPlant] attr:", k, v) end
+            for i, c in ipairs(originCandidates(best.p)) do
+                print(("[AutoPlant] origin candidate %d: %s (%s)%s"):format(i, tostring(c.v), c.why, c.exact and "" or " [approx]"))
+            end
+        end
+        if not active() then stopTrack() end
+        setStatus("Debug printed (F9)")
+    end
+
+    onCleanup(function()
+        stopTrack()
+        table.clear(queue)
+        charConn:Disconnect()
+    end)
+end
+
+-- =====================================================================
+-- AUTO FARM (Auto Tree + Auto Mine) - KyFarm v8.8 engine
+-- Pine route: Island -> HUB -> Hub -> RUINS -> TouchPart -> farm pine
+-- =====================================================================
+do
+    local CFG = FarmCFG
+    local mode, runId = nil, 0
+    local lastInfo = ""
+    local function setInfo(t)
+        if t == lastInfo then return end
+        lastInfo = t
+        if Farm.info and Farm.info.Parent then Farm.info.Text = t end
+    end
+
+    -- ---------- basic helpers ----------
+    local function getChar()
+        local c = LP.Character
+        local hum = c and c:FindFirstChildOfClass("Humanoid")
+        local hrp = c and c:FindFirstChild("HumanoidRootPart")
+        if hum and hrp and hum.Health > 0 then return hum, hrp end
+    end
+    local function getHRP() return LP.Character and LP.Character:FindFirstChild("HumanoidRootPart") end
+    local function getRemote(name)
+        local r = RS:FindFirstChild("Remotes")
+        return r and r:FindFirstChild(name)
+    end
+
+    local origWalk = 16
+    do
+        local c = LP.Character
+        local h = c and c:FindFirstChildOfClass("Humanoid")
+        if h and h.WalkSpeed > 0 then origWalk = h.WalkSpeed end
+    end
+    local function restoreSpeed()
+        local hum = getChar()
+        if hum then hum.WalkSpeed = origWalk end
+    end
+
+    local function flatDist(a, b)
+        if typeof(a) ~= "Vector3" or typeof(b) ~= "Vector3" then return math.huge end
+        return Vector3.new(a.X - b.X, 0, a.Z - b.Z).Magnitude
+    end
+
+    local function groundAt(pos, hrp)
+        if typeof(pos) ~= "Vector3" or typeof(hrp.Position) ~= "Vector3" then return pos end
+        local params = RaycastParams.new()
+        params.FilterType = Enum.RaycastFilterType.Exclude
+        params.FilterDescendantsInstances = {LP.Character}
+        local origin = Vector3.new(pos.X, hrp.Position.Y + 8, pos.Z)
+        local r = workspace:Raycast(origin, Vector3.new(0, -80, 0), params)
+        if r then return r.Position + Vector3.new(0, 1, 0) end
+        return pos
+    end
+
+    -- pathfinding walk; returns true when within stopDist of pos
+    local function walkTo(pos, stopDist, timeout, cont)
+        if typeof(pos) ~= "Vector3" then return false end
+        local t0 = os.clock()
+        local lastCheck, lastPos = os.clock(), nil
+        while os.clock() - t0 < timeout do
+            if cont and not cont() then return false end
+            local hum, hrp = getChar()
+            if not hum then return false end
+            hum.WalkSpeed = CFG.WalkSpeed
+            if flatDist(hrp.Position, pos) <= stopDist then return true end
+
+            local goal = groundAt(pos, hrp)
+            local path = PathfindingService:CreatePath({
+                AgentRadius = CFG.PathRadius, AgentHeight = CFG.PathHeight, AgentCanJump = true,
+                AgentCanClimb = false, WaypointSpacing = CFG.WaypointSpacing,
+            })
+            local okC = pcall(function() path:ComputeAsync(hrp.Position, goal) end)
+
+            if okC and path.Status == Enum.PathStatus.Success then
+                local wps = path:GetWaypoints()
+                local blocked = false
+                local conn = path.Blocked:Connect(function() blocked = true end)
+                local arrived, interrupted = false, false
+                for i = 2, #wps do
+                    local wp = wps[i]
+                    if wp.Action == Enum.PathWaypointAction.Jump then hum.Jump = true end
+                    hum:MoveTo(wp.Position)
+                    local wt, reached = os.clock(), false
+                    while os.clock() - wt < 2.5 do
+                        if cont and not cont() then interrupted = true; break end
+                        local h2, r2 = getChar()
+                        if not h2 then interrupted = true; break end
+                        h2.WalkSpeed = CFG.WalkSpeed
+                        if flatDist(r2.Position, pos) <= stopDist then arrived = true; break end
+                        if flatDist(r2.Position, wp.Position) < 3.5 then reached = true; break end
+                        if blocked then break end
+                        task.wait(0.05)
+                    end
+                    if arrived or interrupted or blocked or not reached then break end
+                    if os.clock() - t0 >= timeout then break end
+                end
+                conn:Disconnect()
+                if interrupted then return false end
+                if arrived then return true end
+            else
+                hum:MoveTo(pos)
+                if os.clock() - lastCheck > 1.2 then
+                    if lastPos and (hrp.Position - lastPos).Magnitude < 1.5 then hum.Jump = true end
+                    lastPos, lastCheck = hrp.Position, os.clock()
+                end
+                task.wait(0.15)
+            end
+        end
+        return false
+    end
+
+    -- ---------- teleport helpers ----------
+    local function teleportTo(pos)
+        local hrp = getHRP()
+        if not hrp or typeof(pos) ~= "Vector3" then return false end
+        pcall(function()
+            hrp.AssemblyLinearVelocity = Vector3.zero
+            hrp.AssemblyAngularVelocity = Vector3.zero
+            hrp.CFrame = CFrame.new(pos + CFG.TeleportOffset)
+        end)
+        return true
+    end
+
+    -- wait for a child to appear (useful with StreamingEnabled)
+    local function waitFor(parent, name, timeout, recursive, cont)
+        local t0 = os.clock()
+        while os.clock() - t0 < timeout do
+            if cont and not cont() then return nil end
+            local o = parent and parent:FindFirstChild(name, recursive)
+            if o then return o end
+            task.wait(0.2)
+        end
+        return nil
+    end
+
+    local function touchFire(part, cont)
+        local hrp = getHRP()
+        if not (hrp and part) then return false end
+        if firetouchinterest then
+            local ok = pcall(function()
+                firetouchinterest(hrp, part, 0)
+                task.wait(0.15)
+                firetouchinterest(getHRP() or hrp, part, 1)
+            end)
+            if ok then return true end
+        end
+        return walkTo(part.Position, 2, 25, cont)
+    end
+
+    -- ---------- swing animation ----------
+    local SWING_IDS = {"rbxassetid://86861921756773", "rbxassetid://89881700832616"}
+    local tracks, animatorRef, aIdx = {}, nil, 0
+    local function playSwingAnim()
+        local c = LP.Character
+        local hum = c and c:FindFirstChildOfClass("Humanoid")
+        local animator = hum and hum:FindFirstChildOfClass("Animator")
+        if not animator then return end
+        if animatorRef ~= animator then
+            animatorRef, tracks = animator, {}
+            for i, id in ipairs(SWING_IDS) do
+                local a = Instance.new("Animation")
+                a.AnimationId = id
+                local t = animator:LoadAnimation(a)
+                t.Priority = Enum.AnimationPriority.Action
+                tracks[i] = t
+            end
+        end
+        aIdx = aIdx % #tracks + 1
+        for i, t in ipairs(tracks) do
+            if i ~= aIdx and t.IsPlaying then t:Stop(0.08) end
+        end
+        tracks[aIdx]:Play(0.08)
+    end
+
+    local function swing(arg)
+        local r = getRemote("RequestSwing")
+        if not r then setInfo("RequestSwing remote not found!"); return end
+        if CFG.SwingAnim then pcall(playSwingAnim) end
+        pcall(function() r:FireServer(arg) end)
+        Stats.swings += 1
+    end
+
+    -- ---------- equip (re-equips if another tool gets selected) ----------
+    local learned, lastEq = {}, {}
+    local function equippedTool()
+        local c = LP.Character
+        return c and c:FindFirstChildOfClass("Tool")
+    end
+    local function ensureEquip(kind)  -- kind = "Axe" / "Pickaxe"
+        local now = os.clock()
+        local want = learned[kind]           -- learned tool name; false = tool not readable
+        local t = equippedTool()
+        if want and t and t.Name == want then return end
+        local gap = 1.5
+        if want then gap = 0.6 elseif want == false then gap = 15 end
+        if lastEq[kind] and now - lastEq[kind] < gap then return end
+        lastEq[kind] = now
+        local r = getRemote("RequestEquipSlot")
+        if not r then return end
+        pcall(function() r:FireServer(kind) end)
+        if want == nil then
+            task.wait(0.5)
+            local t2 = equippedTool()
+            learned[kind] = t2 and t2.Name or false
+        end
+    end
+
+    -- ---------- target search ----------
+    local function getResourceRoot()
+        local hub = workspace:FindFirstChild(CFG.HubName)
+        if hub then
+            local field = hub:FindFirstChild(CFG.ResourceName)
+            if field then return field end
+        end
+        return workspace:FindFirstChild(CFG.ResourceName)
+    end
+
+    local cache = {}
+    local function cached(key, fn)
+        local c = cache[key]
+        if c and os.clock() - c.at < 4 then return c.v end
+        local v = fn()
+        cache[key] = {at = os.clock(), v = v}
+        return v
+    end
+    local function radiusOf(part)
+        local s = part.Size
+        return math.clamp(math.max(s.X, s.Z) / 2, 0, 14)
+    end
+    local function treeMatch(name, kind)
+        local n = name:lower()
+        if kind == "pine" then return n:find("pine", 1, true) ~= nil end
+        return n:find("tree", 1, true) ~= nil and n:find("pine", 1, true) == nil
+    end
+
+    -- every folder/model named ResourceField (Hub, RUINS, ...)
+    local function getResourceRoots()
+        return cached("roots", function()
+            local roots, seen = {}, {}
+            local primary = getResourceRoot()
+            if primary then roots[#roots + 1] = primary; seen[primary] = true end
+            for _, d in ipairs(workspace:GetDescendants()) do
+                if d.Name == CFG.ResourceName and not seen[d] and (d:IsA("Folder") or d:IsA("Model")) then
+                    seen[d] = true
+                    roots[#roots + 1] = d
+                end
+            end
+            return roots
+        end)
+    end
+
+    local function treeNodes(kind)
+        return cached("tree:" .. kind, function()
+            local out = {}
+            for _, root in ipairs(getResourceRoots()) do
+                for _, d in ipairs(root:GetDescendants()) do
+                    if d:IsA("BasePart") and d.Name == "Reach" then
+                        local c = d.Parent
+                        if c and treeMatch(c.Name, kind) then
+                            out[#out + 1] = {key = d, pos = d.Position, arg = d, name = c.Name, radius = radiusOf(d)}
+                        end
+                    end
+                end
+            end
+            return out
+        end)
+    end
+
+    -- ---------- mine map ----------
+    local ALIAS = {stone = {"stone"}, ironore = {"ironore", "iron"}, coal = {"coal"}, sand = {"sand"}, clay = {"clay"}}
+    local function norm(s) return (s:lower():gsub("[%s_%-]", "")) end
+    local function nameIs(res, name)
+        local n = norm(name)
+        for _, a in ipairs(ALIAS[res]) do
+            if n:find(a, 1, true) then return true end
+        end
+        return false
+    end
+    local function mineRoot()
+        if CFG.MineRoot ~= "" then
+            local o = workspace:FindFirstChild(CFG.MineRoot, true)
+            if o then return o end
+        end
+        return getResourceRoot() or workspace:FindFirstChild(CFG.HubName)
+    end
+    local function mineMap()
+        return cached("mine:" .. CFG.MineRoot, function()
+            local map = {}
+            for _, r in ipairs(CFG.MineList) do map[r] = {} end
+            local root = mineRoot()
+            if not root then return map end
+            local stopAt = root.Parent
+            for _, d in ipairs(root:GetDescendants()) do
+                if d:IsA("BasePart") and d.Name ~= "Reach" then
+                    local found
+                    local a = d
+                    while a and a ~= stopAt and not found do
+                        for _, r in ipairs(CFG.MineList) do
+                            if nameIs(r, a.Name) then found = r; break end
+                        end
+                        a = a.Parent
+                    end
+                    if found then
+                        local list = map[found]
+                        list[#list + 1] = {key = d, pos = d.Position, arg = d, name = d.Name, res = found, radius = radiusOf(d)}
+                    end
+                end
+            end
+            return map
+        end)
+    end
+    local function mineOrder()
+        local out, seen = {}, {}
+        local function add(r)
+            if r and CFG.MineEnabled[r] and not seen[r] then seen[r] = true; out[#out + 1] = r end
+        end
+        add(CFG.MinePriority)
+        for _, r in ipairs(CFG.MineList) do add(r) end
+        return out
+    end
+
+    local function isAlive(node)
+        local p = node.key
+        if not p or not p.Parent then return false end
+        if not p:IsDescendantOf(workspace) then return false end
+        if node.res then
+            local ok, tr = pcall(function() return p.Transparency end)
+            if ok and tr >= 0.95 then return false end
+        end
+        return true
+    end
+    local function whyDead(node)
+        local p = node.key
+        if not p or not p.Parent then return "Parent = nil (part removed)" end
+        if not p:IsDescendantOf(workspace) then return "part left the workspace" end
+        local ok, tr = pcall(function() return p.Transparency end)
+        if ok and tr >= 0.95 then return "part became transparent (" .. tostring(tr) .. ")" end
+        return "still exists"
+    end
+    local function findReplacement(node)
+        table.clear(cache)
+        local map = mineMap()
+        local best, bd
+        local near = (node.radius or 0) + CFG.RockNear
+        for _, n in ipairs(map[node.res] or {}) do
+            if n.key ~= node.key and isAlive(n) then
+                local d = (n.pos - node.pos).Magnitude
+                if d <= near and (not bd or d < bd) then best, bd = n, d end
+            end
+        end
+        return best
+    end
+    local function nearest(list, hrp, skipped)
+        local best, bd
+        local now = os.clock()
+        for _, n in ipairs(list) do
+            if isAlive(n) and not (skipped[n.key] and skipped[n.key] > now) then
+                local d = (n.pos - hrp.Position).Magnitude
+                if not bd or d < bd then best, bd = n, d end
+            end
+        end
+        return best
+    end
+    -- returns: node, message, manual
+    local function pick(kind, hrp, skipped)
+        if kind == "tree" then
+            local list = treeNodes(CFG.TreeKind)
+            if #list == 0 then return nil, "No " .. CFG.TreeKind .. " trees found." end
+            local n = nearest(list, hrp, skipped)
+            if not n and next(skipped) then
+                table.clear(skipped)
+                n = nearest(list, hrp, skipped)
+            end
+            return n, "All trees are being skipped, waiting..."
+        end
+        local ord = mineOrder()
+        if #ord == 0 then return nil, "Select the materials to mine first" end
+        local map = mineMap()
+        for _, r in ipairs(ord) do
+            local n = nearest(map[r] or {}, hrp, skipped)
+            if n then return n end
+        end
+        if next(skipped) then table.clear(skipped) end
+        return nil, nil, true
+    end
+
+    -- ---------- island / hub detection ----------
+    local function hubModel()
+        local h = workspace:FindFirstChild(CFG.HubName)
+        return (h and h:IsA("Model")) and h or nil
+    end
+
+    local function inHub()
+        local hub, hrp = hubModel(), getHRP()
+        if not (hub and hrp) then return false end
+        local ok, cf, size = pcall(function() local c, s = hub:GetBoundingBox(); return c, s end)
+        if not ok or not cf then return false end
+        local rel = cf:PointToObjectSpace(hrp.Position)
+        local h = size / 2 + Vector3.new(CFG.HubPad, CFG.HubPad, CFG.HubPad)
+        return math.abs(rel.X) <= h.X and math.abs(rel.Y) <= h.Y and math.abs(rel.Z) <= h.Z
+    end
+
+    -- is the character on the island area?
+    local function onIsland()
+        local hrp = getHRP()
+        return hrp ~= nil and Island.contains(hrp)
+    end
+
+    -- ---------- step 1: island -> HUB (touch the HUB portal on the island) ----------
+    local function enterHub(id)
+        local function cont() return runId == id and not Link.pause end
+        for attempt = 1, 3 do
+            if not cont() then return false end
+            local island = Island.get()
+            local portal = island and island:FindFirstChild(CFG.IslandPortalName)
+            local touch = portal and portal:FindFirstChild(CFG.TouchPartName, true)
+            if not touch then
+                setInfo("HUB portal not found on the island.")
+                task.wait(1.5)
+                return false
+            end
+            if attempt >= 2 then
+                teleportTo(touch.Position) -- 2nd attempt on: teleport straight to the portal
+                task.wait(0.25)
+            end
+            setInfo(("Touching the HUB portal... (attempt %d/3)"):format(attempt))
+            touchFire(touch, cont)
+            if not hubModel() then task.wait(3); return true end -- Hub not streamed yet, assume success
+            local w = 0
+            while w < CFG.HubWait do
+                task.wait(0.5); w += 0.5
+                if not cont() then return false end
+                if inHub() then task.wait(2); return true end
+            end
+        end
+        setInfo("Teleport to the Hub did not work, retrying...")
+        return false
+    end
+
+    -- ---------- step 2: in the Hub -> RUINS -> TouchPart ----------
+    local function touchRuinsPortal(id)
+        local function cont() return runId == id and not Link.pause end
+
+        -- 1. enter the Hub first (through the island portal) if not inside yet
+        if not inHub() then
+            setInfo("Entering the Hub from the island...")
+            if not enterHub(id) then return false end
+        end
+        if not cont() then return false end
+
+        -- 1b. wait in the Hub so the RUINS portal can load before teleporting
+        local t0 = os.clock()
+        while os.clock() - t0 < CFG.RuinsLoadDelay do
+            if not cont() then return false end
+            setInfo(("In the Hub, waiting for the RUINS portal to load... (%.0fs)"):format(math.max(0, CFG.RuinsLoadDelay - (os.clock() - t0))))
+            task.wait(0.25)
+        end
+
+        -- 2. find the Hub model
+        setInfo("Looking for the Hub model...")
+        local hub = waitFor(workspace, CFG.HubName, CFG.WaitTimeout, false, cont)
+        if not hub then
+            if cont() then setInfo("Hub model not found in Workspace.") end
+            return false
+        end
+
+        -- 3. find RUINS inside the Hub
+        setInfo("Looking for RUINS in the Hub...")
+        local ruins = waitFor(hub, CFG.RuinsName, CFG.WaitTimeout, true, cont)
+        if not ruins then
+            if cont() then setInfo("RUINS model not found inside the Hub.") end
+            return false
+        end
+
+        -- 4. find TouchPart inside RUINS
+        setInfo("Looking for TouchPart in RUINS...")
+        local touchPart = waitFor(ruins, CFG.TouchPartName, CFG.WaitTimeout, true, cont)
+        if not touchPart and ruins:IsA("BasePart") then touchPart = ruins end
+        if not touchPart then
+            if cont() then setInfo("TouchPart not found inside RUINS.") end
+            return false
+        end
+
+        -- 5. teleport to TouchPart + touch it
+        task.wait(0.5) -- let the part finish streaming in
+        if not cont() then return false end
+        setInfo("Touching the RUINS portal...")
+        teleportTo(touchPart.Position)
+        task.wait(0.3)
+        if not cont() then return false end
+        touchFire(touchPart, cont)
+
+        task.wait(3) -- wait for the map change
+        table.clear(cache) -- so pine trees on the new map are read
+        return cont()
+    end
+
+    -- is there a live pine close to the character (not just somewhere on the map)?
+    local PINE_NEAR = 300
+    local function pineNear()
+        local hrp = getHRP()
+        if not hrp then return false end
+        for _, n in ipairs(treeNodes("pine")) do
+            if isAlive(n) and (n.pos - hrp.Position).Magnitude <= PINE_NEAR then return true end
+        end
+        return false
+    end
+
+    -- wait for pines to appear around RUINS after the teleport
+    local function waitForPines(id)
+        local t0 = os.clock()
+        while runId == id and mode == "tree" and os.clock() - t0 < 15 do
+            table.clear(cache)
+            if pineNear() then return true end
+            setInfo("Looking for pine in ResourceField...")
+            task.wait(0.5)
+        end
+        return false
+    end
+
+    -- ---------- RUINS -> Hub: find the return portal inside the Hub model, then its TouchPart ----------
+    -- the "Hub" model sits INSIDE a RUINS model: RUINS > ... > Hub > ... > TouchPart.
+    -- Walking up from the TouchPart we must meet the Hub-named model FIRST and RUINS after it.
+    -- (the entry portal Workspace.Hub > RUINS > TouchPart meets RUINS first, so it is ignored)
+    local function isReturnTouch(d)
+        local want = (CFG.ReturnPortalName or ""):lower()
+        local sawHub = false
+        local a = d.Parent
+        while a and a ~= workspace do
+            local n = a.Name:lower()
+            if not sawHub and (want == "" or n:find(want, 1, true)) and n ~= CFG.RuinsName:lower() then
+                sawHub = true
+            elseif sawHub and n == CFG.RuinsName:lower() then
+                return true
+            elseif want == "" and not sawHub and n == CFG.RuinsName:lower() then
+                return true
+            end
+            a = a.Parent
+        end
+        return false
+    end
+
+    local function findReturnTouch()
+        local hrp = getHRP()
+        local best, bd
+        for _, d in ipairs(workspace:GetDescendants()) do
+            if d:IsA("BasePart") and d.Name == CFG.TouchPartName and isReturnTouch(d) then
+                local dist = hrp and (d.Position - hrp.Position).Magnitude or 0
+                if not bd or dist < bd then best, bd = d, dist end
+            end
+        end
+        return best, bd
+    end
+
+    -- are we in the RUINS area? (touched the RUINS portal, pines close by, or the return portal is close)
+    local RUINS_NEAR = 250
+    local function inRuins()
+        if inRuinsArea then return true end
+        if pineNear() then return true end
+        local t, d = findReturnTouch()
+        return t ~= nil and d ~= nil and d <= RUINS_NEAR
+    end
+
+    local function returnViaPortal(id)
+        local function cont() return runId == id and not Link.pause end
+        setInfo("Looking for the Hub model inside RUINS...")
+        local touch
+        local t0 = os.clock()
+        while os.clock() - t0 < CFG.WaitTimeout do
+            if not cont() then return false end
+            touch = findReturnTouch()
+            if touch then break end
+            task.wait(0.3)
+        end
+        if not touch then
+            if cont() then setInfo("Hub model / TouchPart not found inside RUINS (click DEBUG trees to list portals).") end
+            return false
+        end
+
+        local hrp0 = getHRP()
+        local startPos = hrp0 and hrp0.Position
+        task.wait(0.5) -- let the part finish streaming in
+        if not cont() then return false end
+        setInfo("Touching the return portal: " .. touch.Parent.Name)
+        teleportTo(touch.Position)
+        task.wait(0.3)
+        if not cont() then return false end
+        touchFire(touch, cont)
+        task.wait(3) -- wait for the map change
+        table.clear(cache)
+
+        local hrp = getHRP()
+        if startPos and hrp and (hrp.Position - startPos).Magnitude < 30 then return false end -- did not move
+        return cont()
+    end
+
+    -- count character respawns (back on the island -> repeat the route to RUINS)
+    local charGen = 0
+    local inRuinsArea = false -- true after the RUINS portal was touched (until respawn / back on the island)
+    do
+        local conn = LP.CharacterAdded:Connect(function()
+            charGen += 1
+            inRuinsArea = false
+            lastEq = {}
+        end)
+        onCleanup(function() conn:Disconnect() end)
+    end
+
+    -- ---------- hover (float while hitting) ----------
+    local HOVER_NAME = "KyHover"
+    local function disableHover()
+        local c = LP.Character
+        local hrp = c and c:FindFirstChild("HumanoidRootPart")
+        local hum = c and c:FindFirstChildOfClass("Humanoid")
+        local bv = hrp and hrp:FindFirstChild(HOVER_NAME)
+        if bv then pcall(function() bv:Destroy() end) end
+        if hum then pcall(function() hum.PlatformStand = false end) end
+    end
+
+    local function enableHover(hum, hrp)
+        if hrp:FindFirstChild(HOVER_NAME) then return end
+        local bv = Instance.new("BodyVelocity")
+        bv.Name = HOVER_NAME
+        bv.MaxForce = Vector3.new(1e6, 1e6, 1e6)
+        bv.Velocity = Vector3.zero
+        bv.Parent = hrp
+        hum.PlatformStand = true
+    end
+
+    -- ground height right under the character (nil if none)
+    local function groundY(hrp)
+        local params = RaycastParams.new()
+        params.FilterType = Enum.RaycastFilterType.Exclude
+        params.FilterDescendantsInstances = {LP.Character}
+        local r = workspace:Raycast(hrp.Position + Vector3.new(0, 8, 0), Vector3.new(0, -250, 0), params)
+        return r and r.Position.Y
+    end
+
+    -- ---------- hit one target ----------
+    local ANGLES = {0, 70, -70, 140, -140, 180}
+    local MAX_WALK_FAILS = 8
+
+    local function hitInner(kind, node, id, equipName)
+        local t0 = os.clock()
+        local function labelFor(n)
+            return kind == "tree" and ("Chopping " .. n.name) or ("Mining " .. (n.res or ""):upper())
+        end
+        local label = labelFor(node)
+        local stand = CFG.StandDist + (node.radius or 0)
+        local limit = (kind == "tree") and CFG.HitTime or CFG.MineMaxTime
+        local angleIdx, fails = 1, 0
+
+        local lastIslandCheck = os.clock()
+        while mode == kind and runId == id and not Link.pause do
+            local hum, hrp = getChar()
+            if not hum then return false end
+
+            if (CFG.UseHub or (kind == "tree" and CFG.TreeKind == "pine")) and os.clock() - lastIslandCheck > 2 then
+                lastIslandCheck = os.clock()
+                if onIsland() then return false end -- back on the island: stop, run() enters the Hub again
+            end
+
+            if not isAlive(node) then
+                if kind ~= "mine" then return false end
+                local why = whyDead(node)
+                local rep
+                for _ = 1, 4 do
+                    task.wait(0.4)
+                    if mode ~= kind or runId ~= id then return false end
+                    rep = findReplacement(node)
+                    if rep then break end
+                end
+                if not rep then
+                    setInfo(label .. "\nDone (" .. why .. ")")
+                    return false
+                end
+                node = rep
+                label = labelFor(node)
+                stand = CFG.StandDist + (node.radius or 0)
+                angleIdx, fails = 1, 0
+                continue
+            end
+
+            if limit > 0 and os.clock() - t0 > limit then return true end
+
+            hum.WalkSpeed = CFG.WalkSpeed
+            ensureEquip(equipName)
+            hum, hrp = getChar()
+            if not hum then return false end
+
+            local ok, curPos = pcall(function() return node.key.Position end)
+            if ok then node.pos = curPos end
+
+            local flat = Vector3.new(hrp.Position.X - node.pos.X, 0, hrp.Position.Z - node.pos.Z)
+            if flat.Magnitude > stand + 4 then
+                disableHover() -- walk on the ground first, hover again once there
+                local base = flat.Magnitude > 0.1 and flat.Unit or Vector3.new(0, 0, 1)
+                local dir = CFrame.Angles(0, math.rad(ANGLES[angleIdx]), 0):VectorToWorldSpace(base)
+                local spot = node.pos + dir * stand
+                local function cont() return mode == kind and runId == id and isAlive(node) and not Link.pause end
+                setInfo(label .. "\nWalking to target...")
+                if not walkTo(spot, 2.5, 20, cont) then
+                    if mode ~= kind or runId ~= id then return false end
+                    if isAlive(node) and not Link.pause then
+                        fails += 1
+                        if fails >= MAX_WALK_FAILS then return true end -- cannot reach it, skip this target
+                        angleIdx = angleIdx % #ANGLES + 1
+                        setInfo(("%s\nNot there yet, trying another side (%d/%d)"):format(label, fails, MAX_WALK_FAILS))
+                        task.wait(0.3)
+                    end
+                    continue
+                end
+                hum, hrp = getChar()
+                if not hum then return false end
+            end
+
+            do
+                local pos = hrp.Position
+                if CFG.Hover then
+                    enableHover(hum, hrp)
+                    local gy = groundY(hrp)
+                    if gy then pos = Vector3.new(pos.X, gy + CFG.HoverHeight, pos.Z) end
+                else
+                    disableHover()
+                end
+                local look = Vector3.new(node.pos.X, pos.Y, node.pos.Z)
+                pcall(function()
+                    hrp.CFrame = CFrame.lookAt(pos, look)
+                    hrp.AssemblyLinearVelocity = Vector3.zero
+                end)
+            end
+            setInfo(("%s\nOn this target for %ds"):format(label, math.floor(os.clock() - t0)))
+            swing(node.arg)
+            task.wait(CFG.SwingDelay)
+        end
+        return false
+    end
+
+    local function hit(kind, node, id, equipName)
+        local ok, r = pcall(hitInner, kind, node, id, equipName)
+        disableHover() -- always drop / release hover after a hit
+        if not ok then error(r, 0) end
+        return r
+    end
+
+    -- ---------- main loop ----------
+    local function run(id, kind)
+        local equipName = kind == "tree" and "Axe" or "Pickaxe"
+        local skipped = {}
+        local hasTouchedRuins = false
+        local seenGen = charGen
+
+        while mode == kind and runId == id do
+            local hum, hrp = getChar()
+            if Link.pause then
+                disableHover()
+                setInfo("Paused, Auto Collect is running...")
+                task.wait(0.3)
+            elseif not hum then
+                setInfo("Waiting for character...")
+                task.wait(1)
+            else
+                hum.WalkSpeed = CFG.WalkSpeed
+                local pineMode = (kind == "tree" and CFG.TreeKind == "pine")
+
+                -- Pine: Hub -> RUINS -> TouchPart. Respawn / back on island -> repeat the route
+                if pineMode then
+                    if charGen ~= seenGen then
+                        seenGen = charGen
+                        hasTouchedRuins = false
+                    elseif hasTouchedRuins and onIsland() then
+                        hasTouchedRuins = false
+                        setInfo("Back on the island, repeating the route to RUINS...")
+                    end
+                end
+
+                local skipLoop = false
+                if pineMode and not hasTouchedRuins then
+                    table.clear(cache)
+                    if not onIsland() and pineNear() then
+                        hasTouchedRuins = true -- already in the RUINS area, pines are close
+                        inRuinsArea = true
+                    else
+                        Link.hubBusy = true
+                        local okR = touchRuinsPortal(id)
+                        Link.hubBusy = false
+                        if okR then
+                            hasTouchedRuins = true
+                            inRuinsArea = true
+                            waitForPines(id)
+                        else
+                            if mode ~= kind or runId ~= id then break end
+                            task.wait(2)
+                            skipLoop = true
+                        end
+                    end
+                end
+
+                -- Switched from Pine (RUINS) to Wood / Mine: leave RUINS and return to the Hub first
+                if not skipLoop and not pineMode and inRuinsArea and CFG.ReturnToHub then
+                    if onIsland() then
+                        inRuinsArea = false
+                    else
+                        disableHover()
+                        Link.hubBusy = true
+                        local okBack = returnViaPortal(id)
+                        Link.hubBusy = false
+                        if okBack then
+                            inRuinsArea = false
+                        elseif mode == kind and runId == id and not Link.pause then
+                            -- portal failed: fallback = reset, respawn on the island, then enter the Hub from there
+                            setInfo("Return portal failed, resetting the character instead...")
+                            local gen = charGen
+                            local h2 = getChar()
+                            if h2 then pcall(function() h2.Health = 0 end) end
+                            local t0 = os.clock()
+                            while charGen == gen and runId == id and mode == kind and os.clock() - t0 < 15 do
+                                task.wait(0.25)
+                            end
+                            inRuinsArea = false
+                            table.clear(cache)
+                            task.wait(1.5)
+                        end
+                        skipLoop = true
+                    end
+                end
+
+                -- Wood & Mine live in the Hub: if still on the island, enter the Hub first
+                if not skipLoop and CFG.UseHub and not pineMode and onIsland() then
+                    setInfo("On the island, entering the Hub first...")
+                    Link.hubBusy = true
+                    if enterHub(id) then
+                        table.clear(cache)
+                    else
+                        task.wait(1)
+                    end
+                    Link.hubBusy = false
+                    skipLoop = true
+                end
+
+                -- farming
+                if not skipLoop then
+                    ensureEquip(equipName)
+                    hum, hrp = getChar()
+                    if hum then
+                        local node, why, manual = pick(kind, hrp, skipped)
+                        if node then
+                            if hit(kind, node, id, equipName) then skipped[node.key] = os.clock() + 30 end
+                        elseif manual then
+                            setInfo("No ore node found, hitting the Terrain at this spot.\nStand next to the material (or click DEBUG mine).")
+                            swing(workspace.Terrain)
+                            task.wait(CFG.SwingDelay)
+                        else
+                            setInfo(why or "No target.")
+                            task.wait(1)
+                        end
+                    end
+                end
+            end
+            task.wait()
+        end
+    end
+
+    local function start(kind)
+        mode = kind
+        runId += 1
+        local id = runId
+        lastEq = {}
+        task.spawn(function()
+            local ok, err = pcall(run, id, kind)
+            if not ok then
+                warn("[KyHub] Auto Farm error:", err)
+                setInfo("Error: " .. tostring(err))
+            end
+        end)
+    end
+
+    local function stopIf(kind)
+        if mode == kind then
+            mode = nil
+            runId += 1
+            disableHover()
+            restoreSpeed()
+            local hum, hrp = getChar()
+            if hum and hrp then pcall(function() hum:MoveTo(hrp.Position) end) end
+            setInfo("Turned off.")
+        end
+    end
+
+    function Farm.SetTree(v)
+        if v then
+            Combat.Exclusive("tree")
+            start("tree")
+        else
+            stopIf("tree")
+        end
+    end
+
+    function Farm.SetMine(v)
+        if v then
+            Combat.Exclusive("mine")
+            start("mine")
+        else
+            stopIf("mine")
+        end
+    end
+
+    -- tree type changed: restart the loop only if the type really changed (pine = auto route to Hub/RUINS)
+    function Farm.OnTreeKind(k)
+        local changed = CFG.TreeKind ~= k
+        CFG.TreeKind = k
+        table.clear(cache)
+        if changed and mode == "tree" then
+            disableHover()
+            start("tree")
+        end
+    end
+
+    function Farm.IsActive() return mode ~= nil end
+
+    -- ---------- DEBUG ----------
+    local function toolNames()
+        local t = {}
+        for _, c in ipairs({LP:FindFirstChildOfClass("Backpack"), LP.Character}) do
+            if c then
+                for _, x in ipairs(c:GetChildren()) do
+                    if x:IsA("Tool") then t[#t + 1] = x.Name end
+                end
+            end
+        end
+        return table.concat(t, ", ")
+    end
+
+    -- RUINS model inside the Hub (used by DEBUG trees)
+    local function findRuins()
+        local hub = hubModel()
+        return hub and hub:FindFirstChild(CFG.RuinsName, true)
+    end
+
+    function Farm.DebugTree()
+        print("[KyHub] ===== DEBUG TREES =====")
+        print("Your tools:", toolNames())
+        print("onIsland:", onIsland(), "| inHub:", inHub())
+        local ruinsM = findRuins()
+        if ruinsM then
+            print("TouchParts inside RUINS (" .. ruinsM:GetFullName() .. "):")
+            for _, d in ipairs(ruinsM:GetDescendants()) do
+                if d:IsA("BasePart") and d.Name == CFG.TouchPartName then print("  ", d:GetFullName()) end
+            end
+        else
+            print("RUINS model not found")
+        end
+        table.clear(cache)
+        local roots = getResourceRoots()
+        print(("ResourceField roots found: %d"):format(#roots))
+        for _, r in ipairs(roots) do print("  root:", r:GetFullName()) end
+        for _, kind in ipairs({"wood", "pine"}) do
+            local list = treeNodes(kind)
+            print(("%s: %d trees detected"):format(kind, #list))
+            if list[1] then print("  example:", list[1].key:GetFullName()) end
+        end
+    end
+
+    function Farm.DebugMine()
+        print("[KyHub] ===== DEBUG MINE =====")
+        print("Your tools:", toolNames())
+        table.clear(cache)
+        local root = mineRoot()
+        print("Search root:", root and root:GetFullName() or "DOES NOT EXIST")
+        local map = mineMap()
+        for _, r in ipairs(CFG.MineList) do
+            print(("%s: %d nodes"):format(r, #map[r]))
+            if map[r][1] then print("  example:", map[r][1].key:GetFullName()) end
+        end
+        if root then
+            local count, n = {}, 0
+            for _, d in ipairs(root:GetDescendants()) do
+                if d:IsA("BasePart") then count[d.Name] = (count[d.Name] or 0) + 1 end
+            end
+            print("Part names under the root (max 60):")
+            for name, c in pairs(count) do
+                n += 1
+                if n > 60 then break end
+                print(("  %s x%d"):format(name, c))
+            end
+        end
+    end
+
+    onCleanup(function()
+        mode = nil
+        runId += 1
+        pcall(disableHover)
+        pcall(restoreSpeed)
+    end)
+end
+
+-- deteksi disconnect (dipakai webhook dan auto rejoin)
+do
+    function DC.on(f) DC.handlers[#DC.handlers + 1] = f end
+
+    -- masih ada pesan error / ErrorPrompt di layar?
+    function DC.confirm()
+        local m = ""
+        pcall(function() m = GuiService:GetErrorMessage() end)
+        if m ~= "" then return true end
+        local ok, found = pcall(function()
+            return CoreGui.RobloxPromptGui.promptOverlay:FindFirstChild("ErrorPrompt") ~= nil
+        end)
+        return ok and found
+    end
+
+    -- hard = pasti putus (player keluar), selain itu dicek dulu biar tidak salah deteksi
+    function DC.report(reason, hard)
+        -- lagi pindah server sengaja (Anti Satu Server): bukan disconnect
+        if DC.fired or DC.hopping then return end
+        if not hard then
+            task.wait(2)
+            if not DC.confirm() then return end
+        end
+        if DC.fired or DC.hopping then return end
+        DC.fired = true
+        for _, f in ipairs(DC.handlers) do task.spawn(f, reason) end
+    end
+
+    local conns = {}
+    conns[#conns + 1] = GuiService.ErrorMessageChanged:Connect(function()
+        local m = ""
+        pcall(function() m = GuiService:GetErrorMessage() end)
+        if m ~= "" then task.spawn(DC.report, m) end
+    end)
+    conns[#conns + 1] = Players.PlayerRemoving:Connect(function(p)
+        if p == LP then task.spawn(DC.report, "Keluar dari game", true) end
+    end)
+    task.spawn(function()
+        pcall(function()
+            local overlay = CoreGui:WaitForChild("RobloxPromptGui", 15):WaitForChild("promptOverlay", 15)
+            conns[#conns + 1] = overlay.ChildAdded:Connect(function(ch)
+                if ch.Name ~= "ErrorPrompt" then return end
+                task.wait(0.3)
+                local msg = ""
+                pcall(function() msg = ch.MessageArea.ErrorFrame.ErrorMessage.Text end)
+                task.spawn(DC.report, msg)
+            end)
+        end)
+    end)
+
+    onCleanup(function()
+        for _, c in ipairs(conns) do pcall(function() c:Disconnect() end) end
+        table.clear(DC.handlers)
+    end)
+end
+
+-- webhook discord
+do
+    local master, alive, started = false, true, false
+    local last, pending = {}, {}      -- jumlah terakhir per item, dan tambahan yang belum dikirim
+    local lastSent, hbNext, quietUntil = 0, 0, 0
+    local queue = {}
+    local guiCache = {t = -100, v = {}}
+    local rsCache = {t = -100, list = {}}
+    local startTime = os.time()
+    local pendingRejoin = nil
+
+    local TRACK = {
+        {key = "pink", label = "Pink Gear", color = 0xFF69B4},
+        {key = "stone", label = "Batu", color = 0x9AA0A6},
+    }
+
+    local httpReq = (syn and syn.request) or (http and http.request) or http_request or request or (fluxus and fluxus.request)
+
+    local function setInfo(t) if WH.info then WH.info.Text = t end end
+    local function norm(s) return (tostring(s):lower():gsub("[^%w]", "")) end
+    local function fmt(n) return tostring(math.floor((tonumber(n) or 0) + 0.5)) end
+    local function num(key, default)
+        local c = Controls[key]
+        return c and tonumber(c.get()) or default
+    end
+
+    local function validUrl(u)
+        if type(u) ~= "string" then return false end
+        return (u:match("^https://discord%.com/api/webhooks/%d+/.+")
+            or u:match("^https://discordapp%.com/api/webhooks/%d+/.+")
+            or u:match("^https://ptb%.discord%.com/api/webhooks/%d+/.+")
+            or u:match("^https://canary%.discord%.com/api/webhooks/%d+/.+")) and true or false
+    end
+
+    -- file sesi, buat deteksi rejoin
+    local SESSION_FILE = "KyHub/session_" .. LP.UserId .. ".json"
+    local function fsOK()
+        return (writefile and readfile and isfile and makefolder and isfolder) and true or false
+    end
+    local function writeSession(state, reason)
+        if not fsOK() then return end
+        pcall(function()
+            if not isfolder("KyHub") then makefolder("KyHub") end
+            writefile(SESSION_FILE, HttpService:JSONEncode({state = state, t = os.time(), reason = reason, job = game.JobId}))
+        end)
+    end
+    local function readSession()
+        if not fsOK() or not isfile(SESSION_FILE) then return nil end
+        local ok, d = pcall(function() return HttpService:JSONDecode(readfile(SESSION_FILE)) end)
+        if ok and type(d) == "table" then return d end
+    end
+
+    -- baca inventory dari Value / Attribute / Tool milik player
+    local GENERIC = {amount = true, count = true, quantity = true, qty = true, stack = true, value = true, amt = true}
+
+    local function invAdd(inv, name, n, useMax)
+        if type(n) ~= "number" or n ~= n or n <= 0 then return end
+        local k = norm(name)
+        if k == "" then return end
+        local e = inv[k]
+        if e then
+            if useMax then e.count = math.max(e.count, n) else e.count += n end
+        else
+            inv[k] = {name = tostring(name), count = n}
+        end
+    end
+
+    local function visit(d, inv)
+        if d:IsA("Tool") then
+            local amt = d:GetAttribute("Amount") or d:GetAttribute("Count") or d:GetAttribute("Quantity") or 1
+            invAdd(inv, d.Name, tonumber(amt) or 1)
+        elseif d:IsA("IntValue") or d:IsA("NumberValue") then
+            local nm = d.Name
+            if GENERIC[nm:lower()] and d.Parent and d.Parent ~= LP then nm = d.Parent.Name end
+            invAdd(inv, nm, d.Value)
+        end
+        if not d:IsA("Tool") then
+            for k, v in pairs(d:GetAttributes()) do
+                if type(v) == "number" then
+                    invAdd(inv, GENERIC[k:lower()] and d.Name or k, v)
+                end
+            end
+        end
+    end
+
+    local function scanRoot(root, inv)
+        visit(root, inv)
+        for _, d in ipairs(root:GetDescendants()) do visit(d, inv) end
+    end
+
+    -- pencarian rekursif di ReplicatedStorage berat, hasilnya disimpan 30 detik
+    local function rsRoots()
+        if os.clock() - rsCache.t > 30 then
+            rsCache.t = os.clock()
+            rsCache.list = {}
+            for _, nm in ipairs({LP.Name, tostring(LP.UserId)}) do
+                local ok, o = pcall(function() return RS:FindFirstChild(nm, true) end)
+                if ok and o then rsCache.list[#rsCache.list + 1] = o end
+            end
+        end
+        return rsCache.list
+    end
+
+    local function readInventory()
+        local inv = {}
+        pcall(function()
+            visit(LP, inv)
+            for _, c in ipairs(LP:GetChildren()) do
+                if c.Name ~= "PlayerGui" and c.Name ~= "PlayerScripts" then scanRoot(c, inv) end
+            end
+            if LP.Character then
+                for _, c in ipairs(LP.Character:GetChildren()) do
+                    if c:IsA("Tool") then visit(c, inv) end
+                end
+            end
+            for _, o in ipairs(rsRoots()) do
+                if o.Parent then scanRoot(o, inv) end
+            end
+        end)
+        return inv
+    end
+
+    -- cadangan kalau data di atas kosong: baca teks UI seperti "Pink Gear x2" / "Pink Gear: 2"
+    local function readGui()
+        local inv = {}
+        pcall(function()
+            local pg = LP:FindFirstChild("PlayerGui")
+            if not pg then return end
+            for _, d in ipairs(pg:GetDescendants()) do
+                if (d:IsA("TextLabel") or d:IsA("TextButton")) and d.Text ~= "" and #d.Text < 60 and not d:IsDescendantOf(Gui) then
+                    local t = d.Text:gsub("<[^>]+>", "")
+                    local name, n = t:match("^(.-)%s*[xX]%s*(%d[%d,]*)%s*$")
+                    if not name then name, n = t:match("^(.-)%s*×%s*(%d[%d,]*)%s*$") end
+                    if not name then name, n = t:match("^(.-)%s*:%s*(%d[%d,]*)%s*$") end
+                    if name and n and #name > 0 then
+                        invAdd(inv, name, tonumber((n:gsub(",", ""))), true)
+                    end
+                end
+            end
+        end)
+        return inv
+    end
+
+    local function parseKw(s)
+        local list = {}
+        for part in tostring(s or ""):gmatch("[^,]+") do
+            local raw = part:gsub("%s", "")
+            local k = norm(raw)
+            if k ~= "" then list[#list + 1] = {k = k, wild = raw:find("*", 1, true) ~= nil} end
+        end
+        return list
+    end
+
+    local function matches(nameNorm, kws)
+        for _, kw in ipairs(kws) do
+            if kw.wild then
+                if nameNorm:find(kw.k, 1, true) then return true end
+            elseif nameNorm == kw.k then
+                return true
+            end
+        end
+        return false
+    end
+
+    local function sumMatch(inv, kws)
+        local c, found = 0, false
+        for nameNorm, e in pairs(inv) do
+            if matches(nameNorm, kws) then c += e.count; found = true end
+        end
+        return c, found
+    end
+
+    local function getCount(inv, kwstr)
+        local kws = parseKw(kwstr)
+        if #kws == 0 then return 0 end
+        local c, found = sumMatch(inv, kws)
+        if found then return c end
+        if os.clock() - guiCache.t > 10 then guiCache.t = os.clock(); guiCache.v = readGui() end
+        return (sumMatch(guiCache.v, kws))
+    end
+
+    -- kirim
+    local function embed(title, desc, color, fields)
+        return {
+            title = title, description = desc, color = color, fields = fields,
+            footer = {text = "KyHub • " .. LP.Name},
+            timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ"),
+        }
+    end
+
+    local function push(e)
+        if #queue >= 20 then table.remove(queue, 1) end
+        queue[#queue + 1] = e
+    end
+
+    -- return: terkirim?, kena rate limit?
+    local function deliver(e)
+        local url = trim(WH.url and WH.url.Get())
+        if not (httpReq and validUrl(url)) then
+            setInfo("Webhook URL tidak valid / executor tidak support request.")
+            return false, false
+        end
+        local ok, res = pcall(httpReq, {
+            Url = url, Method = "POST", Headers = {["Content-Type"] = "application/json"},
+            Body = HttpService:JSONEncode({username = "KyHub", embeds = {e}}),
+        })
+        if ok and res then
+            local code = res.StatusCode or res.Status
+            if code == 429 then return false, true end
+            if (type(code) == "number" and code >= 200 and code < 300) or (code == nil and res.Success) then
+                setInfo("Terkirim: " .. tostring(e.title))
+                return true, false
+            end
+            setInfo("Gagal kirim (HTTP " .. tostring(code) .. "). Cek URL webhook.")
+            return false, false
+        end
+        setInfo("Gagal kirim: " .. tostring(res))
+        return false, false
+    end
+
+    task.spawn(function()
+        while alive do
+            local e = table.remove(queue, 1)
+            if e then
+                local _, limited = deliver(e)
+                if limited then
+                    table.insert(queue, 1, e)
+                    task.wait(3)
+                end
+                task.wait(1.2)
+            else
+                task.wait(0.5)
+            end
+        end
+    end)
+
+    local function pingText()
+        local ok, p = pcall(function() return LP:GetNetworkPing() end)
+        if ok and type(p) == "number" then return ("%d ms"):format(math.floor(p * 1000 + 0.5)) end
+        return "-"
+    end
+
+    local function featuresText()
+        local t = {}
+        if Tg.slime and Tg.slime.Get() then t[#t + 1] = "Auto Slime" end
+        if Tg.boss and Tg.boss.Get() then t[#t + 1] = "Auto Boss" end
+        if Tg.skel and Tg.skel.Get() then t[#t + 1] = "Auto Skeleton" end
+        if Tg.chest and Tg.chest.Get() then t[#t + 1] = "Auto Collect" end
+        if Tg.harvest and Tg.harvest.Get() then t[#t + 1] = "Auto Harvest" end
+        if Tg.tree and Tg.tree.Get() then t[#t + 1] = "Auto Tree" end
+        if Tg.mine and Tg.mine.Get() then t[#t + 1] = "Auto Mine" end
+        return #t > 0 and table.concat(t, ", ") or "tidak ada"
+    end
+
+    local function hbDelay() return math.max(60, num("wh.hb.every", 10) * 60) end
+
+    local function onlineEmbed()
+        return embed("Masih online", ("**%s** berjalan normal."):format(LP.Name), 0x2ECC71, {
+            {name = "Uptime", value = fmtDur(os.time() - startTime), inline = true},
+            {name = "Ping", value = pingText(), inline = true},
+            {name = "Fitur aktif", value = featuresText(), inline = false},
+        })
+    end
+
+    DC.on(function(reason)
+        reason = trim(reason)
+        if reason == "" then reason = "Tidak diketahui" end
+        writeSession("disconnected", reason)
+        if master and WH.dc.Get() then
+            deliver(embed("Disconnect / Kick", ("**%s** terputus dari game."):format(LP.Name), 0xE74C3C, {
+                {name = "Alasan", value = reason:sub(1, 200), inline = false},
+                {name = "Online selama", value = fmtDur(os.time() - startTime), inline = true},
+            }))
+        end
+    end)
+
+    local function flushRejoin()
+        if pendingRejoin and master then
+            if WH.rejoin.Get() then
+                push(pendingRejoin)
+                hbNext = os.clock() + hbDelay()
+            end
+            pendingRejoin = nil
+        end
+    end
+
+    -- notif item (Pink Gear / Batu), digabung per jeda biar tidak spam
+    local function tickItems()
+        local anyOn = false
+        for _, it in ipairs(TRACK) do
+            if WH[it.key].on.Get() then anyOn = true end
+        end
+        if not anyOn then return end
+
+        local now = os.clock()
+        local inv = readInventory()
+        local quiet = (not LP.Character) or now < quietUntil   -- habis respawn inventory sering ke-reset
+
+        for _, it in ipairs(TRACK) do
+            local ctl = WH[it.key]
+            if ctl.on.Get() and not quiet then
+                local c = getCount(inv, ctl.kw.Get())
+                local prev = last[it.key]
+                if prev ~= nil and c > prev then pending[it.key] = (pending[it.key] or 0) + (c - prev) end
+                last[it.key] = c
+            else
+                last[it.key] = nil
+                if not ctl.on.Get() then pending[it.key] = nil end
+            end
+        end
+
+        if next(pending) and now - lastSent >= num("wh.cooldown", 5) then
+            lastSent = now
+            for _, it in ipairs(TRACK) do
+                local g = pending[it.key]
+                if g then
+                    pending[it.key] = nil
+                    push(embed(("%s didapat!"):format(it.label), ("**+%s** %s"):format(fmt(g), it.label), it.color, {
+                        {name = "Player", value = LP.Name, inline = true},
+                        {name = "Total sekarang", value = fmt(last[it.key] or 0), inline = true},
+                    }))
+                end
+            end
+        end
+    end
+
+    local function tickOnline()
+        if WH.hb.Get() and os.clock() >= hbNext then
+            hbNext = os.clock() + hbDelay()
+            push(onlineEmbed())
+        end
+    end
+
+    task.spawn(function()
+        local since, itemTimer = 0, 0
+        while alive do
+            task.wait(2)
+            since += 2
+            itemTimer += 2
+            if not DC.fired and since >= 20 then
+                since = 0
+                writeSession("online")
+            end
+            if master and not DC.fired then
+                -- scan inventory tiap 4 detik saja (lebih ringan di HP)
+                if itemTimer >= 4 then
+                    itemTimer = 0
+                    pcall(tickItems)
+                end
+                pcall(tickOnline)
+            end
+        end
+    end)
+
+    local charConn = LP.CharacterAdded:Connect(function()
+        quietUntil = os.clock() + 5
+        last = {}
+    end)
+
+    function Webhook.Set(v)
+        if v then
+            if not httpReq then
+                notify("Executor tidak support request/http_request.")
+                WH.master.Set(false)
+                return
+            end
+            if not validUrl(trim(WH.url.Get())) then
+                notify("Isi Webhook URL Discord yang valid dulu.")
+                WH.master.Set(false)
+                return
+            end
+            last, pending = {}, {}
+            hbNext = 0
+            master = true
+            setInfo("Webhook aktif.")
+            if started then flushRejoin() end
+        else
+            master = false
+            setInfo("Webhook nonaktif.")
+        end
+    end
+
+    -- dipanggil sekali setelah config auto load selesai, buat cek apakah ini habis rejoin
+    function Webhook.OnStart()
+        started = true
+        startTime = os.time()
+        local prev = readSession()
+        writeSession("online")
+        if prev then
+            local gap = os.time() - (tonumber(prev.t) or os.time())
+            if prev.state == "disconnected" then
+                pendingRejoin = embed("Rejoin, kembali online", ("**%s** sudah online lagi."):format(LP.Name), 0x3498DB, {
+                    {name = "Offline selama", value = fmtDur(gap), inline = true},
+                    {name = "Alasan terputus", value = tostring(prev.reason or "-"):sub(1, 200), inline = false},
+                })
+            elseif prev.state == "online" and gap > 90 then
+                pendingRejoin = embed("Kembali online", ("**%s** sudah online lagi."):format(LP.Name), 0x3498DB, {
+                    {name = "Tidak ada sinyal selama", value = fmtDur(gap), inline = true},
+                    {name = "Keterangan", value = "Game ditutup, crash, atau koneksi putus tanpa pesan error.", inline = false},
+                })
+            end
+        end
+        flushRejoin()
+    end
+
+    function Webhook.Test()
+        if not httpReq then notify("Executor tidak support request/http_request."); return end
+        if not validUrl(trim(WH.url.Get())) then notify("Webhook URL belum valid."); return end
+        push(embed("Test KyHub", "Webhook tersambung.", 0x6C78FF, {
+            {name = "Player", value = LP.Name, inline = true},
+        }))
+        notify("Test dikirim.")
+    end
+
+    function Webhook.Debug()
+        local function dump(title, inv, limit)
+            local list = {}
+            for _, e in pairs(inv) do list[#list + 1] = e end
+            table.sort(list, function(a, b) return a.name:lower() < b.name:lower() end)
+            print(title, #list)
+            for i, e in ipairs(list) do
+                if i > limit then print("  ..."); break end
+                print(("  %s = %s"):format(e.name, fmt(e.count)))
+            end
+        end
+        local inv, g = readInventory(), readGui()
+        print("=== DEBUG INVENTORY ===")
+        dump("Dari data player (Value / Attribute / Tool):", inv, 150)
+        dump("Dari teks UI (cadangan):", g, 60)
+        print("--- hasil per item ---")
+        for _, it in ipairs(TRACK) do
+            local kwstr = WH[it.key].kw.Get()
+            local kws = parseKw(kwstr)
+            local c1, f1 = sumMatch(inv, kws)
+            local c2, f2 = sumMatch(g, kws)
+            print(("  %s | nama '%s' | data: %s (%s) | UI: %s (%s)"):format(
+                it.label, kwstr, fmt(c1), f1 and "ketemu" or "tidak", fmt(c2), f2 and "ketemu" or "tidak"))
+        end
+        notify("Hasil scan ada di console (F9).")
+        setInfo("Scan selesai, lihat console (F9).")
+    end
+
+    onCleanup(function()
+        alive = false
+        master = false
+        if not DC.fired then writeSession("closed") end
+        charConn:Disconnect()
+    end)
+end
+
+-- anti lag
+do
+    local on = false
+    local saved = setmetatable({}, {__mode = "k"})
+    local conns = {}
+    local origQuality
+
+    local function keep(inst, prop)
+        local s = saved[inst]
+        if not s then s = {}; saved[inst] = s end
+        if s[prop] == nil then s[prop] = inst[prop] end
+    end
+
+    local function lag(o)
+        if o:IsA("ParticleEmitter") or o:IsA("Trail") or o:IsA("Beam") or o:IsA("Smoke")
+            or o:IsA("Fire") or o:IsA("Sparkles") or o:IsA("PostEffect") then
+            pcall(function() keep(o, "Enabled"); o.Enabled = false end)
+        end
+    end
+
+    local function enable()
+        if on then return end
+        on = true
+        pcall(function() keep(Lighting, "GlobalShadows"); Lighting.GlobalShadows = false end)
+        pcall(function()
+            local t = workspace.Terrain
+            keep(t, "WaterWaveSize"); t.WaterWaveSize = 0
+            keep(t, "WaterWaveSpeed"); t.WaterWaveSpeed = 0
+            keep(t, "WaterReflectance"); t.WaterReflectance = 0
+        end)
+        pcall(function()
+            origQuality = settings().Rendering.QualityLevel
+            settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+        end)
+        conns[#conns + 1] = workspace.DescendantAdded:Connect(lag)
+        conns[#conns + 1] = Lighting.DescendantAdded:Connect(lag)
+        task.spawn(function()
+            local n = 0
+            for _, root in ipairs({workspace, Lighting}) do
+                for _, o in ipairs(root:GetDescendants()) do
+                    if not on then return end
+                    lag(o)
+                    n += 1
+                    if n % 1500 == 0 then task.wait() end
+                end
+            end
+        end)
+    end
+
+    local function disable()
+        if not on then return end
+        on = false
+        for _, c in ipairs(conns) do pcall(function() c:Disconnect() end) end
+        table.clear(conns)
+        for inst, props in pairs(saved) do
+            pcall(function() for p, v in pairs(props) do inst[p] = v end end)
+        end
+        table.clear(saved)
+        pcall(function() if origQuality then settings().Rendering.QualityLevel = origQuality end end)
+    end
+
+    function Sys.AntiLag(v) if v then enable() else disable() end end
+    onCleanup(disable)
+end
+
+-- anti afk
+do
+    local afkConn
+    function Sys.AntiAFK(v)
+        if v then
+            if afkConn then return end
+            afkConn = LP.Idled:Connect(function()
+                pcall(function()
+                    VirtualUser:CaptureController()
+                    VirtualUser:ClickButton2(Vector2.new(0, 0))
+                end)
+            end)
+        elseif afkConn then
+            afkConn:Disconnect()
+            afkConn = nil
+        end
+    end
+    onCleanup(function() if afkConn then afkConn:Disconnect(); afkConn = nil end end)
+end
+
+-- auto rejoin
+do
+    local qot = queue_on_teleport or (syn and syn.queue_on_teleport) or queueonteleport or (fluxus and fluxus.queue_on_teleport)
+
+    DC.on(function()
+        if not Rejoin.On then return end
+        task.wait(Rejoin.Delay)
+
+        -- supaya script jalan lagi di server baru
+        if Rejoin.Loader ~= "" and qot then
+            local code
+            if Rejoin.Loader:match("^https?://") then
+                code = ("loadstring(game:HttpGet(%q))()"):format(Rejoin.Loader)
+            else
+                code = ("loadstring(readfile(%q))()"):format(Rejoin.Loader)
+            end
+            pcall(qot, code)
+        end
+
+        for _ = 1, 20 do
+            if not Rejoin.On then return end
+            pcall(function() TeleportService:Teleport(game.PlaceId, LP) end)
+            task.wait(15)
+        end
+    end)
+end
+
+-- anti satu server: kalau salah satu user ID di daftar ada di server ini, pindah ke server lain
+do
+    local qot = queue_on_teleport or (syn and syn.queue_on_teleport) or queueonteleport or (fluxus and fluxus.queue_on_teleport)
+    local GRACE = 25   -- detik: ID yang baru masuk diberi waktu untuk pindah sendiri
+
+    -- server yang sudah dicoba disimpan di env, supaya tidak balik ke server yang sama setelah script jalan lagi
+    local bad = env.KyHub_BadServers
+    if type(bad) ~= "table" then bad = {}; env.KyHub_BadServers = bad end
+    bad[game.JobId] = true
+
+    local busy, lastTry = false, 0
+    local arrived = {}   -- [userId] = waktu dia masuk SETELAH kita (dia yang seharusnya pindah)
+
+    local function setInfo(t) if Blk.info then Blk.info.Text = t end end
+
+    function Blk.SetIds(text)
+        local list, set = {}, {}
+        for w in tostring(text or ""):gmatch("%d+") do
+            local n = tonumber(w)
+            if n and not set[n] then set[n] = true; list[#list + 1] = n end
+        end
+        Blk.ids, Blk.set = list, set
+        setInfo(Blk.on and ("Aktif, memantau %d ID."):format(#list) or "Nonaktif.")
+    end
+
+    function Blk.Set(v)
+        Blk.on = v and true or false
+        lastTry = 0
+        setInfo(Blk.on and ("Aktif, memantau %d ID."):format(#Blk.ids) or "Nonaktif.")
+    end
+
+    -- pemain di server ini yang ada di daftar (kecuali akun ini sendiri)
+    local function conflicts()
+        local out = {}
+        for _, p in ipairs(Players:GetPlayers()) do
+            if p ~= LP and Blk.set[p.UserId] then
+                local t = arrived[p.UserId]
+                -- dia baru masuk setelah kita: beri dia waktu pindah sendiri
+                if not (t and os.clock() - t < GRACE) then
+                    out[#out + 1] = p
+                end
+            end
+        end
+        return out
+    end
+
+    -- ambil daftar server publik, pilih acak dari yang paling sepi
+    local function pickServer()
+        local url = ("https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Asc&limit=100&excludeFullGames=true"):format(game.PlaceId)
+        local okG, body = pcall(function() return game:HttpGet(url) end)
+        if not okG then return nil, "Gagal ambil daftar server: " .. tostring(body):sub(1, 80) end
+        local okJ, data = pcall(function() return HttpService:JSONDecode(body) end)
+        if not (okJ and type(data) == "table" and type(data.data) == "table") then
+            return nil, "Daftar server tidak terbaca (mungkin kena rate limit)."
+        end
+        local cands = {}
+        for _, s in ipairs(data.data) do
+            if type(s) == "table" and s.id and s.id ~= game.JobId and not bad[s.id]
+                and type(s.playing) == "number" and type(s.maxPlayers) == "number"
+                and s.playing < s.maxPlayers - 1 then
+                cands[#cands + 1] = s
+            end
+        end
+        if #cands == 0 then return nil, "Tidak ada server lain yang cocok." end
+        local top = math.min(#cands, 20)
+        return cands[math.random(top)].id
+    end
+
+    local function release()
+        busy = false
+        DC.hopping = false
+        lastTry = os.clock()
+    end
+
+    local function hop(list)
+        if busy then return end
+        busy = true
+        DC.hopping = true   -- tahan deteksi disconnect / auto rejoin / webhook selama pindah server
+
+        local names = {}
+        for _, p in ipairs(list) do names[#names + 1] = tostring(p.UserId) end
+        setInfo(("ID %s ada di server ini. Mencari server lain..."):format(table.concat(names, ", ")))
+
+        local id, why = pickServer()
+        if not id then
+            setInfo((why or "Gagal cari server.") .. " Coba lagi 15 detik.")
+            release()
+            return
+        end
+        bad[id] = true
+
+        -- jalankan KyHub lagi di server baru (butuh Loader, atau KyHub ada di autoexec)
+        if Rejoin.Loader ~= "" and qot then
+            local code
+            if Rejoin.Loader:match("^https?://") then
+                code = ("loadstring(game:HttpGet(%q))()"):format(Rejoin.Loader)
+            else
+                code = ("loadstring(readfile(%q))()"):format(Rejoin.Loader)
+            end
+            pcall(qot, code)
+        end
+
+        setInfo("Pindah server...")
+        local ok, err = pcall(function() TeleportService:TeleportToPlaceInstance(game.PlaceId, id, LP) end)
+        if not ok then
+            setInfo("Teleport gagal: " .. tostring(err):sub(1, 80))
+            release()
+            return
+        end
+        -- kalau 25 detik masih di sini, teleport gagal: coba server lain
+        task.delay(25, function()
+            if Alive and busy then
+                setInfo("Teleport belum jalan, coba server lain...")
+                release()
+            end
+        end)
+    end
+
+    local addConn = Players.PlayerAdded:Connect(function(p)
+        if Blk.set[p.UserId] then arrived[p.UserId] = os.clock() end
+    end)
+    local tpConn = TeleportService.TeleportInitFailed:Connect(function()
+        if busy then release() end
+    end)
+
+    task.spawn(function()
+        while Alive do
+            task.wait(3)
+            if Blk.on and not busy and #Blk.ids > 0 and os.clock() - lastTry >= 15 then
+                local list = conflicts()
+                if #list > 0 then
+                    pcall(hop, list)
+                else
+                    setInfo(("Aman: tidak ada dari %d ID terlarang di server ini."):format(#Blk.ids))
+                end
+            end
+        end
+    end)
+
+    onCleanup(function()
+        addConn:Disconnect()
+        tpConn:Disconnect()
+        Blk.on = false
+        DC.hopping = false
+    end)
+end
+
+-- config
+do
+    local FOLDER = "KyHub"
+    local CFG_DIR = FOLDER .. "/configs"
+    local AUTO_FILE = FOLDER .. "/autoload_" .. LP.UserId .. ".txt"
+    local INDEX_FILE = FOLDER .. "/index_" .. LP.UserId .. ".json"
+    local pendingDel, pendingT = nil, 0
+
+    local function fsOK()
+        return (writefile and readfile and isfile and makefolder and isfolder) and true or false
+    end
+    Sys.FsReady = fsOK
+
+    local function clean(n)
+        n = tostring(n or "")
+        n = n:gsub("[^%w%-_ ]", "")
+        return trim(n):sub(1, 30)
+    end
+
+    local function pathOf(n) return CFG_DIR .. "/" .. n .. ".json" end
+
+    local function ensureDirs()
+        if not isfolder(FOLDER) then makefolder(FOLDER) end
+        if not isfolder(CFG_DIR) then makefolder(CFG_DIR) end
+    end
+
+    -- daftar dari listfiles kalau ada, ditambah index (buat executor tanpa listfiles)
+    local function listNames()
+        local names, seen = {}, {}
+        local function add(n)
+            if n and n ~= "" and not seen[n] and isfile(pathOf(n)) then
+                seen[n] = true
+                names[#names + 1] = n
+            end
+        end
+        if listfiles and isfolder(CFG_DIR) then
+            local ok, files = pcall(listfiles, CFG_DIR)
+            if ok and type(files) == "table" then
+                for _, p in ipairs(files) do add(tostring(p):match("([^/\\]+)%.json$")) end
+            end
+        end
+        if isfile(INDEX_FILE) then
+            local ok, data = pcall(function() return HttpService:JSONDecode(readfile(INDEX_FILE)) end)
+            if ok and type(data) == "table" then
+                for _, n in ipairs(data) do add(n) end
+            end
+        end
+        table.sort(names, function(a, b) return a:lower() < b:lower() end)
+        return names
+    end
+
+    local function writeIndex()
+        pcall(function() writefile(INDEX_FILE, HttpService:JSONEncode(listNames())) end)
+    end
+
+    local function readAuto()
+        if not fsOK() then return nil end
+        local okE, exists = pcall(isfile, AUTO_FILE)
+        if not (okE and exists) then return nil end
+        local ok, v = pcall(readfile, AUTO_FILE)
+        if not ok then return nil end
+        v = clean(v)
+        if v == "" or v == "0" or v == "1" then return nil end   -- format lama
+        return v
+    end
+
+    function Sys.GetAuto() return readAuto() end
+
+    function Sys.Refresh()
+        if not fsOK() then
+            CfgUI.list.SetData({}, nil)
+            CfgUI.status.Text = "Executor tidak support file (writefile/readfile)."
+            return
+        end
+        pcall(ensureDirs)
+        local auto = readAuto()
+        CfgUI.list.SetData(listNames(), auto)
+        CfgUI.status.Text = auto and ("Auto Load: " .. auto) or "Auto Load: OFF"
+    end
+
+    function Sys.Save()
+        if not fsOK() then notify("Executor tidak support file (writefile/readfile)."); return end
+        local name = clean(CfgUI.name.Get())
+        if name == "" then name = CfgUI.list.selected or "" end
+        if name == "" then notify("Isi nama config dulu."); return end
+        local data = {}
+        for k, c in pairs(Controls) do data[k] = c.get() end
+        local ok, err = pcall(function()
+            ensureDirs()
+            writefile(pathOf(name), HttpService:JSONEncode(data))
+        end)
+        if not ok then notify("Gagal menyimpan: " .. tostring(err)); return end
+        writeIndex()
+        CfgUI.list.selected = name
+        CfgUI.name.Set(name, true)
+        Sys.Refresh()
+        notify("Config disimpan: " .. name)
+    end
+
+    -- urutan load tetap: fitur utama paling akhir, supaya nilai pengaturannya sudah terpasang
+    local LAST = {["harvest.on"] = 1, ["chest.on"] = 2, ["tree.on"] = 3, ["mine.on"] = 4, ["skel.on"] = 5, ["boss.on"] = 6, ["slime.on"] = 7}
+    local function sortedKeys()
+        local keys = {}
+        for k in pairs(Controls) do keys[#keys + 1] = k end
+        table.sort(keys, function(a, b)
+            local la, lb = LAST[a] or 0, LAST[b] or 0
+            if la ~= lb then return la < lb end
+            return a < b
+        end)
+        return keys
+    end
+
+    function Sys.Load(nameArg, silent)
+        local function say(m) if not silent then notify(m) end end
+        if not Alive then return false end
+        if not fsOK() then say("Executor tidak support file (writefile/readfile)."); return false end
+        local name = clean(nameArg)
+        if name == "" then name = CfgUI.list.selected or clean(CfgUI.name.Get()) end
+        if name == "" then say("Pilih config yang mau di-load dulu."); return false end
+        local okE, exists = pcall(isfile, pathOf(name))
+        if not (okE and exists) then say("Config tidak ditemukan: " .. name); return false end
+        local okR, raw = pcall(readfile, pathOf(name))
+        if not okR or type(raw) ~= "string" or raw == "" then say("Config tidak bisa dibaca."); return false end
+        local ok, data = pcall(function() return HttpService:JSONDecode(raw) end)
+        if not ok or type(data) ~= "table" then say("Config rusak / tidak bisa dibaca."); return false end
+
+        local keys = sortedKeys()
+        -- angka dan teks dulu, baru toggle, supaya fitur nyala dengan nilai yang benar
+        for _, k in ipairs(keys) do
+            local c = Controls[k]
+            if c.kind ~= "toggle" and data[k] ~= nil then pcall(c.set, data[k]) end
+        end
+        for _, k in ipairs(keys) do
+            local c = Controls[k]
+            if c.kind == "toggle" and data[k] ~= nil then pcall(c.set, data[k]) end
+        end
+        CfgUI.list.selected = name
+        CfgUI.name.Set(name, true)
+        Sys.Refresh()
+        if not silent then notify("Config dimuat: " .. name) end
+        return true
+    end
+
+    function Sys.Delete()
+        if not fsOK() then notify("Executor tidak support file."); return end
+        if not delfile then notify("Executor tidak support delfile."); return end
+        local name = CfgUI.list.selected
+        if not name then notify("Klik nama config di daftar dulu."); return end
+        if pendingDel ~= name or os.clock() - pendingT > 4 then
+            pendingDel, pendingT = name, os.clock()
+            notify(("Klik Delete lagi dalam 4 detik untuk hapus '%s'"):format(name))
+            return
+        end
+        pendingDel = nil
+        local ok = pcall(delfile, pathOf(name))
+        if ok and not isfile(pathOf(name)) then
+            if readAuto() == name then pcall(writefile, AUTO_FILE, "") end
+            CfgUI.list.selected = nil
+            CfgUI.name.Set("", true)
+            writeIndex()
+            Sys.Refresh()
+            notify("Config dihapus: " .. name)
+        else
+            notify("Gagal menghapus config.")
+        end
+    end
+
+    function Sys.SetAuto()
+        if not fsOK() then notify("Executor tidak support file."); return end
+        local name = CfgUI.list.selected
+        if not name then notify("Klik nama config di daftar dulu."); return end
+        local ok = pcall(function()
+            ensureDirs()
+            writefile(AUTO_FILE, name)
+        end)
+        Sys.Refresh()
+        notify(ok and ("Auto Load: " .. name) or "Gagal menyimpan Auto Load.")
+    end
+
+    function Sys.ClearAuto()
+        if not fsOK() then notify("Executor tidak support file."); return end
+        pcall(function() writefile(AUTO_FILE, "") end)
+        Sys.Refresh()
+        notify("Auto Load: OFF")
+    end
+end
+
+
+-- =====================================================================
+-- CLEANUP
+-- =====================================================================
+local function doCleanup()
+    if not Alive then return end
+    Alive = false
+    for _, f in ipairs(cleanups) do pcall(f) end
+    cleanups = {}
+    pcall(function() Gui:Destroy() end)
+end
+
+CloseBtn.Activated:Connect(doCleanup)
+env.KyHub_Cleanup = doCleanup
+onCleanup(function() env.KyHub_Cleanup = nil end)
+
+-- default toggles via Deferred
+for _, f in ipairs(Deferred) do pcall(f) end
+
+-- pick the starting tab
+selectTab("Home")
+
+Sys.Refresh()
+
+task.spawn(function()
+    -- tunggu island (terdeteksi otomatis) dan Remotes muncul, maks 30 detik
+    local t0 = os.clock()
+    while Alive and os.clock() - t0 < 30 do
+        if Island.get() and RS:FindFirstChild("Remotes") then break end
+        task.wait(0.5)
+    end
+    if not Alive then return end
+    task.wait(2)
+
+    -- auto load: dicoba ulang kalau file system belum siap atau baca gagal (sering terjadi di autoexec)
+    local loadedName
+    for attempt = 1, 6 do
+        if not Alive then return end
+        if Sys.FsReady() then
+            local autoName = Sys.GetAuto()
+            if not autoName then break end   -- memang tidak ada auto load
+            if Sys.Load(autoName, true) then
+                loadedName = autoName
+                break
+            end
+        end
+        task.wait(1.5)
+    end
+    if not Alive then return end
+
+    if loadedName then
+        notify("Auto Load: " .. loadedName)
+    else
+        notify("KyHub siap.")
+    end
+
+    Webhook.OnStart()
+end)
+
+notify("KyHub v17.2 loaded. Auto Combat (Slime / Boss / Skeleton) is ready.")
