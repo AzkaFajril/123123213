@@ -7,6 +7,11 @@ local Games = {
         Name = "Murder Mystery 2", 
         Url = "https://raw.githubusercontent.com/AzkaFajril/123123213/refs/heads/main/mm2" 
     },
+
+     [13772394625] = { 
+        Name = "Blade-Ball ",
+        Url = "https://raw.githubusercontent.com/AzkaFajril/123123213/refs/heads/main/bb" 
+    },
     
     -- ABOVE (Beberapa kemungkinan ID)
     [12435783578554] = { 
